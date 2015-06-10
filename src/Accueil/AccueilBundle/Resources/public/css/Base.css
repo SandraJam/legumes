@@ -1,0 +1,21 @@
+html, body{
+  text-align: center;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  outline: 0px;
+  background: url('../images/fond.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Barre de Menu */
+.menuBar {
+  background: red;
+  margin: 1em;
+  border-radius: 0.8em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3),
+                  0 3px 5px rgba(0, 0, 0, .2),
+                  0 5px 10px rgba(0, 0, 0, .2),
+                  0 20px 20px rgba(0, 0, 0, .15);
+}
