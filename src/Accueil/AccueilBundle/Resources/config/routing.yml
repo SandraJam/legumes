@@ -1,0 +1,3 @@
+accueil_accueil_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: AccueilAccueilBundle:Default:index }

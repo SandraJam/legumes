@@ -1,0 +1,15 @@
+boutique_article:
+    resource: "@BoutiqueArticleBundle/Resources/config/routing.yml"
+    prefix:   /
+
+boutique_galerie:
+    resource: "@BoutiqueGalerieBundle/Resources/config/routing.yml"
+    prefix:   /
+
+accueil_accueil:
+    resource: "@AccueilAccueilBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

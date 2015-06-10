@@ -1,0 +1,3 @@
+boutique_galerie_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: BoutiqueGalerieBundle:Default:index }
