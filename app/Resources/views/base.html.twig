@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ asset('bundles/accueilaccueil/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('bundles/accueilaccueil/css/Base.css') }}" rel="stylesheet">
-    <!--<link href='http://fonts.googleapis.com/css?family=Alegreya+Sans+SC' rel='stylesheet' type='text/css'>-->
-    <!--[if lt IE 9]>
+    <link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>    <!--[if lt IE 9]>
       <script src="http://github.com/aFarkas/html5shiv/blob/master/dist/html5shiv.js"></script>
     <![endif]-->
     <title>{% block title %}{% endblock %}</title>
@@ -15,34 +14,7 @@
 
   <body>
       <div class="entete">
-        Bienvenue!
-      </div>
-
-      <div class="connexion">
-        Connectez-vous
-      </div>
-
-      <div class="menuBar">
-        <div class ="container">
-          <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-              Accueil <br/>
-                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-              Boutique <br/>
-                <span class="glyphicon glyphicon-apple" aria-hidden="true"></span>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-              Nous Connaître <br/>
-                <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-              Contactez-nous <br/>
-                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-            </div>
-          </div>
-        </div>
+        <img src="{{ asset('bundles/accueilaccueil/images/jardinier.gif')}}" class="imgLogo">
       </div>
       {% block body %}{% endblock %}
   </body>

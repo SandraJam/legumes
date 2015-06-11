@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Accueil\AccueilBundle\AccueilAccueilBundle(),
             new Boutique\GalerieBundle\BoutiqueGalerieBundle(),
             new Boutique\ArticleBundle\BoutiqueArticleBundle(),
+            new BDD\BddClientBundle\BDDBddClientBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

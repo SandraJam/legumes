@@ -1,5 +1,5 @@
 html, body{
-  text-align: center;
+  font-family: 'Dancing Script', sans-serif;
   height: 100%;
   margin: 0px;
   padding: 0px;
@@ -9,13 +9,32 @@ html, body{
   background-repeat: no-repeat;
 }
 
-/* Barre de Menu */
-.menuBar {
-  background: red;
-  margin: 1em;
-  border-radius: 0.8em;
+.entete {
+  margin: 0em 2em;
+  height: 15em;
+  background: white;
+  border-bottom-right-radius:1em;
+  border-bottom-left-radius:1em;
   box-shadow: 0 1px 3px rgba(0, 0, 0, .3),
-                  0 3px 5px rgba(0, 0, 0, .2),
-                  0 5px 10px rgba(0, 0, 0, .2),
-                  0 20px 20px rgba(0, 0, 0, .15);
+              0 3px 5px rgba(0, 0, 0, .2),
+              0 5px 10px rgba(0, 0, 0, .2),
+              0 20px 20px rgba(0, 0, 0, .15);
+}
+
+.imgLogo {
+  height: 14em;
+  margin-left: 2em;
+  margin-top: 0.6em;
+}
+
+@media (max-width: 500px) {
+  .entete {
+    height: 8em;
+  }
+
+  .imgLogo {
+    height: 7em;
+    margin-left: 0.5em;
+    margin-top: 0.3em;
+  }
 }

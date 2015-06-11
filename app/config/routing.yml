@@ -1,3 +1,7 @@
+bdd_bdd_client:
+    resource: "@BDDBddClientBundle/Resources/config/routing.yml"
+    prefix:   /
+
 boutique_article:
     resource: "@BoutiqueArticleBundle/Resources/config/routing.yml"
     prefix:   /

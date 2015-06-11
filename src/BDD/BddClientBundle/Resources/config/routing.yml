@@ -1,0 +1,3 @@
+bdd_bdd_client_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: BDDBddClientBundle:Default:index }
