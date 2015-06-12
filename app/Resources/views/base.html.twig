@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ asset('bundles/accueilaccueil/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('bundles/accueilaccueil/css/Base.css') }}" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>    <!--[if lt IE 9]>
+    <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>    <!--[if lt IE 9]>
       <script src="http://github.com/aFarkas/html5shiv/blob/master/dist/html5shiv.js"></script>
     <![endif]-->
-    <title>{% block title %}{% endblock %}</title>
+    <title>Les Légumes du Val de Loire - {% block title %}{% endblock %}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
   </head>
 
   <body>
       <!-- En tête du site: Logo, Menu, Panier/Login -->
       <div class="entete container">
+        <!-- Titre Responsive -->
         <div class="row">
           <div class="hidden-lg hidden-md hidden-sm col-xs-12">
-            <h3 class="title">Légumes du Val de Loire</h3>
+            <h3 class="title">Les Légumes du Val de Loire</h3>
           </div>
         </div>
         <div class="row">
@@ -28,13 +29,18 @@
           <!-- Menu -->
           <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6">
               <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs">
-                  <h1 class="title">Les Légumes du Val de Loire</h1>
+                <!-- Titre Standard -->
+                <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs title">
+                    <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span>
+                    Les Légumes du Val de Loire
+                    <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-6">
-                  <a href="{{path('accueil_accueil_homepage')}}"><div class="boutonMenu green">Accueil</div></a>
+                  <a href="{{path('accueil_accueil_homepage')}}">
+                    <div class="boutonMenu green">Accueil</div>
+                  </a>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6">
                   <a href="#"><div class="boutonMenu orange">Boutique</div></a>
@@ -47,26 +53,38 @@
                 </div>
               </div>
           </div>
-          <!-- Panier/ Login -->
+          <!-- Panier/ Login Standard-->
           <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
               <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                  <img src="{{ asset('bundles/accueilaccueil/images/panier.png')}}" class="panier">
+                  <a href="#"><img src="{{ asset('bundles/accueilaccueil/images/panier.png')}}" class="panier">
+                  <br/> <h4>Votre panier contient 0 article!</h4></a>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                  <h2>LOGIN</h2>
+                  <a href="#"><img src="{{ asset('bundles/accueilaccueil/images/tomato1.png')}}" class="panier">
+                  <br/> <h4>Connexion - Créer votre Compte</h4></a>
                 </div>
               </div>
           </div>
         </div>
+        <!-- Panier/ Login Responsive-->
         <div class="row">
-          <div class="hidden-lg hidden-md hidden-sm col-xs-12 enBas">
-            PANIER/LOGIN
+          <div class="enBas">
+            <div class="hidden-lg hidden-md hidden-sm col-xs-6">
+              <a href="#"><img src="{{ asset('bundles/accueilaccueil/images/panier.png')}}" class="panier">
+              Votre panier: 0 article!</a>
+            </div>
+            <div class="hidden-lg hidden-md hidden-sm col-xs-6">
+              <a href="#"><img src="{{ asset('bundles/accueilaccueil/images/tomato1.png')}}" class="panier">
+               Connexion - S'enregistrer</a>
+            </div>
           </div>
         </div>
       </div>
       {% block body %}{% endblock %}
+      <!-- Footer -->
+
   </body>
 </html>
