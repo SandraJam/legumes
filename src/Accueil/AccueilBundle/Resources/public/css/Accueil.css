@@ -1,0 +1,42 @@
+.texte {
+  font-family: 'Coustard', sans-serif;
+  background: white;
+  margin-top: 5%;
+  padding: 0.5em 2em;
+  height: 30em;
+  border-radius: 1em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3),
+              0 3px 5px rgba(0, 0, 0, .2),
+              0 5px 10px rgba(0, 0, 0, .2),
+              0 20px 20px rgba(0, 0, 0, .15);
+  overflow: auto;
+}
+
+.blocContainer {
+  width: 92%;
+}
+
+.soustitre {
+  font-size: 150%;
+}
+
+@media (max-width: 370px){
+  .soustitre{
+    font-size: 110%;
+  }
+}
+
+.imgRecette {
+  width: 100%;
+}
+
+.figRec {
+  text-align: center;
+    float: right;
+    width: 45%;
+    padding: 0.5em;
+    border: 2px dashed;
+    -ms-transform: rotate(15deg); /* IE 9 */
+    -webkit-transform: rotate(15deg); /* Chrome, Safari, Opera */
+    transform: rotate(15deg);
+}

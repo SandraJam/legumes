@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ asset('bundles/accueilaccueil/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('bundles/accueilaccueil/css/Base.css') }}" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>    <!--[if lt IE 9]>
+    <link href='http://fonts.googleapis.com/css?family=Coustard|Cookie' rel='stylesheet' type='text/css'>
+    {% block style %}{% endblock %}
+    <!--[if lt IE 9]>
       <script src="http://github.com/aFarkas/html5shiv/blob/master/dist/html5shiv.js"></script>
     <![endif]-->
     <title>Les Légumes du Val de Loire - {% block title %}{% endblock %}</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/accueilaccueil/images/panier.png') }}" />
   </head>
 
   <body>
@@ -24,7 +26,7 @@
         <div class="row">
           <!-- Logo -->
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-            <img src="{{ asset('bundles/accueilaccueil/images/jardinier.gif')}}" class="imgLogo">
+            <img src="{{ asset('bundles/accueilaccueil/images/jardinier.gif')}}" alt="Jardinier" class="imgLogo">
           </div>
           <!-- Menu -->
           <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6">
@@ -57,13 +59,13 @@
           <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
               <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                  <a href="#"><img src="{{ asset('bundles/accueilaccueil/images/panier.png')}}" class="panier">
+                  <a href="#"><img src="{{ asset('bundles/accueilaccueil/images/panier.png')}}" alt="Panier" class="panier">
                   <br/> <h4>Votre panier contient 0 article!</h4></a>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                  <a href="#"><img src="{{ asset('bundles/accueilaccueil/images/tomato1.png')}}" class="panier">
+                  <a href="#"><img src="{{ asset('bundles/accueilaccueil/images/tomato1.png')}}" alt="Compte Client" class="panier">
                   <br/> <h4>Connexion - Créer votre Compte</h4></a>
                 </div>
               </div>
@@ -73,11 +75,11 @@
         <div class="row">
           <div class="enBas">
             <div class="hidden-lg hidden-md hidden-sm col-xs-6">
-              <a href="#"><img src="{{ asset('bundles/accueilaccueil/images/panier.png')}}" class="panier">
+              <a href="#"><img src="{{ asset('bundles/accueilaccueil/images/panier.png')}}" alt="Panier" class="panier">
               Votre panier: 0 article!</a>
             </div>
             <div class="hidden-lg hidden-md hidden-sm col-xs-6">
-              <a href="#"><img src="{{ asset('bundles/accueilaccueil/images/tomato1.png')}}" class="panier">
+              <a href="#"><img src="{{ asset('bundles/accueilaccueil/images/tomato1.png')}}" alt="Compte Client" class="panier">
                Connexion - S'enregistrer</a>
             </div>
           </div>
@@ -85,6 +87,13 @@
       </div>
       {% block body %}{% endblock %}
       <!-- Footer -->
-
+      <br/>
+      <div class="footer">
+          2015: Les Légumes du Val de Loire<br/>
+          25 bis route du point du jours
+          45730 Saint Benoît sur Loire<br/>
+          02.38.35.78.87<br/>
+          Copyright: Juliette Parillot & Sandra Dupré<br/>
+      </div>
   </body>
 </html>

@@ -1,10 +1,64 @@
 {# src/Accueil/AccueilBundle/Resources/views/index.html.twig #}
 {% extends '::base.html.twig' %}
 
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Accueil.css') }}" rel="stylesheet">
+  <link href="{{ asset('bundles/accueilaccueil/css/slider.css') }}" rel="stylesheet" type="text/css" media="screen" />
+{% endblock %}
+
 {% block title %}
   Accueil
 {% endblock %}
 
 {% block body %}
-  Test Accueil
+  <div class="container blocContainer">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="texte">
+          <span class="soustitre">
+            <span class="glyphicon glyphicon-grain" aria-hidden="true"></span>
+            En ce moment...
+            <span class="glyphicon glyphicon-grain" aria-hidden="true"></span>
+          </span><br/>
+
+          <!-- Slider -->
+
+
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="recette texte">
+          <span class="soustitre">
+            <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+            Laissez-vous tenter!
+            <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+          </span>
+          <p><br/>
+            <figure class="figRec">
+              <img src="{{ asset('bundles/accueilaccueil/images/gratincourgette.jpg')}}" class="imgRecette" alt="Gratin de courgette"/>
+              <figcaption><a href="#">Faites le plein de Courgettes!</a></figcaption>
+            </figure>
+            <span class="soustitre">Recette du gratin de Courgettes</span><br/>
+            Temps de préparation : 15 minutes<br/>
+            Temps de cuisson : 15 minutes<br/><br/>
+
+            Ingrédients (pour 4 personnes) : <br/>
+            - 4 courgettes<br/>
+            - 3 oignons<br/>
+            - 100 g de gruyère râpé<br/>
+            - 2 oeufs<br/>
+            - 2 cuillères à soupe de crème fraîche<br/>
+            - 1 noix de beurre<br/>
+            - sel et poivre<br/><br/>
+
+            Préparation de la recette :<br/>
+            Eminvcer les oignons et les faire fondre dans le beurre.<br/>
+            Râper 4 courgettes avec leur peau et les ajouter aux oignons.<br/>
+            Mélanger le gruyère râpé, les oeufs, la crème fraîche, puis saler et poivrer.<br/>
+            Mettre les courgettes dans un plat et verser par dessus la sauce et faire à four chaud pendant 15 mn.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
