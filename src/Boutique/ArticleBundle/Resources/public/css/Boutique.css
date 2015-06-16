@@ -1,0 +1,59 @@
+.whiteBloc {
+  margin-top: 2em;
+  font-family: 'Coustard', sans-serif;
+  width: 90%;
+  background: white;
+  border-radius: 1em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3),
+              0 3px 5px rgba(0, 0, 0, .2),
+              0 5px 10px rgba(0, 0, 0, .2),
+              0 20px 20px rgba(0, 0, 0, .15);
+}
+
+.imgArticle {
+  width: 100%;
+}
+
+.figArticle {
+  margin: 3%;
+  padding: 0.5em;
+  border: 2px dashed;
+}
+
+.description {
+  margin: 3%;
+}
+
+.titreArticle{
+  font-size: 2.1em;
+  color: rgb(19, 73, 0);
+}
+
+.description{
+  text-align: justify;
+}
+
+.recommandation{
+  font-style: italic;
+  color: rgb(85, 0, 0);
+}
+
+.panierAdd{
+  margin-top: 2%;
+  text-align: center;
+  line-height: 2;
+}
+
+.imgAdd {
+  margin-top: 2em;
+  width: 15%;
+}
+
+input {
+  width: 4em;
+}
+
+.textAdd {
+    font-size: 1.5em;
+    color: rgb(0, 39, 84);
+}

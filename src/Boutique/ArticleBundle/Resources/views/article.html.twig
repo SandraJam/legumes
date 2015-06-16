@@ -2,7 +2,7 @@
 {% extends '::base.html.twig' %}
 
 {% block style %}
-  <link href="{{ asset('bundles/accueilaccueil/css/Boutique.css') }}" rel="stylesheet">
+  <link href="{{ asset('bundles/boutiquearticle/css/Boutique.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block title %}
@@ -10,9 +10,49 @@
 {% endblock %}
 
 {% block body %}
-  <div class="container">
+  <div class="container whiteBloc">
     <div class="row">
-      
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="row">
+          <!-- Photo -->
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <figure class="figArticle">
+              <img src="{{ asset('bundles/boutiquearticle/images/tomatesrondes.jpg')}}" class="imgArticle" alt="Tomates Rondes"/>
+            </figure>
+          </div>
+          <!-- Panier RESPONSIVE-->
+          <div class="hidden-lg hidden-md hidden-sm col-xs-12">
+            PANIER
+          </div>
+        </div>
+      </div>
+      <!-- Description -->
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="description">
+          <!-- Nom + Catégorie-->
+          <div>
+            <span class="titreArticle"> Tomates Rondes </span>
+          </div>
+          <!-- Recommandation -->
+          <div>
+            <span class="recommandation"> Idéales pour vos plats chauds! </span>
+          </div><br/>
+          <!-- Description -->
+          <div>
+            <span class="description">
+              &emsp;&emsp; Récoltées à la main, nos tomates sauront vous satisfaire! Blablabla Blabla Bla BlaBla. Blablabla Blabla Bla BlaBla. Blablabla Blabla Bla BlaBla. Blablabla Blabla Bla BlaBla. Blablabla Blabla Bla BlaBla.
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- Quantité + Panier -->
+      <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs panierAdd">
+        <span class="textAdd">
+        Ajouter au panier: </span> </br>
+          1 unité = 500 grammes </br>
+        <input type="number" value="1"/> unité(s)<br/>
+        <a href=""><img src="{{ asset('bundles/boutiquearticle/images/ajoutpanier.png')}}" class="imgAdd" alt="Ajouter au panier"/></a>
+      </div>
     </div>
   </div>
 {% endblock %}

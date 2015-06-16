@@ -13,7 +13,12 @@
 }
 
 .blocContainer {
-  width: 92%;
+  width: 90%;
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+  outline: 0px;
+  margin-left: 5%;
 }
 
 .soustitre {
@@ -32,11 +37,11 @@
 
 .figRec {
   text-align: center;
-    float: right;
-    width: 45%;
-    padding: 0.5em;
-    border: 2px dashed;
-    -ms-transform: rotate(15deg); /* IE 9 */
-    -webkit-transform: rotate(15deg); /* Chrome, Safari, Opera */
-    transform: rotate(15deg);
+  float: right;
+  width: 45%;
+  padding: 0.5em;
+  border: 2px dashed;
+  -ms-transform: rotate(15deg); /* IE 9 */
+  -webkit-transform: rotate(15deg); /* Chrome, Safari, Opera */
+  transform: rotate(15deg);
 }
