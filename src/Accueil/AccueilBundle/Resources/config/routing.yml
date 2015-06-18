@@ -6,7 +6,13 @@ formConnexion:
     path:     /connexion
     defaults: { _controller: AccueilAccueilBundle:Accueil:formulaireConnexion }
 
+
 inscriptionClient:
     path:     /inscription
     defaults: { _controller: AccueilAccueilBundle:Accueil:inscription }
+
+
+accueil_accueil_contact:
+    path:     /contact
+    defaults: { _controller: AccueilAccueilBundle:Accueil:contact }
 

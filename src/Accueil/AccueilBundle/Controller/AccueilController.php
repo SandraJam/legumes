@@ -12,8 +12,13 @@ class AccueilController extends Controller
     {
         return $this->render('AccueilAccueilBundle::index.html.twig');
     }
-    public function formulaireConnexionAction(Request $request)
+
+    public function contactAction()
     {
+        return $this->render('AccueilAccueilBundle::contact.html.twig');
+    }
+
+    public function formulaireConnexionAction(Request $request){
 		$session = $this->getRequest()->getSession();
         if ($session->get('users') != NULL){
         	$session->set('users', NULL);
