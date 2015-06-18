@@ -39,13 +39,14 @@
 }
 
 .panierAdd{
-  margin-top: 2%;
   text-align: center;
-  line-height: 2;
+  line-height: 1.5;
+  margin-top: 1%;
 }
 
 .imgAdd {
-  margin-top: 2em;
+  margin-top: 1.5em;
+  margin-bottom: 1em;
   width: 15%;
 }
 
@@ -56,4 +57,9 @@ input {
 .textAdd {
     font-size: 1.5em;
     color: rgb(0, 39, 84);
+}
+
+.price {
+  font-size: 3em;
+  color: rgb(219, 0, 0);
 }
