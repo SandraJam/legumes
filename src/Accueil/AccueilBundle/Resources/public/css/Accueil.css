@@ -45,3 +45,30 @@
   -webkit-transform: rotate(15deg); /* Chrome, Safari, Opera */
   transform: rotate(15deg);
 }
+
+.login{
+  font-family: 'Coustard', sans-serif;
+  background: white;
+  margin-top: 5%;
+  padding: 0.5em 2em;
+  text-align: center;
+  min-height: 15em;
+  border-radius: 1em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3),
+              0 3px 5px rgba(0, 0, 0, .2),
+              0 5px 10px rgba(0, 0, 0, .2),
+              0 20px 20px rgba(0, 0, 0, .15);
+  width: 50%;
+  margin-left: 25%;
+}
+
+label {
+  width: 20%;
+}
+
+@media (max-width:675px){
+  .login{
+    width: 90%;
+    margin-left: 5%;
+  }
+}

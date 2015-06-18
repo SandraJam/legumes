@@ -10,11 +10,13 @@
 {% endblock %}
 
 {% block body %}
-<h1> Formulaire de connexion</h1>
-  <form method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
-    <input type="submit" />
-  </form>
+  <div class="login">
+    <h3> Connectez-vous! </h3>
+    <form method="post" {{ form_enctype(form) }}>
+      {{ form_widget(form) }}
+      <input type="submit" />
+    </form>
+  </div>
 {% endblock %}
 
 {% block js %}
