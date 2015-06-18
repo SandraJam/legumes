@@ -1,6 +1,12 @@
 accueil_accueil_homepage:
     path:     /
     defaults: { _controller: AccueilAccueilBundle:Accueil:index }
+
 formConnexion:
     path:     /connexion
     defaults: { _controller: AccueilAccueilBundle:Accueil:formulaireConnexion }
+
+inscriptionClient:
+    path:     /inscription
+    defaults: { _controller: AccueilAccueilBundle:Accueil:inscription }
+

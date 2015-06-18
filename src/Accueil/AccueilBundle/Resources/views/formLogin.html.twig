@@ -1,17 +1,20 @@
-{# src/Accueil/AccueilBundle/Resources/views/index.html.twig #}
+{# src/Accueil/AccueilBundle/Resources/views/formLogin.html.twig #}
 {% extends '::base.html.twig' %}
 
 {% block style %}
   <link href="{{ asset('bundles/accueilaccueil/css/Accueil.css') }}" rel="stylesheet">
-  <link href="{{ asset('bundles/accueilaccueil/css/slider.css') }}" rel="stylesheet" type="text/css" media="screen" />
 {% endblock %}
 
 {% block title %}
-formulaire de connexion
+	formulaire de connexion
 {% endblock %}
 
 {% block body %}
-{{ form_widget(form) }}
+<h1> Formulaire de connexion</h1>
+  <form method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <input type="submit" />
+  </form>
 {% endblock %}
 
 {% block js %}

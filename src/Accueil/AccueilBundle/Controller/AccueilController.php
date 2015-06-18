@@ -14,21 +14,16 @@ class AccueilController extends Controller
     }
     public function formulaireConnexionAction(Request $request)
     {
-    		//teste si la session n'est pas vide
 		$session = $this->getRequest()->getSession();
-        //si un utilisateur est déjà connecté alors ça le déconnecte
         if ($session->get('users') != NULL){
         	$session->set('users', NULL);
-            //redirection vers la page d'accueil
 			return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
             //si la session est vide  
         }else{
-            //on lance le formulaire de login
     		$connexion = new Utilisateurs();
     	   	$form = $this->createFormBuilder($connexion)
     		    ->add('login','text')
     		    ->add('pwd','password')
-    		    ->add('valider','submit')
     		    ->add('annuler','reset')
     		    ->getForm()
     	    ;
@@ -39,22 +34,30 @@ class AccueilController extends Controller
                 $user = $this->getDoctrine()
             		->getRepository('BDDBddClientBundle:Utilisateurs')
             		->findOneBy(array('login' => $connexion->getLogin(), 'pwd' => $connexion->getPwd()));
-                    //si on l'a trouvé on me met dans la session
+                    //si on l'a trouvé on me met dans la session    
                 if($user !=NULL){  
+                    $session->set('type', $user->getType());
+                    $session->set('login', $user->getLogin());
+                    //si je suis un client 
                     if($user->getType() != "ADMINISTRATEUR"){
-                	   $session->set('type', $user->getType());
-                       $session->set('login', $user->getLogin());
                        return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
+                    }else{
+                        //Page d'administration
+
                     }
+                     //l'Utilisateur n'existe pas on va donc le faire s'enregistrer
                 }else{
-                             \Doctrine\Common\Util\Debug::dump($form->getData()->getLogin());
+                    // on met la session à null
+                    $session->set('users', NULL); 
+                    //on redirige vers la page d'inscription
+                     return $this->redirect($this->generateUrl('inscriptionClient'));
                 }
-            }else{
-                //erreur le formulaire n'est pas valide
-                  \Doctrine\Common\Util\Debug::dump($form->isValid());
             }
 	       return $this->render('AccueilAccueilBundle::formLogin.html.twig', 
             array('form' => $form->createView()) );
         }
+    }
+    public function inscriptionAction(){
+
     }
 }
