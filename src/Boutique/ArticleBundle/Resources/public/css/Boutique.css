@@ -63,3 +63,64 @@ input {
   font-size: 3em;
   color: rgb(219, 0, 0);
 }
+
+.panierRes {
+  border: 1px solid;
+  width: 96%;
+  margin-left: 2%;
+  font-size: 80%;
+  text-align: center;
+}
+
+.priceRes {
+  font-size: 3em;
+  color: rgb(219, 0, 0);
+}
+
+.imgAddRes {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 50%;
+}
+
+.profitez {
+  margin: 2em;
+  padding: 1em;
+  border: 1px dashed rgb(189, 0, 0);
+  color: rgb(189, 0, 0);
+}
+
+.titreProfitez {
+  font-size: 1.5em;
+}
+
+.categories {
+  margin: 1em;
+}
+
+.categorie {
+  border: 2px dashed black;
+  text-align: center;
+  padding-top: 5%;
+  font-size: 2em;
+  margin-bottom: 0.8em;
+}
+
+@media (max-width: 500px){
+  .categorie {
+    border: 2px dashed black;
+    text-align: center;
+    padding-top: 5%;
+    font-size: 100%;
+    margin-bottom: 0.8em;
+  }
+}
+
+.imgCat {
+  width: 90%;
+}
+
+.aCat, .aCat:hover, .aCat:focus, .aCat:visited {
+  text-decoration: none;
+  color: inherit;
+}

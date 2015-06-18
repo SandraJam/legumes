@@ -22,7 +22,18 @@
           </div>
           <!-- Panier RESPONSIVE-->
           <div class="hidden-lg hidden-md hidden-sm col-xs-12">
-            PANIER
+            <div class ="row panierRes">
+              <div class="col-xs-6">
+                <span class="priceRes"> 2 € </span> l'unité<br/>
+                  1 unité = 500 grammes
+              </div>
+              <div class="col-xs-6">
+                <!-- ICI METTRE MAX COMMANDE -->
+              Quantité: <input type="number" value="1" min="1" max="30"/> unité(s)
+              <a href=""><img src="{{ asset('bundles/boutiquearticle/images/ajoutpanier.png')}}" class="imgAddRes" alt="Ajouter au panier"/></a>
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -52,7 +63,8 @@
         <span class="price"> 2 € </span>
           l'unité<br/>
           1 unité = 500 grammes </br></br>
-        <input type="number" value="1"/> unité(s)<br/>
+          <!-- ICI METTRE MAX COMMANDE -->
+        Quantité: <input type="number" value="1" min="1" max="30"/> unité(s)<br/>
         <a href=""><img src="{{ asset('bundles/boutiquearticle/images/ajoutpanier.png')}}" class="imgAdd" alt="Ajouter au panier"/></a>
       </div>
     </div>
