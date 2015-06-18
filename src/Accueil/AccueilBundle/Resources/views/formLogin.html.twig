@@ -1,0 +1,19 @@
+{# src/Accueil/AccueilBundle/Resources/views/index.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Accueil.css') }}" rel="stylesheet">
+  <link href="{{ asset('bundles/accueilaccueil/css/slider.css') }}" rel="stylesheet" type="text/css" media="screen" />
+{% endblock %}
+
+{% block title %}
+formulaire de connexion
+{% endblock %}
+
+{% block body %}
+{{ form_widget(form) }}
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

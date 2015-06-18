@@ -3,7 +3,8 @@
 namespace Accueil\AccueilBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use src\BDD\BddClientBundle\Utilisateurs;
+use Symfony\Component\HttpFoundation\Request;
+use BDD\BddClientBundle\Entity\Utilisateurs;
 
 class AccueilController extends Controller
 {
@@ -11,7 +12,7 @@ class AccueilController extends Controller
     {
         return $this->render('AccueilAccueilBundle::index.html.twig');
     }
-    public function formulaireConnexionAction()
+    public function formulaireConnexionAction(Request $request)
     {
     		//teste si la session n'est pas vide
 		$session = $this->getRequest()->getSession();
@@ -32,21 +33,28 @@ class AccueilController extends Controller
     		    ->getForm()
     	    ;
         	$form->handleRequest($request);
-            //si le forulaire est rapide
-	      	if($form->isValid()) {
+            if($form->isValid()) {
                	$connexion = $form -> getData();
                 //on cherche en base qu'il existe
                 $user = $this->getDoctrine()
             		->getRepository('BDDBddClientBundle:Utilisateurs')
-            		->findOneBy(array('login' => $connexion->getLogin(), 'pwd' => $connexion->getMotdepasse()));
+            		->findOneBy(array('login' => $connexion->getLogin(), 'pwd' => $connexion->getPwd()));
                     //si on l'a trouvé on me met dans la session
                 if($user !=NULL){  
-                	$session->set('user', $user->getPrenom());
-                	$session->set('type', $user->getType());
-                    return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
+                    if($user->getType() != "ADMINISTRATEUR"){
+                	   $session->set('type', $user->getType());
+                       $session->set('login', $user->getLogin());
+                       return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
+                    }
+                }else{
+                             \Doctrine\Common\Util\Debug::dump($form->getData()->getLogin());
                 }
+            }else{
+                //erreur le formulaire n'est pas valide
+                  \Doctrine\Common\Util\Debug::dump($form->isValid());
             }
-	       return $this->render('AccueilAccueilBundle::formLogin.html.twig', array('form' => $form->createView()) );
+	       return $this->render('AccueilAccueilBundle::formLogin.html.twig', 
+            array('form' => $form->createView()) );
         }
     }
 }
