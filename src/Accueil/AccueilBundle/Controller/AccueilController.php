@@ -11,6 +11,12 @@ class AccueilController extends Controller
     {
         return $this->render('AccueilAccueilBundle::index.html.twig');
     }
+
+    public function contactAction()
+    {
+        return $this->render('AccueilAccueilBundle::contact.html.twig');
+    }
+
     public function formulaireConnexionAction()
     {
     		//teste si la session n'est pas vide
