@@ -59,14 +59,28 @@ class Utilisateurs
     /**
      * @var string
      *
+     * @ORM\Column(name="codePostal", type="string", length=255)
+     */
+    private $codePostal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=255)
+     */
+    private $ville;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="type", type="string", length=255)
      */
     private $type;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="dateNaissance", type="datetime")
+     * @ORM\Column(name="dateNaissance", type="date")
      */
     private $dateNaissance;
 
@@ -300,5 +314,51 @@ class Utilisateurs
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set codePostal
+     *
+     * @param string $codePostal
+     * @return Utilisateurs
+     */
+    public function setCodePostal($codePostal)
+    {
+        $this->codePostal = $codePostal;
+
+        return $this;
+    }
+
+    /**
+     * Get codePostal
+     *
+     * @return string 
+     */
+    public function getCodePostal()
+    {
+        return $this->codePostal;
+    }
+
+    /**
+     * Set ville
+     *
+     * @param string $ville
+     * @return Utilisateurs
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return string 
+     */
+    public function getVille()
+    {
+        return $this->ville;
     }
 }
