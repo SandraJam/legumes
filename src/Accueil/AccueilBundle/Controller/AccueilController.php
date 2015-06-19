@@ -29,7 +29,7 @@ class AccueilController extends Controller
     	   	$form = $this->createFormBuilder($connexion)
     		    ->add('login','text')
     		    ->add('pwd','password')
-		    ->add('valider','submit')
+		        ->add('valider','submit')
     		    ->add('annuler','reset')
     		    ->getForm()
     	    ;
@@ -63,9 +63,9 @@ class AccueilController extends Controller
             array('form' => $form->createView()) );
         }
     }
-    public function inscriptionAction(){
+    public function inscriptionAction(Request $request){
         $session = $this->getRequest()->getSession();
-        if ($session->get('users') != NULL && strtolower($session->get('type')) == 'administrateur'){        
+        if ($session->get('users') == NULL){        
             // on lance le formulaire pour ajout d'un utilisateur en base 
             $connexion = new Utilisateurs();
             $form = $this->createFormBuilder($connexion)
@@ -73,12 +73,12 @@ class AccueilController extends Controller
                 ->add('prenom','text')
                 ->add('login','text')
                 ->add('pwd','password')
-		->add('adresse','text')
-		->add('codePostal','text')
-		->add('ville','text')
-		->add('dateNaissance','date')
-		->add('tel','text')
-		->add('email','text')
+        		->add('adresse','text')
+        		->add('codePostal','text')
+        		->add('ville','text')
+        		->add('dateNaissance','date')
+        		->add('tel','integer')
+        		->add('email','text')
                 ->add('valider','submit')
                 ->add('annuler','reset')
                 ->getForm()
@@ -89,11 +89,11 @@ class AccueilController extends Controller
                 $connexion = $form -> getData();
                 // on cherche si l'utilisateur existe
                      $user = $this->getDoctrine()
-                    ->getRepository('BDD:Utilisateur')
-                    ->findOneBy(array('login' => $connexion->getLogin(), 'motdepasse' => $connexion->getMotdepasse()));
+                    ->getRepository('BDDBddClientBundle:Utilisateurs')
+                    ->findOneBy(array('login' => $connexion->getLogin(), 'pwd' => $connexion->getPwd()));
 
                 if($user !=NULL){ 
-                    return $this->render('PrincipalePageBundle::erreurProfil.html.twig', array('error' => "This user already exists !") );
+                  //  return $this->render('PrincipalePageBundle::erreurProfil.html.twig', array('error' => "This user already exists !") );
                 }else{
                     // On récupère l'EntityManager
                     $em = $this->getDoctrine()->getManager();
@@ -104,15 +104,15 @@ class AccueilController extends Controller
                                // Reste de la méthode qu'on avait déjà écrit
                     if ($request->isMethod('POST')) {
                       $request->getSession()->getFlashBag()->add('notice', 'User has been registered.');
-                        if ($session->get('user') != NULL){ 
-                            return $this->redirect($this->generateUrl('principale_page_homepage'));
+                        if ($session->get('users') != NULL){ 
+                            return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
                         }
                     }
                 }
             }
-            return $this->render('UserUserBundle::ajoutUtilisateur.html.twig', array('form' => $form->createView()) );
+            return $this->render('AccueilAccueilBundle::inscriptionClient.html.twig', array('form' => $form->createView()) );
         }else{
-           return $this->redirect($this->generateUrl('user_user_homepage'));
+           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
         }
     }
 }
