@@ -12,9 +12,8 @@
 {% block body %}
   <div class="login">
     <h3> Connectez-vous! </h3>
-    <form method="post" >
-      {{ form_widget(form) }}
-    </form>
+      {{ form(form) }}
+
    	<a href="{{ path('inscriptionClient') }}"> Créer votre compte <a/>
   </div>
 {% endblock %}
