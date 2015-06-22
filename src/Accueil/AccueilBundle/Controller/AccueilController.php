@@ -64,8 +64,10 @@ class AccueilController extends Controller
         }
     }
     public function inscriptionAction(Request $request){
+           \Doctrine\Common\Util\Debug::dump("jej");
         $session = $this->getRequest()->getSession();
         if ($session->get('users') == NULL){        
+               \Doctrine\Common\Util\Debug::dump("DEDDE");
             // on lance le formulaire pour ajout d'un utilisateur en base 
             $connexion = new Utilisateurs();
             $form = $this->createFormBuilder($connexion)
@@ -86,6 +88,7 @@ class AccueilController extends Controller
             $form->handleRequest($request);
 
             if($form->isValid()){ 
+                             
                 $connexion = $form -> getData();
                 // on cherche si l'utilisateur existe
                      $user = $this->getDoctrine()
@@ -93,20 +96,22 @@ class AccueilController extends Controller
                     ->findOneBy(array('login' => $connexion->getLogin(), 'pwd' => $connexion->getPwd()));
 
                 if($user !=NULL){ 
-                  //  return $this->render('PrincipalePageBundle::erreurProfil.html.twig', array('error' => "This user already exists !") );
+             
                 }else{
                     // On récupère l'EntityManager
                     $em = $this->getDoctrine()->getManager();
-                               // Étape 1 : On « persiste » l'entité
+                    $connexion->setType("client");
                     $em->persist($connexion);
-                               // Étape 2 : On « flush » tout ce qui a été persisté avant
                     $em->flush();
                                // Reste de la méthode qu'on avait déjà écrit
                     if ($request->isMethod('POST')) {
+                                       \Doctrine\Common\Util\Debug::dump("DEDDE");
                       $request->getSession()->getFlashBag()->add('notice', 'User has been registered.');
                         if ($session->get('users') != NULL){ 
                             return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
                         }
+                    }else{
+                                       \Doctrine\Common\Util\Debug::dump("pas post DEDDE");
                     }
                 }
             }
