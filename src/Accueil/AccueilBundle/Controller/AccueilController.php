@@ -78,9 +78,9 @@ class AccueilController extends Controller
         		->add('adresse','text')
         		->add('codePostal','text')
         		->add('ville','text')
-        		->add('dateNaissance','date')
-        		->add('tel','integer')
-        		->add('email','text')
+        		->add('dateNaissance','birthday')
+        		->add('tel','number')
+        		->add('email','email')
                 ->add('valider','submit')
                 ->add('annuler','reset')
                 ->getForm()
@@ -90,28 +90,25 @@ class AccueilController extends Controller
             if($form->isValid()){ 
                              
                 $connexion = $form -> getData();
-                // on cherche si l'utilisateur existe
                      $user = $this->getDoctrine()
                     ->getRepository('BDDBddClientBundle:Utilisateurs')
                     ->findOneBy(array('login' => $connexion->getLogin(), 'pwd' => $connexion->getPwd()));
 
                 if($user !=NULL){ 
-             
+                    //message d'erreur, le login doit etre changé
                 }else{
-                    // On récupère l'EntityManager
                     $em = $this->getDoctrine()->getManager();
                     $connexion->setType("client");
+                    //TODO  vérification
+                   //IDEE en fonction du code postal, proposer les villes associées
+                   
                     $em->persist($connexion);
                     $em->flush();
-                               // Reste de la méthode qu'on avait déjà écrit
                     if ($request->isMethod('POST')) {
-                                       \Doctrine\Common\Util\Debug::dump("DEDDE");
                       $request->getSession()->getFlashBag()->add('notice', 'User has been registered.');
                         if ($session->get('users') != NULL){ 
                             return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
                         }
-                    }else{
-                                       \Doctrine\Common\Util\Debug::dump("pas post DEDDE");
                     }
                 }
             }
@@ -120,4 +117,5 @@ class AccueilController extends Controller
            return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
         }
     }
+    
 }
