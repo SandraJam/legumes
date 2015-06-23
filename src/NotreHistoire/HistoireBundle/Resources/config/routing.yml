@@ -1,0 +1,3 @@
+notre_histoire_histoire_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: NotreHistoireHistoireBundle:Default:index }

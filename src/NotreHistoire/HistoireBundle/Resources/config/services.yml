@@ -1,0 +1,4 @@
+services:
+#    notre_histoire_histoire.example:
+#        class: NotreHistoire\HistoireBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,5 +1,7 @@
 .whiteBloc {
+  min-height: 20em;
   margin-top: 2em;
+  padding-top: 1em;
   font-family: 'Coustard', sans-serif;
   width: 90%;
   background: white;
@@ -83,44 +85,45 @@ input {
   width: 50%;
 }
 
-.profitez {
-  margin: 2em;
-  padding: 1em;
-  border: 1px dashed rgb(189, 0, 0);
-  color: rgb(189, 0, 0);
-}
+/* Galerie */
 
-.titreProfitez {
-  font-size: 1.5em;
-}
-
-.categories {
-  margin: 1em;
-}
-
-.categorie {
-  border: 2px dashed black;
-  text-align: center;
-  padding-top: 5%;
-  font-size: 2em;
-  margin-bottom: 0.8em;
-}
-
-@media (max-width: 500px){
-  .categorie {
-    border: 2px dashed black;
-    text-align: center;
-    padding-top: 5%;
-    font-size: 100%;
-    margin-bottom: 0.8em;
-  }
+.galerie {
+  display: none;
 }
 
 .imgCat {
-  width: 90%;
+  width: 98%;
+  border-radius: 2em;
+  -webkit-transition: all .5s cubic-bezier( .6, 2, .4, 1);
+    -moz-transition: all .5s cubic-bezier( .6, 2, .4, 1);
+     -ms-transition: all .5s cubic-bezier( .6, 2, .4, 1);
+      -o-transition: all .5s cubic-bezier( .6, 2, .4, 1);
+         transition: all .5s cubic-bezier( .6, 2, .4, 1);
+         box-shadow:0 0 2em black;
 }
 
-.aCat, .aCat:hover, .aCat:focus, .aCat:visited {
+.categorie:hover .imgCat{
+  -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+       -ms-transform: scale(1.2);
+        -o-transform: scale(1.2);
+           transform: scale(1.2);
+}
+
+.row:hover .imgCat:not(:hover) {
+  -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+     -ms-filter: blur(5px);
+      -o-filter: blur(5px);
+         filter: blur(5px);
+}
+
+.categorie {
+  text-align: center;
+  padding: 0.5em;
+}
+
+a, a:hover, a:focus, a:visited {
   text-decoration: none;
   color: inherit;
 }

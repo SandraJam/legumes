@@ -11,48 +11,178 @@
 
 {% block body %}
   <div class="container whiteBloc">
-    <!-- En ce moment -->
-    <div class="profitez">
-      <span class="titreProfitez"> Profitez-en! </span>
-      <!-- SLIDER d'article -->
-    </div>
-    <!-- Categories des articles -->
-    <div class="row categories">
-      <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+
+    <!-- Boucle sur les categorie -->
+    <div class="row" >
+      <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 categories">
           <figure class="categorie">
-            <!-- Cette page servira aux categories et a la gallery d'article -->
-            <!-- le "a href" sert a soit revenir sur cette page avec les articles -->
-            <!-- Soit a aller vers un article -->
-            <a href="#" class="aCat">
+            <a href="#" id="buttonCat1">
               <img src="{{ asset('bundles/boutiquearticle/images/tomatesrondes.jpg')}}" class="imgCat" alt="Gratin de courgette"/>
               <figcaption> Tomates </figcaption>
             </a>
           </figure>
       </div>
-      <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+      <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 categories">
           <figure class="categorie">
-            <a href="#" class="aCat">
+            <a href="#" id="buttonCat2">
               <img src="{{ asset('bundles/boutiquearticle/images/tomatesrondes.jpg')}}" class="imgCat" alt="Gratin de courgette"/>
               <figcaption> Tomates </figcaption>
             </a>
           </figure>
       </div>
-      <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+      <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 categories">
           <figure class="categorie">
-            <a href="#" class="aCat">
+            <a href="#" id="buttonCat3">
               <img src="{{ asset('bundles/boutiquearticle/images/tomatesrondes.jpg')}}" class="imgCat" alt="Gratin de courgette"/>
               <figcaption> Tomates </figcaption>
             </a>
           </figure>
       </div>
-      <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+      <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 categories">
           <figure class="categorie">
-            <a href="#" class="aCat">
+            <a href="#" id="buttonCat4">
               <img src="{{ asset('bundles/boutiquearticle/images/tomatesrondes.jpg')}}" class="imgCat" alt="Gratin de courgette"/>
               <figcaption> Tomates </figcaption>
             </a>
           </figure>
       </div>
     </div>
+
+    <!-- Tous les articles de la categories 1 -->
+    <div id="cat1" class="galerie">
+      <a href="#" id="retourCat1">
+        Retour categories
+      </a>
+      <a href="#">
+        <div class="article">
+          Je suis un article de la categorie 1
+        </div>
+      </a>
+      <a href="#">
+        <div class="article">
+          Je suis un article de la categorie 1
+        </div>
+      </a>
+      <a href="#">
+        <div class="article">
+          Je suis un article de la categorie 1
+        </div>
+      </a>
+    </div>
+
+      <!-- Tous les articles de la categories 2 etc etc -->
+    <div id="cat2" class="galerie">
+      <a href="#" id="retourCat2">
+        Retour categories
+      </a>
+      <a href="#">
+        <div class="article">
+          Je suis un article de la categorie 2
+        </div>
+      </a>
+      <a href="#">
+        <div class="article">
+          Je suis un article de la categorie 2
+        </div>
+      </a>
+      <a href="#">
+        <div class="article">
+          Je suis un article de la categorie 2
+        </div>
+      </a>
+    </div>
+
+    <div id="cat3" class="galerie">
+      <a href="#" id="retourCat3">
+        Retour categories
+      </a>
+      <a href="#">
+        <div class="article">
+          Je suis un article de la categorie 3
+        </div>
+      </a>
+      <a href="#">
+        <div class="article">
+          Je suis un article de la categorie 3
+        </div>
+      </a>
+      <a href="#">
+        <div class="article">
+          Je suis un article de la categorie 3
+        </div>
+      </a>
+    </div>
+
+    <div id="cat4" class="galerie">
+      <a href="#" id="retourCat4">
+        Retour categories
+      </a>
+      <a href="#">
+        <div class="article">
+          Je suis un article de la categorie 4
+        </div>
+      </a>
+      <a href="#">
+        <div class="article">
+          Je suis un article de la categorie 4
+        </div>
+      </a>
+      <a href="#">
+        <div class="article">
+          Je suis un article de la categorie 4
+        </div>
+      </a>
+    </div>
+
   </div>
+{% endblock %}
+
+
+{% block js %}
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+
+      $("#buttonCat1").click(function(){
+        $(".categories").fadeOut("slow");
+        $("#cat1").delay( 650 ).fadeIn("slow");
+      });
+
+      $("#buttonCat2").click(function(){
+        $(".categories").fadeOut("slow");
+        $("#cat2").delay( 650 ).fadeIn("slow");
+      });
+
+      $("#buttonCat3").click(function(){
+        $(".categories").fadeOut("slow");
+        $("#cat3").delay( 650 ).fadeIn("slow");
+      });
+
+      $("#buttonCat4").click(function(){
+        $(".categories").fadeOut("slow");
+        $("#cat4").delay( 650 ).fadeIn("slow");
+      });
+
+      $("#retourCat1").click(function(){
+        $("#cat1").fadeOut("slow");
+        $(".categories").delay( 650 ).fadeIn("slow");
+      });
+
+      $("#retourCat2").click(function(){
+        $("#cat2").fadeOut("slow");
+        $(".categories").delay( 650 ).fadeIn("slow");
+      });
+
+      $("#retourCat3").click(function(){
+        $("#cat3").fadeOut("slow");
+        $(".categories").delay( 650 ).fadeIn("slow");
+      });
+
+      $("#retourCat4").click(function(){
+        $("#cat4").fadeOut("slow");
+        $(".categories").delay( 650 ).fadeIn("slow");
+      });
+
+    });
+  </script>
 {% endblock %}
