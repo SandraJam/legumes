@@ -69,6 +69,7 @@ a, a:hover, a:focus, a:visited {
   padding: 0.2em;
   border-radius: 1em;
   background-color: rgba(0, 198, 13, 0.31);
+  cursor: grab;
 }
 
 .article {
@@ -89,13 +90,26 @@ a, a:hover, a:focus, a:visited {
 }
 
 .descriptionArticle {
-
+  text-align: justify;
+  color: rgb(0, 51, 18);
 }
 
 .prixArticle {
-
+  font-size: 5em;
+  font-family: 'Cookie', sans-serif;
+  color: rgb(74, 0, 0);
 }
 
-.uniteArticle {
+.prix {
+  text-align: center;
+}
 
+.titreArticle{
+  font-size: 3.5em;
+  font-family: 'Cookie', sans-serif;
+  color: rgb(74, 0, 0);
+}
+
+.recommandation {
+  font-size: 1.5em;
 }
