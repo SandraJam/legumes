@@ -12,84 +12,7 @@
               0 20px 20px rgba(0, 0, 0, .15);
 }
 
-.imgArticle {
-  width: 100%;
-}
-
-.figArticle {
-  margin: 3%;
-  padding: 0.5em;
-  border: 2px dashed;
-}
-
-.description {
-  margin: 3%;
-}
-
-.titreArticle{
-  font-size: 2.1em;
-  color: rgb(19, 73, 0);
-}
-
-.description{
-  text-align: justify;
-}
-
-.recommandation{
-  font-style: italic;
-  color: rgb(85, 0, 0);
-}
-
-.panierAdd{
-  text-align: center;
-  line-height: 1.5;
-  margin-top: 1%;
-}
-
-.imgAdd {
-  margin-top: 1.5em;
-  margin-bottom: 1em;
-  width: 15%;
-}
-
-input {
-  width: 4em;
-}
-
-.textAdd {
-    font-size: 1.5em;
-    color: rgb(0, 39, 84);
-}
-
-.price {
-  font-size: 3em;
-  color: rgb(219, 0, 0);
-}
-
-.panierRes {
-  border: 1px solid;
-  width: 96%;
-  margin-left: 2%;
-  font-size: 80%;
-  text-align: center;
-}
-
-.priceRes {
-  font-size: 3em;
-  color: rgb(219, 0, 0);
-}
-
-.imgAddRes {
-  margin-top: 1em;
-  margin-bottom: 1em;
-  width: 50%;
-}
-
-/* Galerie */
-
-.galerie {
-  display: none;
-}
+/* Galerie Categorie*/
 
 .imgCat {
   width: 98%;
@@ -99,7 +22,10 @@ input {
      -ms-transition: all .5s cubic-bezier( .6, 2, .4, 1);
       -o-transition: all .5s cubic-bezier( .6, 2, .4, 1);
          transition: all .5s cubic-bezier( .6, 2, .4, 1);
-         box-shadow:0 0 2em black;
+         box-shadow: 0 1px 3px rgba(0, 0, 0, .3),
+                     0 3px 5px rgba(0, 0, 0, .2),
+                     0 5px 10px rgba(0, 0, 0, .2),
+                     0 20px 20px rgba(0, 0, 0, .15);
 }
 
 .categorie:hover .imgCat{
@@ -126,4 +52,50 @@ input {
 a, a:hover, a:focus, a:visited {
   text-decoration: none;
   color: inherit;
+}
+
+/* Galerie Article */
+
+.galerie {
+  display: none;
+  margin: 1em;
+}
+
+.retour {
+  position: relative;
+  float: right;
+  font-size: 1.5em;
+  border: 1px solid grey;
+  padding: 0.2em;
+  border-radius: 1em;
+  background-color: rgba(0, 198, 13, 0.31);
+}
+
+.article {
+  margin: 1em 0.2em;
+  border: 1px solid grey;
+  border-radius: 1em;
+  padding: 1em;
+  background-color: rgba(0, 198, 13, 0.31);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3),
+              0 3px 5px rgba(0, 0, 0, .2),
+              0 5px 10px rgba(0, 0, 0, .2),
+              0 20px 20px rgba(0, 0, 0, .15);
+}
+
+.imgArticle {
+  display: inline;
+  width: 100%;
+}
+
+.descriptionArticle {
+
+}
+
+.prixArticle {
+
+}
+
+.uniteArticle {
+
 }
