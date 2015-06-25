@@ -12,6 +12,16 @@
               0 20px 20px rgba(0, 0, 0, .15);
 }
 
+.profitez {
+  background: rgba(223, 161, 0, 0.65);
+  padding: 1em;
+  border-radius: 1em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3),
+              0 3px 5px rgba(0, 0, 0, .2),
+              0 5px 10px rgba(0, 0, 0, .2),
+              0 20px 20px rgba(0, 0, 0, .15);
+}
+
 /* Galerie Categorie*/
 
 .imgCat {
@@ -112,4 +122,19 @@ a, a:hover, a:focus, a:visited {
 
 .recommandation {
   font-size: 1.5em;
+}
+
+.centrer {
+  display: inline-block;
+}
+
+
+@media (max-width: 500px) {
+  .titreArticle{
+    font-size: 2em;
+  }
+
+  .recommandation {
+    font-size: 1em;
+  }
 }

@@ -15,16 +15,18 @@
     La liste des categories
     La liste des articles PAR categories
 
-    Reste: Ajout Quantité + Panier d'ajout
-            Responsive
+    Reste:
+            "Profitez-en"
   -->
 
-  <!-- Bons plans -->
-  <div class="profitez-en">
-    <!-- SLIDER -->
-  </div>
 
   <div class="container whiteBloc">
+
+    <!-- Bons plans -->
+    <div class="profitez">
+      Blabla
+      <!-- SLIDER -->
+    </div>
 
     <!-- Boucle sur les categorie -->
     <div class="row" >
@@ -42,42 +44,60 @@
       </span><br/><br/>
 
       <div class="row article">
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
           <!-- Photo -->
           <img src="{{ asset('bundles/boutiquearticle/images/tomatesrondes.jpg')}}" class="imgArticle" alt="Gratin de courgette"/>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 descriptionArticle">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 descriptionArticle">
           <!-- Nom-->
           <span class="titreArticle"> Tomates Rondes </span><br/>
           <!-- Recommandation -->
           <span class="recommandation"> Idéales pour vos plats chauds! </span><br/>
+          <!-- Description -->
           Blablablabla blablabla bla blabla blablabla bla. Blablabla.
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 prix">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 prix">
           <!-- Prix -->
           <span class="prixArticle"> 1,5€ </span><br/>
-          <!-- Quantité -->
+          <!-- Quantité pour prix -->
           pour 1kg
+          <!-- Formulaire Quantité -->
+          <br/>
+          <div class="input-group centrer">
+            <input type="number" class="form-control" min="1" max="30" value="1" aria-label="Amount (to the nearest dollar)">
+          </div><br/>
+          <button type="button" class="btn btn-default btn-md btn-danger">
+            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Ajouter au Panier
+          </button>
         </div>
       </div>
 
       <div class="row article">
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
           <!-- Photo -->
           <img src="{{ asset('bundles/boutiquearticle/images/tomatesrondes.jpg')}}" class="imgArticle" alt="Gratin de courgette"/>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 descriptionArticle">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 descriptionArticle">
           <!-- Nom-->
           <span class="titreArticle"> Tomates Rondes </span><br/>
           <!-- Recommandation -->
           <span class="recommandation"> Idéales pour vos plats chauds! </span><br/>
+          <!-- Description -->
           Blablablabla blablabla bla blabla blablabla bla. Blablabla.
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 prix">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 prix">
           <!-- Prix -->
           <span class="prixArticle"> 1,5€ </span><br/>
-          <!-- Quantité -->
+          <!-- Quantité pour prix -->
           pour 1kg
+          <!-- Formulaire Quantité -->
+          <br/>
+          <div class="input-group centrer">
+            <input type="number" class="form-control" min="1" max="30" value="1" aria-label="Amount (to the nearest dollar)">
+          </div><br/>
+          <button type="button" class="btn btn-default btn-md btn-danger">
+            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Ajouter au Panier
+          </button>
         </div>
       </div>
     </div>
