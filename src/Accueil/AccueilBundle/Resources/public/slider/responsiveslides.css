@@ -21,6 +21,28 @@
   margin: 1em;
 }
 
+.article .imgGauche {
+  float: left;
+  width: 35%;
+  padding: 0.5em;
+  margin: 1em;
+  border: 2px dashed;
+  -ms-transform: rotate(-15deg); /* IE 9 */
+  -webkit-transform: rotate(-15deg); /* Chrome, Safari, Opera */
+  transform: rotate(-15deg);
+}
+
+.article .imgDroite {
+  float: right;
+  width: 35%;
+  padding: 0.5em;
+  margin: 1em;
+  border: 2px dashed;
+  -ms-transform: rotate(-15deg); /* IE 9 */
+  -webkit-transform: rotate(-15deg); /* Chrome, Safari, Opera */
+  transform: rotate(-15deg);
+}
+
 .rslides li {
   -webkit-backface-visibility: hidden;
   position: absolute;
