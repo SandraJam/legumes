@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Boutique\GalerieBundle\BoutiqueGalerieBundle(),
             new Boutique\ArticleBundle\BoutiqueArticleBundle(),
             new BDD\BddClientBundle\BDDBddClientBundle(),
+            new Administrator\AdminBundle\AdministrationBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
