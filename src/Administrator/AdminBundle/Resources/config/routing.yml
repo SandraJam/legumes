@@ -1,0 +1,4 @@
+accueil_administrator_admin:
+    path:     /
+    defaults: { _controller: index}
+
