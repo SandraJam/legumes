@@ -1,3 +1,4 @@
+/* Accueil */
 .texte {
   font-family: 'Coustard', sans-serif;
   background: white;
@@ -46,6 +47,8 @@
   transform: rotate(15deg);
 }
 
+/* Connexion */
+
 .login{
   font-family: 'Coustard', sans-serif;
   background: white;
@@ -62,8 +65,12 @@
   margin-left: 25%;
 }
 
-label {
-  width: 20%;
+.login h1 {
+  font-family: 'Cookie', sans-serif;
+}
+
+.login label {
+  width: 200px;
 }
 
 @media (max-width:675px){
@@ -71,4 +78,70 @@ label {
     width: 90%;
     margin-left: 5%;
   }
+}
+
+#form_valider {
+  margin-top: 1em;
+  border: none;
+  background: #2DA800;
+  background-image: -webkit-linear-gradient(top, #2DA800, #257801);
+  background-image: -moz-linear-gradient(top, #2DA800, #257801);
+  background-image: -ms-linear-gradient(top, #2DA800, #257801);
+  background-image: -o-linear-gradient(top, #2DA800, #257801);
+  background-image: linear-gradient(to bottom, #2DA800, #257801);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+#form_valider:hover {
+  background: #41e600;
+  background-image: -webkit-linear-gradient(top, #41e600, #2DA800);
+  background-image: -moz-linear-gradient(top, #41e600, #2DA800);
+  background-image: -ms-linear-gradient(top, #41e600, #2DA800);
+  background-image: -o-linear-gradient(top, #41e600, #2DA800);
+  background-image: linear-gradient(to bottom, #41e600, #2DA800);
+  text-decoration: none;
+}
+
+#form_annuler {
+  margin-top: 1em;
+  border: none;
+  background: #f70808;
+  background-image: -webkit-linear-gradient(top, #f70808, #b30003);
+  background-image: -moz-linear-gradient(top, #f70808, #b30003);
+  background-image: -ms-linear-gradient(top, #f70808, #b30003);
+  background-image: -o-linear-gradient(top, #f70808, #b30003);
+  background-image: linear-gradient(to bottom, #f70808, #b30003);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+#form_annuler:hover{
+  background: #f75b5b;
+  background-image: -webkit-linear-gradient(top, #f75b5b, #f70808);
+  background-image: -moz-linear-gradient(top, #f75b5b, #f70808);
+  background-image: -ms-linear-gradient(top, #f75b5b, #f70808);
+  background-image: -o-linear-gradient(top, #f75b5b, #f70808);
+  background-image: linear-gradient(to bottom, #f75b5b, #f70808);
+  text-decoration: none;
+}
+
+.lienClient{
+  text-decoration: none;
+  color: rgb(235, 120, 0);
+}
+
+.lienClient:hover{
+  text-decoration: overline;
+  color: rgb(250, 163, 62);
 }

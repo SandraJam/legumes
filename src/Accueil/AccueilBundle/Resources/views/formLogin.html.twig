@@ -11,17 +11,27 @@
 
 {% block body %}
   <div class="login">
-    <h3> Connectez-vous! </h3>
-      {{ form(form) }}
+    <h1> Connectez-vous! </h1>
+    {{ form_start(form) }}
+      {{ form_label(form.login, 'Identifiant', {'label_attr': {'class': 'foo'}}) }}
+      {{ form_widget(form.login, {'attr': {'class': 'foo'}}) }}
+      {{ form_errors(form.login) }} <br/>
+      {{ form_label(form.pwd, 'Mot de Passe', {'label_attr': {'class': 'foo'}}) }}
+      {{ form_widget(form.pwd, {'attr': {'class': 'foo'}}) }}
+      {{ form_errors(form.pwd) }} <br/>
+      {{ form_widget(form.valider, {'label': 'Connexion'}) }}
+      {{ form_widget(form.annuler, {'label': 'Annuler'}) }}
+    {{ form_end(form) }}
+
 {% for flashMessage in app.session.flashbag.get('notice') %}
     <div class="flash-notice">
         {{ flashMessage }}
     </div>
 {% endfor %}
-   	<a href="{{ path('inscriptionClient') }}"> Créer votre compte <a/>
+    <br/>
+   	<a href="{{ path('inscriptionClient') }}" class="lienClient"> Vous n'avez pas de compte? Rejoignez-nous! <a/>
   </div>
 {% endblock %}
 
 {% block js %}
-
 {% endblock %}

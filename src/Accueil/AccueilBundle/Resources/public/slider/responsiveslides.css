@@ -23,7 +23,7 @@
 
 .article .imgGauche {
   float: left;
-  width: 35%;
+  width: 40%;
   padding: 0.5em;
   margin: 1em;
   border: 2px dashed;
@@ -34,13 +34,13 @@
 
 .article .imgDroite {
   float: right;
-  width: 35%;
+  width: 40%;
   padding: 0.5em;
   margin: 1em;
   border: 2px dashed;
-  -ms-transform: rotate(-15deg); /* IE 9 */
-  -webkit-transform: rotate(-15deg); /* Chrome, Safari, Opera */
-  transform: rotate(-15deg);
+  -ms-transform: rotate(15deg); /* IE 9 */
+  -webkit-transform: rotate(15deg); /* Chrome, Safari, Opera */
+  transform: rotate(15deg);
 }
 
 .rslides li {
@@ -97,6 +97,16 @@
   margin-left: 0;
 }
 
+
+@media (max-width: 460px) {
+  .rslides_tabs {
+    font-size: 12px;
+  }
+
+  .rslides_tabs a {
+    padding: 4px 10px;
+  }
+}
 .rslides_tabs .rslides_here a {
   background: rgba(255,255,255,.1);
   color: #fff;
