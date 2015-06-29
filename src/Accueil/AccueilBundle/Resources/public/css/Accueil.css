@@ -70,10 +70,15 @@
 }
 
 .login label {
-  width: 200px;
+  width: 130px;
+  text-align: left;
 }
 
-@media (max-width:675px){
+.login input {
+  width: 40%;
+}
+
+@media (max-width:700px){
   .login{
     width: 90%;
     margin-left: 5%;
@@ -144,4 +149,37 @@
 .lienClient:hover{
   text-decoration: overline;
   color: rgb(250, 163, 62);
+}
+
+/* Inscription */
+
+#form_dateNaissance {
+  display: inline-block;
+  width: 40%;
+}
+
+#form_dateNaissance_month {
+  width: 50%;
+}
+
+#form_dateNaissance_day {
+  width: 20%;
+}
+
+#form_dateNaissance_year {
+  width: 30%;
+}
+
+@media (max-width: 550px) {
+  #form_dateNaissance_month {
+    width: 100%;
+  }
+
+  #form_dateNaissance_day {
+    width: 100%;
+  }
+
+  #form_dateNaissance_year {
+    width: 100%;
+  }
 }
