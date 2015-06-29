@@ -52,11 +52,12 @@ class AccueilController extends Controller
 
                     }
                      //l'Utilisateur n'exi""""""éste pas on va donc le faire s'enregistrer
+                     return $this->render('AccueilAccueilBundle::inscriptionClient.html.twig', array() );
                 }else{
                     // on met la session à null
                     $session->set('users', NULL); 
                     //on redirige vers la page d'inscription
-                     return $this->render('AccueilAccueilBundle::inscriptionClient.html.twig');
+                     return $this->redirect($this->generateUrl('formConnexion'));
                 }
             }
 	       return $this->render('AccueilAccueilBundle::formLogin.html.twig', 
@@ -64,10 +65,10 @@ class AccueilController extends Controller
         }
     }
     public function inscriptionAction(Request $request){
-           \Doctrine\Common\Util\Debug::dump("jej");
         $session = $this->getRequest()->getSession();
-        if ($session->get('users') == NULL){        
-               \Doctrine\Common\Util\Debug::dump("DEDDE");
+        if ($session->get('users')!= NULL){
+            $session->set('users')==NULL;
+        }else{        
             // on lance le formulaire pour ajout d'un utilisateur en base 
             $connexion = new Utilisateurs();
             $form = $this->createFormBuilder($connexion)
@@ -76,7 +77,7 @@ class AccueilController extends Controller
                 ->add('login','text')
                 ->add('pwd','password')
         		->add('adresse','text')
-        		->add('codePostal','text')
+        		->add('codePostal','number')
         		->add('ville','text')
         		->add('dateNaissance','birthday')
         		->add('tel','number')
@@ -88,14 +89,21 @@ class AccueilController extends Controller
             $form->handleRequest($request);
 
             if($form->isValid()){ 
-                             
+                //Verification du numéro de téléphone
+                if(count($form->getData()->getCodePostal()) != 9){
+                    //erreur du numéro de téléphone
+                       $request->getSession()->getFlashBag()->add('notice', 'Le numéro de téléphone n\'est pas valide .');
+                }             
                 $connexion = $form -> getData();
-                     $user = $this->getDoctrine()
+                $user = $this->getDoctrine()
                     ->getRepository('BDDBddClientBundle:Utilisateurs')
                     ->findOneBy(array('login' => $connexion->getLogin(), 'pwd' => $connexion->getPwd()));
 
                 if($user !=NULL){ 
-                    //message d'erreur, le login doit etre changé
+                      $request
+                            ->getSession()
+                            ->getFlashBag()
+                            ->add('notice','Le login existe déjà, veuillez en essayer un autre. ');
                 }else{
                     $em = $this->getDoctrine()->getManager();
                     $connexion->setType("client");
@@ -105,7 +113,7 @@ class AccueilController extends Controller
                     $em->persist($connexion);
                     $em->flush();
                     if ($request->isMethod('POST')) {
-                      $request->getSession()->getFlashBag()->add('notice', 'User has been registered.');
+                      $request->getSession()->getFlashBag()->add('notice', 'L utilisateur à été enregistré.');
                         if ($session->get('users') != NULL){ 
                             return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
                         }
@@ -113,8 +121,6 @@ class AccueilController extends Controller
                 }
             }
             return $this->render('AccueilAccueilBundle::inscriptionClient.html.twig', array('form' => $form->createView()) );
-        }else{
-           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
         }
     }
     
