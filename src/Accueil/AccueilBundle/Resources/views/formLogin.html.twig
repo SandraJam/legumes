@@ -13,7 +13,11 @@
   <div class="login">
     <h3> Connectez-vous! </h3>
       {{ form(form) }}
-
+{% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="flash-notice">
+        {{ flashMessage }}
+    </div>
+{% endfor %}
    	<a href="{{ path('inscriptionClient') }}"> Créer votre compte <a/>
   </div>
 {% endblock %}
