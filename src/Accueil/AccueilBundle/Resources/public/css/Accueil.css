@@ -10,7 +10,7 @@
               0 3px 5px rgba(0, 0, 0, .2),
               0 5px 10px rgba(0, 0, 0, .2),
               0 20px 20px rgba(0, 0, 0, .15);
-  overflow: none;
+  overflow: hidden;
 }
 
 .blocContainer {
@@ -32,8 +32,52 @@
   }
 }
 
+.newsEntier{
+  z-index: 3000;
+  display: none;
+  position: absolute;
+  top: 17em;
+  width: 70%;
+  min-height: 15em;
+  margin-left: 15%;
+  padding: 1em;
+  padding-top: 3em;
+  background: white;
+  border: 1px solid grey;
+  border-radius: 1em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3),
+              0 3px 5px rgba(0, 0, 0, .2),
+              0 5px 10px rgba(0, 0, 0, .2),
+              0 20px 20px rgba(0, 0, 0, .15);
+}
+
+@media (max-width: 600px){
+  .newsEntier {
+    width: 95%;
+    margin-left: 2%;
+  }
+}
+
+.fermer {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+}
+
+.troispoints {
+  cursor: default;
+  color: rgb(143, 0, 0);
+  font-style: italic;
+  border-radius: 1em;
+  padding: 0.5em;
+}
+
 .imgRecette {
   width: 100%;
+}
+
+.recette {
+  text-overflow: ellipsis;
 }
 
 .figRec {

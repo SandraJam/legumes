@@ -11,6 +11,13 @@
 {% endblock %}
 
 {% block body %}
+  <!--
+    A besoin:
+      La recette
+      Les news en entier
+      Les news tronqué
+  -->
+
   <div class="container blocContainer">
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -29,49 +36,7 @@
                   <img src="{{ asset('bundles/accueilaccueil/images/gratincourgette.jpg')}}" class="imgRecette" alt="Gratin de courgette"/>
                 </figure>
                 <span class="soustitre">Voici une News!</span><br/>
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-              </div>
-            </li>
-            <li>
-              <div class="article">
-                <figure class="imgDroite">
-                  <img src="{{ asset('bundles/accueilaccueil/images/gratincourgette.jpg')}}" class="imgRecette" alt="Gratin de courgette"/>
-                </figure>
-                <span class="soustitre">Voici une News!</span><br/>
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-              </div>
-            </li>
-            <li>
-              <div class="article">
-                <figure class="imgGauche">
-                  <img src="{{ asset('bundles/accueilaccueil/images/gratincourgette.jpg')}}" class="imgRecette" alt="Gratin de courgette"/>
-                </figure>
-                <span class="soustitre">Voici une News!</span><br/>
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
+                <div onclick="news(0)" class="troispoints">Voir la news en entier...</div>
                 Ceci est une news! Pas tres longue, certes, mais une news quand même!
                 Ceci est une news! Pas tres longue, certes, mais une news quand même!
                 Ceci est une news! Pas tres longue, certes, mais une news quand même!
@@ -89,35 +54,6 @@
                   <img src="{{ asset('bundles/accueilaccueil/images/gratincourgette.jpg')}}" class="imgRecette" alt="Gratin de courgette"/>
                 </figure>
                 <span class="soustitre">Voici une News!</span><br/>
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-              </div>
-            </li>
-            <li>
-              <div class="article">
-                <figure class="imgGauche">
-                  <img src="{{ asset('bundles/accueilaccueil/images/gratincourgette.jpg')}}" class="imgRecette" alt="Gratin de courgette"/>
-                </figure>
-                <span class="soustitre">Voici une News!</span><br/>
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
                 Ceci est une news! Pas tres longue, certes, mais une news quand même!
                 Ceci est une news! Pas tres longue, certes, mais une news quand même!
                 Ceci est une news! Pas tres longue, certes, mais une news quand même!
@@ -129,6 +65,7 @@
 
         </div>
       </div>
+
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <div class="recette texte">
           <span class="soustitre">
@@ -139,31 +76,88 @@
           <p><br/>
             <figure class="figRec">
               <img src="{{ asset('bundles/accueilaccueil/images/gratincourgette.jpg')}}" class="imgRecette" alt="Gratin de courgette"/>
-              <figcaption><a href="#">Faites le plein de Courgettes!</a></figcaption>
+              <figcaption><a href="#">Faites votre marché pour cette recette!</a></figcaption>
             </figure>
-            <span class="soustitre">Recette du gratin de Courgettes</span><br/>
-            Temps de préparation : 15 minutes<br/>
-            Temps de cuisson : 15 minutes<br/><br/>
+            <span class="soustitre">
+              <!-- -->Gratin de Courgettes<!-- -->
+            </span>
+            <div onclick="news('rec')" class="troispoints">Voir la recette en entier...</div>
+            
+            <p> Temps de préparation : <!-- -->15 minutes<!-- --><br/>
+                Temps de cuisson :     <!-- -->15 minutes<!-- --></p>
 
-            Ingrédients (pour 4 personnes) : <br/>
-            - 4 courgettes<br/>
-            - 3 oignons<br/>
-            - 100 g de gruyère râpé<br/>
-            - 2 oeufs<br/>
-            - 2 cuillères à soupe de crème fraîche<br/>
-            - 1 noix de beurre<br/>
-            - sel et poivre<br/><br/>
+            <p>
+              <a href="#">Ingrédients :</a> <br/>
+              - 4 courgettes<br/>
+              - 3 oignons<br/>
+              - 100 g de gruyère râpé<br/>
+              - 2 oeufs<br/>
+              - 2 cuillères à soupe de crème fraîche<br/>
+              - 1 noix de beurre<br/>
+              - sel et poivre<br/>
+            </p>
+            <p>
+              Préparation de la recette :<br/>
+              Eminvcer les oignons et les faire fondre dans le beurre.<br/>
 
-            Préparation de la recette :<br/>
-            Eminvcer les oignons et les faire fondre dans le beurre.<br/>
-            Râper 4 courgettes avec leur peau et les ajouter aux oignons.<br/>
-            Mélanger le gruyère râpé, les oeufs, la crème fraîche, puis saler et poivrer.<br/>
-            Mettre les courgettes dans un plat et verser par dessus la sauce et faire à four chaud pendant 15 mn.
+            </p>
           </p>
         </div>
       </div>
     </div>
   </div>
+
+
+  <!-- News en entier -->
+  <div id="0" class="newsEntier">
+    <div class="fermer" onclick="fermer(0)">
+      <img src="{{ asset('bundles/accueilaccueil/images/close.png')}}" alt="fermer la fenetre"/>
+    </div>
+    Voici une news en entier! Oulala!
+  </div>
+
+  <!-- Recette en entier -->
+  <div id="rec" class="newsEntier">
+    <div class="fermer" onclick="fermer('rec')">
+      <img src="{{ asset('bundles/accueilaccueil/images/close.png')}}" alt="fermer la fenetre"/>
+    </div>
+    <span class="soustitre">
+      <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+      Laissez-vous tenter!
+      <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+    </span>
+    <p><br/>
+      <figure class="figRec">
+        <img src="{{ asset('bundles/accueilaccueil/images/gratincourgette.jpg')}}" class="imgRecette" alt="Gratin de courgette"/>
+        <figcaption><a href="#">Faites votre marché pour cette recette!</a></figcaption>
+      </figure>
+      <span class="soustitre">
+        <!-- -->Gratin de Courgettes<!-- -->
+      </span>
+      <br/><br/>
+      <p> Temps de préparation : <!-- -->15 minutes<!-- --><br/>
+          Temps de cuisson :     <!-- -->15 minutes<!-- --></p>
+
+      <p>
+        <a href="#">Ingrédients :</a> <br/>
+        - 4 courgettes<br/>
+        - 3 oignons<br/>
+        - 100 g de gruyère râpé<br/>
+        - 2 oeufs<br/>
+        - 2 cuillères à soupe de crème fraîche<br/>
+        - 1 noix de beurre<br/>
+        - sel et poivre<br/>
+      </p>
+      <p>
+        Préparation de la recette :<br/>
+        Eminvcer les oignons et les faire fondre dans le beurre.<br/>
+        Râper 4 courgettes avec leur peau et les ajouter aux oignons.<br/>
+        Mélanger le gruyère râpé, les oeufs, la crème fraîche, puis saler et poivrer.<br/>
+        Mettre les courgettes dans un plat et verser par dessus la sauce et faire à four chaud pendant 15 mn.
+      </p>
+    </p>
+  </div>
+
 {% endblock %}
 
 {% block js %}
@@ -178,5 +172,13 @@
         nextText: "Suivant"
       });
     });
+
+    function news(id) {
+      document.getElementById(id).style.display = "block";
+    }
+
+    function fermer(id) {
+      document.getElementById(id).style.display = "none";
+    }
   </script>
 {% endblock %}
