@@ -10,10 +10,25 @@
 {% endblock %}
 
 {% block body %}
-<H1>COUCOU _ qu'est ce que je met dans cette page? </H1>
+<H1>Bienvenue sur la page d'administration du site </H1>
+<div class="gerer produits">
+    <div class="liste des choix">
 
-
-que penses tu de: <br>
+    	<a href="{{ path('administrator_administration_admin_suiv_comm') }}" class="suivitComm"> Suivit des commandes <a/>
+    	<br> 
+        <a href="{{ path('administrator_administration_admin_gererProduits') }}" class="gererLesProduits"> Gèrer mes produits <a/>
+        <br> 
+        <a href="{{ path('administrator_administration_admin_gererTheCategories') }}"  class="gererCategories"> Gèrer mes catégories de légumes <a/>
+        <br> 
+        <a href="{{ path('administrator_administration_admin_gerer_News') }}" class="gererNews"> Gèrer les News <a/>
+        <br> 
+        <a href="{{ path('administrator_administration_admin_gerer_Recettes') }}" class="gererRecettes"> Gèrer les Recettes <a/>
+        <br> 
+        <a href="{{ path('administrator_administration_admin_gerer_Clients') }}" class="gererClients"> Gèrer les Coordonnées Clients <a/> 
+    </div>
+</div>
+<br> 
+<div id="caché c un memo" style="visibility:hidden;">
 -> gerer mes produits 
 		<br> 
 		rechercher un produit
@@ -21,7 +36,7 @@ que penses tu de: <br>
 		changer un produit <br> 
 		ajouter un produit <br> 
 		<br> 
-		-> gerer mes catégories de l"gumes
+-> gerer mes catégories de l"gumes
 		modifier une catégorie de légumes<br> 
 <br> 
 -> gerer les news
@@ -35,16 +50,10 @@ que penses tu de: <br>
 	* les commandes en cours pas encore finalisées (préparées)
 	 
 	->Voir les données civiles des utilisateurs 
-	Pouvoir ajouter des clients
-
-
-<H1> J'en oublie ????</H1>
-<br> 
-GROS POUTOUX<br> 
-<br> 
+	Pouvoir ajouter des clients 
 
 <br> 
-
+</div>
 {% endblock %}
 
 {% block js %}

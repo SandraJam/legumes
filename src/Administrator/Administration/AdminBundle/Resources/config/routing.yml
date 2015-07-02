@@ -1,3 +1,27 @@
 administrator_administration_admin_homepage:
     path:     /hello/{name}
     defaults: { _controller: AdministratorAdministrationAdminBundle:Default:index }
+
+administrator_administration_admin_suiv_comm:
+    path:     /suivitCommandes
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:suivitDesCommandes }
+
+administrator_administration_admin_gererProduits:
+    path:     /gererProduits
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:lesProduits }
+
+administrator_administration_admin_gererTheCategories:
+    path:     /gererCategoriesl
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:lesCategories }
+
+administrator_administration_admin_gerer_News:
+    path:     /gererNews
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:lesNews }
+
+administrator_administration_admin_gerer_Recettes:
+    path:     /gererRecettes
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:lesRecettes}
+
+administrator_administration_admin_gerer_Clients:
+    path:     /gererClients
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:lesCoordsClients }
