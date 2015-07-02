@@ -1,6 +1,5 @@
-administration:
-    resource: "@AdministrationBundle/Controller/"
-    type:     annotation
+administrator_administration_admin:
+    resource: "@AdministratorAdministrationAdminBundle/Resources/config/routing.yml"
     prefix:   /
 
 bdd_bdd_client:
