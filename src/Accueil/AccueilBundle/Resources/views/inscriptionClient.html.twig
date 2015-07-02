@@ -13,37 +13,50 @@
 
   <div class="login">
     <h1> Inscrivez-vous </h1>
+    <br>
+    Ces informations ne sont pas à titre commerciales.
+    <br>
     {{ form_start(form) }}
       {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'foo'}}) }}
       {{ form_widget(form.nom, {'attr': {'class': 'foo'}}) }}
       {{ form_errors(form.nom) }} <br/>
+
       {{ form_label(form.prenom, 'Prénom', {'label_attr': {'class': 'foo'}}) }}
       {{ form_widget(form.prenom, {'attr': {'class': 'foo'}}) }}
       {{ form_errors(form.prenom) }} <br/>
+
       {{ form_label(form.login, 'Identifiant', {'label_attr': {'class': 'foo'}}) }}
       {{ form_widget(form.login, {'attr': {'class': 'foo'}}) }}
       {{ form_errors(form.login) }} <br/>
+
       {{ form_label(form.pwd, 'Mot de Passe', {'label_attr': {'class': 'foo'}}) }}
       {{ form_widget(form.pwd, {'attr': {'class': 'foo'}}) }}
       {{ form_errors(form.pwd) }} <br/>
+
       {{ form_label(form.adresse, 'Adresse', {'label_attr': {'class': 'foo'}}) }}
       {{ form_widget(form.adresse, {'attr': {'class': 'foo'}}) }}
       {{ form_errors(form.adresse) }} <br/>
+
       {{ form_label(form.codePostal, 'Code Postal', {'label_attr': {'class': 'foo'}}) }}
       {{ form_widget(form.codePostal, {'attr': {'class': 'foo'}}) }}
       {{ form_errors(form.codePostal) }} <br/>
+
       {{ form_label(form.ville, 'Ville', {'label_attr': {'class': 'foo'}}) }}
       {{ form_widget(form.ville, {'attr': {'class': 'foo'}}) }}
       {{ form_errors(form.ville) }} <br/>
+
       {{ form_label(form.dateNaissance, 'Date de naissance', {'label_attr': {'class': 'foo'}}) }}
       {{ form_widget(form.dateNaissance, {'attr': {'class': 'foo'}}) }}
       {{ form_errors(form.dateNaissance) }} <br/>
+
       {{ form_label(form.tel, 'Téléphone', {'label_attr': {'class': 'foo'}}) }}
       {{ form_widget(form.tel, {'attr': {'class': 'foo'}}) }}
       {{ form_errors(form.tel) }} <br/>
+
       {{ form_label(form.email, 'E-mail', {'label_attr': {'class': 'foo'}}) }}
       {{ form_widget(form.email, {'attr': {'class': 'foo'}}) }}
       {{ form_errors(form.email) }} <br/>
+      
       {{ form_widget(form.valider, {'label': 'Valider'}) }}
       {{ form_widget(form.annuler, {'label': 'Annuler'}) }}
     {{ form_end(form) }}

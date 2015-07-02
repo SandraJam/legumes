@@ -5,6 +5,7 @@ namespace Accueil\AccueilBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use BDD\BddClientBundle\Entity\Utilisateurs;
+use Administrator\Administrator\AdminBundle\Ressources;
 
 class AccueilController extends Controller
 {
@@ -42,21 +43,21 @@ class AccueilController extends Controller
             		->findOneBy(array('login' => $connexion->getLogin(), 'pwd' => $connexion->getPwd()));
                     //si on l'a trouvé on me met dans la session    
                 if($user !=NULL){  
-                    $session->set('type', $user->getType());
-                    $session->set('login', $user->getLogin());
+                    $session->set('typ', $user->getType());
+                    $session->set('logi', $user->getLogin());
                     //si je suis un client 
-                    if(strtolower($user->getType()) != "ADMINISTRATEUR"){
+                    if(strtolower($user->getType()) != strtolower("ADMINISTRATEUR")){
                        return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
                     }else{
                         //Page d'administration
-
+                        return $this->redirect($this->generateUrl('goadministrator_administration'));    
                     }
                      //l'Utilisateur n'exi""""""éste pas on va donc le faire s'enregistrer
-                     return $this->render('AccueilAccueilBundle::inscriptionClient.html.twig', array() );
+                     return $this->redirect($this->generateUrl('inscriptionClient'));
                 }else{
                     // on met la session à null
                     $session->set('users', NULL); 
-                    //on redirige vers la page d'inscription
+                    //on redirige vers la page d'inscriptigon
                      return $this->redirect($this->generateUrl('formConnexion'));
                 }
             }
@@ -123,5 +124,13 @@ class AccueilController extends Controller
             return $this->render('AccueilAccueilBundle::inscriptionClient.html.twig', array('form' => $form->createView()) );
         }
     }
-    
+      public function pagePrincipaleAdmineAction(Request $request){
+        $session = $this->getRequest()->getSession();
+        \Doctrine\Common\Util\Debug::dump($session->get('users'));
+        if ($session->get('typ')==strtolower("ADMINISTRATEUR")){
+              return $this->redirect($this->generateUrl('goadministrator_administration'));
+        }else{
+            return $this->redirect($this->generateUrl('formConnexion'));
+        }
+    }
 }
