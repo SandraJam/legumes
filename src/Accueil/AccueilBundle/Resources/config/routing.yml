@@ -10,10 +10,6 @@ inscriptionClient:
     path:     /inscription
     defaults: { _controller: AccueilAccueilBundle:Accueil:inscription }
 
-accueil_accueil_contact:
-    path:     /contact
-    defaults: { _controller: AccueilAccueilBundle:Accueil:contact }
-
 passwordForget:
     path:     /retrouverMotdePasse
     defaults: { _controller: AccueilAccueilBundle:Accueil:contact }
@@ -21,3 +17,13 @@ passwordForget:
 goadministrator_administration:
     path:     /pagePrincipaleAdmin
     defaults: { _controller: AdministratorAdministrationAdminBundle:Default:pageAdminAccueil }
+
+accueil_accueil_contact:
+    path:     /contact
+    defaults: { _controller: AccueilAccueilBundle:Contact:contact }
+    requirements:
+        _method:  GET|POST
+
+accueil_histoire:
+    path:     /histoire
+    defaults: { _controller: AccueilAccueilBundle:Histoire:histoire }

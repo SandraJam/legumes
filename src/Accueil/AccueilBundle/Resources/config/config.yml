@@ -1,0 +1,3 @@
+# src/Accueil/AccueilBundle/Resources/config/config.yml
+parameters:
+    accueil_accueil.emails.contact_email: leslegumesduvaldeloire@gmail.com
