@@ -24,7 +24,7 @@ class AccueilController extends Controller
         if ($session->get('users') != NULL){
         	$session->set('users', NULL);
 			return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-            //si la session est vide  
+            //si la session est vide
         }else{
     		$connexion = new Utilisateurs();
     	   	$form = $this->createFormBuilder($connexion)
@@ -41,28 +41,29 @@ class AccueilController extends Controller
                 $user = $this->getDoctrine()
             		->getRepository('BDDBddClientBundle:Utilisateurs')
             		->findOneBy(array('login' => $connexion->getLogin(), 'pwd' => $connexion->getPwd()));
-                    //si on l'a trouvé on me met dans la session    
-                if($user !=NULL){  
+                    //si on l'a trouvé on me met dans la session
+                if($user !=NULL){
                     $session->set('typ', $user->getType());
                     $session->set('logi', $user->getLogin());
                     $session->set('pren', $user->getPrenom());
-                    //si je suis un client 
+                    $session->set('users', "present");
+                    //si je suis un client
                     if(strtolower($user->getType()) != strtolower("ADMINISTRATEUR")){
                        return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
                     }else{
                         //Page d'administration
-                        return $this->redirect($this->generateUrl('goadministrator_administration'));    
+                        return $this->redirect($this->generateUrl('goadministrator_administration'));
                     }
                      //l'Utilisateur n'exi""""""éste pas on va donc le faire s'enregistrer
                      return $this->redirect($this->generateUrl('inscriptionClient'));
                 }else{
                     // on met la session à null
-                    $session->set('users', NULL); 
+                    $session->set('users', NULL);
                     //on redirige vers la page d'inscriptigon
                      return $this->redirect($this->generateUrl('formConnexion'));
                 }
             }
-	       return $this->render('AccueilAccueilBundle::formLogin.html.twig', 
+	       return $this->render('AccueilAccueilBundle::formLogin.html.twig',
             array('form' => $form->createView()) );
         }
     }
@@ -70,8 +71,8 @@ class AccueilController extends Controller
         $session = $this->getRequest()->getSession();
         if ($session->get('users')!= NULL){
             $session->set('users')==NULL;
-        }else{        
-            // on lance le formulaire pour ajout d'un utilisateur en base 
+        }else{
+            // on lance le formulaire pour ajout d'un utilisateur en base
             $connexion = new Utilisateurs();
             $form = $this->createFormBuilder($connexion)
                 ->add('nom','text')
@@ -90,22 +91,22 @@ class AccueilController extends Controller
             ;
             $form->handleRequest($request);
 
-            if($form->isValid()){ 
+            if($form->isValid()){
                 //Verification du numéro de téléphone
                 if(count($form->getData()->getTel()) != 9 ){
                     //erreur du numéro de téléphone
                        $request->getSession()->getFlashBag()->add('notice', 'Le numéro de téléphone n\'est pas valide .');
-                }      
+                }
                 if(count($form->getData()->getCodePostal()) != 5 ){
                     //erreur du codePostal
                        $request->getSession()->getFlashBag()->add('notice', 'Le codde postal n\'est pas valide n\'est pas valide .');
-                }             
+                }
                 $connexion = $form -> getData();
                 $user = $this->getDoctrine()
                     ->getRepository('BDDBddClientBundle:Utilisateurs')
                     ->findOneBy(array('login' => $connexion->getLogin(), 'pwd' => $connexion->getPwd()));
 
-                if($user !=NULL){ 
+                if($user !=NULL){
                       $request
                             ->getSession()
                             ->getFlashBag()
@@ -115,12 +116,12 @@ class AccueilController extends Controller
                     $connexion->setType("client");
                     //TODO  vérification
                    //IDEE en fonction du code postal, proposer les villes associées
-                   
+
                     $em->persist($connexion);
                     $em->flush();
                     if ($request->isMethod('POST')) {
                       $request->getSession()->getFlashBag()->add('notice', 'L utilisateur à été enregistré.');
-                        if ($session->get('users') != NULL){ 
+                        if ($session->get('users') != NULL){
                                $session->set('typ', $user->getType());
                                $session->set('logi', $user->getLogin());
                                $session->set('pren', $user->getPrenom());

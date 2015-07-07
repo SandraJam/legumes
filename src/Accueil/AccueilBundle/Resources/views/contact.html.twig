@@ -13,14 +13,53 @@
   <div class="container blocContainer">
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <div class="texte">
-
-        </div>
+          <div class="coordonnee">
+            <h1>Contactez-nous! </h1>
+            Une question? Une demande?
+            <br/><br/>
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+              <div class="flash-notice">
+                  {{ flashMessage }}
+              </div>
+            {% endfor %}
+            <form action="{{ path('accueil_accueil_contact') }}" method="post" {{ form_enctype(form) }} class="blogger">
+              {{ form_errors(form) }}
+                {{ form_label(form.name, 'Nom:', {'label_attr': {'class': 'foo'}}) }}
+                {{ form_widget(form.name, {'attr': {'class': 'foo'}}) }}
+                {{ form_errors(form.name) }}<br/>
+                {{ form_label(form.email, 'Mail:', {'label_attr': {'class': 'foo'}}) }}
+                {{ form_widget(form.email, {'attr': {'class': 'foo'}}) }}
+                {{ form_errors(form.email) }}<br/>
+                {{ form_label(form.subject, 'Sujet:', {'label_attr': {'class': 'foo'}}) }}
+                {{ form_widget(form.subject, {'attr': {'class': 'foo'}}) }}
+                {{ form_errors(form.subject) }}<br/>
+                {{ form_label(form.body, 'Message:', {'label_attr': {'class': 'foo'}}) }}
+                {{ form_widget(form.body, {'attr': {'class': 'foo'}}) }}
+                {{ form_errors(form.body) }}<br/>
+              {{ form_rest(form) }}
+              <div class="center"><input type="submit" value="Envoyer" class="envoyer"/></div>
+            </form>
+          </div>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <div class="texte">
-
-        </div>
+          <div class="coordonnee">
+            <h1>Nos coordonnées:</h1>
+            <div class="iframe"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4242.0666374548855!2d2.307034!3d47.816342!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x590fc2638060f03a!2sL%C3%A9gumes+du+Val+de+Loire+E.A.R.L!5e1!3m2!1sfr!2sfr!4v1436090976742" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe></div>
+            <br/>
+            <h2> Adresse:</h2>
+            <p>  25 bis route du point du jours <br/>
+              45730 Saint Benoît sur Loire
+            </p>
+            <h2> Téléphone:</h2>
+            <p>  02 38 35 78 87
+            </p>
+            <h2> Mail:</h2>
+            <p> legumes.valdeloire@wanadoo.fr
+            </p>
+            <h2> Fax:</h2>
+            <p>  02 38 35 78 87
+            </p>
+          </div>
       </div>
     </div>
   </div>
