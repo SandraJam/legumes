@@ -16,7 +16,7 @@
 
   <body>
       <!-- En tête du site: Logo, Menu, Panier/Login -->
-      <div class="entete container">
+      <div class="entete container" id="entete">
         <!-- Titre Responsive -->
         <div class="row">
           <div class="hidden-lg hidden-md hidden-sm col-xs-12">
@@ -87,15 +87,21 @@
         <!-- Panier/ Login Responsive-->
         <div class="row">
           <div class="enBas">
-            <div class="hidden-lg hidden-md hidden-sm col-xs-6">
+            <div class="hidden-lg hidden-md hidden-sm col-xs-4">
               <img src="{{ asset('bundles/accueilaccueil/images/panier.png')}}" alt="Panier" class="panier">
-              Votre panier: 0 article!</a>
+               0 article!</a>
             </div>
-            <div class="hidden-lg hidden-md hidden-sm col-xs-6">
+            <div class="hidden-lg hidden-md hidden-sm col-xs-8">
+              {% if app.session.get('users') == 'present'%}
+                <img src="{{ asset('bundles/accueilaccueil/images/tomato1.png')}}" alt="Compte Client" class="panier">
+              <a href="#">Mon compte</a> - <a href="{{ path('formConnexion') }}">Déconnexion</a>
+              {% else %}
               <a href="{{ path('formConnexion') }}">
                 <img src="{{ asset('bundles/accueilaccueil/images/tomato1.png')}}" alt="Compte Client" class="panier">
                 Connexion - S'enregistrer
               </a>
+              {% endif %}
+
             </div>
           </div>
         </div>
@@ -103,7 +109,7 @@
       {% block body %}{% endblock %}
       <!-- Footer -->
       <br/>
-      <div class="footer">
+      <div class="footer" id="footer">
         <a href="https://www.facebook.com/pages/Les-Légumes-du-Val-de-Loire/392301887639842"><img src="{{ asset('bundles/accueilaccueil/images/fb.png')}}" alt="Facebook" /></a>
           <img src="{{ asset('bundles/accueilaccueil/images/ferme.png')}}" alt="Bienvenue a la ferme" class="logoFerme"/>
           <br/>2015: EARL Les Légumes du Val de Loire<br/>

@@ -22,13 +22,19 @@
 
   <div class="container whiteBloc">
 
-    <!-- Bons plans -->
-    <div class="profitez">
-
-    </div>
-
     <!-- Boucle sur les categorie -->
     <div class="row" >
+
+      <!-- Bons plans -->
+      <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 categories">
+        <figure class="categorie" id="bonplan">
+          <img src="{{ asset('bundles/accueilaccueil/images/profitez.png')}}" class="imgCat" alt="Bons Plans"/>
+          <!--<img src="{{ asset('bundles/accueilaccueil/images/pins.png')}}" class="pins" alt="pins"/>-->
+          <figcaption style="color: red;"> Bons Plans! </figcaption>
+        </figure>
+      </div>
+
+      <!-- Catégories -->
       <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 categories">
           <figure class="categorie" id="buttonCat1">
               <img src="{{ asset('bundles/boutiquearticle/images/tomatesrondes.jpg')}}" class="imgCat" alt="Gratin de courgette"/>
@@ -36,6 +42,72 @@
           </figure>
       </div>
     </div>
+
+    <!-- Bons Plans -->
+    <div id="bonsplans" class="galerie">
+      <span id="retourBP" class="retour">
+        <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span> Retour
+      </span><br/><br/>
+
+      <div class="row article">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <!-- Photo -->
+          <img src="{{ asset('bundles/boutiquearticle/images/tomatesrondes.jpg')}}" class="imgArticle" alt="Gratin de courgette"/>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 descriptionArticle">
+          <!-- Nom-->
+          <span class="titreArticle"> Tomates Rondes </span><br/>
+          <!-- Recommandation -->
+          <span class="recommandation"> Idéales pour vos plats chauds! </span><br/>
+          <!-- Description -->
+          Blablablabla blablabla bla blabla blablabla bla. Blablabla.
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 prix">
+          <!-- Prix -->
+          <span class="prixArticle"> 1,5€ </span><br/>
+          <!-- Quantité pour prix -->
+          pour 1kg
+          <!-- Formulaire Quantité -->
+          <br/>
+          <div class="input-group centrer">
+            <input type="number" class="form-control" min="1" max="30" value="1" aria-label="Amount (to the nearest dollar)">
+          </div><br/>
+          <button type="button" class="btn btn-default btn-md btn-danger">
+            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Ajouter au Panier
+          </button>
+        </div>
+      </div>
+
+      <div class="row article">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <!-- Photo -->
+          <img src="{{ asset('bundles/boutiquearticle/images/tomatesrondes.jpg')}}" class="imgArticle" alt="Gratin de courgette"/>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 descriptionArticle">
+          <!-- Nom-->
+          <span class="titreArticle"> Tomates Rondes </span><br/>
+          <!-- Recommandation -->
+          <span class="recommandation"> Idéales pour vos plats chauds! </span><br/>
+          <!-- Description -->
+          Blablablabla blablabla bla blabla blablabla bla. Blablabla.
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 prix">
+          <!-- Prix -->
+          <span class="prixArticle"> 1,5€ </span><br/>
+          <!-- Quantité pour prix -->
+          pour 1kg
+          <!-- Formulaire Quantité -->
+          <br/>
+          <div class="input-group centrer">
+            <input type="number" class="form-control" min="1" max="30" value="1" aria-label="Amount (to the nearest dollar)">
+          </div><br/>
+          <button type="button" class="btn btn-default btn-md btn-danger">
+            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Ajouter au Panier
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- Tous les articles de la categories 1 -->
     <div id="cat1" class="galerie">
       <span id="retourCat1" class="retour">
@@ -108,6 +180,16 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script>
     $(document).ready(function(){
+      $("#bonplan").click(function(){
+        $(".categories").fadeOut("slow");
+        $("#bonsplans").delay( 650 ).fadeIn("slow");
+      });
+
+      $("#retourBP").click(function(){
+        $("#bonsplans").fadeOut("slow");
+        $(".categories").delay( 650 ).fadeIn("slow");
+      });
+
       $("#buttonCat1").click(function(){
         $(".categories").fadeOut("slow");
         $("#cat1").delay( 650 ).fadeIn("slow");
