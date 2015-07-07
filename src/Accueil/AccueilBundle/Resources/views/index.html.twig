@@ -15,10 +15,9 @@
     A besoin:
       La recette
       Les news en entier
-      Les news tronqué
   -->
 
-  <div class="container blocContainer">
+  <div class="container blocContainer" id="all">
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <div class="texte">
@@ -82,7 +81,7 @@
               <!-- -->Gratin de Courgettes<!-- -->
             </span>
             <div onclick="news('rec')" class="troispoints">Voir la recette en entier...</div>
-            
+
             <p> Temps de préparation : <!-- -->15 minutes<!-- --><br/>
                 Temps de cuisson :     <!-- -->15 minutes<!-- --></p>
 
@@ -118,8 +117,9 @@
 
   <!-- Recette en entier -->
   <div id="rec" class="newsEntier">
-    <div class="fermer" onclick="fermer('rec')">
-      <img src="{{ asset('bundles/accueilaccueil/images/close.png')}}" alt="fermer la fenetre"/>
+    <div class="fermer">
+      <img  onclick="imprimer()" src="{{ asset('bundles/accueilaccueil/images/print.png')}}" alt="imprimer la recette"/>
+      <img onclick="fermer('rec')" src="{{ asset('bundles/accueilaccueil/images/close.png')}}" alt="fermer la fenetre"/>
     </div>
     <span class="soustitre">
       <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
@@ -179,6 +179,16 @@
 
     function fermer(id) {
       document.getElementById(id).style.display = "none";
+    }
+
+    function imprimer(){
+      document.getElementById('all').style.display = "none";
+      document.getElementById('footer').style.display = "none";
+      document.getElementById('entete').style.display = "none";
+      window.print();
+      document.getElementById('all').style.display = "block";
+      document.getElementById('footer').style.display = "block";
+      document.getElementById('entete').style.display = "block";
     }
   </script>
 {% endblock %}
