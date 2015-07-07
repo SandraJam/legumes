@@ -45,16 +45,13 @@
       {{ form_widget(form.ville, {'attr': {'class': 'foo'}}) }}
       {{ form_errors(form.ville) }} <br/>
 
-      Date de Naissance :
-      {{ form_label(form.jour, 'Jour', {'label_attr': {'class': 'foo'}}) }}
+      <label>Date de Naissance<br/><small> (ex: 10 03 1986)</small>:</label>
       {{ form_widget(form.jour, {'attr': {'class': 'foo'}}) }}
-      {{ form_errors(form.jour) }} 
+      {{ form_errors(form.jour) }}
 
-      {{ form_label(form.mois, 'Mois', {'label_attr': {'class': 'foo'}}) }}
       {{ form_widget(form.mois, {'attr': {'class': 'foo'}}) }}
-      {{ form_errors(form.mois) }} 
+      {{ form_errors(form.mois) }}
 
-      {{ form_label(form.annee, 'Année', {'label_attr': {'class': 'foo'}}) }}
       {{ form_widget(form.annee, {'attr': {'class': 'foo'}}) }}
       {{ form_errors(form.annee) }} <br/>
 
@@ -65,7 +62,7 @@
       {{ form_label(form.email, 'E-mail', {'label_attr': {'class': 'foo'}}) }}
       {{ form_widget(form.email, {'attr': {'class': 'foo'}}) }}
       {{ form_errors(form.email) }} <br/>
-      
+
       {{ form_widget(form.valider, {'label': 'Valider'}) }}
       {{ form_widget(form.annuler, {'label': 'Annuler'}) }}
     {{ form_end(form) }}

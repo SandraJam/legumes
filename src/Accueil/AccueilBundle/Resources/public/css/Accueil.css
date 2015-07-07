@@ -214,6 +214,18 @@ input {
   width: 30%;
 }
 
+#form_jour {
+  width: 9%;
+}
+
+#form_mois {
+  width: 9%;
+}
+
+#form_annee {
+  width: 20%;
+}
+
 @media (max-width: 550px) {
   #form_dateNaissance_month {
     width: 100%;

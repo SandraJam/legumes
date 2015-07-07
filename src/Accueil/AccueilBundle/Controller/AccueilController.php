@@ -46,6 +46,7 @@ class AccueilController extends Controller
                     $session->set('typ', $user->getType());
                     $session->set('logi', $user->getLogin());
                     $session->set('pren', $user->getPrenom());
+                    $session->set('id', $user->getId());
                     $session->set('users', "present");
                     //si je suis un client
                     if(strtolower($user->getType()) != strtolower("ADMINISTRATEUR")){
@@ -114,7 +115,7 @@ class AccueilController extends Controller
                     (!(strval($form->getData()->getAnnee())<1900) || strval($form->getData()->getAnnee())> 2020)){
                     //erreur de date de naissance TODO CHANGER 2020 en VARIABLE GLOBAL QUI TE PREND LA DATE DU JOUR MAIS QUE L'ANNEE
                     $tryAgain=true;
-                       $request->getSession()->getFlashBag()->add('notice', 'La date de naissance n\'est pas valide, 
+                       $request->getSession()->getFlashBag()->add('notice', 'La date de naissance n\'est pas valide,
                         le jour et le mois doivent contenir 1 ou 2 chiffres et l\'année 4 chiffres.');
                 }
                 if ( !preg_match ( "/[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/", $form->getData()->getEmail() ) ){
@@ -122,7 +123,7 @@ class AccueilController extends Controller
                   $request->getSession()->getFlashBag()->add('notice', 'l\'adresse mail n\'est pas valide.');
                 }
                 $connexion = $form -> getData();
-                
+
                 $birth = ($connexion->getJour()."-".$connexion->getMois()."-".$connexion->getAnnee());
                 $connexion->setDateNaissance(strval($birth));
                 $user = $this->getDoctrine()
@@ -141,7 +142,7 @@ class AccueilController extends Controller
                         $connexion->setType("client");
                         //TODO  vérification
                         //IDEE en fonction du code postal, proposer les villes associées
-    
+
                         $em->persist($connexion);
                         $em->flush();
                         if ($request->isMethod('POST')) {
@@ -155,7 +156,7 @@ class AccueilController extends Controller
                             }
                         }
                     }else{
-                     return $this->render('AccueilAccueilBundle::inscriptionClient.html.twig', array('form' => $form->createView()) );   
+                     return $this->render('AccueilAccueilBundle::inscriptionClient.html.twig', array('form' => $form->createView()) );
                     }
                 }
             }
