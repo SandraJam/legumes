@@ -19,5 +19,5 @@ passwordForget:
     defaults: { _controller: AccueilAccueilBundle:Accueil:contact }
 
 goadministrator_administration:
-    path:     /pagePrincipaleAdminOUPSS
+    path:     /pagePrincipaleAdmin
     defaults: { _controller: AdministratorAdministrationAdminBundle:Default:pageAdminAccueil }

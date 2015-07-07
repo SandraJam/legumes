@@ -27,7 +27,21 @@ class Commande
      * @ORM\Column(name="NumCommande", type="string", length=255)
      */
     private $numCommande;
-
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=15)
+     */
+     private $status;
+     
+     /**
+     * @var date
+     *
+     * @ORM\Column(name="dateCommande", type="date")
+     */
+     private $dateCommande;
+     
      /**
       * @ORM\OneToOne(targetEntity="Utilisateurs")
       * @ORM\JoinColumn(name="utilisateurs_id", referencedColumnName="id")
@@ -177,5 +191,28 @@ class Commande
     public function getTotal()
     {
         return $this->total;
+    }
+
+    /**
+     * Set retirerMarches
+     *
+     * @param \BDD\BddClientBundle\Entity\Marches $retirerMarches
+     * @return Commande
+     */
+    public function setRetirerMarches(\BDD\BddClientBundle\Entity\Marches $retirerMarches = null)
+    {
+        $this->retirerMarches = $retirerMarches;
+
+        return $this;
+    }
+
+    /**
+     * Get retirerMarches
+     *
+     * @return \BDD\BddClientBundle\Entity\Marches 
+     */
+    public function getRetirerMarches()
+    {
+        return $this->retirerMarches;
     }
 }

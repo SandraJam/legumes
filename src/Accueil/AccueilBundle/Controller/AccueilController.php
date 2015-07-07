@@ -45,6 +45,7 @@ class AccueilController extends Controller
                 if($user !=NULL){  
                     $session->set('typ', $user->getType());
                     $session->set('logi', $user->getLogin());
+                    $session->set('pren', $user->getPrenom());
                     //si je suis un client 
                     if(strtolower($user->getType()) != strtolower("ADMINISTRATEUR")){
                        return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
@@ -91,9 +92,13 @@ class AccueilController extends Controller
 
             if($form->isValid()){ 
                 //Verification du numéro de téléphone
-                if(count($form->getData()->getCodePostal()) != 9){
+                if(count($form->getData()->getTel()) != 9 ){
                     //erreur du numéro de téléphone
                        $request->getSession()->getFlashBag()->add('notice', 'Le numéro de téléphone n\'est pas valide .');
+                }      
+                if(count($form->getData()->getCodePostal()) != 5 ){
+                    //erreur du codePostal
+                       $request->getSession()->getFlashBag()->add('notice', 'Le codde postal n\'est pas valide n\'est pas valide .');
                 }             
                 $connexion = $form -> getData();
                 $user = $this->getDoctrine()
@@ -116,6 +121,9 @@ class AccueilController extends Controller
                     if ($request->isMethod('POST')) {
                       $request->getSession()->getFlashBag()->add('notice', 'L utilisateur à été enregistré.');
                         if ($session->get('users') != NULL){ 
+                               $session->set('typ', $user->getType());
+                               $session->set('logi', $user->getLogin());
+                               $session->set('pren', $user->getPrenom());
                             return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
                         }
                     }
@@ -126,10 +134,13 @@ class AccueilController extends Controller
     }
       public function pagePrincipaleAdmineAction(Request $request){
         $session = $this->getRequest()->getSession();
-        \Doctrine\Common\Util\Debug::dump($session->get('users'));
         if ($session->get('typ')==strtolower("ADMINISTRATEUR")){
+               $session->set('typ', $user->getType());
+               $session->set('logi', $user->getLogin());
+               $session->set('pren', $user->getPrenom());
               return $this->redirect($this->generateUrl('goadministrator_administration'));
         }else{
+              $session->set('users')==NULL;
             return $this->redirect($this->generateUrl('formConnexion'));
         }
     }

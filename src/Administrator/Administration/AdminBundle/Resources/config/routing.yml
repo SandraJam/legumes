@@ -25,3 +25,9 @@ administrator_administration_admin_gerer_Recettes:
 administrator_administration_admin_gerer_Clients:
     path:     /gererClients
     defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:lesCoordsClients }
+administrator_administration_admin_add_Utilisateur_admin:
+    path:     /gererUtil
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:lesUtilisateursAdmins }
+administrator_administration_admin_gerer_Utilisateur_admin:
+    path:     /gererUtil
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:administrationDesUtilisateursAdmins }

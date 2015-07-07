@@ -27,7 +27,21 @@ class Commande
      * @ORM\Column(name="NumCommande", type="string", length=255)
      */
     private $numCommande;
-
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=15)
+     */
+     private $status;
+     
+     /**
+     * @var date
+     *
+     * @ORM\Column(name="dateCommande", type="date")
+     */
+     private $dateCommande;
+     
      /**
       * @ORM\OneToOne(targetEntity="Utilisateurs")
       * @ORM\JoinColumn(name="utilisateurs_id", referencedColumnName="id")
@@ -200,5 +214,51 @@ class Commande
     public function getRetirerMarches()
     {
         return $this->retirerMarches;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Commande
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set dateCommande
+     *
+     * @param \DateTime $dateCommande
+     * @return Commande
+     */
+    public function setDateCommande($dateCommande)
+    {
+        $this->dateCommande = $dateCommande;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCommande
+     *
+     * @return \DateTime 
+     */
+    public function getDateCommande()
+    {
+        return $this->dateCommande;
     }
 }

@@ -1,0 +1,36 @@
+{# src/Administrator/Administration/views/Gerer/gererAdminUser.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  
+{% endblock %}
+
+{% block title %}
+	administration des utilisateurs administrateurs
+{% endblock %}
+
+{% block body %}
+  <H1>administrateur</h1>
+
+    <form action="{{ path('profil_logiciel_profil_logiciel_gererCriteres') }}" method="post">
+        <table>
+                <tr>
+                   <th class="nom">Nom</th>
+          			   <th class="prenom">prénom</th>
+          			   <th class="login">Login</th>
+          			   <th class="Pwd">Mot de passe/th>
+          			   <th class="type">Type de compte</th>
+          			   <th class="adresse">Adresse</th>
+          			   <th class="codePostal">Code Postal</th>
+          			   <th class="ville">Ville</th>
+          			   <th class="dateNaissance">Nom</th>
+          			   <th class="tel">Numéro de téléphone</th>
+                   <th class="email">Email</th>
+    			     </tr>
+    			   
+    		</table>	
+    </form>       
+{% endblock %}
+
+{% block js %}
+{% endblock %}
