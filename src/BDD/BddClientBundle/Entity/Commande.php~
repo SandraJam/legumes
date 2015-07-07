@@ -215,4 +215,50 @@ class Commande
     {
         return $this->retirerMarches;
     }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Commande
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set dateCommande
+     *
+     * @param \DateTime $dateCommande
+     * @return Commande
+     */
+    public function setDateCommande($dateCommande)
+    {
+        $this->dateCommande = $dateCommande;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCommande
+     *
+     * @return \DateTime 
+     */
+    public function getDateCommande()
+    {
+        return $this->dateCommande;
+    }
 }

@@ -78,16 +78,37 @@ class Utilisateurs
     private $type;
 
     /**
-     * @var \Date
+     * @var string
      *
-     * @ORM\Column(name="dateNaissance", type="date")
+     * @ORM\Column(name="dateNaissance", type="string", length=10)
      */
     private $dateNaissance;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="tel", type="integer")
+     * @ORM\Column(name="jour", type="integer", length=2)
+     */
+    private $jour;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="mois", type="integer", length=2)
+     */
+    private $mois;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="annee", type="integer", length=4)
+     */
+    private $annee;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tel", type="string", length=60)
      */
     private $tel;
 
@@ -360,5 +381,74 @@ class Utilisateurs
     public function getVille()
     {
         return $this->ville;
+    }
+
+    /**
+     * Set jour
+     *
+     * @param integer $jour
+     * @return Utilisateurs
+     */
+    public function setJour($jour)
+    {
+        $this->jour = $jour;
+
+        return $this;
+    }
+
+    /**
+     * Get jour
+     *
+     * @return integer 
+     */
+    public function getJour()
+    {
+        return $this->jour;
+    }
+
+    /**
+     * Set mois
+     *
+     * @param integer $mois
+     * @return Utilisateurs
+     */
+    public function setMois($mois)
+    {
+        $this->mois = $mois;
+
+        return $this;
+    }
+
+    /**
+     * Get mois
+     *
+     * @return integer 
+     */
+    public function getMois()
+    {
+        return $this->mois;
+    }
+
+    /**
+     * Set annee
+     *
+     * @param integer $annee
+     * @return Utilisateurs
+     */
+    public function setAnnee($annee)
+    {
+        $this->annee = $annee;
+
+        return $this;
+    }
+
+    /**
+     * Get annee
+     *
+     * @return integer 
+     */
+    public function getAnnee()
+    {
+        return $this->annee;
     }
 }

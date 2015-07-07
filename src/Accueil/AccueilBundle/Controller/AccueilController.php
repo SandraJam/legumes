@@ -80,10 +80,12 @@ class AccueilController extends Controller
                 ->add('login','text')
                 ->add('pwd','password')
         		->add('adresse','text')
-        		->add('codePostal','number')
+                ->add('codePostal','text')
+        		->add('jour','number')
+                ->add('mois','number')
+                ->add('annee','number')
         		->add('ville','text')
-        		->add('dateNaissance','birthday')
-        		->add('tel','number')
+        		->add('tel','text')
         		->add('email','email')
                 ->add('valider','submit')
                 ->add('annuler','reset')
@@ -92,41 +94,68 @@ class AccueilController extends Controller
             $form->handleRequest($request);
 
             if($form->isValid()){
+                $tryAgain=false;
                 //Verification du numéro de téléphone
-                if(count($form->getData()->getTel()) != 9 ){
+                if(count($form->getData()->getTel()) != 10 && preg_match("/^(\d\d\s){4}(\d\d)+\s$/",$form->getData()->getTel()) ){
                     //erreur du numéro de téléphone
+                    $tryAgain=true;
                        $request->getSession()->getFlashBag()->add('notice', 'Le numéro de téléphone n\'est pas valide .');
                 }
-                if(count($form->getData()->getCodePostal()) != 5 ){
+                if(count($form->getData()->getCodePostal()) != 5 && !preg_match("/^[0-9]{5,5}$/",$form->getData()->getCodePostal())){
                     //erreur du codePostal
-                       $request->getSession()->getFlashBag()->add('notice', 'Le codde postal n\'est pas valide n\'est pas valide .');
+                    $tryAgain=true;
+                       $request->getSession()->getFlashBag()->add('notice', 'Le code postal n\'est pas valide .');
+                }
+                if(count($form->getData()->getJour()) <= 2 && preg_match("/[0-3][0-9]/",$form->getData()->getJour())&&
+                    (strval($form->getData()->getJour())<1 || strval($form->getData()->getJour())>32)&&
+                    count($form->getData()->getMois()) <= 2 && preg_match("([0-9]{2,2})",$form->getData()->getMois()) &&
+                    ((strval($form->getData()->getMois())<1) || strval($form->getData()->getMois())>12)&&
+                        count($form->getData()->getAnnee()) == 4 && preg_match("([0-3]{2,2})",$form->getData()->getAnnee())&&
+                    (!(strval($form->getData()->getAnnee())<1900) || strval($form->getData()->getAnnee())> 2020)){
+                    //erreur de date de naissance TODO CHANGER 2020 en VARIABLE GLOBAL QUI TE PREND LA DATE DU JOUR MAIS QUE L'ANNEE
+                    $tryAgain=true;
+                       $request->getSession()->getFlashBag()->add('notice', 'La date de naissance n\'est pas valide, 
+                        le jour et le mois doivent contenir 1 ou 2 chiffres et l\'année 4 chiffres.');
+                }
+                if ( !preg_match ( "/[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/", $form->getData()->getEmail() ) ){
+                  $tryAgain=true;
+                  $request->getSession()->getFlashBag()->add('notice', 'l\'adresse mail n\'est pas valide.');
                 }
                 $connexion = $form -> getData();
+                
+                $birth = ($connexion->getJour()."-".$connexion->getMois()."-".$connexion->getAnnee());
+                $connexion->setDateNaissance(strval($birth));
                 $user = $this->getDoctrine()
                     ->getRepository('BDDBddClientBundle:Utilisateurs')
-                    ->findOneBy(array('login' => $connexion->getLogin(), 'pwd' => $connexion->getPwd()));
+                    ->findOneBy(array('login' => $connexion->getLogin(), 'nom' => $connexion->getNom()));
 
                 if($user !=NULL){
                       $request
                             ->getSession()
                             ->getFlashBag()
                             ->add('notice','Le login existe déjà, veuillez en essayer un autre. ');
+                            $tryAgain=true;
                 }else{
-                    $em = $this->getDoctrine()->getManager();
-                    $connexion->setType("client");
-                    //TODO  vérification
-                   //IDEE en fonction du code postal, proposer les villes associées
-
-                    $em->persist($connexion);
-                    $em->flush();
-                    if ($request->isMethod('POST')) {
-                      $request->getSession()->getFlashBag()->add('notice', 'L utilisateur à été enregistré.');
-                        if ($session->get('users') != NULL){
-                               $session->set('typ', $user->getType());
-                               $session->set('logi', $user->getLogin());
-                               $session->set('pren', $user->getPrenom());
-                            return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
+                    if(!$tryAgain){
+                        $em = $this->getDoctrine()->getManager();
+                        $connexion->setType("client");
+                        //TODO  vérification
+                        //IDEE en fonction du code postal, proposer les villes associées
+    
+                        $em->persist($connexion);
+                        $em->flush();
+                        if ($request->isMethod('POST')) {
+                          $request->getSession()->getFlashBag()->add('notice', 'L utilisateur à été enregistré.');
+                            if ($session->get('users') != NULL){
+                                   $session->set('typ', $user->getType());
+                                   $session->set('logi', $user->getLogin());
+                                   $session->set('pren', $user->getPrenom());
+                                   $session->set('users', "present");
+                                return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
+                            }
                         }
+                    }else{
+                     return $this->render('AccueilAccueilBundle::inscriptionClient.html.twig', array('form' => $form->createView()) );   
                     }
                 }
             }
@@ -139,6 +168,7 @@ class AccueilController extends Controller
                $session->set('typ', $user->getType());
                $session->set('logi', $user->getLogin());
                $session->set('pren', $user->getPrenom());
+               $session->set('users', "present");
               return $this->redirect($this->generateUrl('goadministrator_administration'));
         }else{
               $session->set('users')==NULL;

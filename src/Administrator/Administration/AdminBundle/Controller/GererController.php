@@ -21,6 +21,7 @@ class GererController extends Controller
                         
                 $listeSuperUser = $this->getDoctrine()->getRepository('BDDBddClientBundle:Utilisateurs')
                         ->findByType('administrateur');
+                   
                   return $this->render('AdministratorAdministrationAdminBundle:Gerer:gererAdminUser.html.twig',
                        array('listeSuperUser'=>$listeSuperUser));
             }else{

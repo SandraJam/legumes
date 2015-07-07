@@ -45,9 +45,18 @@
       {{ form_widget(form.ville, {'attr': {'class': 'foo'}}) }}
       {{ form_errors(form.ville) }} <br/>
 
-      {{ form_label(form.dateNaissance, 'Date de naissance', {'label_attr': {'class': 'foo'}}) }}
-      {{ form_widget(form.dateNaissance, {'attr': {'class': 'foo'}}) }}
-      {{ form_errors(form.dateNaissance) }} <br/>
+      Date de Naissance :
+      {{ form_label(form.jour, 'Jour', {'label_attr': {'class': 'foo'}}) }}
+      {{ form_widget(form.jour, {'attr': {'class': 'foo'}}) }}
+      {{ form_errors(form.jour) }} 
+
+      {{ form_label(form.mois, 'Mois', {'label_attr': {'class': 'foo'}}) }}
+      {{ form_widget(form.mois, {'attr': {'class': 'foo'}}) }}
+      {{ form_errors(form.mois) }} 
+
+      {{ form_label(form.annee, 'Année', {'label_attr': {'class': 'foo'}}) }}
+      {{ form_widget(form.annee, {'attr': {'class': 'foo'}}) }}
+      {{ form_errors(form.annee) }} <br/>
 
       {{ form_label(form.tel, 'Téléphone', {'label_attr': {'class': 'foo'}}) }}
       {{ form_widget(form.tel, {'attr': {'class': 'foo'}}) }}
