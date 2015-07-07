@@ -12,10 +12,10 @@
 {% block body %}
   <H1>administrateur</h1>
     <div class="blocWhiteOne">
-        <form action="{{ path('administrator_administration_admin_gerer_Utilisateur_admin') }}" method="post">
+        <form action="{{ path('administrator_administration_admin_add_Utilisateur_admin') }}" method="post">
             <table>
                     <tr>
-		       <th class=id"> </th>
+		       <th "class=id"> </th>
                        <th class="nom">Nom</th>
               	       <th class="prenom">prénom</th>
               			   <th class="login">Login</th>
@@ -30,24 +30,32 @@
         			   </tr>
         			   {% for superUser in listeSuperUser %}
                        <tr>
-                           <th><input type="radio" name="idUtilisateurs" value="{{ superUser.id }}"</th>
-                           <th id="nomth{{loop.index}}">{{ superUser.nom }}</th>
-                           <th id="prenomth{{loop.index}}">{{ superUser.prenom }}</th>
-                           <th id="pwdth{{loop.index}}">{{ superUser.pwd }}</th>
-                           <th id="typeth{{loop.index}}">{{ superUser.type }}</th>
-                           <th id="adresseth{{loop.index}}">{{ superUser.adresse }}</th>
-                           <th id="codePostalth{{loop.index}}">{{ superUser.codePostal }}</th>
-                           <th id="villeth{{loop.index}}">{{ superUser.ville }}</th>
-                           <th id="dateNaissanceth{{loop.index}}">{{ superUser.dateNaissance }}</th>
-                           <th id="telth{{loop.index}}">{{ superUser.tel }}</th>
-                           <th id="emailth{{loop.index}}">{{ superUser.email }}</th>
+                           <th><input type="radio" name="idUtilisateurs" value="{{ superUser.id }}" onclick="RecupData({{loop.index}}, {{ superUser.id }});"></th>
+                           <th id="nomth {{loop.index}}">{{ superUser.nom }}</th>
+                           <th id="prenomth {{loop.index}}">{{ superUser.prenom }}</th>
+                           <th id="pwdth {{loop.index}}">{{ superUser.pwd }}</th>
+                           <th id="typeth {{loop.index}}">{{ superUser.type }}</th>
+                           <th id="adresseth {{loop.index}}">{{ superUser.adresse }}</th>
+                           <th id="codePostalth {{loop.index}}">{{ superUser.codePostal }}</th>
+                           <th id="villeth {{loop.index}}">{{ superUser.ville }}</th>
+                           <th id="dateNaissanceth {{loop.index}}">{{ superUser.dateNaissance }}</th>
+                           <th id="telth {{loop.index}}">{{ superUser.tel }}</th>
+                           <th id="emailth {{loop.index}}">{{ superUser.email }}</th>
                       </tr>
                    {% endfor %}
         		</table>	
-        </form>       
+        </form>
+    </div>
+    <div>
+      <label>Nom : </label>
+           <input type="text" name="champnom" id="champnom" required="required"/><br/>
     </div>
 {% endblock %}
 
 {% block js %}
-
+    <script type="text/javascript">
+  function RecupData(loop, id){
+       document.getElementById("champnom").value = document.getElementById("nomth"+loop).innerHTML;
+  }
+  </script>
 {% endblock %}
