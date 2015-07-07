@@ -27,10 +27,7 @@ class ContactController extends Controller
             $this->get('mailer')->send($message);
 
             $this->get('session')->getFlashBag()->Add('notice', 'Votre message a été envoyé!');
-            // Perform some action, such as sending an email
 
-            // Redirect - This is important to prevent users re-posting
-            // the form if they refresh the page
             return $this->redirect($this->generateUrl('accueil_accueil_contact'));
         }
     }
