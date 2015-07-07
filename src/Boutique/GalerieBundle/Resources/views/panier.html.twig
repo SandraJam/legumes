@@ -1,0 +1,151 @@
+{# src/Boutique/GalerieBundle/Resources/views/panier.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/boutiquearticle/css/Boutique.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+  Votre panier
+{% endblock %}
+
+{% block body %}
+  <div class="container whiteBloc">
+    <div class="row blocPanier titreCasier">
+      <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+        Image
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        Article
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+        Prix Unitaire
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
+        Quantité
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
+        Prix
+      </div>
+    </div>
+
+    <!-- Article -->
+    <div class="row blocPanier">
+      <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+        <img src="{{ asset('bundles/accueilaccueil/images/profitez.png')}}" class="imgCasier" alt="Casier"/>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs justify">
+        <br/>
+        <span class="titre"> Courgettes </span><br/>
+        Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla
+        Bla Bla Bla Bla Bla Bla Bla Bla Bla
+        Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla
+      </div>
+      <div class="hidden-lg hidden-md hidden-sm col-xs-4 justify">
+        <span class="titre"> Courgettes </span><br/>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+        <br/>
+        1,50 € <br/> par kg
+      </div>
+      <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
+        <br/>
+        <div class="input-group centrer">
+          <input type="number" class="form-control" min="1" max="30" value="3" aria-label="Amount (to the nearest dollar)">
+        </div><br/>
+        <button type="button" class="btn btn-default btn-sm btn-warning">
+          <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Actualiser
+        </button>
+      </div>
+      <div class="hidden-lg hidden-md col-sm-2 col-xs-5">
+        <br/>
+        <div class="input-group centrer">
+          <input type="number" class="form-control" min="1" max="30" value="3" aria-label="Amount (to the nearest dollar)">
+        </div><br/>
+        <button type="button" class="btn btn-default btn-sm btn-warning">
+          <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
+        <br/>
+        <!-- Calcul du resultat par twig -->
+         <span class="titre" style="color:red;"> {{ 1.50 * 3}} € </span> <br/>
+        <button type="button" class="btn btn-default btn-sm btn-danger">
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer
+        </button>
+      </div>
+      <div class="hidden-lg hidden-md col-sm-2 col-xs-3">
+        <br/>
+        <!-- Calcul du resultat par twig -->
+         <span class="titre" style="color:red;"> {{ 1.50 * 3}} € </span> <br/>
+        <button type="button" class="btn btn-default btn-sm btn-danger">
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <div class="row blocPanier">
+      <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+        <img src="{{ asset('bundles/accueilaccueil/images/profitez.png')}}" class="imgCasier" alt="Casier"/>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs justify">
+        <br/>
+        <span class="titre"> Salade </span><br/>
+        Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla
+        Bla Bla Bla Bla Bla Bla Bla Bla Bla
+        Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla
+      </div>
+      <div class="hidden-lg hidden-md hidden-sm col-xs-4 justify">
+        <span class="titre"> Salade </span><br/>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+        <br/>
+        1,50 € <br/> par kg
+      </div>
+      <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
+        <br/>
+        <div class="input-group centrer">
+          <input type="number" class="form-control" min="1" max="30" value="3" aria-label="Amount (to the nearest dollar)">
+        </div><br/>
+        <button type="button" class="btn btn-default btn-sm btn-warning">
+          <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Actualiser
+        </button>
+      </div>
+      <div class="hidden-lg hidden-md col-sm-2 col-xs-5">
+        <br/>
+        <div class="input-group centrer">
+          <input type="number" class="form-control" min="1" max="30" value="2" aria-label="Amount (to the nearest dollar)">
+        </div><br/>
+        <button type="button" class="btn btn-default btn-sm btn-warning">
+          <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
+        <br/>
+        <!-- Calcul du resultat par twig -->
+         <span class="titre" style="color:red;"> {{ 2 * 2}} € </span> <br/>
+        <button type="button" class="btn btn-default btn-sm btn-danger">
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer
+        </button>
+      </div>
+      <div class="hidden-lg hidden-md col-sm-2 col-xs-3">
+        <br/>
+        <!-- Calcul du resultat par twig -->
+         <span class="titre" style="color:red;"> {{ 2 * 2}} € </span> <br/>
+        <button type="button" class="btn btn-default btn-sm btn-danger">
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+
+
+    <!-- Resultats -->
+    <div class="row blocPanier">
+      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        Total:
+        {{ 1.50*3 + 2* 2 }} €
+      </div>
+    </div><br/><br/>
+  </div>
+{% endblock %}

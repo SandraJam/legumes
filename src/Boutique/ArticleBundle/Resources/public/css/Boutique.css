@@ -129,3 +129,47 @@ a, a:hover, a:focus, a:visited {
     font-size: 1em;
   }
 }
+
+
+/* Panier */
+
+.blocPanier{
+  width: 95%;
+  margin-left: 2.5%;
+  border: 1px solid grey;
+  min-height: 3em;
+  text-align: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.justify{
+  text-align: justify;
+}
+
+.blocPanier .titre {
+  font-family: 'Cookie', serif;
+  font-size: 250%;
+}
+
+.titreCasier {
+  line-height: 3em;
+}
+
+@media (max-width: 900px){
+  .titreCasier {
+    line-height: 1.5em;
+  }
+}
+
+.imgCasier {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  width: 95%;
+}
+
+@media (max-width: 500px){
+  .blocPanier .titre {
+    font-size: 130%;
+  }
+}
