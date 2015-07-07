@@ -1,3 +1,7 @@
 boutique_galerie_homepage:
     path:     /categorie
     defaults: { _controller: BoutiqueGalerieBundle:Galerie:index }
+
+boutique_galerie_panier:
+    path:     /panier
+    defaults: { _controller: BoutiqueGalerieBundle:Galerie:panier }

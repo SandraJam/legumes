@@ -10,4 +10,9 @@ class GalerieController extends Controller
     {
         return $this->render('BoutiqueGalerieBundle::categorie.html.twig');
     }
+
+    public function panierAction()
+    {
+        return $this->render('BoutiqueGalerieBundle::panier.html.twig');
+    }
 }
