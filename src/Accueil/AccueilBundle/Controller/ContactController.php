@@ -56,35 +56,33 @@ class ContactController extends Controller
   }
 
   public function modifCompteAction() {
-    // Revoir sécurité
     $session = $this->getRequest()->getSession();
     if ($session->get('users') != NULL){
       $user = $this->getDoctrine()
                     ->getRepository('BDDBddClientBundle:Utilisateurs')
                     ->find($session->get('id'));
       if ($user != NULL) {
-        $tryAgain=false;
-        if(count($_POST['telephone']) != 10 && preg_match("/^(\d\d\s){4}(\d\d)+\s$/",$_POST['telephone']) ){
-            $tryAgain=true;
-        }
-        if(count($_POST['codepostal']) != 5 && !preg_match("/^[0-9]{5,5}$/",$_POST['codepostal'])){
-            $tryAgain=true;
-        }
-        if ( !preg_match ( "/[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/", $_POST['mail'] ) ){
-            $tryAgain=true;
-        }
-        if (!$tryAgain){
-          if ($_POST['password'] != ""){
+          $message = "";
+          if ($_POST['password'] != "" && ! strpos(htmlentities($_POST['password'], ENT_QUOTES), ';')){
             $user->setPwd($_POST['password']);
           }
-          $user->setAdresse($_POST['adresse']);
-          $user->setVille($_POST['ville']);
-          $user->setCodePostal($_POST['codepostal']);
-          $user->setTel($_POST['telephone']);
-          $user->setEmail($_POST['mail']);
+          if($_POST['adresse'] != "" && ! strpos(htmlentities($_POST['adresse'], ENT_QUOTES), ';')){
+            $user->setAdresse($_POST['adresse']);
+          }
+          if($_POST['ville'] != "" && ! strpos(htmlentities($_POST['ville'], ENT_QUOTES), ';')){
+            $user->setVille($_POST['ville']);
+          }
+          if(strlen($_POST['codepostal']) == 5 && ctype_digit($_POST['codepostal'])){
+            $user->setCodePostal($_POST['codepostal']);
+          }
+          if(strlen($_POST['telephone']) == 10 && ctype_digit($_POST['telephone'])){
+            $user->setTel($_POST['telephone']);
+          }
+          if(filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)){
+            $user->setEmail($_POST['mail']);
+          }
           $em = $this->getDoctrine()->getManager();
           $em->flush();
-        }
         return $this->redirect($this->generateUrl('accueil_accueil_compte'));
       }else{
         return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
