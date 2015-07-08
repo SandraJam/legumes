@@ -73,7 +73,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12">
                   {% if app.session.get('users') == 'present'%}
                     <img src="{{ asset('bundles/accueilaccueil/images/tomato1.png')}}" alt="Compte Client" class="panier">
-                  <br/><h4>Bienvenue {{app.session.get('pren')}}!</br> <a href="#">Mon compte</a> - <a href="{{ path('formConnexion') }}">Déconnexion</a></h4>
+                  <br/><h4>Bienvenue {{app.session.get('pren')}}!</br> <a href="{{path('accueil_accueil_compte')}}">Mon compte</a> - <a href="{{ path('formConnexion') }}">Déconnexion</a></h4>
                   {% else %}
                     <a href="{{ path('formConnexion') }}">
                       <img src="{{ asset('bundles/accueilaccueil/images/tomato1.png')}}" alt="Compte Client" class="panier">
@@ -95,7 +95,7 @@
             <div class="hidden-lg hidden-md hidden-sm col-xs-8">
               {% if app.session.get('users') == 'present'%}
                 <img src="{{ asset('bundles/accueilaccueil/images/tomato1.png')}}" alt="Compte Client" class="panier">
-              <a href="#">Mon compte</a> - <a href="{{ path('formConnexion') }}">Déconnexion</a>
+              <a href="{{path('accueil_accueil_compte')}}">Mon compte</a> - <a href="{{ path('formConnexion') }}">Déconnexion</a>
               {% else %}
               <a href="{{ path('formConnexion') }}">
                 <img src="{{ asset('bundles/accueilaccueil/images/tomato1.png')}}" alt="Compte Client" class="panier">

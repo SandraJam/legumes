@@ -27,3 +27,11 @@ accueil_accueil_contact:
 accueil_histoire:
     path:     /histoire
     defaults: { _controller: AccueilAccueilBundle:Histoire:histoire }
+
+accueil_accueil_compte:
+    path:     /compte
+    defaults: { _controller: AccueilAccueilBundle:Contact:compte }
+
+accueil_accueil_modifCompte:
+    path:     /modifcompte
+    defaults: { _controller: AccueilAccueilBundle:Contact:modifCompte }
