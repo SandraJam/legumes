@@ -44,8 +44,11 @@ class ContactController extends Controller
                     ->getRepository('BDDBddClientBundle:Utilisateurs')
                     ->find($session->get('id'));
       if ($user != NULL) {
+        $commandes = $this->getDoctrine()
+                      ->getRepository('BDDBddClientBundle:Commande')
+                      ->findByUtilisateurs($user);
         return $this->render('AccueilAccueilBundle::compte.html.twig', array(
-            'user' => $user
+            'user' => $user, 'commandes' => $commandes
         ));
       }else{
         return $this->redirect($this->generateUrl('accueil_accueil_homepage'));

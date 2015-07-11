@@ -5,3 +5,7 @@ boutique_galerie_homepage:
 boutique_galerie_panier:
     path:     /panier
     defaults: { _controller: BoutiqueGalerieBundle:Galerie:panier }
+
+boutique_galerie_recette:
+    path:     /panierrecette/{idRecette}
+    defaults: { _controller: BoutiqueGalerieBundle:Galerie:panierRecette }

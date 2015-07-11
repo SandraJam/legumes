@@ -36,7 +36,19 @@
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
       <div class="coordonnee">
-          
+          <h1> Mes Commandes </h1>
+          {% if commandes|length == 0 %}
+            Vous n'avez aucune commande! <br/>
+            <a href="{{path('boutique_galerie_homepage')}}">Par ici pour commencer!</a>
+          {% else %}
+            <table>
+              {% for commande in commandes %}
+                <th>
+                  <!-- A FAIRE -->
+                </th>
+              {% endfor %}
+            </table>
+          {% endif %}
       </div>
     </div>
   </div>

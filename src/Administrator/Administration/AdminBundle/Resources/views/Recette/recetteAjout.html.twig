@@ -1,0 +1,19 @@
+{# src/Administration/AdminBundle/Resources/views/recetteAdmin.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+	Ajout Recette
+{% endblock %}
+
+{% block body %}
+{{form(form)}}
+{% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="flash-notice">
+        {{ flashMessage }}
+    </div>
+{% endfor %}
+{% endblock %}

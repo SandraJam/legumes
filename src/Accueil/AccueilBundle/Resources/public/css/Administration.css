@@ -1,0 +1,28 @@
+/* Recette */
+.whiteBloc {
+  min-height: 20em;
+  margin-top: 2em;
+  padding-top: 1em;
+  font-family: 'Coustard', sans-serif;
+  width: 90%;
+  background: white;
+  border-radius: 1em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3),
+              0 3px 5px rgba(0, 0, 0, .2),
+              0 5px 10px rgba(0, 0, 0, .2),
+              0 20px 20px rgba(0, 0, 0, .15);
+}
+
+.ajouter {
+  padding: 2em;
+  padding-bottom: 1em;
+  text-align: right;
+}
+
+.recette {
+  border: 1px solid grey;
+  margin: 1em;
+  margin-top: 0em;
+  padding: 1em;
+  text-align: center;
+}

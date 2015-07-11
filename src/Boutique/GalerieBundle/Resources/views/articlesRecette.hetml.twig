@@ -1,0 +1,48 @@
+{# src/Boutique/Galerie/Resources/views/articlesRecette.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/boutiquearticle/css/Boutique.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+  Panier Recette
+{% endblock %}
+
+{% block body %}
+<div class="container whiteBloc">
+  <div class="galerie">
+    {% for art in articles %}
+    <div class="row article">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <!-- Photo -->
+        <img src="{{ asset('images/' ~ art.photos)}}" class="imgArticle" alt="Gratin de courgette"/>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 descriptionArticle">
+        <!-- Nom-->
+        <span class="titreArticle"> {{ art.nom }} </span><br/>
+        <!-- Recommandation -->
+        <span class="recommandation"> {{ art.recommandation }} </span><br/>
+        <!-- Description -->
+        {{ art.descr }}
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 prix">
+        <!-- Prix -->
+        <span class="prixArticle"> {{ art.prix }} </span><br/>
+        <!-- Quantité pour prix -->
+        {{ art.qtiteVente }}
+        <!-- Formulaire Quantité -->
+        <br/>
+        <div class="input-group centrer">
+          <input type="number" class="form-control" min="1" max="{{ art.commandeMax }}" value="1" aria-label="Amount (to the nearest dollar)">
+        </div><br/>
+        <button type="button" class="btn btn-default btn-md btn-danger">
+          <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Ajouter au Panier
+        </button>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

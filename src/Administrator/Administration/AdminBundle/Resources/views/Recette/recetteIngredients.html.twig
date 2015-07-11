@@ -1,0 +1,59 @@
+{# src/Administration/AdminBundle/Resources/views/recetteIngredients.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+	Ajout Ingrédients
+{% endblock %}
+
+{% block body %}
+<div class="container whiteBloc">
+  <div class="row recette">
+    <div class="col-lg-3 col-md-3 col-sm-3 hidden-6">
+      <strong>Nom</strong>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+      <strong>Quantité</strong>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+      <strong>Article lié</strong>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+
+    </div>
+    <br/>
+    <br/>
+    {% for ing in ingredients %}
+    <div class="col-lg-3 col-md-3 col-sm-3 hidden-6">
+      {{ing.nom}}
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+      {{ing.quantite}}
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+      {% if ing.article == NULL %}
+        Aucun
+      {% else %}
+        {{ing.article.nom}}
+      {% endif %}
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+      <a href="{{path('administration_admin_supprimerIngredient', {'id' : ing.id })}}">
+        <button type="button" class="btn btn-default btn-sm btn-danger">
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer
+        </button>
+      </a>
+    </div>
+    <br/>
+    <br/>
+  {% endfor %}
+  </div>
+
+  {{form(form)}}
+
+  <a href="{{path('administrator_administration_admin_gerer_Recettes')}}"> J'ai fini! </a>
+</div>
+{% endblock %}

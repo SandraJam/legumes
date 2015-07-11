@@ -20,7 +20,7 @@ administrator_administration_admin_gerer_News:
 
 administrator_administration_admin_gerer_Recettes:
     path:     /gererRecettes
-    defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:lesRecettes}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:base}
 
 administrator_administration_admin_gerer_Clients:
     path:     /gererClients
@@ -31,3 +31,19 @@ administrator_administration_admin_add_Utilisateur_admin:
 administrator_administration_admin_gerer_Utilisateur_admin:
     path:     /gererUtil
     defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:administrationDesUtilisateursAdmins }
+
+administrator_ajout_recette:
+    path:     /ajoutrecette
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:ajout}
+
+administration_admin_ajoutIngredient:
+    path:     /ajoutingredient/{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:ajoutingredient}
+
+administration_admin_supprimerIngredient:
+    path:     /supprimeringredient/{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:supprimerIngredient}
+
+administration_admin_supprimerRecette:
+    path:     /supprimerrecette/{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:supprimer}

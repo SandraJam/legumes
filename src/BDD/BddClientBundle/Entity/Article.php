@@ -77,11 +77,18 @@ class Article
      */
     private $commandeMax;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="prix", type="integer")
+     */
+    private $prix;
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -104,7 +111,7 @@ class Article
     /**
      * Get nom
      *
-     * @return string 
+     * @return string
      */
     public function getNom()
     {
@@ -127,7 +134,7 @@ class Article
     /**
      * Get descr
      *
-     * @return string 
+     * @return string
      */
     public function getDescr()
     {
@@ -150,7 +157,7 @@ class Article
     /**
      * Get recommandation
      *
-     * @return string 
+     * @return string
      */
     public function getRecommandation()
     {
@@ -173,7 +180,7 @@ class Article
     /**
      * Get photos
      *
-     * @return string 
+     * @return string
      */
     public function getPhotos()
     {
@@ -196,7 +203,7 @@ class Article
     /**
      * Get categorie
      *
-     * @return string 
+     * @return string
      */
     public function getCategorie()
     {
@@ -219,7 +226,7 @@ class Article
     /**
      * Get qtiteVente
      *
-     * @return integer 
+     * @return integer
      */
     public function getQtiteVente()
     {
@@ -242,7 +249,7 @@ class Article
     /**
      * Get qtiteStock
      *
-     * @return integer 
+     * @return integer
      */
     public function getQtiteStock()
     {
@@ -265,7 +272,7 @@ class Article
     /**
      * Get commandeMax
      *
-     * @return integer 
+     * @return integer
      */
     public function getCommandeMax()
     {

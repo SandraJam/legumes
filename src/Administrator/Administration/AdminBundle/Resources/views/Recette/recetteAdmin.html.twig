@@ -1,0 +1,101 @@
+{# src/Administration/AdminBundle/Resources/views/recetteAdmin.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+	Gestion Recettes
+{% endblock %}
+
+{% block body %}
+<div class="container whiteBloc">
+  <div class="row ajouter">
+    <a href="{{path('administrator_ajout_recette')}}">
+      <button type="button" class="btn btn-default btn-lg btn-success">
+        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Ajouter
+      </button>
+    </a>
+  </div>
+
+  <div class="row recette">
+    <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
+
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+      <strong> Nom </strong>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-6">
+      <strong> Au Menu </strong>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+    </div><br/><br/><br/>
+
+    {% for rec in recettes %}
+      <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
+        <img src="{{asset('images/' ~ rec.photo)}}" alt="{{rec.nom}}" class="imgRecette"/>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+        {{rec.nom}}
+      </div>
+      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-6">
+        {% if rec.visible %}
+          Oui
+        {% else %}
+          Non
+        {% endif %}
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="btn-group" role="group">
+          <button onclick="entier('{{rec.id}}')" type="button" class="btn btn-default btn-md btn-info">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Voir
+          </button>
+          <button type="button" class="btn btn-default btn-md btn-warning">
+            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Modifier
+          </button>
+          <a href="{{path('administration_admin_supprimerRecette', {'id' : rec.id})}}">
+            <button type="button" class="btn btn-default btn-md btn-danger">
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer
+            </button>
+          </a>
+        </div>
+      </div><br/><br/><br/>
+
+      <div id="{{rec.id}}" style="display: none;" class="recetteEntiere">
+        <img onclick="fermer('{{rec.id}}')" src="{{ asset('bundles/accueilaccueil/images/close.png')}}" alt="fermer la fenetre"/>
+        <h1> {{rec.nom}} </h1>
+        <strong> Temps de préparation:</strong> {{ rec.tpsPrep }} <br/>
+        <strong> Temps de cuisson:</strong> {{ rec.tpsCuisson }}  <br/><br/>
+        <strong>
+          <a href="{{path('boutique_galerie_recette', {'idRecette' : rec.id })}}"> Ingrédients: </a>
+        </strong><br/>
+        {% for ing in ingredients %}
+          {% if ing.recette.id == rec.id %}
+            - {{ ing.nom }}: {{ ing.quantite }} <br/>
+          {% endif %}
+        {% endfor %}
+
+        <strong> Préparation: </strong> <br/>
+        {{ rec.preparation }}
+
+      </div>
+
+    {% endfor %}
+
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+function entier(id) {
+  document.getElementById(id).style.display = "block";
+}
+
+function fermer(id) {
+  document.getElementById(id).style.display = "none";
+}
+</script>
+{% endblock %}
