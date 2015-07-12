@@ -43,23 +43,23 @@ class RecetteController extends Controller
          ->add('tpsCuisson','text')
          ->add('preparation','textarea')
          ->add('photo','file')
-         ->add('Suivant','submit')
+         ->add('suivant','submit')
          ->add('annuler','reset')
          ->getForm();
       $form->handleRequest($request);
       if($form->isValid()) {
         $recette = $form -> getData();
         $message = "";
-        if ($recette->getNom() == "" || strpos(htmlentities($recette->getNom(), ENT_QUOTES), ';')){
+        if ($recette->getNom() == "" || strpos(htmlentities($recette->getNom(), ENT_QUOTES), '&gt;') || strpos(htmlentities($recette->getNom(), ENT_QUOTES), '&lt;')){
           $message .= "Nom incorrect. ";
         }
-        if ($recette->getTpsPrep() == "" || strpos(htmlentities($recette->getTpsPrep(), ENT_QUOTES), ';')){
+        if ($recette->getTpsPrep() == "" || strpos(htmlentities($recette->getTpsPrep(), ENT_QUOTES), '&gt;') || strpos(htmlentities($recette->getNom(), ENT_QUOTES), '&lt;')){
           $message .= "Temps de Préparation incorrect. ";
         }
-        if ($recette->getTpsCuisson() == "" || strpos(htmlentities($recette->getTpsCuisson(), ENT_QUOTES), ';')){
+        if ($recette->getTpsCuisson() == "" || strpos(htmlentities($recette->getTpsCuisson(), ENT_QUOTES), '&gt;') || strpos(htmlentities($recette->getNom(), ENT_QUOTES), '&lt;')){
           $message .= "Temps de Cuisson incorrect. ";
         }
-        if ($recette->getPreparation() == "" || strpos(htmlentities($recette->getPreparation(), ENT_QUOTES), ';')){
+        if ($recette->getPreparation() == "" || strpos(htmlentities($recette->getPreparation(), ENT_QUOTES), '&gt;') || strpos(htmlentities($recette->getNom(), ENT_QUOTES), '&lt;')){
           $message .= "Préparation incorrect. ";
         }
         if(strpos($recette->getPhoto()->getMimeType(), "image") === false){
@@ -71,8 +71,8 @@ class RecetteController extends Controller
           $uploadedFile = $recette -> getPhoto();
           $fileName = $uploadedFile -> getClientOriginalName();
           $dir = $this->getRequest()->server->get('DOCUMENT_ROOT') . $this->getRequest()->getBasePath() . "/images/";
-          $uploadedFile->move($dir, $fileName);
-          $recette->setPhoto($fileName);
+          $uploadedFile->move($dir, $fileName.time());
+          $recette->setPhoto($fileName.time());
           $recette->setVisible(FALSE);
           $em = $this->getDoctrine()->getManager();
           $em->persist($recette);
@@ -108,17 +108,17 @@ class RecetteController extends Controller
          ->add('nom','text')
          ->add('quantite','text')
          ->add('article','choice', $articles)
-         ->add('Ajouter','submit')
+         ->add('ajouter','submit')
          ->add('annuler','reset')
          ->getForm();
       $form->handleRequest($request);
       if($form->isValid()) {
         $ingredient = $form -> getData();
         $message = "";
-        if ($ingredient->getNom() == "" || strpos(htmlentities($ingredient->getNom(), ENT_QUOTES), ';')){
+        if ($ingredient->getNom() == "" || strpos(htmlentities($ingredient->getNom(), ENT_QUOTES), '&gt;') || strpos(htmlentities($recette->getNom(), ENT_QUOTES), '&lt;')){
           $message .= "Nom incorrect. ";
         }
-        if ($ingredient->getQuantite() == "" || strpos(htmlentities($ingredient->getQuantite(), ENT_QUOTES), ';')){
+        if ($ingredient->getQuantite() == "" || strpos(htmlentities($ingredient->getQuantite(), ENT_QUOTES), '&gt;') || strpos(htmlentities($recette->getNom(), ENT_QUOTES), '&lt;')){
           $message .= "Quantité incorrect. ";
         }
 

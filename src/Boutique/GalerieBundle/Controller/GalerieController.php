@@ -27,7 +27,8 @@ class GalerieController extends Controller
                     ->findByRecette($recette);
       $articles = [];
       foreach($ingredients as $ing){
-        $articles[] = $ing->getArticle();
+        if($ing->getArticle() != NULL)
+          $articles[] = $ing->getArticle();
       }
       return $this->render('BoutiqueGalerieBundle::articlesRecette.html.twig',
         array('articles' => $articles));

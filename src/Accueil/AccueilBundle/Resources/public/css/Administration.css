@@ -26,3 +26,186 @@
   padding: 1em;
   text-align: center;
 }
+
+.imgRecette {
+  width: 100%;
+}
+
+.btn a, .btn a:hover, .btn a:focus {
+  text-decoration: none;
+  color: inherit;
+}
+
+.recetteEntiere {
+  z-index: 3000;
+  text-align: justify;
+  display: none;
+  position: absolute;
+  top: 17em;
+  width: 70%;
+  min-height: 15em;
+  margin-left: 15%;
+  padding: 2em;
+  padding-top: 3em;
+  background: white;
+  border: 1px solid grey;
+  border-radius: 1em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3),
+              0 3px 5px rgba(0, 0, 0, .2),
+              0 5px 10px rgba(0, 0, 0, .2),
+              0 20px 20px rgba(0, 0, 0, .15);
+}
+
+.fermer {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+}
+
+@media (max-width: 600px){
+  .recetteEntiere {
+    width: 95%;
+    margin-left: 2%;
+  }
+}
+
+/* Ajout Recette */
+.login{
+  font-family: 'Coustard', sans-serif;
+  background: white;
+  margin-top: 1em;
+  padding: 0.5em 2em;
+  text-align: center;
+  min-height: 15em;
+  border-radius: 1em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3),
+              0 3px 5px rgba(0, 0, 0, .2),
+              0 5px 10px rgba(0, 0, 0, .2),
+              0 20px 20px rgba(0, 0, 0, .15);
+  width: 70%;
+  margin-left: 15%;
+}
+
+.login h1, .inIng h1 {
+  font-family: 'Cookie', sans-serif;
+}
+
+label {
+  width: 200px;
+  text-align: left;
+}
+
+input, select {
+  width: 50%;
+}
+
+textarea {
+  width: 70%;
+  height: 8em;
+}
+
+#form_photo{
+  margin-left: 25%;
+}
+
+@media (max-width:700px){
+  .login{
+    width: 90%;
+    margin-left: 5%;
+  }
+}
+
+@media (max-width:530px){
+  label{
+    width: auto;
+  }
+  input, select{
+    width: 95%;
+  }
+  textarea {
+    width: 95%;
+  }
+  #form_photo{
+    margin-left: 2%;
+  }
+}
+
+#form_suivant, #form_ajouter {
+  margin-top: 1em;
+  border: none;
+  background: #2DA800;
+  background-image: -webkit-linear-gradient(top, #2DA800, #257801);
+  background-image: -moz-linear-gradient(top, #2DA800, #257801);
+  background-image: -ms-linear-gradient(top, #2DA800, #257801);
+  background-image: -o-linear-gradient(top, #2DA800, #257801);
+  background-image: linear-gradient(to bottom, #2DA800, #257801);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+#form_suivant:hover, #form_ajouter:hover {
+  background: #41e600;
+  background-image: -webkit-linear-gradient(top, #41e600, #2DA800);
+  background-image: -moz-linear-gradient(top, #41e600, #2DA800);
+  background-image: -ms-linear-gradient(top, #41e600, #2DA800);
+  background-image: -o-linear-gradient(top, #41e600, #2DA800);
+  background-image: linear-gradient(to bottom, #41e600, #2DA800);
+  text-decoration: none;
+}
+
+#form_annuler {
+  margin-top: 1em;
+  border: none;
+  background: #f70808;
+  background-image: -webkit-linear-gradient(top, #f70808, #b30003);
+  background-image: -moz-linear-gradient(top, #f70808, #b30003);
+  background-image: -ms-linear-gradient(top, #f70808, #b30003);
+  background-image: -o-linear-gradient(top, #f70808, #b30003);
+  background-image: linear-gradient(to bottom, #f70808, #b30003);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+#form_annuler:hover{
+  background: #f75b5b;
+  background-image: -webkit-linear-gradient(top, #f75b5b, #f70808);
+  background-image: -moz-linear-gradient(top, #f75b5b, #f70808);
+  background-image: -ms-linear-gradient(top, #f75b5b, #f70808);
+  background-image: -o-linear-gradient(top, #f75b5b, #f70808);
+  background-image: linear-gradient(to bottom, #f75b5b, #f70808);
+  text-decoration: none;
+}
+
+/* Ajout Ingredient */
+
+.inIng{
+  font-family: 'Coustard', sans-serif;
+  margin-top: 1em;
+  padding: 0.5em 2em;
+  text-align: center;
+  min-height: 15em;
+  width: 70%;
+  margin-left: 15%;
+}
+
+.inIng a {
+  font-family: 'Cookie', cursive;
+  font-size: 250%;
+  color: rgb(204, 0, 0);
+  text-decoration: underline;
+}
+
+.inIng a:hover{
+  color: rgb(255, 61, 61);
+  text-decoration: overline;
+}

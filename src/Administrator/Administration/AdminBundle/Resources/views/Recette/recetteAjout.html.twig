@@ -10,10 +10,32 @@
 {% endblock %}
 
 {% block body %}
-{{form(form)}}
-{% for flashMessage in app.session.flashbag.get('notice') %}
-    <div class="flash-notice">
-        {{ flashMessage }}
-    </div>
-{% endfor %}
+<div class="login">
+  <h1> Ajoutez une nouvelle Recette! </h1>
+  {{ form_start(form) }}
+    {{ form_label(form.nom, 'Nom:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_widget(form.nom, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.nom) }} <br/>
+    {{ form_label(form.tpsPrep, 'Temps de préparation:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_widget(form.tpsPrep, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.tpsPrep) }} <br/>
+    {{ form_label(form.tpsCuisson, 'Temps de cuisson:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_widget(form.tpsCuisson, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.tpsCuisson) }} <br/><br/>
+    {{ form_label(form.preparation, 'Préparation:', {'label_attr': {'class': 'foo'}}) }}
+    <br/>{{ form_widget(form.preparation, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.preparation) }} <br/><br/>
+    {{ form_label(form.photo, 'Photo:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_widget(form.photo, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.photo) }} <br/>
+    {{ form_widget(form.suivant, {'label': 'Suivant'}) }}
+    {{ form_widget(form.annuler, {'label': 'Annuler'}) }}
+  {{ form_end(form) }}
+
+  {% for flashMessage in app.session.flashbag.get('notice') %}
+      <div class="flash-notice">
+          {{ flashMessage }}
+      </div>
+  {% endfor %}
+</div>
 {% endblock %}

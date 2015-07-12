@@ -52,8 +52,31 @@
   {% endfor %}
   </div>
 
-  {{form(form)}}
+  <div class="inIng">
+    <a href="{{path('administrator_administration_admin_gerer_Recettes')}}"> J'ai fini! </a>
 
-  <a href="{{path('administrator_administration_admin_gerer_Recettes')}}"> J'ai fini! </a>
+      <br/><br/><br/>
+    <h1> Ajoutez un nouvel Ingrédient </h1>
+    {{ form_start(form) }}
+      {{ form_label(form.nom, 'Nom:', {'label_attr': {'class': 'foo'}}) }}
+      {{ form_widget(form.nom, {'attr': {'class': 'foo'}}) }}
+      {{ form_errors(form.nom) }} <br/>
+      {{ form_label(form.quantite, 'Quantité:', {'label_attr': {'class': 'foo'}}) }}
+      {{ form_widget(form.quantite, {'attr': {'class': 'foo'}}) }}
+      {{ form_errors(form.quantite) }} <br/>
+      {{ form_label(form.article, 'Articles liés:', {'label_attr': {'class': 'foo'}}) }}
+      {{ form_widget(form.article, {'attr': {'class': 'foo'}}) }}
+      {{ form_errors(form.article) }} <br/>
+      {{ form_widget(form.ajouter, {'label': 'Ajouter'}) }}
+      {{ form_widget(form.annuler, {'label': 'Annuler'}) }}
+    {{ form_end(form) }}
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-notice">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+  </div>
 </div>
 {% endblock %}
