@@ -13,7 +13,6 @@
 {% block body %}
   <!--
     A besoin:
-      La recette
       Les news en entier
   -->
 
@@ -73,28 +72,33 @@
             <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
           </span>
           <p><br/>
-            <figure class="figRec">
-              <img src="{{ asset('images/' ~ recette.photo)}}" class="imgRecette" alt="{{recette.nom}}"/>
-              <figcaption><a href="#">Faites votre marché pour cette recette!</a></figcaption>
-            </figure>
-            <span class="soustitre">
-              {{recette.nom|capitalize}}
-            </span>
-            <div onclick="news('rec')" class="troispoints">Voir la recette en entier...</div>
+            {% if recette != null %}
+              <figure class="figRec">
+                <img src="{{ asset('images/' ~ recette.photo)}}" class="imgRecette" alt="{{recette.nom}}"/>
+                <figcaption><a href="#">Faites votre marché pour cette recette!</a></figcaption>
+              </figure>
+              <span class="soustitre">
+                {{recette.nom|capitalize}}
+              </span>
+              <div onclick="news('rec')" class="troispoints">Voir la recette en entier...</div>
 
-            <p> Temps de préparation : {{recette.tpsPrep}}<br/>
-                Temps de cuisson :     {{recette.tpsCuisson}}</p>
+              <p> Temps de préparation : {{recette.tpsPrep}}<br/>
+                  Temps de cuisson :     {{recette.tpsCuisson}}</p>
 
-            <p>
-              <a href="#">Ingrédients :</a> <br/>
-              {% for ing in ingredients %}
-                - {{ ing.nom|capitalize}}: {{ing.quantite}}<br/>
-              {% endfor %}
-            </p>
-            <p>
-              Préparation de la recette :<br/>
-              {{ recette.preparation|nl2br }}
-            </p>
+              <p>
+                <a href="#">Ingrédients :</a> <br/>
+                {% for ing in ingredients %}
+                  - {{ ing.nom|capitalize}}: {{ing.quantite}}<br/>
+                {% endfor %}
+              </p>
+              <p>
+                Préparation de la recette :<br/>
+                {{ recette.preparation|nl2br }}
+              </p>
+              <p class="bandeblanche">
+                V
+              </p>
+              {% endif %}
           </p>
         </div>
       </div>
@@ -112,6 +116,8 @@
 
   <!-- Recette en entier -->
   <div id="rec" class="newsEntier">
+    {% if recette != null %}
+
     <div class="fermer">
       <img  onclick="imprimer()" src="{{ asset('bundles/accueilaccueil/images/print.png')}}" alt="imprimer la recette"/>
       <img onclick="fermer('rec')" src="{{ asset('bundles/accueilaccueil/images/close.png')}}" alt="fermer la fenetre"/>
@@ -144,6 +150,7 @@
         {{ recette.preparation|nl2br }}
       </p>
     </p>
+    {% endif %}
   </div>
 
 {% endblock %}
