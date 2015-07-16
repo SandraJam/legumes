@@ -45,14 +45,14 @@ class Recette
     /**
      * @var string
      *
-     * @ORM\Column(name="preparation", type="string", length=255)
+     * @ORM\Column(name="preparation", type="string", length=1000)
      */
     private $preparation;
 
     /**
-     * @var integer
+     * @var boolean
      *
-     * @ORM\Column(name="visible", type="integer")
+     * @ORM\Column(name="visible", type="boolean")
      */
     private $visible;
 
@@ -186,5 +186,28 @@ class Recette
     public function getVisible()
     {
         return $this->visible;
+    }
+
+    /**
+     * Set photo
+     *
+     * @param string $photo
+     * @return Recette
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return string
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
     }
 }

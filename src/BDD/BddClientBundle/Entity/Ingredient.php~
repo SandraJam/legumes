@@ -36,13 +36,13 @@ class Ingredient
     private $quantite;
 
     /**
-     * @ORM\OneToOne(targetEntity="Article")
+     * @ORM\ManyToOne(targetEntity="Article")
      * @ORM\JoinColumn(name="article_id", referencedColumnName="id", nullable=true)
      */
    private $article;
 
    /**
-    * @ORM\OneToOne(targetEntity="Recette")
+    * @ORM\ManyToOne(targetEntity="Recette")
     * @ORM\JoinColumn(name="recette_id", referencedColumnName="id")
     */
   private $recette;
@@ -188,7 +188,7 @@ class Ingredient
     /**
      * Get quantite
      *
-     * @return string 
+     * @return string
      */
     public function getQuantite()
     {
@@ -211,7 +211,7 @@ class Ingredient
     /**
      * Get article
      *
-     * @return \BDD\BddClientBundle\Entity\Article 
+     * @return \BDD\BddClientBundle\Entity\Article
      */
     public function getArticle()
     {
@@ -224,7 +224,7 @@ class Ingredient
      * @param \BDD\BddClientBundle\Entity\Recette $recette
      * @return Ingredient
      */
-    public function setRecette(\BDD\BddClientBundle\Entity\Recette $recette = null)
+    public function setRecette(\BDD\BddClientBundle\Entity\Recette $recette)
     {
         $this->recette = $recette;
 
@@ -234,7 +234,7 @@ class Ingredient
     /**
      * Get recette
      *
-     * @return \BDD\BddClientBundle\Entity\Recette 
+     * @return \BDD\BddClientBundle\Entity\Recette
      */
     public function getRecette()
     {

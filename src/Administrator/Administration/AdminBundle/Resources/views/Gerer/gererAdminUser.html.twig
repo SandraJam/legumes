@@ -10,12 +10,13 @@
 {% endblock %}
 
 {% block body %}
-  <H1>administrateur</h1>
-    <div class="blocWhiteOne">
-        <form action="{{ path('administrator_administration_admin_add_Utilisateur_admin') }}" method="post">
+  <H1>administrateur : page de gestion des clients</h1>
+
+    <div class="blocUn">
+        <form action="{{ path('administrator_administration_admin_gerer_Utilisateur_admin') }}" method="post">
             <table>
-                    <tr>
-		       <th "class=id"> </th>
+                  <tr>
+		                   <th class="id"> </th>
                        <th class="nom">Nom</th>
               	       <th class="prenom">prénom</th>
               			   <th class="login">Login</th>
@@ -26,9 +27,9 @@
               			   <th class="ville">Ville</th>
               			   <th class="dateNaissance">Date de Naissance</th>
               			   <th class="tel">Numéro de téléphone</th>
-                           <th class="email">Email</th>
-        			   </tr>
-        			   {% for superUser in listeSuperUser %}
+                       <th class="email">Email</th>
+        			    </tr>
+        			    {% for superUser in listeSuperUser %}
                        <tr>
                            <th><input type="radio" name="idUtilisateurs" value="{{ superUser.id }}" onclick="RecupData({{loop.index}}, {{ superUser.id }});"></th>
                            <th id="nomth {{loop.index}}">{{ superUser.nom }}</th>
@@ -42,20 +43,66 @@
                            <th id="telth {{loop.index}}">{{ superUser.tel }}</th>
                            <th id="emailth {{loop.index}}">{{ superUser.email }}</th>
                       </tr>
-                   {% endfor %}
+                  {% endfor %}
         		</table>	
-        </form>
+       
     </div>
-    <div>
+    <div class="blocFormRecap">
+    Pour modifier les coordonnées d'un client il suffit de modifier le ou les champs que vous voulez et valider. </br>
+
       <label>Nom : </label>
-           <input type="text" name="champnom" id="champnom" required="required"/><br/>
+          <input type="text" name="champnom" id="champnom" required="required"/><br/>
+      <label>Prénom : </label>
+          <input type="text" name="champPrenom" id="champPrenom" required="required"/><br/>
+      <label>Type : </label>
+          <input type="text" name="champType" id="champType" required="required"/><br/>
+      <label>Adresse : </label>
+          <input type="text" name="champLDR" id="champLDR" required="required"/><br/>
+      <label>Code Postal : </label>
+          <input type="text" name="champCP" id="champCP" required="required"/><br/>
+      <label>Ville : </label>
+          <input type="text" name="champVille" id="champVille" required="required"/><br/>
+      <label>Date de Naissance : </label>
+          <input type="text" name="champDOB" id="champDOB" required="required"/><br/>
+      <label>Téléphone : </label>
+          <input type="text" name="champTel" id="champTel" required="required"/><br/>
+      <label>Email : </label>
+          <input type="text" name="champEmail" id="champEmail" required="required"/><br/>
+      
     </div>
+    <div class="blocB">            
+               <button type="submit" name="ok" value="Ok" onClick="buttonSelected(this)">
+                Valider 
+               </button>
+          </br>
+               <button type="submit" name="annuler" value="Annuler" onClick="buttonSelected(this)">
+                  Retour
+               </button>
+         
+       <input type="hidden" name="idProfil" id="idProfil" value="">
+   </div>
+   <input type="hidden" name="buttonName" id="buttonId" value="">
+       </form>
 {% endblock %}
 
 {% block js %}
     <script type="text/javascript">
+
+    function buttonSelected(button){
+     document.getElementById("buttonId").value = button.value;
+   }
+
   function RecupData(loop, id){
        document.getElementById("champnom").value = document.getElementById("nomth"+loop).innerHTML;
+       document.getElementById("champPrenom").value = document.getElementById("prenomth"+loop).innerHTML;
+       document.getElementById("champType").value = document.getElementById("typeth"+loop).innerHTML;
+       document.getElementById("champLDR").value = document.getElementById("adresseth"+loop).innerHTML;
+       document.getElementById("champCP").value = document.getElementById("codePostalth"+loop).innerHTML;
+       document.getElementById("champVille").value = document.getElementById("villeth"+loop).innerHTML;
+       document.getElementById("champDOB").value = document.getElementById("dateNaissanceth"+loop).innerHTML;
+       document.getElementById("champTel").value = document.getElementById("dateNaissanceth"+loop).innerHTML;
+       document.getElementById("champEmail").value = document.getElementById("emailth"+loop).innerHTML;
+         document.getElementById("idProfil").value = id;
   }
   </script>
 {% endblock %}

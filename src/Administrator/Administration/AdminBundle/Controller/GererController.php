@@ -60,5 +60,7 @@ class GererController extends Controller
       
     }
 
-
+    public function gererHistoire(){
+      
+    }
 }

@@ -104,6 +104,7 @@ class AccueilController extends Controller
 
             if($form->isValid()){
                 $tryAgain=false;
+	        $form->getData()->setEstInscrit(true);
                 //Verification du numéro de téléphone
                 if(count($form->getData()->getTel()) != 10 && preg_match("/^(\d\d\s){4}(\d\d)+\s$/",$form->getData()->getTel()) ){
                     //erreur du numéro de téléphone

@@ -278,4 +278,27 @@ class Article
     {
         return $this->commandeMax;
     }
+
+    /**
+     * Set prix
+     *
+     * @param integer $prix
+     * @return Article
+     */
+    public function setPrix($prix)
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    /**
+     * Get prix
+     *
+     * @return integer 
+     */
+    public function getPrix()
+    {
+        return $this->prix;
+    }
 }

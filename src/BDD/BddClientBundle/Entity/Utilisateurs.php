@@ -118,6 +118,12 @@ class Utilisateurs
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="estInscrit", type="boolean")
+     */
+    private $estInscrit;
 
 
     /**
@@ -450,5 +456,28 @@ class Utilisateurs
     public function getAnnee()
     {
         return $this->annee;
+    }
+
+    /**
+     * Set estInscrit
+     *
+     * @param boolean $estInscrit
+     * @return Utilisateurs
+     */
+    public function setEstInscrit($estInscrit)
+    {
+        $this->estInscrit = $estInscrit;
+
+        return $this;
+    }
+
+    /**
+     * Get estInscrit
+     *
+     * @return boolean 
+     */
+    public function getEstInscrit()
+    {
+        return $this->estInscrit;
     }
 }

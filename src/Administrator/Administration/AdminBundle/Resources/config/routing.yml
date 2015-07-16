@@ -55,3 +55,6 @@ administration_admin_modifierRecette:
 administration_admin_modifierbisRecette:
     path:     /modifierbisrecette/{id}
     defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:modifierbis}
+administrator_administration_admin_gerer_notre_histoire:
+    path:     /gererHist
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:gererHistoire }

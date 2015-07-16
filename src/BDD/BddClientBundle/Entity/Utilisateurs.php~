@@ -118,6 +118,12 @@ class Utilisateurs
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="estInscrit", type="boolean")
+     */
+    private $estInscrit;
 
 
     /**
