@@ -91,6 +91,11 @@
   transform: rotate(15deg);
 }
 
+.bandeblanche {
+  background: white;
+  height: 2em;
+}
+
 /* Connexion */
 
 .login{
