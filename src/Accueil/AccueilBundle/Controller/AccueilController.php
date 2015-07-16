@@ -5,13 +5,21 @@ namespace Accueil\AccueilBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use BDD\BddClientBundle\Entity\Utilisateurs;
+use BDD\BddClientBundle\Entity\Recette;
+use BDD\BddClientBundle\Entity\Ingredient;
 use Administrator\Administrator\AdminBundle\Ressources;
 
 class AccueilController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('AccueilAccueilBundle::index.html.twig');
+        $recette = $this->getDoctrine()
+        ->getRepository('BDDBddClientBundle:Recette')
+        ->findOneByVisible(true);
+        $ingredients = $this->getDoctrine()
+        ->getRepository('BDDBddClientBundle:Ingredient')
+        ->findByRecette($recette);
+        return $this->render('AccueilAccueilBundle::index.html.twig', array('ingredients' => $ingredients, 'recette' => $recette));
     }
 
     public function contactAction()

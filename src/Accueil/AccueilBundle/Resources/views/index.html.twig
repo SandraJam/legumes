@@ -74,31 +74,26 @@
           </span>
           <p><br/>
             <figure class="figRec">
-              <img src="{{ asset('bundles/accueilaccueil/images/gratincourgette.jpg')}}" class="imgRecette" alt="Gratin de courgette"/>
+              <img src="{{ asset('images/' ~ recette.photo)}}" class="imgRecette" alt="{{recette.nom}}"/>
               <figcaption><a href="#">Faites votre marché pour cette recette!</a></figcaption>
             </figure>
             <span class="soustitre">
-              <!-- -->Gratin de Courgettes<!-- -->
+              {{recette.nom|capitalize}}
             </span>
             <div onclick="news('rec')" class="troispoints">Voir la recette en entier...</div>
 
-            <p> Temps de préparation : <!-- -->15 minutes<!-- --><br/>
-                Temps de cuisson :     <!-- -->15 minutes<!-- --></p>
+            <p> Temps de préparation : {{recette.tpsPrep}}<br/>
+                Temps de cuisson :     {{recette.tpsCuisson}}</p>
 
             <p>
               <a href="#">Ingrédients :</a> <br/>
-              - 4 courgettes<br/>
-              - 3 oignons<br/>
-              - 100 g de gruyère râpé<br/>
-              - 2 oeufs<br/>
-              - 2 cuillères à soupe de crème fraîche<br/>
-              - 1 noix de beurre<br/>
-              - sel et poivre<br/>
+              {% for ing in ingredients %}
+                - {{ ing.nom|capitalize}}: {{ing.quantite}}<br/>
+              {% endfor %}
             </p>
             <p>
               Préparation de la recette :<br/>
-              Eminvcer les oignons et les faire fondre dans le beurre.<br/>
-
+              {{ recette.preparation|nl2br }}
             </p>
           </p>
         </div>
@@ -128,32 +123,25 @@
     </span>
     <p><br/>
       <figure class="figRec">
-        <img src="{{ asset('bundles/accueilaccueil/images/gratincourgette.jpg')}}" class="imgRecette" alt="Gratin de courgette"/>
+        <img src="{{ asset('images/' ~ recette.photo)}}" class="imgRecette" alt="{{recette.nom}}"/>
         <figcaption><a href="#">Faites votre marché pour cette recette!</a></figcaption>
       </figure>
       <span class="soustitre">
-        <!-- -->Gratin de Courgettes<!-- -->
+        {{recette.nom|capitalize}}
       </span>
-      <br/><br/>
-      <p> Temps de préparation : <!-- -->15 minutes<!-- --><br/>
-          Temps de cuisson :     <!-- -->15 minutes<!-- --></p>
+
+      <p> Temps de préparation : {{recette.tpsPrep}}<br/>
+          Temps de cuisson :     {{recette.tpsCuisson}}</p>
 
       <p>
         <a href="#">Ingrédients :</a> <br/>
-        - 4 courgettes<br/>
-        - 3 oignons<br/>
-        - 100 g de gruyère râpé<br/>
-        - 2 oeufs<br/>
-        - 2 cuillères à soupe de crème fraîche<br/>
-        - 1 noix de beurre<br/>
-        - sel et poivre<br/>
+        {% for ing in ingredients %}
+          - {{ ing.nom|capitalize}}: {{ing.quantite}}<br/>
+        {% endfor %}
       </p>
       <p>
         Préparation de la recette :<br/>
-        Eminvcer les oignons et les faire fondre dans le beurre.<br/>
-        Râper 4 courgettes avec leur peau et les ajouter aux oignons.<br/>
-        Mélanger le gruyère râpé, les oeufs, la crème fraîche, puis saler et poivrer.<br/>
-        Mettre les courgettes dans un plat et verser par dessus la sauce et faire à four chaud pendant 15 mn.
+        {{ recette.preparation|nl2br }}
       </p>
     </p>
   </div>

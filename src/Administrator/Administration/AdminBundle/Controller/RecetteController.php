@@ -53,17 +53,16 @@ class RecetteController extends Controller
         if ($recette->getNom() == "" || strpos(htmlentities($recette->getNom(), ENT_QUOTES), '&gt;') || strpos(htmlentities($recette->getNom(), ENT_QUOTES), '&lt;')){
           $message .= "Nom incorrect. ";
         }
-        if ($recette->getTpsPrep() == "" || strpos(htmlentities($recette->getTpsPrep(), ENT_QUOTES), '&gt;') || strpos(htmlentities($recette->getNom(), ENT_QUOTES), '&lt;')){
+        if ($recette->getTpsPrep() == "" || strpos(htmlentities($recette->getTpsPrep(), ENT_QUOTES), '&gt;') || strpos(htmlentities($recette->getTpsPrep(), ENT_QUOTES), '&lt;')){
           $message .= "Temps de Préparation incorrect. ";
         }
-        if ($recette->getTpsCuisson() == "" || strpos(htmlentities($recette->getTpsCuisson(), ENT_QUOTES), '&gt;') || strpos(htmlentities($recette->getNom(), ENT_QUOTES), '&lt;')){
+        if ($recette->getTpsCuisson() == "" || strpos(htmlentities($recette->getTpsCuisson(), ENT_QUOTES), '&gt;') || strpos(htmlentities($recette->getTpsCuisson(), ENT_QUOTES), '&lt;')){
           $message .= "Temps de Cuisson incorrect. ";
         }
-        if ($recette->getPreparation() == "" || strpos(htmlentities($recette->getPreparation(), ENT_QUOTES), '&gt;') || strpos(htmlentities($recette->getNom(), ENT_QUOTES), '&lt;')){
+        if ($recette->getPreparation() == "" || strpos(htmlentities($recette->getPreparation(), ENT_QUOTES), '&gt;') || strpos(htmlentities($recette->getPreparation(), ENT_QUOTES), '&lt;')){
           $message .= "Préparation incorrect. ";
         }
         if(strpos($recette->getPhoto()->getMimeType(), "image") === false){
-          \Doctrine\Common\Util\Debug::dump($recette->getPhoto()->getMimeType());
           $message .= "Format image incorrect. ";
         }
 
@@ -118,7 +117,7 @@ class RecetteController extends Controller
         if ($ingredient->getNom() == "" || strpos(htmlentities($ingredient->getNom(), ENT_QUOTES), '&gt;') || strpos(htmlentities($recette->getNom(), ENT_QUOTES), '&lt;')){
           $message .= "Nom incorrect. ";
         }
-        if ($ingredient->getQuantite() == "" || strpos(htmlentities($ingredient->getQuantite(), ENT_QUOTES), '&gt;') || strpos(htmlentities($recette->getNom(), ENT_QUOTES), '&lt;')){
+        if ($ingredient->getQuantite() == "" || strpos(htmlentities($ingredient->getQuantite(), ENT_QUOTES), '&gt;') || strpos(htmlentities($recette->getQuantite(), ENT_QUOTES), '&lt;')){
           $message .= "Quantité incorrect. ";
         }
 
@@ -161,8 +160,117 @@ class RecetteController extends Controller
     }
   }
 
-  public function modifierAction(){
+  public function modifierAction($id){
+    $session = $this->getRequest()->getSession();
+    if ($session->get('pren') != NULL) {
+      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+        $recette = $this->getDoctrine()
+          ->getRepository('BDDBddClientBundle:Recette')->find($id);
+        $ingredients = $this->getDoctrine()
+          ->getRepository('BDDBddClientBundle:Ingredient')->findByRecette($recette);
+        $articles = $this->getDoctrine()
+          ->getRepository('BDDBddClientBundle:Article')->findAll();
+        return $this->render('AdministratorAdministrationAdminBundle:Recette:recetteModif.html.twig',
+                array('recette' => $recette, 'ingredients' => $ingredients, 'articles' => $articles) );
+     /* }else{
+          return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
+        }*/
+    }else{
+      return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
+    }
+  }
 
+  public function modifierbisAction($id){
+    $session = $this->getRequest()->getSession();
+    if ($session->get('pren') != NULL) {
+      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+      $recette = $this->getDoctrine()
+        ->getRepository('BDDBddClientBundle:Recette')->find($id);
+      $ingredients = $this->getDoctrine()
+        ->getRepository('BDDBddClientBundle:Ingredient')->findByRecette($recette);
+      $recettes = $this->getDoctrine()
+        ->getRepository('BDDBddClientBundle:Recette')->findAll();
+
+        $nom = $_POST['nom']; $tpsPrep = $_POST['tpsPrep'];
+        $tpsCuisson = $_POST['tpsCuisson']; $prep = $_POST['preparation'];
+        $photo = $_FILES['photo'];
+        $message = "";
+        \Doctrine\Common\Util\Debug::dump($prep);
+        if ($nom == "" || strpos(htmlentities($nom, ENT_QUOTES), '&gt;') || strpos(htmlentities($nom, ENT_QUOTES), '&lt;')){
+          $message .= "Nom incorrect. ";
+        }
+        if ($tpsPrep == "" || strpos(htmlentities($tpsPrep, ENT_QUOTES), '&gt;') || strpos(htmlentities($tpsPrep, ENT_QUOTES), '&lt;')){
+          $message .= "Temps de Préparation incorrect. ";
+        }
+        if ($tpsCuisson == "" || strpos(htmlentities($tpsCuisson, ENT_QUOTES), '&gt;') || strpos(htmlentities($tpsCuisson, ENT_QUOTES), '&lt;')){
+          $message .= "Temps de Cuisson incorrect. ";
+        }
+        if ($prep == "" || strpos(htmlentities($prep, ENT_QUOTES), '&gt;') || strpos(htmlentities($prep, ENT_QUOTES), '&lt;')){
+          $message .= "Préparation incorrect. ";
+        }
+        if($photo['name'] != "" && strpos($photo['type'], "image") === false){
+          $message .= "Format image incorrect. ";
+        }
+
+        foreach($ingredients as $ing){
+          $nomI = $_POST['nom'.$ing->getId()];
+          $quantite = $_POST['quantite'.$ing->getId()];
+          $article = $_POST['choix'.$ing->getId()];
+          $okay = true;
+          if ($nom == "" || strpos(htmlentities($nom, ENT_QUOTES), '&gt;') || strpos(htmlentities($nom, ENT_QUOTES), '&lt;')){
+            $okay = false;
+          }
+          if ($quantite == "" || strpos(htmlentities($quantite, ENT_QUOTES), '&gt;') || strpos(htmlentities($quantite, ENT_QUOTES), '&lt;')){
+            $okay = false;
+          }
+          if ($okay){
+            $ing->setNom($nomI);
+            $ing->setQuantite($quantite);
+            if ($article == NULL){
+              $ing6>setArticle(null);
+            }else{
+              $art = $this->getDoctrine()
+                ->getRepository('BDDBddClientBundle:Article')->find($article);
+              $ing->setArticle($art);
+            }
+          }
+        }
+
+        if ($message == ""){
+          if($photo['name'] != ""){
+            $fileName = $photo['name'];
+            $dir = $this->getRequest()->server->get('DOCUMENT_ROOT') . $this->getRequest()->getBasePath() . "/images/";
+            move_uploaded_file($photo["tmp_name"], $dir.$fileName.time());
+            unlink($dir.$recette->getPhoto());
+            $recette->setPhoto($fileName.time());
+          }
+
+
+          if ($_POST['visible'] == "oui"){
+            foreach($recettes as $rec){
+              if ($rec->getVisible()){
+                $rec->setVisible(false);
+              }
+            }
+            $recette->setVisible(true);
+          }else{
+            $recette->setVisible(false);
+          }
+          $recette->setNom($nom);
+          $recette->setTpsPrep($tpsPrep);
+          $recette->setTpsCuisson($tpsCuisson);
+          $recette->setPreparation($prep);
+          $em = $this->getDoctrine()->getManager();
+          $em->flush();
+        }
+
+      return $this->redirect($this->generateUrl('administration_admin_modifierRecette', array('id' => $id)));
+     /* }else{
+          return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
+        }*/
+    }else{
+      return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
+    }
   }
 
   public function supprimerAction($id){

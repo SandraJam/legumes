@@ -45,7 +45,7 @@ class Recette
     /**
      * @var string
      *
-     * @ORM\Column(name="preparation", type="string", length=255)
+     * @ORM\Column(name="preparation", type="string", length=1000)
      */
     private $preparation;
 

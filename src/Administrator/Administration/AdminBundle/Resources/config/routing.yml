@@ -47,3 +47,11 @@ administration_admin_supprimerIngredient:
 administration_admin_supprimerRecette:
     path:     /supprimerrecette/{id}
     defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:supprimer}
+
+administration_admin_modifierRecette:
+    path:     /modifierrecette/{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:modifier}
+
+administration_admin_modifierbisRecette:
+    path:     /modifierbisrecette/{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:modifierbis}

@@ -53,9 +53,9 @@
           <button onclick="entier('{{rec.id}}')" type="button" class="btn btn-default btn-md btn-info">
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Voir
           </button>
-          <button type="button" class="btn btn-default btn-md btn-warning">
+          <a class="btn btn-default btn-md btn-warning" role="button" href="{{path('administration_admin_modifierRecette', {'id' : rec.id})}}">
             <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Modifier
-          </button>
+          </a>
           <a class="btn btn-default btn-md btn-danger" role="button" href="{{path('administration_admin_supprimerRecette', {'id' : rec.id})}}">
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer
           </a>
@@ -84,7 +84,7 @@
   {% endfor %}
   <br/>
   <strong> Préparation: </strong> <br/>
-  {{ rec.preparation }}
+  {{ rec.preparation|nl2br }}
 
 </div>
 {% endfor %}
