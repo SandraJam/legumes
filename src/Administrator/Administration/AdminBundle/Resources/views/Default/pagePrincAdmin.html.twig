@@ -2,59 +2,56 @@
 {% extends '::base.html.twig' %}
 
 {% block style %}
-  
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block title %}
-	page d'administration
+  Page d'Administration
 {% endblock %}
 
 {% block body %}
-<H1>Bienvenue sur la page d'administration du site </H1>
-<div class="gerer produits">
-    <div class="liste des choix">
- 
-    	<a href="{{ path('administrator_administration_admin_suiv_comm') }}" class="suivitComm"> Suivit des commandes <a/>
-    	<br> 
-        <a href="{{ path('administrator_administration_admin_gererProduits') }}" class="gererLesProduits"> Gèrer mes produits <a/>
-        <br> 
-        <a href="{{ path('administrator_administration_admin_gererTheCategories') }}"  class="gererCategories"> Gèrer mes catégories de légumes <a/>
-        <br> 
-        <a href="{{ path('administrator_administration_admin_gerer_News') }}" class="gererNews"> Gèrer les News <a/>
-        <br> 
-        <a href="{{ path('administrator_administration_admin_gerer_Recettes') }}" class="gererRecettes"> Gèrer les Recettes <a/>
-        <br> 
-        <a href="{{ path('administrator_administration_admin_add_Utilisateur_admin') }}" class="gererClients"> Gèrer les Coordonnées Clients <a/> 
-   		<br>
-		
-    </div>
-</div>
-<br> 
-<div id="caché c un memo" style="visibility:hidden;">
--> gerer mes produits 
-		<br> 
-		rechercher un produit
-		<br> 
-		changer un produit <br> 
-		ajouter un produit <br> 
-		<br> 
--> gerer mes catégories de l"gumes
-		modifier une catégorie de légumes<br> 
-<br> 
--> gerer les news
-		Modifier les news <br> 
-	<br> 
-	-> gerer les recettes
-		Ajouter une recette <br> 
-		Modifier un Recette <br> 
-<br> 
--> Suivit des commandes 
-	* les commandes en cours pas encore finalisées (préparées)
-	 
-	->Voir les données civiles des utilisateurs 
-	Pouvoir ajouter des clients 
+<div class="container whiteBloc">
+  <div class="center">
+    <H1>Bienvenue sur la page d'administration du site </H1>
+    <div class="row">
+      <div class="btn-group-vertical" role="group" aria-label="...">
+        <a class="btn btn-default btn-lg btn-primary" role="button" href="{{ path('administrator_administration_admin_suiv_comm') }}">Suivi des commandes<a/>
+        <a class="btn btn-default btn-lg btn-success" role="button" href="{{ path('administrator_administration_admin_gererProduits') }}" > Gérer mes produits <a/>
+        <a class="btn btn-default btn-lg btn-info" role="button" href="{{ path('administrator_administration_admin_gererTheCategories') }}"> Gèrer mes catégories de légumes <a/>
 
-<br> 
+        <a class="btn btn-default btn-lg btn-danger" role="button" href="{{ path('administrator_administration_admin_gerer_News') }}" > Gérer les News <a/>
+        <a class="btn btn-default btn-lg btn-warning" role="button" href="{{ path('administrator_administration_admin_gerer_Recettes') }}"> Gérer les Recettes <a/>
+        <a class="btn btn-default btn-lg btn-primary" role="button" href="{{ path('administrator_administration_admin_add_Utilisateur_admin') }}" > Gérer les Coordonnées Clients <a/>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div id="caché c un memo" style="visibility:hidden;">
+  -> gerer mes produits
+  		<br>
+  		rechercher un produit
+  		<br>
+  		changer un produit <br>
+  		ajouter un produit <br>
+  		<br>
+  -> gerer mes catégories de l"gumes
+  		modifier une catégorie de légumes<br>
+  <br>
+  -> gerer les news
+  		Modifier les news <br>
+  	<br>
+  	-> gerer les recettes
+  		Ajouter une recette <br>
+  		Modifier un Recette <br>
+  <br>
+  -> Suivit des commandes
+  	* les commandes en cours pas encore finalisées (préparées)
+
+  	->Voir les données civiles des utilisateurs
+  	Pouvoir ajouter des clients
+
+  <br>
+  </div>
 </div>
 {% endblock %}
 

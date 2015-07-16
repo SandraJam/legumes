@@ -250,3 +250,12 @@ input.radio {
   width: 50px;
   display: inline;
 }
+
+/* Accueil */
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  font-family: 'Cookie', cursive;
+}
