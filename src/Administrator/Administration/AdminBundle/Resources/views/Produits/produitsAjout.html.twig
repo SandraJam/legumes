@@ -1,0 +1,33 @@
+{# src/Administrator/Adminstration/AdminBundle/Resources/views/produits.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+  Ajout Categorie
+{% endblock %}
+
+{% block body %}
+<div class="login">
+  <h1> Ajoutez une nouvelle Recette! </h1>
+  {{ form_start(form) }}
+    {{ form_label(form.nom, 'Nom:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_widget(form.nom, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.nom) }} <br/>
+    {{ form_label(form.saison, 'Saison:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_widget(form.saison, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.saison) }} <br/>
+    {{ form_widget(form.suivant, {'label': 'Suivant'}) }}
+    {{ form_widget(form.annuler, {'label': 'Annuler'}) }}
+    <a href="{{path('administrator_administration_admin_gererProduits')}}" id="form_retour"> Retour </a>
+  {{ form_end(form) }}
+
+  {% for flashMessage in app.session.flashbag.get('notice') %}
+      <div class="flash-notice">
+          {{ flashMessage }}
+      </div>
+  {% endfor %}
+</div>
+{% endblock %}

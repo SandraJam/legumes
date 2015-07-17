@@ -84,6 +84,11 @@ class ContactController extends Controller
           if(filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)){
             $user->setEmail($_POST['mail']);
           }
+          if(isset($_POST['abo'])){
+            $user->setEstInscrit(true);
+          }else{
+            $user->setEstInscrit(false);
+          }
           $em = $this->getDoctrine()->getManager();
           $em->flush();
         return $this->redirect($this->generateUrl('accueil_accueil_compte'));

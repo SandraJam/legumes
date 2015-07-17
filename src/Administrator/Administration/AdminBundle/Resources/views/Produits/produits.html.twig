@@ -1,0 +1,68 @@
+{# src/Administrator/Adminstration/AdminBundle/Resources/views/produits.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+  Gestion des Produits et Categories
+{% endblock %}
+
+{% block body %}
+<div class="container whiteBloc">
+  <div class="row ajouter">
+    <a href="{{path('administrator_ajout_categorie')}}">
+      <button type="button" class="btn btn-default btn-lg btn-success">
+        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Ajouter une Catégorie
+      </button>
+    </a>
+  </div>
+
+  <div class="row recette">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+      <strong> Nom </strong>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+      <strong> Saison </strong>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+      <strong> Voir les articles </strong>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+      <strong> Fonctions </strong>
+    </div>
+  </div>
+
+  {% for cat in categories %}
+    <div class="row recette">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+          {{cat.nom}}
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+          {{cat.saison}}
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <a class="btn btn-default btn-md btn-info" role="button" href="#">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Voir les Articles
+        </a>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <div class="btn-group" role="group">
+          <a class="btn btn-default btn-md btn-warning" role="button" href="{{path('administrator_modifier_categorie', {'id' : cat.id}) }}">
+            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Modifier
+          </a>
+          <a class="btn btn-default btn-md btn-danger" role="button" href="{{path('administrator_supprimer_categorie', {'id' : cat.id}) }}">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer
+          </a>
+        </div>
+      </div>
+        <br/>
+    </div>
+  {% endfor %}<br/>
+      <div class="center" >
+        <a href="{{path('goadministrator_administration')}}" id="form_annuler"> Retour </a>
+      </div><br/><br/>
+</div>
+
+{% endblock %}

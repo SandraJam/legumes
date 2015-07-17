@@ -26,6 +26,7 @@
           <label>Date de Naissance:</label> {{user.datenaissance}} <br/><br/>
           <label>Téléphone :</label> <input type="text" name="telephone" value="{{user.tel}}" required/> <br/><br/>
           <label>E-mail:</label> <input type="text" name="mail" value="{{user.email}}" required/> <br/><br/>
+          <label>Abonnement Newsletter:</label> <input type="checkbox" name="abo" {% if user.estInscrit %} checked {% endif %} /> <br/><br/>
           <div style="text-align: center;">
             <button id="form_valider" name="valider" type="submit">
               Modifier

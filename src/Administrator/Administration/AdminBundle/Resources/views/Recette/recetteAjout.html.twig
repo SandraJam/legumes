@@ -30,6 +30,7 @@
     {{ form_errors(form.photo) }} <br/>
     {{ form_widget(form.suivant, {'label': 'Suivant'}) }}
     {{ form_widget(form.annuler, {'label': 'Annuler'}) }}
+    <a href="{{path('administrator_administration_admin_gerer_Recettes')}}" id="form_retour"> Retour </a>
   {{ form_end(form) }}
 
   {% for flashMessage in app.session.flashbag.get('notice') %}

@@ -8,7 +8,7 @@ administrator_administration_admin_suiv_comm:
 
 administrator_administration_admin_gererProduits:
     path:     /gererProduits
-    defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:lesProduits }
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Produits:index }
 
 administrator_administration_admin_gererTheCategories:
     path:     /gererCategoriesl
@@ -58,3 +58,19 @@ administration_admin_modifierbisRecette:
 administrator_administration_admin_gerer_notre_histoire:
     path:     /gererHist
     defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:gererHistoire }
+
+administrator_ajout_categorie:
+    path:     /ajoutcategorie
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Produits:ajoutCat}
+
+administrator_supprimer_categorie:
+    path:     /supprimercategorie/{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Produits:supprimerCategorie}
+
+administrator_modifier_categorie:
+    path:     /modifiercategorie/{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Produits:modifierCategorie}
+
+administration_admin_modifierbiscategorie:
+    path:     /modifierbiscategorie/{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Produits:modifierbisCategorie}

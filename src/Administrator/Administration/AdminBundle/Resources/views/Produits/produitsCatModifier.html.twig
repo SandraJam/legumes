@@ -1,0 +1,22 @@
+{# src/Administration/AdminBundle/Resources/views/produitsCatModifier.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+	Modifier Categorie
+{% endblock %}
+
+{% block body %}
+<form action="{{path('administration_admin_modifierbiscategorie', {'id': categorie.id})}}" method="POST" enctype="multipart/form-data">
+  <div class="login">
+    <h1> Modifier la Categorie "{{categorie.nom}}"</h1>
+    <label> Nom: </label><input type="text" value="{{categorie.nom}}" name="nom"/><br/>
+    <label> Saison: </label><input name="saison" type="text" value="{{categorie.saison}}"/><br/>
+    <input type="submit" name="valider" value="Modifier" id="form_suivant" class="bouton"/>
+    <a href="{{path('administrator_administration_admin_gererProduits')}}" id="form_annuler"> Retour </a>
+  </div>
+</form>
+{% endblock %}

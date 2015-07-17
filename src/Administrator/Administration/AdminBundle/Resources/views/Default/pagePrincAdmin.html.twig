@@ -14,16 +14,32 @@
   <div class="center">
     <H1>Bienvenue sur la page d'administration du site </H1>
     <div class="row">
-      <div class="btn-group-vertical" role="group" aria-label="...">
-        <a class="btn btn-default btn-lg btn-primary" role="button" href="{{ path('administrator_administration_admin_suiv_comm') }}">Suivi des commandes<a/>
-        <a class="btn btn-default btn-lg btn-success" role="button" href="{{ path('administrator_administration_admin_gererProduits') }}" > Gérer mes produits <a/>
-        <a class="btn btn-default btn-lg btn-info" role="button" href="{{ path('administrator_administration_admin_gererTheCategories') }}"> Gèrer mes catégories de légumes <a/>
+      <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs">
+        <div class="btn-group-vertical" role="group" aria-label="...">
+          <a class="btn btn-default btn-lg btn-primary" role="button" href="{{ path('administrator_administration_admin_suiv_comm') }}">Suivi des commandes<a/>
+          <a class="btn btn-default btn-lg btn-success" role="button" href="{{ path('administrator_administration_admin_gererProduits') }}" > Gérer mes produits <a/>
+          <a class="btn btn-default btn-lg btn-info" role="button" href="{{ path('administrator_administration_admin_gererTheCategories') }}"> Gèrer mes catégories de légumes <a/>
 
-        <a class="btn btn-default btn-lg btn-danger" role="button" href="{{ path('administrator_administration_admin_gerer_News') }}" > Gérer les News <a/>
-        <a class="btn btn-default btn-lg btn-warning" role="button" href="{{ path('administrator_administration_admin_gerer_Recettes') }}"> Gérer les Recettes <a/>
-        <a class="btn btn-default btn-lg btn-primary" role="button" href="{{ path('administrator_administration_admin_add_Utilisateur_admin') }}" > Gérer les Coordonnées Clients <a/>
-        <a class="btn btn-default btn-lg btn-success" role="button" href="{{ path('accueil_histoire') }}" > Gérer notre histoire <a/>
+          <a class="btn btn-default btn-lg btn-danger" role="button" href="{{ path('administrator_administration_admin_gerer_News') }}" > Gérer les News <a/>
+          <a class="btn btn-default btn-lg btn-warning" role="button" href="{{ path('administrator_administration_admin_gerer_Recettes') }}"> Gérer les Recettes <a/>
+          <a class="btn btn-default btn-lg btn-primary" role="button" href="{{ path('administrator_administration_admin_add_Utilisateur_admin') }}" > Gérer les Coordonnées Clients <a/>
+          <a class="btn btn-default btn-lg btn-success" role="button" href="{{ path('accueil_histoire') }}" > Gérer notre histoire <a/>
+        </div>
       </div>
+      <div class="hidden-lg hidden-md hidden-sm col-xs-12">
+        <div class="btn-group-vertical" role="group" aria-label="...">
+          <a class="btn btn-default btn-md btn-primary" role="button" href="{{ path('administrator_administration_admin_suiv_comm') }}">Suivi des commandes<a/>
+          <a class="btn btn-default btn-md btn-success" role="button" href="{{ path('administrator_administration_admin_gererProduits') }}" > Gérer mes produits <a/>
+          <a class="btn btn-default btn-md btn-info" role="button" href="{{ path('administrator_administration_admin_gererTheCategories') }}"> Gèrer mes catégories de légumes <a/>
+
+          <a class="btn btn-default btn-md btn-danger" role="button" href="{{ path('administrator_administration_admin_gerer_News') }}" > Gérer les News <a/>
+          <a class="btn btn-default btn-md btn-warning" role="button" href="{{ path('administrator_administration_admin_gerer_Recettes') }}"> Gérer les Recettes <a/>
+          <a class="btn btn-default btn-md btn-primary" role="button" href="{{ path('administrator_administration_admin_add_Utilisateur_admin') }}" > Gérer les Coordonnées Clients <a/>
+          <a class="btn btn-default btn-md btn-success" role="button" href="{{ path('accueil_histoire') }}" > Gérer notre histoire <a/>
+        </div>
+      </div>
+
+
     </div>
   </div>
   <br>

@@ -195,7 +195,6 @@ class RecetteController extends Controller
         $tpsCuisson = $_POST['tpsCuisson']; $prep = $_POST['preparation'];
         $photo = $_FILES['photo'];
         $message = "";
-        \Doctrine\Common\Util\Debug::dump($prep);
         if ($nom == "" || strpos(htmlentities($nom, ENT_QUOTES), '&gt;') || strpos(htmlentities($nom, ENT_QUOTES), '&lt;')){
           $message .= "Nom incorrect. ";
         }
