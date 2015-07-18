@@ -90,50 +90,71 @@ class GererController extends Controller
 
     public function preResultatchercheClientsAction(Request $request){
          $connexion = new Utilisateurs();
-                $form = $this->createFormBuilder($connexion)
-                    ->add('nom','text',array('label' => 'form.nom','required' => false))
-                    ->add('ville','text',array('label' => 'form.ville','required' => false))
-                    ->add('codePostal','text',array('label' => 'form.codePostal','required' => false))
-                    ->add('valider','submit')
-                    ->getForm()
-                ;
-                
-               
-                $form->handleRequest($request);
-                if($form->isValid()){
-                    $varnom=$form->getData()->getNom();
-                    $varVille=$form->getData()->getVille();
-                    $varCP=$form->getData()->getCodePostal();
-                    $em = $this->getDoctrine()->getManager();
-                    if($varnom==NULL && $varVille==NULL && $varCP == NULL){
-                        //On fait un findAll
-                        $listeClients=$this->getDoctrine()->getRepository('BDDBddClientBundle:Utilisateurs')->findAll();
-                    }else if($varnom!=NULL && $varVille==NULL && $varCP == NULL){
-                        //find by nom
-                        
-                       $query =$em ->createQuery("SELECT * FROM utilisateurs WHERE nom LIKE '%$varnom%' ORDER BY nom ASC");
-                        $listeClients = $query->getResult();
-                        //$listeClients=$this->getDoctrine()->getRepository('BDDBddClientBundle:Utilisateurs')->findByNom($varnom);
-                    }else if($varnom==NULL && $varVille!=NULL && $varCP == NULL){
-                        //find by ville
-                        $listeClients=$this->getDoctrine()->getRepository('BDDBddClientBundle:Utilisateurs')->findByVille($varVille);
-                    }else if($varnom==NULL && $varVille==NULL && $varCP != NULL){
-                        //find by cp
-                        $listeClients=$this->getDoctrine()->getRepository('BDDBddClientBundle:Utilisateurs')->findByCodePostal($varCP);
-                    }else if($varnom==NULL && $varVille!=NULL && $varCP != NULL){
-                        //find by ville et cp
-                    }else if($varnom!=NULL && $varVille==NULL && $varCP != NULL){
-                        //find by nom et cp
-                    }else if($varnom!=NULL && $varVille!=NULL && $varCP == NULL){
-                        //find by nom et ville
-                    }else{
-                        //findby nom, ville cp
-                    }
-
-                    return $this->render('AdministratorAdministrationAdminBundle:Gerer:gererAdminUser.html.twig',array('listClients' => $listeClients) );
-                }
-                 return $this->render('AdministratorAdministrationAdminBundle:Gerer:gererChercherClients.html.twig',array('form' => $form->createView()) );
-                
+        $form = $this->createFormBuilder($connexion)
+            ->add('nom','text',array('label' => 'form.nom','required' => false))
+            ->add('ville','text',array('label' => 'form.ville','required' => false))
+            ->add('codePostal','text',array('label' => 'form.codePostal','required' => false))
+            ->add('valider','submit')
+            ->getForm()
+        ;
+        
+       //MINI MOTEUR DE RECHERCHE en Doctrine Query Language
+        $form->handleRequest($request);
+        if($form->isValid()){
+            $varnom=$form->getData()->getNom();
+            $varVille=$form->getData()->getVille();
+            $varCP=$form->getData()->getCodePostal();
+            $em = $this->getDoctrine()->getManager();
+            $listeClients=NULL;
+            if($varnom==NULL && $varVille==NULL && $varCP == NULL){
+                //On fait un findAll
+                $listeClients=$this->getDoctrine()->getRepository('BDDBddClientBundle:Utilisateurs')->findAll();
+            }else if($varnom!=NULL && $varVille==NULL && $varCP == NULL){
+                //find by nom
+               $query =$em ->createQuery("SELECT u FROM BDDBddClientBundle:Utilisateurs u WHERE u.nom LIKE :key ORDER BY u.nom ASC");
+               $query->setParameter('key','%'.$varnom.'%');
+               $listeClients = $query->getResult();
+       
+            }else if($varnom==NULL && $varVille!=NULL && $varCP == NULL){
+                //find by ville
+               $query =$em ->createQuery("SELECT u FROM BDDBddClientBundle:Utilisateurs u WHERE u.ville LIKE :key ORDER BY u.ville ASC");
+               $query->setParameter('key','%'.$varVille.'%');
+               $listeClients = $query->getResult();
+            }else if($varnom==NULL && $varVille==NULL && $varCP != NULL){
+                //find by cp
+               $query =$em ->createQuery("SELECT u FROM BDDBddClientBundle:Utilisateurs u WHERE u.codePostal LIKE :key ORDER BY u.codePostal ASC");
+               $query->setParameter('key','%'.$varCP.'%');
+               $listeClients = $query->getResult();
+            }else if($varnom==NULL && $varVille!=NULL && $varCP != NULL){
+                //find by ville et cp
+               $query =$em ->createQuery("SELECT u FROM BDDBddClientBundle:Utilisateurs u WHERE (u.ville LIKE :key1) AND ( u.codePostal LIKE :key2 ) ORDER BY u.ville ASC");
+               $query->setParameter('key1','%'.$varVille.'%');
+               $query->setParameter('key2','%'.$varCP.'%');
+               $listeClients = $query->getResult();
+            }else if($varnom!=NULL && $varVille==NULL && $varCP != NULL){
+                //find by nom et cp
+                 $query =$em ->createQuery("SELECT u FROM BDDBddClientBundle:Utilisateurs u WHERE (u.nom LIKE :key1) AND ( u.codePostal LIKE :key2 ) ORDER BY u.nom ASC");
+               $query->setParameter('key1','%'.$varnom.'%');
+               $query->setParameter('key2','%'.$varCP.'%');
+               $listeClients = $query->getResult();
+            }else if($varnom!=NULL && $varVille!=NULL && $varCP == NULL){
+                //find by nom et ville
+               $query =$em ->createQuery("SELECT u FROM BDDBddClientBundle:Utilisateurs u WHERE (u.nom LIKE :key1) AND ( u.ville LIKE :key2 ) ORDER BY u.nom ASC");
+               $query->setParameter('key1','%'.$varnom.'%');
+               $query->setParameter('key2','%'.$varVille.'%');
+               $listeClients = $query->getResult();
+            }else{
+                //findby nom, ville et cp
+               $query =$em ->createQuery("SELECT u FROM BDDBddClientBundle:Utilisateurs u WHERE (u.nom LIKE :key1) AND ( u.ville LIKE :key2 ) AND ( u.codePostal LIKE :key3 ) ORDER BY u.nom ASC");
+               $query->setParameter('key1','%'.$varnom.'%');
+               $query->setParameter('key2','%'.$varVille.'%');
+                $query->setParameter('key3','%'.$varCP.'%');
+               $listeClients = $query->getResult();
+            }
+            return $this->render('AdministratorAdministrationAdminBundle:Gerer:gererAdminUser.html.twig',array('listClients' => $listeClients) );
+        }
+         return $this->render('AdministratorAdministrationAdminBundle:Gerer:gererChercherClients.html.twig',array('form' => $form->createView()) );
+        
     }
     public function resultatchercheClientsAction(){
          return $this->render('AdministratorAdministrationAdminBundle:Gerer:pageResultatRecherche.html.twig');
