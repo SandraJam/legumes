@@ -42,7 +42,7 @@ class AccueilController extends Controller
     		    ->add('annuler','submit')
     		    ->getForm()
     	    ;
-        	$form->handleRequest($request)
+        	$form->handleRequest($request);
             if($form->isValid()) {
                 $annuler = $form->get('annuler')->isClicked();
                 if($annuler){
