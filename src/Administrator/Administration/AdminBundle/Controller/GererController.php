@@ -5,6 +5,8 @@ namespace Administrator\Administration\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use BDD\BddClientBundle\Entity\Utilisateurs;
+use Administrator\Administration\AdminBundle\Entity\recherche;
+use Administrator\Administration\AdminBundle\Form\rechercheType;
 
 class GererController extends Controller
 {
@@ -43,7 +45,7 @@ class GererController extends Controller
             }
         } 
     } 
-    public function administrationDesUtilisateursAdminsAction(){
+    public function administrationDesUtilisateursAdminsAction(Request $request){
         $session = $this->getRequest()->getSession();
         if ($session->get('pren') != NULL) {
             if (strtolower($session->get('typ')) == 'administrateur') {  
@@ -51,9 +53,24 @@ class GererController extends Controller
 
                 if ($button == "ChercherClients") {
                     //GOTO PAGE recherche client 
+                $connexion = new Utilisateurs();
+                $form = $this->createFormBuilder($connexion)
+                    ->add('nom','text',array('label' => 'form.nom','required' => false))
+                    ->add('ville','text',array('label' => 'form.ville','required' => false))
+                    ->add('codePostal','text',array('label' => 'form.codePostal','required' => false))
+                    ->add('valider','submit')
+                    ->add('annuler','reset')
+                    ->getForm()
+                ;
+                $form->handleRequest($request);
+                if($form->isValid()){
+                    return $this->redirect($this->generateUrl('administrator_administration_admin_homepage'),array('form'=> $form));
+                }
+                return $this->render('AdministratorAdministrationAdminBundle:Gerer:gererChercherClients.html.twig',array('form' => $form->createView()) );
+                
                 }elseif ($button == "Maillist") {
                     //GOTO page envoyer mailist
-                }elseif($button == "GopaAdm"){
+                }elseif ($button == "GopaAdm") {
                     //GOTO page accueil admin
                     return $this->redirect($this->generateUrl('administrator_administration_admin_homepage'));
                 }else{
@@ -61,6 +78,10 @@ class GererController extends Controller
                 }
             }
         }
+    }
+
+    public function resultatchercheClientsAction(){
+
     }
     public function suivitDesCommandesAction(){
       
