@@ -35,7 +35,7 @@ class GererController extends Controller
     /**
     * Envoie vers la page qui demande si on cherche un client ou si on fait un maillist
     */
-    public function choixActionsClientAction(){
+    public function choixActionsClientsAction(){
         $session = $this->getRequest()->getSession();
         if ($session->get('pren') != NULL) {
             if (strtolower($session->get('typ')) == 'administrateur') {  
@@ -43,7 +43,6 @@ class GererController extends Controller
             }
         } 
     } 
-
     public function administrationDesUtilisateursAdminsAction(){
         $session = $this->getRequest()->getSession();
         if ($session->get('pren') != NULL) {

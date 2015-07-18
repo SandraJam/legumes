@@ -75,6 +75,6 @@ administration_admin_modifierbiscategorie:
     path:     /modifierbiscategorie/{id}
     defaults: { _controller: AdministratorAdministrationAdminBundle:Produits:modifierbisCategorie}
 
-administration_admin_ddeActionsClient:
+administration_admin_demdeActionsClient:
     path:     /quoiFaireClient/
     defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:choixActionsClients}
