@@ -62,7 +62,7 @@ class GererController extends Controller
                 ;
                 $form->handleRequest($request);
                 if($form->isValid()){
-                    return $this->redirect($this->generateUrl('administrator_administration_admin_homepage'),array('form'=> $form));
+                    return $this->redirect($this->generateUrl('administration_admin_resultatChercherClient'),array('form'=> $form));
                 }
                 return $this->render('AdministratorAdministrationAdminBundle:Gerer:gererChercherClients.html.twig',array('form' => $form->createView()) );
                 
@@ -74,6 +74,30 @@ class GererController extends Controller
                 }else{
                     //GOTO homepage avec deco
                 }
+            }
+        }
+    }
+ //gere la modif ou la suppression d'un user sur la page gerer util
+    public function gestionUtilisateursAction(){
+        $session = $this->getRequest()->getSession();
+        if ($session->get('pren') != NULL) {
+            $userId = $_POST['userId'];
+            $button = $_POST['buttonId'];
+            $repository = $this
+                        ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('BDDBddClientBundle:Utilisateurs');
+            $user = $repository->findOneById($userId);
+            if (!$product) {
+                throw $this->createNotFoundException(
+                    'Aucun utilisateur trouvé pour cet id : '.$user->getId()
+                );
+            }
+            if($button == "Suppr"){
+                $em->remove($product);
+                $em->flush();
+            }else if($button == "Modif"){
+                //GOTO page de modification de user
             }
         }
     }

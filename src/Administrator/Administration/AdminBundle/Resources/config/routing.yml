@@ -83,3 +83,6 @@ administration_admin_resultatChercherClient:
     path:     /resultatRecherche/
     defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:resultatchercheClients }
 
+administrator_administration_admin_actions_Utilisateur_admin:
+    path:      /resultatsClients
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:gestionUtilisateurs }
