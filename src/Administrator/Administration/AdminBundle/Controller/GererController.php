@@ -59,6 +59,7 @@ class GererController extends Controller
                     return $this->redirect($this->generateUrl('administrator_administration_admin_homepage'));
                 }else{
                     //GOTO homepage avec deco
+                     return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
                 }
             }
         }
