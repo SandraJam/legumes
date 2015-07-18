@@ -2,107 +2,62 @@
 {% extends '::base.html.twig' %}
 
 {% block style %}
-  
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block title %}
-	administration des utilisateurs administrateurs
+  administration des utilisateurs administrateurs
 {% endblock %}
 
 {% block body %}
-  <H1>administrateur : page de gestion des clients</h1>
-
+  <div class="container whiteBloc">
+    <h1>administrateur : page de gestion des clients</h1>
     <div class="blocUn">
-        <form action="{{ path('administrator_administration_admin_gerer_Utilisateur_admin') }}" method="post">
-            <table>
-                  <tr>
-		                   <th class="id"> </th>
-                       <th class="nom">Nom</th>
-              	       <th class="prenom">prénom</th>
-              			   <th class="login">Login</th>
-              			   <th class="Pwd">Mot de passe</th>
-              			   <th class="type">Type de compte</th>
-              			   <th class="adresse">Adresse</th>
-              			   <th class="codePostal">Code Postal</th>
-              			   <th class="ville">Ville</th>
-              			   <th class="dateNaissance">Date de Naissance</th>
-              			   <th class="tel">Numéro de téléphone</th>
-                       <th class="email">Email</th>
-        			    </tr>
-        			    {% for superUser in listeSuperUser %}
-                       <tr>
-                           <th><input type="radio" name="idUtilisateurs" value="{{ superUser.id }}" onclick="RecupData({{loop.index}}, {{ superUser.id }});"></th>
-                           <th id="nomth {{loop.index}}">{{ superUser.nom }}</th>
-                           <th id="prenomth {{loop.index}}">{{ superUser.prenom }}</th>
-                           <th id="pwdth {{loop.index}}">{{ superUser.pwd }}</th>
-                           <th id="typeth {{loop.index}}">{{ superUser.type }}</th>
-                           <th id="adresseth {{loop.index}}">{{ superUser.adresse }}</th>
-                           <th id="codePostalth {{loop.index}}">{{ superUser.codePostal }}</th>
-                           <th id="villeth {{loop.index}}">{{ superUser.ville }}</th>
-                           <th id="dateNaissanceth {{loop.index}}">{{ superUser.dateNaissance }}</th>
-                           <th id="telth {{loop.index}}">{{ superUser.tel }}</th>
-                           <th id="emailth {{loop.index}}">{{ superUser.email }}</th>
-                      </tr>
-                  {% endfor %}
-        		</table>	
-       
+      <form action="{{ path('administrator_administration_admin_actions_Utilisateur_admin') }}" method="post">
+          <table>
+                <tr>
+                    <th class="nom">Nom</th>
+                    <th class="prenom">prénom</th>
+                    <th class="adresse">Adresse</th>
+                    <th class="codePostal">Code Postal</th>
+                    <th class="ville">Ville</th>
+                    <th class="dateNaissance">Date de Naissance</th>
+                    <th class="tel">Numéro de téléphone</th>
+                    <th class="email">Email</th>
+                    <th class="actions" colspan="2">Action</th>
+                </tr>
+               {% for superUser in listeSuperUser %}
+                     <tr>
+                         <td id="nomtd {{loop.index}}">{{ superUser.nom }}</td>
+                         <td id="prenomtd {{loop.index}}">{{ superUser.prenom }}</td>
+                         <td id="adressetd {{loop.index}}">{{ superUser.adresse }}</td>
+                         <td id="codePostaltd {{loop.index}}">{{ superUser.codePostal }}</td>
+                         <td id="villetd {{loop.index}}">{{ superUser.ville }}</td>
+                         <td id="dateNaissancetd {{loop.index}}">{{ superUser.dateNaissance }}</td>
+                         <td id="teltd {{loop.index}}">{{ superUser.tel }}</td>
+                         <td id="emailtd {{loop.index}}">{{ superUser.email }}</td>
+                         <td id="boutonModif"><button type="submit" name="modif" value="Modif" onClick="buttonSelected(this,{{ superUser.id }})">Modifier</button></td>
+                         <td id="boutonSuppr"><button type="submit" name="suppr" value="Suppr" onClick="buttonSelected(this,{{ superUser.id }})">Supprimer</button></td>
+                    </tr>
+                {% endfor %}
+          </table>
+          <div class="blocB">            
+            <button type="submit" name="annuler" value="Retour" onclick="history.back()">Retour</button> 
+            <input type="hidden" name="userId" id="userId" value="">
+            <input type="hidden" name="buttonId" id="buttonId" value="">
+          </div>
+      </form>
     </div>
-    <div class="blocFormRecap">
-    Pour modifier les coordonnées d'un client il suffit de modifier le ou les champs que vous voulez et valider. </br>
-
-      <label>Nom : </label>
-          <input type="text" name="champnom" id="champnom" required="required"/><br/>
-      <label>Prénom : </label>
-          <input type="text" name="champPrenom" id="champPrenom" required="required"/><br/>
-      <label>Type : </label>
-          <input type="text" name="champType" id="champType" required="required"/><br/>
-      <label>Adresse : </label>
-          <input type="text" name="champLDR" id="champLDR" required="required"/><br/>
-      <label>Code Postal : </label>
-          <input type="text" name="champCP" id="champCP" required="required"/><br/>
-      <label>Ville : </label>
-          <input type="text" name="champVille" id="champVille" required="required"/><br/>
-      <label>Date de Naissance : </label>
-          <input type="text" name="champDOB" id="champDOB" required="required"/><br/>
-      <label>Téléphone : </label>
-          <input type="text" name="champTel" id="champTel" required="required"/><br/>
-      <label>Email : </label>
-          <input type="text" name="champEmail" id="champEmail" required="required"/><br/>
-      
-    </div>
-    <div class="blocB">            
-               <button type="submit" name="ok" value="Ok" onClick="buttonSelected(this)">
-                Valider 
-               </button>
-          </br>
-               <button type="submit" name="annuler" value="Annuler" onClick="buttonSelected(this)">
-                  Retour
-               </button>
-         
-       <input type="hidden" name="idProfil" id="idProfil" value="">
-   </div>
-   <input type="hidden" name="buttonName" id="buttonId" value="">
-       </form>
+  </div>  
 {% endblock %}
 
 {% block js %}
-    <script type="text/javascript">
+  <script type="text/javascript">
 
-    function buttonSelected(button){
-     document.getElementById("buttonId").value = button.value;
-   }
+    function buttonSelected(buttonId,userId){
+      document.getElementById("buttonId").value = button.value;
+      document.getElementById("userId").value = userId;
+    }
 
-  function RecupData(loop, id){
-      document.getElementById("champnom").value = document.getElementById("nomth"+loop)innerHTML;
-      document.getElementById("champPrenom").value = document.getElementById("prenomth"+loop.innerHTML;
-      document.getElementById("champType").value = document.getElementById("typeth"+loop)innerHTML;
-      document.getElementById("champLDR").value = document.getElementById("adresseth"+loop)innerHTML;
-      document.getElementById("champCP").value = document.getElementById("codePostalth"+loop.innerHTML;
-      document.getElementById("champVille").value = document.getElementById("villeth"+loop)innerHTML;
-      document.getElementById("champDOB").value = document.getElementById("dateNaissanceth"loop).innerHTML;
-      document.getElementById("champTel").value = document.getElementById("telth"+loop)innerHTML;
-      document.getElementById("champEmail").value = document.getElementById("emailth"+loop)innerHTML;
-      document.getElementById("idProfil").value = id;
-  }
   </script>
 {% endblock %}

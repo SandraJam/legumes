@@ -62,7 +62,28 @@ class GererController extends Controller
                 ;
                 $form->handleRequest($request);
                 if($form->isValid()){
-                    return $this->redirect($this->generateUrl('administration_admin_resultatChercherClient'),array('form'=> $form));
+                    $varnom=$form->getData()->getNom();
+                    $varVille=$form->getData()->getVille();
+                    $varCP=$form->getData()->getCodePostale();
+                    if($varnom==NULL && $varVille==NULL && $varCP == NULL){
+                        //On fait un findAll
+                    }else if($varnom!=NULL && $varVille==NULL && $varCP == NULL){
+                        //find by nom
+                    }else if($varnom==NULL && $varVille!=NULL && $varCP == NULL){
+                        //find by ville
+                    }else if($varnom==NULL && $varVille==NULL && $varCP != NULL){
+                        //find by cp
+                    }else if($varnom==NULL && $varVille!=NULL && $varCP != NULL){
+                        //find by ville et cp
+                    }else if($varnom!=NULL && $varVille==NULL && $varCP != NULL){
+                        //find by nom et cp
+                    }else if($varnom!=NULL && $varVille!=NULL && $varCP == NULL){
+                        //find by nom et ville
+                    }else{
+                        //findby nom, ville cp
+                    }
+
+                    return $this->redirect($this->generateUrl('administration_admin_resultatChercherClient');
                 }
                 return $this->render('AdministratorAdministrationAdminBundle:Gerer:gererChercherClients.html.twig',array('form' => $form->createView()) );
                 
@@ -103,7 +124,7 @@ class GererController extends Controller
     }
 
     public function resultatchercheClientsAction(){
-
+         return $this->render('AdministratorAdministrationAdminBundle:Gerer:pageResultatRecherche.html.twig');
     }
     public function suivitDesCommandesAction(){
       
