@@ -32,7 +32,18 @@ class GererController extends Controller
             return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
         }
     }
-    
+    /**
+    * Envoie vers la page qui demande si on cherche un client ou si on fait un maillist
+    */
+    public function choixActionsClientAction(){
+        $session = $this->getRequest()->getSession();
+        if ($session->get('pren') != NULL) {
+            if (strtolower($session->get('typ')) == 'administrateur') {  
+                return $this->render('AdministratorAdministrationAdminBundle:Gerer:ddeActionsClients.html.twig');
+            }
+        } 
+    } 
+
     public function administrationDesUtilisateursAdminsAction(){
         
     }
