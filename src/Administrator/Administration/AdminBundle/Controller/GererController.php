@@ -99,21 +99,27 @@ class GererController extends Controller
                 ;
                 
                
-        $form->handleRequest($request);
+                $form->handleRequest($request);
                 if($form->isValid()){
                     $varnom=$form->getData()->getNom();
                     $varVille=$form->getData()->getVille();
                     $varCP=$form->getData()->getCodePostal();
-
+                    $em = $this->getDoctrine()->getManager();
                     if($varnom==NULL && $varVille==NULL && $varCP == NULL){
                         //On fait un findAll
                         $listeClients=$this->getDoctrine()->getRepository('BDDBddClientBundle:Utilisateurs')->findAll();
                     }else if($varnom!=NULL && $varVille==NULL && $varCP == NULL){
                         //find by nom
+                        
+                       $query =$em ->createQuery("SELECT * FROM utilisateurs WHERE nom LIKE '%$varnom%' ORDER BY nom ASC");
+                        $listeClients = $query->getResult();
+                        //$listeClients=$this->getDoctrine()->getRepository('BDDBddClientBundle:Utilisateurs')->findByNom($varnom);
                     }else if($varnom==NULL && $varVille!=NULL && $varCP == NULL){
                         //find by ville
+                        $listeClients=$this->getDoctrine()->getRepository('BDDBddClientBundle:Utilisateurs')->findByVille($varVille);
                     }else if($varnom==NULL && $varVille==NULL && $varCP != NULL){
                         //find by cp
+                        $listeClients=$this->getDoctrine()->getRepository('BDDBddClientBundle:Utilisateurs')->findByCodePostal($varCP);
                     }else if($varnom==NULL && $varVille!=NULL && $varCP != NULL){
                         //find by ville et cp
                     }else if($varnom!=NULL && $varVille==NULL && $varCP != NULL){
