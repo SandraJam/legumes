@@ -79,6 +79,10 @@ administration_admin_demdeActionsClient:
     path:     /quoiFaireClient/
     defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:choixActionsClients }
 
+administration_admin_PREresultatChercherClient:
+    path:     /preRecherche/
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:preResultatchercheClients }
+
 administration_admin_resultatChercherClient:
     path:     /resultatRecherche/
     defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:resultatchercheClients }

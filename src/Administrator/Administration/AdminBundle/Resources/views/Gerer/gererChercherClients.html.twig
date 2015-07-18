@@ -13,7 +13,7 @@
             {{ flashMessage }}
         </div>
     {% endfor %}
-    <form action="{{ path('administrator_administration_admin_gerer_Utilisateur_admin') }}" method="post" {{ form_enctype(form) }} class="blogger">
+    <form action="{{ path('administration_admin_PREresultatChercherClient') }}" method="post" {{ form_enctype(form) }} class="blogger">
         {{ form_errors(form) }}
           {{ form_label(form.nom, 'Nom:', {'label_attr': {'class': 'foo'}}) }}
           {{ form_widget(form.nom, {'attr': {'class': 'foo'}}) }}
@@ -25,6 +25,7 @@
           {{ form_widget(form.codePostal, {'attr': {'class': 'foo'}}) }}
           <br/
         {{ form_rest(form) }}
+        <button type="submit" name="annuler" value="Retour" onclick="history.back()">Retour</button> 
     </form>
 {% endblock %}
 

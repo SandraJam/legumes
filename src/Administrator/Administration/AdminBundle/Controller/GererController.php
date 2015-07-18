@@ -51,42 +51,7 @@ class GererController extends Controller
 
                 if ($button == "ChercherClients") {
                     //GOTO PAGE recherche client 
-                $connexion = new Utilisateurs();
-                $form = $this->createFormBuilder($connexion)
-                    ->add('nom','text',array('label' => 'form.nom','required' => false))
-                    ->add('ville','text',array('label' => 'form.ville','required' => false))
-                    ->add('codePostal','text',array('label' => 'form.codePostal','required' => false))
-                    ->add('valider','submit')
-                    ->add('annuler','reset')
-                    ->getForm()
-                ;
-                $form->handleRequest($request);
-                if($form->isValid()){
-                    $varnom=$form->getData()->getNom();
-                    $varVille=$form->getData()->getVille();
-                    $varCP=$form->getData()->getCodePostale();
-                    if($varnom==NULL && $varVille==NULL && $varCP == NULL){
-                        //On fait un findAll
-                    }else if($varnom!=NULL && $varVille==NULL && $varCP == NULL){
-                        //find by nom
-                    }else if($varnom==NULL && $varVille!=NULL && $varCP == NULL){
-                        //find by ville
-                    }else if($varnom==NULL && $varVille==NULL && $varCP != NULL){
-                        //find by cp
-                    }else if($varnom==NULL && $varVille!=NULL && $varCP != NULL){
-                        //find by ville et cp
-                    }else if($varnom!=NULL && $varVille==NULL && $varCP != NULL){
-                        //find by nom et cp
-                    }else if($varnom!=NULL && $varVille!=NULL && $varCP == NULL){
-                        //find by nom et ville
-                    }else{
-                        //findby nom, ville cp
-                    }
-
-                    return $this->redirect($this->generateUrl('administration_admin_resultatChercherClient');
-                }
-                return $this->render('AdministratorAdministrationAdminBundle:Gerer:gererChercherClients.html.twig',array('form' => $form->createView()) );
-                
+                return $this->redirect($this->generateUrl('administration_admin_PREresultatChercherClient'));
                 }elseif ($button == "Maillist") {
                     //GOTO page envoyer mailist
                 }elseif ($button == "GopaAdm") {
@@ -109,13 +74,13 @@ class GererController extends Controller
                         ->getManager()
                         ->getRepository('BDDBddClientBundle:Utilisateurs');
             $user = $repository->findOneById($userId);
-            if (!$product) {
+            if (!$user) {
                 throw $this->createNotFoundException(
                     'Aucun utilisateur trouvé pour cet id : '.$user->getId()
                 );
             }
             if($button == "Suppr"){
-                $em->remove($product);
+                $em->remove($user);
                 $em->flush();
             }else if($button == "Modif"){
                 //GOTO page de modification de user
@@ -123,6 +88,47 @@ class GererController extends Controller
         }
     }
 
+    public function preResultatchercheClientsAction(Request $request){
+         $connexion = new Utilisateurs();
+                $form = $this->createFormBuilder($connexion)
+                    ->add('nom','text',array('label' => 'form.nom','required' => false))
+                    ->add('ville','text',array('label' => 'form.ville','required' => false))
+                    ->add('codePostal','text',array('label' => 'form.codePostal','required' => false))
+                    ->add('valider','submit')
+                    ->getForm()
+                ;
+                
+               
+        $form->handleRequest($request);
+                if($form->isValid()){
+                    $varnom=$form->getData()->getNom();
+                    $varVille=$form->getData()->getVille();
+                    $varCP=$form->getData()->getCodePostal();
+
+                    if($varnom==NULL && $varVille==NULL && $varCP == NULL){
+                        //On fait un findAll
+                        $listeClients=$this->getDoctrine()->getRepository('BDDBddClientBundle:Utilisateurs')->findAll();
+                    }else if($varnom!=NULL && $varVille==NULL && $varCP == NULL){
+                        //find by nom
+                    }else if($varnom==NULL && $varVille!=NULL && $varCP == NULL){
+                        //find by ville
+                    }else if($varnom==NULL && $varVille==NULL && $varCP != NULL){
+                        //find by cp
+                    }else if($varnom==NULL && $varVille!=NULL && $varCP != NULL){
+                        //find by ville et cp
+                    }else if($varnom!=NULL && $varVille==NULL && $varCP != NULL){
+                        //find by nom et cp
+                    }else if($varnom!=NULL && $varVille!=NULL && $varCP == NULL){
+                        //find by nom et ville
+                    }else{
+                        //findby nom, ville cp
+                    }
+
+                    return $this->render('AdministratorAdministrationAdminBundle:Gerer:gererAdminUser.html.twig',array('listClients' => $listeClients) );
+                }
+                 return $this->render('AdministratorAdministrationAdminBundle:Gerer:gererChercherClients.html.twig',array('form' => $form->createView()) );
+                
+    }
     public function resultatchercheClientsAction(){
          return $this->render('AdministratorAdministrationAdminBundle:Gerer:pageResultatRecherche.html.twig');
     }
