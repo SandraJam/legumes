@@ -45,7 +45,23 @@ class GererController extends Controller
     } 
 
     public function administrationDesUtilisateursAdminsAction(){
-        
+        $session = $this->getRequest()->getSession();
+        if ($session->get('pren') != NULL) {
+            if (strtolower($session->get('typ')) == 'administrateur') {  
+                $button = $_POST['buttonName'];
+
+                if ($button == "ChercherClients") {
+                    //GOTO PAGE recherche client 
+                }elseif ($button == "Maillist") {
+                    //GOTO page envoyer mailist
+                }elseif($button == "GopaAdm"){
+                    //GOTO page accueil admin
+                    return $this->redirect($this->generateUrl('administrator_administration_admin_homepage'));
+                }else{
+                    //GOTO homepage avec deco
+                }
+            }
+        }
     }
     public function suivitDesCommandesAction(){
       
