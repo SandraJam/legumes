@@ -5,8 +5,6 @@ namespace Administrator\Administration\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use BDD\BddClientBundle\Entity\Utilisateurs;
-use Administrator\Administration\AdminBundle\Entity\recherche;
-use Administrator\Administration\AdminBundle\Form\rechercheType;
 
 class GererController extends Controller
 {
