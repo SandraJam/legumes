@@ -1,0 +1,46 @@
+{# src/Administrator/Administration/views/Gerer/ddeActionsClients.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  
+{% endblock %}
+
+{% block title %}
+	Demande actions clients
+{% endblock %}
+
+{% block body %}
+  <H1>administrateur : Que Voulez vous faire?</h1>
+
+    <div class="blocUn">
+
+      <form action="{{ path('administrator_administration_admin_gerer_Utilisateur_admin') }}" method="post">
+        <div class="blocB">            
+               <button type="submit" name="chercherClients" value="ChercherClients" onClick="buttonSelected(this)">
+                Chercher un ou plusieurs clients 
+               </button>
+          </br>
+                <button type="submit" name="maillist" value="Maillist" onClick="buttonSelected(this)">
+                Envoyer une Newsletter à tous les clients
+               </button>
+          </br>
+               <button type="submit" name="gopaAdm" value="GopaAdm" onClick="buttonSelected(this)">
+                  Revenir à la page d'accueil d'administration
+               </button>
+         
+        </div>
+        <input type="hidden" name="buttonName" id="buttonId" value="">
+      </form>
+    </div>
+   
+{% endblock %}
+
+{% block js %}
+  <script type="text/javascript">
+
+    function buttonSelected(button){
+     document.getElementById("buttonId").value = button.value;
+    }
+
+  </script>
+{% endblock %}

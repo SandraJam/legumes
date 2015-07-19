@@ -29,47 +29,47 @@ administrator_administration_admin_add_Utilisateur_admin:
     path:     /gererUtil
     defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:lesUtilisateursAdmins }
 administrator_administration_admin_gerer_Utilisateur_admin:
-    path:     /gererUtil
+    path:     /gererUtilisateurs
     defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:administrationDesUtilisateursAdmins }
 
 administrator_ajout_recette:
     path:     /ajoutrecette
-    defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:ajout}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:ajout }
 
 administration_admin_ajoutIngredient:
     path:     /ajoutingredient/{id}
-    defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:ajoutingredient}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:ajoutingredient }
 
 administration_admin_supprimerIngredient:
     path:     /supprimeringredient/{id}
-    defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:supprimerIngredient}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:supprimerIngredient }
 
 administration_admin_supprimerRecette:
     path:     /supprimerrecette/{id}
-    defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:supprimer}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:supprimer }
 
 administration_admin_modifierRecette:
     path:     /modifierrecette/{id}
-    defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:modifier}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:modifier }
 
 administration_admin_modifierbisRecette:
     path:     /modifierbisrecette/{id}
-    defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:modifierbis}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:modifierbis }
 administrator_administration_admin_gerer_notre_histoire:
     path:     /gererHist
     defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:gererHistoire }
 
 administrator_ajout_categorie:
     path:     /ajoutcategorie
-    defaults: { _controller: AdministratorAdministrationAdminBundle:Produits:ajoutCat}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Produits:ajoutCat }
 
 administrator_supprimer_categorie:
     path:     /supprimercategorie/{id}
-    defaults: { _controller: AdministratorAdministrationAdminBundle:Produits:supprimerCategorie}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Produits:supprimerCategorie }
 
 administrator_modifier_categorie:
     path:     /modifiercategorie/{id}
-    defaults: { _controller: AdministratorAdministrationAdminBundle:Produits:modifierCategorie}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Produits:modifierCategorie }
 
 administration_admin_modifierbiscategorie:
     path:     /modifierbiscategorie/{id}
@@ -94,3 +94,19 @@ administrator_supprimer_article:
 administrator_base_article:
     path:     /basearticle/{id}
     defaults: { _controller: AdministratorAdministrationAdminBundle:Produits:baseArt}
+
+administration_admin_demdeActionsClient:
+    path:     /quoiFaireClient/
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:choixActionsClients }
+
+administration_admin_PREresultatChercherClient:
+    path:     /preRecherche/
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:preResultatchercheClients }
+
+administration_admin_resultatChercherClient:
+    path:     /resultatRecherche/
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:resultatchercheClients }
+
+administrator_administration_admin_actions_Utilisateur_admin:
+    path:      /resultatsClients
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:gestionUtilisateurs }

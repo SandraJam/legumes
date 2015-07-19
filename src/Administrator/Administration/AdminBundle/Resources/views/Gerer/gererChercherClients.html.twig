@@ -1,0 +1,34 @@
+{% block style %}
+  
+{% endblock %}
+
+{% block title %}
+	Chercher clients
+{% endblock %}
+
+{% block body %}
+  <H1>administrateur : Chercher des clients </h1>
+   {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-notice">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    <form action="{{ path('administration_admin_PREresultatChercherClient') }}" method="post" {{ form_enctype(form) }} class="blogger">
+        {{ form_errors(form) }}
+          {{ form_label(form.nom, 'Nom:', {'label_attr': {'class': 'foo'}}) }}
+          {{ form_widget(form.nom, {'attr': {'class': 'foo'}}) }}
+          <br/>
+          {{ form_label(form.ville, 'Ville:', {'label_attr': {'class': 'foo'}}) }}
+          {{ form_widget(form.ville, {'attr': {'class': 'foo'}}) }}
+          <br/>
+          {{ form_label(form.codePostal, 'Code Postal:', {'label_attr': {'class': 'foo'}}) }}
+          {{ form_widget(form.codePostal, {'attr': {'class': 'foo'}}) }}
+          <br/
+        {{ form_rest(form) }}
+        <button type="submit" name="annuler" value="Retour" onclick="history.back()">Retour</button> 
+    </form>
+{% endblock %}
+
+{% block js %}
+  
+{% endblock %}
