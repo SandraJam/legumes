@@ -25,12 +25,7 @@ class GalerieController extends Controller
       $ingredients = $this->getDoctrine()
                     ->getRepository('BDDBddClientBundle:Ingredient')
                     ->findByRecette($recette);
-      $articles = [];
-      foreach($ingredients as $ing){
-        if($ing->getArticle() != NULL)
-          $articles[] = $ing->getArticle();
-      }
       return $this->render('BoutiqueGalerieBundle::articlesRecette.html.twig',
-        array('articles' => $articles));
+        array('ingredients' => $ingredients));
     }
 }

@@ -74,3 +74,23 @@ administrator_modifier_categorie:
 administration_admin_modifierbiscategorie:
     path:     /modifierbiscategorie/{id}
     defaults: { _controller: AdministratorAdministrationAdminBundle:Produits:modifierbisCategorie}
+
+administrator_ajout_article:
+    path:     /ajoutarticle/{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Produits:ajoutArt}
+
+administrator_modifier_article:
+    path:     /modifierarticle/{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Produits:modifierArt}
+
+administration_admin_modifierbisarticle:
+    path:     /modifierbisarticle/{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Produits:modifierbisArt}
+
+administrator_supprimer_article:
+    path:     /supprimerarticle/{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Produits:supprimerArt}
+
+administrator_base_article:
+    path:     /basearticle/{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Produits:baseArt}

@@ -43,11 +43,11 @@
           {{cat.saison}}
       </div>
       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-        <a class="btn btn-default btn-md btn-info" role="button" href="#">
+        <a class="btn btn-default btn-md btn-info" role="button" href="{{path('administrator_base_article', {'id': cat.id})}}">
           <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Voir les Articles
         </a>
       </div>
-      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 global">
         <div class="btn-group" role="group">
           <a class="btn btn-default btn-md btn-warning" role="button" href="{{path('administrator_modifier_categorie', {'id' : cat.id}) }}">
             <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Modifier

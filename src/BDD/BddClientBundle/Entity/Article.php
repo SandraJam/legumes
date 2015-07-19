@@ -50,16 +50,15 @@ class Article
     private $photos;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="categorie", type="string", length=255)
-     */
+      * @ORM\ManyToOne(targetEntity="Categorie")
+      * @ORM\JoinColumn(name="categorie_id", referencedColumnName="id")
+      */
     private $categorie;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="qtiteVente", type="integer")
+     * @ORM\Column(name="qtiteVente", type="string")
      */
     private $qtiteVente;
 
@@ -78,11 +77,18 @@ class Article
     private $commandeMax;
 
     /**
-     * @var integer
+     * @var float
      *
-     * @ORM\Column(name="prix", type="integer")
+     * @ORM\Column(name="prix", type="float")
      */
     private $prix;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="bonplan", type="boolean", nullable=true)
+     */
+    private $bonplan;
 
 
     /**
@@ -213,7 +219,7 @@ class Article
     /**
      * Set qtiteVente
      *
-     * @param integer $qtiteVente
+     * @param string $qtiteVente
      * @return Article
      */
     public function setQtiteVente($qtiteVente)
@@ -226,7 +232,7 @@ class Article
     /**
      * Get qtiteVente
      *
-     * @return integer
+     * @return string
      */
     public function getQtiteVente()
     {
@@ -282,7 +288,7 @@ class Article
     /**
      * Set prix
      *
-     * @param integer $prix
+     * @param float $prix
      * @return Article
      */
     public function setPrix($prix)
@@ -295,10 +301,32 @@ class Article
     /**
      * Get prix
      *
-     * @return integer 
+     * @return float
      */
     public function getPrix()
     {
         return $this->prix;
+    }
+
+
+    /**
+     * Set bonplan
+     *
+     * @param boolean $bonplan
+     * @return Article
+     */
+    public function setBonplan($bonplan)
+    {
+        $this->bonplan = $bonplan;
+        return $this;
+    }
+    /**
+     * Get bonplan
+     *
+     * @return boolean
+     */
+    public function isBonplan()
+    {
+        return $this->bonplan;
     }
 }

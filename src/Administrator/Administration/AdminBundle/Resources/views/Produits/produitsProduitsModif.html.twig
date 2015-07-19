@@ -1,0 +1,41 @@
+{# src/Administration/AdminBundle/Resources/views/produitsProduitsModif.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+	Modifier Article {{ article.nom }}
+{% endblock %}
+
+{% block body %}
+<form action="{{path('administration_admin_modifierbisarticle', {'id': article.id})}}" method="POST" enctype="multipart/form-data">
+  <div class="container login">
+          <h1> Modifier le produit "{{article.nom}}"</h1>
+            <label> Nom: </label><input type="text" value="{{article.nom}}" name="nom"/><br/><br/>
+            <label> Recommandantion: </label><input name="recommandation" type="text" value="{{article.recommandation}}"/><br/><br/>
+            <label> Quantité pour une unité: </label><input name="qtiteVente" type="text" value="{{article.qtiteVente}}"/><br/><br/>
+            <label> Stock disponible: </label><input name="qtiteStock" type="text" value="{{article.qtiteStock}}"/><br/><br/>
+            <label> Nombre max par commande: </label><input name="commandeMax" type="number" value="{{article.commandeMax}}"/><br/><br/>
+            <label> Prix: </label><input name="prix" step="any" type="number" value="{{article.prix}}"/><br/><br/>
+            <label> Bon plan? </label><input name="bonplan" type="checkbox" {% if article.bonplan %} checked {% endif %}/><br/><br/>
+            <label> Catégorie: </label>
+              <select name="categorie">
+                {% for cat in categories %}
+                  <option value="{{cat.id}}" {% if article.categorie.id == cat.id %} selected {% endif %}> {{cat.nom}} </option>
+                {% endfor %}
+              </select><br/><br/>
+            <label> Description: </label><br/>
+            <textarea name="descr">{{article.descr}}</textarea><br/>
+            <br/>
+            <label> Photo: </label>
+            <img class="imgRecetteM" src="{{asset('images/' ~ article.photos)}}" alt="{{article.nom}}"/>
+            <br/><br/>
+            <label> Modifier la photo: </label><input type="file" name="photos" id="form_photos"/>
+            <input type="submit" name="valider" value="Modifier" id="form_suivant" class="bouton"/>
+            <a href="{{path('administrator_base_article', {'id' : article.categorie.id})}}" id="form_annuler"> Retour </a>
+  </div>
+
+</form>
+{% endblock %}

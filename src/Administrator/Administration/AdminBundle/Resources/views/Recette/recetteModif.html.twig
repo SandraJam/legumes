@@ -35,6 +35,7 @@
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <div class="interne">
+
           <h1>Ingrédients: </h1>
           {% for ing in ingredients %}
             <h4>{{loop.index}}</h4>
@@ -44,10 +45,19 @@
             <select name="choix{{ing.id}}">
               <option value="null" {% if ing.article == NULL %} selected {% endif %}> Aucun </option>
               {% for art in articles %}
-                <option value="{{art.id}}" {% if ing.article.id == art.id %} selected {% endif %}>{{art.nom}}</option>
+                <option value="{{art.id}}"
+                  {% if ing.article != null %}
+                    {% if ing.article.id == art.id %} selected {% endif %}
+                  {% endif %}>{{art.nom}}</option>
               {% endfor %}
             </select>
-          {% endfor %}
+          {% endfor %}<br/><br/>
+          <a href="{{path('administration_admin_ajoutIngredient', {'id' : recette.id})}}">
+            <button type="button" class="btn btn-default btn-lg btn-success">
+              <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Ajouter
+            </button>
+          </a>
+
         </div>
       </div>
     </div>

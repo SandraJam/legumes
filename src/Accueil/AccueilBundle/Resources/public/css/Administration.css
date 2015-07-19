@@ -99,12 +99,12 @@ input, select {
   width: 50%;
 }
 
-textarea {
+textarea, .textarea {
   width: 70%;
   height: 8em;
 }
 
-#form_photo{
+#form_photo, #form_photos{
   margin-left: 25%;
 }
 
@@ -125,9 +125,13 @@ textarea {
   textarea {
     width: 95%;
   }
-  #form_photo{
+  #form_photo, #form_photos{
     margin-left: 2%;
   }
+  #form_retour {
+    display: inline-block;
+  }
+
 }
 
 #form_suivant, #form_ajouter {
@@ -285,5 +289,13 @@ input.radio {
 }
 
 .center h1 {
+  font-family: 'Cookie', cursive;
+}
+
+
+/* Categorie */
+
+.title{
+  text-align: center;
   font-family: 'Cookie', cursive;
 }

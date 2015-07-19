@@ -67,8 +67,9 @@ class RecetteController extends Controller
         }
 
         if ($message == ""){
+          $tableauCarIndesirable = array(" ", "-", "#", "~", "\t", "\n", "\r", "\0", "\x0B", "\xA0");
           $uploadedFile = $recette -> getPhoto();
-          $fileName = $uploadedFile -> getClientOriginalName();
+          $fileName = str_replace($tableauCarIndesirable, "", $uploadedFile -> getClientOriginalName());
           $dir = $this->getRequest()->server->get('DOCUMENT_ROOT') . $this->getRequest()->getBasePath() . "/images/";
           $uploadedFile->move($dir, $fileName.time());
           $recette->setPhoto($fileName.time());
@@ -103,22 +104,23 @@ class RecetteController extends Controller
           ->getRepository('BDDBddClientBundle:Article')->findAll();
 
       $ingredient = new Ingredient();
-      $form = $this->createFormBuilder($ingredient)
+
+      $form2 = $this->createFormBuilder($ingredient)
          ->add('nom','text')
          ->add('quantite','text')
-         ->add('article','choice', $articles)
+         ->add('article','entity',array(
+            'required' => false,
+            'class'=>'BDDBddClientBundle:Article',
+            'property'=>'nom'))
          ->add('ajouter','submit')
          ->add('annuler','reset')
          ->getForm();
-      $form->handleRequest($request);
-      if($form->isValid()) {
-        $ingredient = $form -> getData();
+      $form2->handleRequest($request);
+      if($form2->isValid()) {
+        $ingredient = $form2 -> getData();
         $message = "";
         if ($ingredient->getNom() == "" || strpos(htmlentities($ingredient->getNom(), ENT_QUOTES), '&gt;') || strpos(htmlentities($recette->getNom(), ENT_QUOTES), '&lt;')){
           $message .= "Nom incorrect. ";
-        }
-        if ($ingredient->getQuantite() == "" || strpos(htmlentities($ingredient->getQuantite(), ENT_QUOTES), '&gt;') || strpos(htmlentities($recette->getQuantite(), ENT_QUOTES), '&lt;')){
-          $message .= "Quantité incorrect. ";
         }
 
         if ($message == ""){
@@ -132,7 +134,7 @@ class RecetteController extends Controller
         }
       }
       return $this->render('AdministratorAdministrationAdminBundle:Recette:recetteIngredients.html.twig',
-            array('form' => $form->createView(), 'ingredients' => $ingredients) );
+            array('form' => $form2->createView(), 'ingredients' => $ingredients) );
       /*  }else{
           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
         }*/
@@ -237,7 +239,8 @@ class RecetteController extends Controller
 
         if ($message == ""){
           if($photo['name'] != ""){
-            $fileName = $photo['name'];
+            $tableauCarIndesirable = array(" ", "-", "#", "~", "\t", "\n", "\r", "\0", "\x0B", "\xA0");
+            $fileName = str_replace($tableauCarIndesirable, "", $photo['name']);
             $dir = $this->getRequest()->server->get('DOCUMENT_ROOT') . $this->getRequest()->getBasePath() . "/images/";
             move_uploaded_file($photo["tmp_name"], $dir.$fileName.time());
             unlink($dir.$recette->getPhoto());

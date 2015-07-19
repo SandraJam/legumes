@@ -11,36 +11,38 @@
 
 {% block body %}
 <div class="container whiteBloc">
-  <div class="galerie">
-    {% for art in articles %}
+  <div class="galerie" style="display: block;">
+    {% for ing in ingredients %}
+      {% if ing.article != null %}
     <div class="row article">
       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
         <!-- Photo -->
-        <img src="{{ asset('images/' ~ art.photos)}}" class="imgArticle" alt="{{ art.nom }}"/>
+        <img src="{{ asset('images/' ~ ing.article.photos)}}" class="imgArticle" alt="{{ ing.article.nom }}"/>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 descriptionArticle">
         <!-- Nom-->
-        <span class="titreArticle"> {{ art.nom }} </span><br/>
+        <span class="titreArticle"> {{ ing.article.nom }} </span><br/>
         <!-- Recommandation -->
-        <span class="recommandation"> {{ art.recommandation }} </span><br/>
+        <span class="recommandation"> {{ ing.article.recommandation }} </span><br/>
         <!-- Description -->
-        {{ art.descr }}
+        {{ ing.article.descr }}
       </div>
       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 prix">
         <!-- Prix -->
-        <span class="prixArticle"> {{ art.prix }} </span><br/>
+        <span class="prixArticle"> {{ ing.article.prix }} </span><br/>
         <!-- Quantité pour prix -->
-        {{ art.qtiteVente }}
+        {{ ing.article.qtiteVente }}
         <!-- Formulaire Quantité -->
         <br/>
         <div class="input-group centrer">
-          <input type="number" class="form-control" min="1" max="{{ art.commandeMax }}" value="1" aria-label="Amount (to the nearest dollar)">
+          <input type="number" class="form-control" min="1" max="{{ ing.article.commandeMax }}" value="1" aria-label="Amount (to the nearest dollar)">
         </div><br/>
         <button type="button" class="btn btn-default btn-md btn-danger">
           <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Ajouter au Panier
         </button>
       </div>
     </div>
+    {% endif %}
     {% endfor %}
   </div>
 </div>

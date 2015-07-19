@@ -75,7 +75,7 @@
             {% if recette != null %}
               <figure class="figRec">
                 <img src="{{ asset('images/' ~ recette.photo)}}" class="imgRecette" alt="{{recette.nom}}"/>
-                <figcaption><a href="#">Faites votre marché pour cette recette!</a></figcaption>
+                <figcaption><a href="{{path('boutique_galerie_recette', {'idRecette' : recette.id })}}">Faites votre marché pour cette recette!</a></figcaption>
               </figure>
               <span class="soustitre">
                 {{recette.nom|capitalize}}
@@ -86,7 +86,7 @@
                   Temps de cuisson :     {{recette.tpsCuisson}}</p>
 
               <p>
-                <a href="#">Ingrédients :</a> <br/>
+                <a href="{{path('boutique_galerie_recette', {'idRecette' : recette.id })}}">Ingrédients :</a> <br/>
                 {% for ing in ingredients %}
                   - {{ ing.nom|capitalize}}: {{ing.quantite}}<br/>
                 {% endfor %}
@@ -130,7 +130,7 @@
     <p><br/>
       <figure class="figRec">
         <img src="{{ asset('images/' ~ recette.photo)}}" class="imgRecette" alt="{{recette.nom}}"/>
-        <figcaption><a href="#">Faites votre marché pour cette recette!</a></figcaption>
+        <figcaption><a href="{{path('boutique_galerie_recette', {'idRecette' : recette.id })}}">Faites votre marché pour cette recette!</a></figcaption>
       </figure>
       <span class="soustitre">
         {{recette.nom|capitalize}}
@@ -140,7 +140,7 @@
           Temps de cuisson :     {{recette.tpsCuisson}}</p>
 
       <p>
-        <a href="#">Ingrédients :</a> <br/>
+        <a href="{{path('boutique_galerie_recette', {'idRecette' : recette.id })}}">Ingrédients :</a> <br/>
         {% for ing in ingredients %}
           - {{ ing.nom|capitalize}}: {{ing.quantite}}<br/>
         {% endfor %}
