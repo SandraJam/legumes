@@ -8,7 +8,7 @@ use BDD\BddClientBundle\Entity\Utilisateurs;
 
 class GererController extends Controller
 {
-    
+
     public function lesUtilisateursAdminsAction(){
         $warning = '';
         $session = $this->getRequest()->getSession();
@@ -18,15 +18,15 @@ class GererController extends Controller
                         ->getDoctrine()
                         ->getManager()
                         ->getRepository('BDDBddClientBundle:Utilisateurs');
-                        
+
                 $listeSuperUser = $this->getDoctrine()->getRepository('BDDBddClientBundle:Utilisateurs')
                         ->findByType('client');
-                   
+
                   return $this->render('AdministratorAdministrationAdminBundle:Gerer:gererAdminUser.html.twig',
                        array('listeSuperUser'=>$listeSuperUser));
             }else{
             }
-            
+
             //si session vide on reenvoit vers la page d'accueil
         }else{
             return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
@@ -38,19 +38,19 @@ class GererController extends Controller
     public function choixActionsClientsAction(){
         $session = $this->getRequest()->getSession();
         if ($session->get('pren') != NULL) {
-            if (strtolower($session->get('typ')) == 'administrateur') {  
+            if (strtolower($session->get('typ')) == 'administrateur') {
                 return $this->render('AdministratorAdministrationAdminBundle:Gerer:ddeActionsClients.html.twig');
             }
-        } 
-    } 
+        }
+    }
     public function administrationDesUtilisateursAdminsAction(Request $request){
         $session = $this->getRequest()->getSession();
         if ($session->get('pren') != NULL) {
-            if (strtolower($session->get('typ')) == 'administrateur') {  
+            if (strtolower($session->get('typ')) == 'administrateur') {
                 $button = $_POST['buttonName'];
 
                 if ($button == "ChercherClients") {
-                    //GOTO PAGE recherche client 
+                    //GOTO PAGE recherche client
                 return $this->redirect($this->generateUrl('administration_admin_PREresultatChercherClient'));
                 }elseif ($button == "Maillist") {
                     //GOTO page envoyer mailist
@@ -98,7 +98,7 @@ class GererController extends Controller
             ->add('valider','submit')
             ->getForm()
         ;
-        
+
        //MINI MOTEUR DE RECHERCHE en Doctrine Query Language
         $form->handleRequest($request);
         if($form->isValid()){
@@ -115,7 +115,7 @@ class GererController extends Controller
                $query =$em ->createQuery("SELECT u FROM BDDBddClientBundle:Utilisateurs u WHERE u.nom LIKE :key ORDER BY u.nom ASC");
                $query->setParameter('key','%'.$varnom.'%');
                $listeClients = $query->getResult();
-       
+
             }else if($varnom==NULL && $varVille!=NULL && $varCP == NULL){
                 //find by ville
                $query =$em ->createQuery("SELECT u FROM BDDBddClientBundle:Utilisateurs u WHERE u.ville LIKE :key ORDER BY u.ville ASC");
@@ -155,36 +155,36 @@ class GererController extends Controller
             return $this->render('AdministratorAdministrationAdminBundle:Gerer:gererAdminUser.html.twig',array('listClients' => $listeClients) );
         }
          return $this->render('AdministratorAdministrationAdminBundle:Gerer:gererChercherClients.html.twig',array('form' => $form->createView()) );
-        
+
     }
     public function resultatchercheClientsAction(){
          return $this->render('AdministratorAdministrationAdminBundle:Gerer:pageResultatRecherche.html.twig');
     }
     public function suivitDesCommandesAction(){
-      
+
     }
 
 	public function lesProduitsAction(){
-      
+
     }
 
     public function lesCategoriesAction(){
-      
+
     }
 
 	public function lesNewsAction(){
-      
+
     }
-	
+
 	public function lesRecettesAction(){
-      
+
     }
 
 	public function lesCoordsClientsAction(){
-      
+
     }
 
     public function gererHistoire(){
-      
+
     }
 }
