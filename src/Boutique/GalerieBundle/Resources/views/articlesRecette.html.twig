@@ -13,7 +13,7 @@
 <div class="container whiteBloc">
   <div class="galerie" style="display: block;">
     {% for ing in ingredients %}
-      {% if ing.article != null %}
+      {% if ing.article != null and ing.article.qtiteStock > 0 %}
     <div class="row article">
       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
         <!-- Photo -->
@@ -29,13 +29,15 @@
       </div>
       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 prix">
         <!-- Prix -->
-        <span class="prixArticle"> {{ ing.article.prix }} </span><br/>
+        <span class="prixArticle"> {{ ing.article.prix }} €</span><br/>
         <!-- Quantité pour prix -->
-        {{ ing.article.qtiteVente }}
+        pour {{ ing.article.qtiteVente }}
         <!-- Formulaire Quantité -->
         <br/>
         <div class="input-group centrer">
-          <input type="number" class="form-control" min="1" max="{{ ing.article.commandeMax }}" value="1" aria-label="Amount (to the nearest dollar)">
+          <input type="number" class="form-control" min="1"
+            max="{% if ing.article.qtiteStock > ing.article.commandeMax %}{{ing.article.commandeMax}}
+                  {% else %} {{ing.article.qtiteStock}} {% endif %}" value="1" aria-label="Amount (to the nearest dollar)">
         </div><br/>
         <button type="button" class="btn btn-default btn-md btn-danger">
           <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Ajouter au Panier
