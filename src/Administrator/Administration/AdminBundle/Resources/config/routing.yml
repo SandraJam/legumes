@@ -110,3 +110,6 @@ administration_admin_resultatChercherClient:
 administrator_administration_admin_actions_Utilisateur_admin:
     path:      /resultatsClients
     defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:gestionUtilisateurs }
+administrator_administration_admin_modifierUser:
+    path:      /modifierUtilisateur{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:modifierUser }

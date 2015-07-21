@@ -1,0 +1,21 @@
+{% block style %}
+  
+{% endblock %}
+
+{% block title %}
+	Gerer page histoire
+{% endblock %}
+
+{% block body %}
+  <H1>administrateur : Gestion de la page hioire </h1>
+   {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-notice">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+ 
+{% endblock %}
+
+{% block js %}
+  
+{% endblock %}

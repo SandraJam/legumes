@@ -28,6 +28,7 @@
                 </tr>
                {% for superUser in listClients %}
                      <tr>
+
                          <td id="nomtd {{loop.index}}">{{ superUser.nom }}</td>
                          <td id="prenomtd {{loop.index}}">{{ superUser.prenom }}</td>
                          <td id="adressetd {{loop.index}}">{{ superUser.adresse }}</td>
@@ -55,7 +56,7 @@
   <script type="text/javascript">
 
     function buttonSelected(buttonId,userId){
-      document.getElementById("buttonId").value = button.value;
+      document.getElementById("buttonId").value = buttonId.value;
       document.getElementById("userId").value = userId;
     }
 

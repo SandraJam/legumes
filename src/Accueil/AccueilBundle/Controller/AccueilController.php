@@ -101,10 +101,10 @@ class AccueilController extends Controller
                 ->add('mois','number')
                 ->add('annee','number')
         		->add('ville','text')
-        		->add('tel','text')
+        		->add('tel','text', array('label' => 'form.Annuler', 'required' => false))
         		->add('email','email')
                 ->add('valider','submit')
-                ->add('annuler','submit')
+                ->add('annuler','submit',array('label' => 'form.Annuler'))
                 ->getForm()
             ;
             $form->handleRequest($request);
@@ -164,11 +164,13 @@ class AccueilController extends Controller
                             $em->flush();
                             if ($request->isMethod('POST')) {
                               $request->getSession()->getFlashBag()->add('notice', 'L utilisateur à été enregistré.');
-                                if ($session->get('users') != NULL){
+                                if ($session->get('users') == NULL){
                                        $session->set('typ', $user->getType());
                                        $session->set('logi', $user->getLogin());
                                        $session->set('pren', $user->getPrenom());
                                        $session->set('users', "present");
+                                    return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
+                                }else{
                                     return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
                                 }
                             }

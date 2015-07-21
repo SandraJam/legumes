@@ -16,6 +16,12 @@
     <br>
     Ces informations ne sont pas à titre commerciales.
     <br>
+      {% for flashMessage in app.session.flashbag.get('notice') %}
+      <div class="flash-notice">
+        {{ flashMessage }}
+      </div>
+    {% endfor %}
+
     {{ form_start(form) }}
       {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'foo'}}) }}
       {{ form_widget(form.nom, {'attr': {'class': 'foo'}}) }}
@@ -66,12 +72,6 @@
       {{ form_widget(form.valider, {'label': 'Valider'}) }}
       {{ form_widget(form.annuler, {'label': 'Annuler'}) }}
     {{ form_end(form) }}
-
-    {% for flashMessage in app.session.flashbag.get('notice') %}
-      <div class="flash-notice">
-        {{ flashMessage }}
-      </div>
-    {% endfor %}
 
   </div>
 {% endblock %}
