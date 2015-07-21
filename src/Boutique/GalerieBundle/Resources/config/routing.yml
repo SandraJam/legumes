@@ -9,3 +9,15 @@ boutique_galerie_panier:
 boutique_galerie_recette:
     path:     /panierrecette/{idRecette}
     defaults: { _controller: BoutiqueGalerieBundle:Galerie:panierRecette }
+
+boutique_galerie_ajoutpanier:
+    path:     /ajoutpanier
+    defaults: { _controller: BoutiqueGalerieBundle:Galerie:ajoutPanier }
+
+boutique_galerie_suppanier:
+    path:     /suppanier/{id}
+    defaults: { _controller: BoutiqueGalerieBundle:Galerie:supPanier }
+
+boutique_galerie_actupanier:
+    path:     /actupanier
+    defaults: { _controller: BoutiqueGalerieBundle:Galerie:actuPanier }

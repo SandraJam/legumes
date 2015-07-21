@@ -37,7 +37,16 @@ class GalerieController extends Controller
 
     public function panierAction()
     {
-        return $this->render('BoutiqueGalerieBundle::panier.html.twig');
+        $session = $this->getRequest()->getSession();
+        $panier = $session->get('panier');
+        $articles = array();
+        foreach ($panier as $artp){
+          $art = $this->getDoctrine()
+                        ->getRepository('BDDBddClientBundle:Article')
+                        ->find($artp[0]);
+          $articles[] = [$art, $artp[1]];
+        }
+        return $this->render('BoutiqueGalerieBundle::panier.html.twig', array('articles' => $articles));
     }
 
     public function panierRecetteAction($idRecette) {
@@ -49,5 +58,76 @@ class GalerieController extends Controller
                     ->findByRecette($recette);
       return $this->render('BoutiqueGalerieBundle::articlesRecette.html.twig',
         array('ingredients' => $ingredients));
+    }
+
+    public function ajoutPanierAction(){
+      $id = $_POST['id'];
+      $quantite = $_POST['quantite'];
+      $session = $this->getRequest()->getSession();
+      if ($session->get('panier') == NULL){
+        $session->set('panier', array());
+        $session->set('nbPanier', 0);
+      }
+      $ok = false;
+      $panier = $session->get('panier');
+      for($i=0; $i < count($panier); $i++){
+        if ($panier[$i][0] == $id){
+          $panier[$i][1] += $quantite;
+          $ok = true;
+        }
+      }
+      if (!$ok){
+        $panier[] = [$id, $quantite];
+      }
+      $session->set('panier', $panier);
+      $nb = $session->get('nbPanier');
+      $session->set('nbPanier', $nb+$quantite);
+      return $this->redirect($this->generateUrl('boutique_galerie_homepage'));
+    }
+
+    public function supPanierAction($id){
+      $session = $this->getRequest()->getSession();
+      if ($session->get('panier') != NULL){
+        $panier = $session->get('panier');
+        $new = array();
+        foreach($panier as $p){
+          if ($p[0] != $id){
+            $new[] = $p;
+          }else{
+            $quantite = $p[1];
+          }
+        }
+        $session->set('panier', $new);
+        $nb = $session->get('nbPanier');
+        $session->set('nbPanier', $nb-$quantite);
+      }
+      return $this->redirect($this->generateUrl('boutique_galerie_panier'));
+    }
+
+    public function actuPanierAction(){
+      $id = $_POST['id'];
+      $quantite = $_POST['quantite'];
+      $session = $this->getRequest()->getSession();
+      if ($session->get('panier') == NULL){
+        $session->set('panier', array());
+        $session->set('nbPanier', 0);
+      }
+
+      $panier = $session->get('panier');
+      $new = array();
+      foreach($panier as $p){
+        if ($p[0] != $id){
+          $new[] = $p;
+        }else{
+          $quantite2 = $p[1];
+        }
+      }
+
+      $new[] = [$id, $quantite];
+      $session->set('panier', $new);
+      $nb = $session->get('nbPanier');
+      $session->set('nbPanier', $nb-$quantite2+$quantite);
+      return $this->redirect($this->generateUrl('boutique_galerie_panier'));
+
     }
 }
