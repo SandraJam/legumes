@@ -31,6 +31,7 @@
 
     <!-- Article -->
     {% set total = 0 %}
+    {% set pan = "" %}
     {% for art in articles %}
       <div class="row blocPanier">
         <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
@@ -92,6 +93,7 @@
         </div>
       </div>
       {% set total = total +  art.0.prix * art.1 %}
+      {% set pan = pan ~ art.0.id ~ ':' ~ art.1 ~ ';' %}
     {% endfor %}
 
     <!-- Resultats -->
@@ -105,9 +107,9 @@
       <div class="col-lg-9 col-md-9 col-sm-0 col-xs-0">
       </div>
       <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-        <button type="button" class="btn btn-default btn-md btn-info">
+        <a role="button" class="btn btn-default btn-md btn-info" href="{{path('boutique_galerie_validepanier', {'panier': pan})}}">
           Valider la commande
-        </button>
+        </a>
       </div>
     </div><br/><br/>
   </div>

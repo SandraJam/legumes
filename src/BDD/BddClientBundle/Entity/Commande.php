@@ -27,21 +27,21 @@ class Commande
      * @ORM\Column(name="NumCommande", type="string", length=255)
      */
     private $numCommande;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="status", type="string", length=15)
      */
      private $status;
-     
+
      /**
      * @var date
      *
      * @ORM\Column(name="dateCommande", type="date")
      */
      private $dateCommande;
-     
+
      /**
       * @ORM\OneToOne(targetEntity="Utilisateurs")
       * @ORM\JoinColumn(name="utilisateurs_id", referencedColumnName="id")
@@ -54,11 +54,12 @@ class Commande
       */
     private $retirerMarches;
 
-     /**
-      * @ORM\ManyToOne(targetEntity="Article")
-      * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
-      */
-    private $listeLeg;
+    /**
+    * @var panier
+    *
+    * @ORM\Column(name="panier", type="string", length=2000)
+    */
+    private $panier;
 
     /**
      * @var integer
@@ -71,7 +72,7 @@ class Commande
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -94,7 +95,7 @@ class Commande
     /**
      * Get numCommande
      *
-     * @return string 
+     * @return string
      */
     public function getNumCommande()
     {
@@ -117,7 +118,7 @@ class Commande
     /**
      * Get utilisateurs
      *
-     * @return string 
+     * @return string
      */
     public function getUtilisateurs()
     {
@@ -140,7 +141,7 @@ class Commande
     /**
      * Get retirerOu
      *
-     * @return string 
+     * @return string
      */
     public function getRetirerOu()
     {
@@ -163,7 +164,7 @@ class Commande
     /**
      * Get listeLeg
      *
-     * @return string 
+     * @return string
      */
     public function getListeLeg()
     {
@@ -186,7 +187,7 @@ class Commande
     /**
      * Get total
      *
-     * @return integer 
+     * @return integer
      */
     public function getTotal()
     {
@@ -209,7 +210,7 @@ class Commande
     /**
      * Get retirerMarches
      *
-     * @return \BDD\BddClientBundle\Entity\Marches 
+     * @return \BDD\BddClientBundle\Entity\Marches
      */
     public function getRetirerMarches()
     {
@@ -232,7 +233,7 @@ class Commande
     /**
      * Get status
      *
-     * @return string 
+     * @return string
      */
     public function getStatus()
     {
@@ -255,7 +256,7 @@ class Commande
     /**
      * Get dateCommande
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCommande()
     {

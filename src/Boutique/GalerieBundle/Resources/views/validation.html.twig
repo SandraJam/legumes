@@ -1,0 +1,50 @@
+{# src/Boutique/GalerieBundle/Resources/views/panier.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/boutiquearticle/css/Boutique.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+  Votre Marché
+{% endblock %}
+
+{% block body %}
+  <div class="container whiteBloc">
+    <h1> Choisir mon Marché! </h1>
+    <div class="row">
+      <form action="{{path('boutique_galerie_validemarche')}}" method="POST">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <label> Choisir mon marché: </label><br/>
+          {% for m in marches %}
+            <input onclick="voir("{{m.id}}");" {% if loop.first %} checked {% endif %}type="radio" name="marche" value="{{m.id}}"/> Marché de {{m.lieu}}, le {{m.jourSemaine}} <br/>
+          {% endfor %}
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          {% for m in marches %}
+            <div id="{{m.id}}" style="display: none;">
+              Le marché de {{m.lieu}} a lieu tous les {{m.jourSemaine}} <br/>
+              {{m.info}}
+            </div>
+          {% endfor %}
+        </div>
+        <br/>
+        <input type="hidden" name="panier" value="{{panier}}"/>
+        <input type="submit" name="valider" value="Valider ma Commande" id="form_suivant" class="bouton"/>
+        <a href="{{path('boutique_galerie_panier')}}" id="form_annuler"> Retour </a>
+        <br/><br/>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block js %}
+<script>
+  function voir(id){
+    {% for m in marches %}
+      document.getElementById("{{m.id}}").style.display = "none";
+    {% endfor %}
+      document.getElementById(id).style.display = "block";
+  }
+</script>
+{% endblock %}

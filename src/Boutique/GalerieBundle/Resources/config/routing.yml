@@ -21,3 +21,11 @@ boutique_galerie_suppanier:
 boutique_galerie_actupanier:
     path:     /actupanier
     defaults: { _controller: BoutiqueGalerieBundle:Galerie:actuPanier }
+
+boutique_galerie_validepanier:
+    path:     /validepanier{panier}
+    defaults: { _controller: BoutiqueGalerieBundle:Galerie:marche }
+
+boutique_galerie_validemarche:
+    path:     /validemarche
+    defaults: { _controller: BoutiqueGalerieBundle:Galerie:validemarche }

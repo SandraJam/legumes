@@ -35,11 +35,18 @@ class Marches
      */
     private $jourSemaine;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="info", type="string", length=1000)
+     */
+    private $info;
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -62,7 +69,7 @@ class Marches
     /**
      * Get lieu
      *
-     * @return string 
+     * @return string
      */
     public function getLieu()
     {
@@ -85,7 +92,7 @@ class Marches
     /**
      * Get jourSemaine
      *
-     * @return string 
+     * @return string
      */
     public function getJourSemaine()
     {

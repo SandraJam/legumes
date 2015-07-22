@@ -7,6 +7,7 @@ use BDD\BddClientBundle\Entity\Recette;
 use BDD\BddClientBundle\Entity\Ingredient;
 use BDD\BddClientBundle\Entity\Article;
 use BDD\BddClientBundle\Entity\Categorie;
+use BDD\BddClientBundle\Entity\Marches;
 
 class GalerieController extends Controller
 {
@@ -129,5 +130,17 @@ class GalerieController extends Controller
       $session->set('nbPanier', $nb-$quantite2+$quantite);
       return $this->redirect($this->generateUrl('boutique_galerie_panier'));
 
+    }
+
+    public function marcheAction($panier) {
+      $marches = $this->getDoctrine()
+                    ->getRepository('BDDBddClientBundle:Marches')
+                    ->findAll();
+      return $this->render('BoutiqueGalerieBundle::validation.html.twig',
+        array('panier' => $panier, 'marches' => $marches));
+    }
+
+    public function validemarcheAction() {
+      
     }
 }
