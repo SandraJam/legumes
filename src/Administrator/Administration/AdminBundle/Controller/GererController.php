@@ -13,7 +13,7 @@ class GererController extends Controller
         $warning = '';
         $session = $this->getRequest()->getSession();
         if ($session->get('pren') != NULL) {
-            //if (strtolower($session->get('typ')) == 'administrateur') {
+            if (strtolower($session->get('typ')) == 'administrateur') {
                 $repository = $this
                         ->getDoctrine()
                         ->getManager()
@@ -24,8 +24,8 @@ class GererController extends Controller
 
                   return $this->render('AdministratorAdministrationAdminBundle:Gerer:gererAdminUser.html.twig',
                        array('listeSuperUser'=>$listeSuperUser));
-            //}else{
-            //}
+            }else{
+            }
 
             //si session vide on reenvoit vers la page d'accueil
         }else{
@@ -38,15 +38,15 @@ class GererController extends Controller
     public function choixActionsClientsAction(){
         $session = $this->getRequest()->getSession();
         if ($session->get('pren') != NULL) {
-            //if (strtolower($session->get('typ')) == 'administrateur') {
+            if (strtolower($session->get('typ')) == 'administrateur') {
                 return $this->render('AdministratorAdministrationAdminBundle:Gerer:ddeActionsClients.html.twig');
-            //}
+            }
         }
     }
     public function administrationDesUtilisateursAdminsAction(Request $request){
         $session = $this->getRequest()->getSession();
         if ($session->get('pren') != NULL) {
-          //  if (strtolower($session->get('typ')) == 'administrateur') {
+            if (strtolower($session->get('typ')) == 'administrateur') {
                 $button = $_POST['buttonName'];
 
                 if ($button == "ChercherClients") {
@@ -61,13 +61,13 @@ class GererController extends Controller
                     //GOTO homepage avec deco
                      return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
                 }
-            //}
+            }
         }
     }
  //gere la modif ou la suppression d'un user sur la page gerer util
     public function gestionUtilisateursAction(Request $request){
         $session = $this->getRequest()->getSession();
-        //if ( ($session->get('pren') != NULL) && (strtolower($session->get('typ')) == 'administrateur') ) {
+        if ( ($session->get('pren') != NULL) && (strtolower($session->get('typ')) == 'administrateur') ) {
             $usersId = $_POST['userId'];
             $button = $_POST['buttonId'];
             $repository = $this
@@ -94,7 +94,7 @@ class GererController extends Controller
                 //GOTO page de modification de user A FINIR administration_admin_modifierUser
                  return $this->render('AdministratorAdministrationAdminBundle:Gerer:pageModifierUser.html.twig', array('user' => $users));
             }
-        //}
+        }
     }
 
 
@@ -172,7 +172,7 @@ class GererController extends Controller
 
   public function modifierUserAction($id,Request $Request){
         $session = $this->getRequest()->getSession();
-      //  if ( ($session->get('pren') != NULL) && (strtolower($session->get('typ')) == 'administrateur') ) {
+        if ( ($session->get('pren') != NULL) && (strtolower($session->get('typ')) == 'administrateur') ) {
             $repository = $this
                         ->getDoctrine()
                         ->getManager()
@@ -212,7 +212,7 @@ class GererController extends Controller
             return $this->redirect($this->generateUrl('administration_admin_PREresultatChercherClient'));
 
 
-      //  }
+        }
     }
     public function suivitDesCommandesAction(){
 
