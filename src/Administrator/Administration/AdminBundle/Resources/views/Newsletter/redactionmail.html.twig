@@ -1,0 +1,87 @@
+{# src/Administrator/Adminstration/AdminBundle/Resources/views/redactionmail.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+  Rédaction du Mail
+{% endblock %}
+
+{% block body %}
+  <form action="{{path('administrator_mail_previsualisation')}}" method="POST" enctype="multipart/form-data">
+    <div class="container whiteBloc">
+      <div class="center">
+        <h1> Ecrire sa Newsletter </h1>
+        <br/>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <label> Sujet de la NewsLetter: </label><input type="text" name="sujet" required/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+            <div class="border">
+              <h1> Paragraphe 1</h1>
+              <p> Titre paragraphe 1: </p>
+              <input type="text" name="titre1" class="titreMail"/><br/><br/>
+              <p> Contenu du paragraphe 1: </p>
+              <textarea name="contenu1"></textarea>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+            <div class="border">
+              <h1> Option du paragraphe 1</h1>
+              <label> Image: </label><input type="file" name="image1" class="titreMail"/><br/>
+              <label> Si oui, position: </label>
+              <div class="radio">
+                <input type="radio" name="posimage1" value="dessus" checked> Au dessus<br/>
+                <input type="radio" name="posimage1" value="dessous"> Au dessous<br/>
+                <input type="radio" name="posimage1" value="gauche"> A gauche<br/>
+                <input type="radio" name="posimage1" value="droite"> A droite<br/><br/>
+              </div>
+              <label> Couleur du titre: </label>
+              <select name="colortitre1">
+                <option value="black" selected> Noir </option>
+                <option value="red" > Rouge </option>
+                <option value="green" > Vert </option>
+                <option value="orange" > Orange </option>
+                <option value="brown" > Marron </option>
+                <option value="blue" > Bleu </option>
+              </select><br/><br/>
+              <label> Couleur du contenu: </label>
+              <select name="colorcontenu1">
+                <option value="black" selected> Noir </option>
+                <option value="red" > Rouge </option>
+                <option value="green" > Vert </option>
+                <option value="orange" > Orange </option>
+                <option value="brown" > Marron </option>
+                <option value="blue" > Bleu </option>
+              </select><br/>
+            </div>
+          </div>
+        </div>
+
+        <button id="before" class="btn btn-default btn-lg btn-info" type="button" onclick="ajout();">Ajouter un Paragraphe</button>
+        <br/><br/>
+        <input type="hidden" name="nb" value="1" id="nb"/>
+        <input type="submit" name="valider" value="Prévisualisation" id="form_suivant" class="bouton"/>
+        <a href="{{path('goadministrator_administration')}}" id="form_annuler"> Retour </a>
+        <br/><br/>
+      </div>
+    </div>
+  </form>
+{% endblock %}
+
+{% block js %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+  function ajout(){
+    var valeur=parseInt(document.getElementById("nb").value) +1;
+    var neww = '<div class="row"><div class="col-lg-8 col-md-8 col-sm-7 col-xs-12"><div class="border"><h1> Paragraphe '+valeur+'</h1><p> Titre paragraphe '+valeur+': </p><input type="text" name="titre'+valeur+'" class="titreMail"/><br/><br/><p> Contenu du paragraphe '+valeur+': </p><textarea name="contenu'+valeur+'"></textarea></div></div><div class="col-lg-4 col-md-4 col-sm-5 col-xs-12"><div class="border"><h1> Option du paragraphe '+valeur+'</h1><label> Image: </label><input type="file" name="image'+valeur+'" class="titreMail"/><br/><label> Si oui, position: </label><div class="radio"><input type="radio" name="posimage'+valeur+'" value="dessus" checked> Au dessus<br/><input type="radio" name="posimage'+valeur+'" value="dessous"> Au dessous<br/><input type="radio" name="posimage'+valeur+'" value="gauche"> A gauche<br/><input type="radio" name="posimage'+valeur+'" value="droite"> A droite<br/><br/></div><label> Couleur du titre: </label><select name="colortitre'+valeur+'"><option value="black" selected> Noir </option><option value="red" > Rouge </option><option value="green" > Vert </option><option value="orange" > Orange </option><option value="brown" > Marron </option><option value="blue" > Bleu </option>  </select><br/><br/><label> Couleur du contenu: </label><select name="colorcontenu'+valeur+'">  <option value="black" selected> Noir </option><option value="red" > Rouge </option>  <option value="green" > Vert </option><option value="orange" > Orange </option><option value="brown" > Marron </option><option value="blue" > Bleu </option></select><br/></div></div></div>';
+    document.getElementById("nb").value = valeur;
+    $(neww).insertBefore("#before");
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,20 @@
+{# src/Administrator/Adminstration/AdminBundle/Resources/views/previsualisation.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+ Prévisualisation
+{% endblock %}
+
+{% block body %}
+  <div class="container whiteBloc">
+    {{ mail|raw }}<br/>
+    <input type="submit" name="valider" value="Valider" id="form_suivant" class="bouton"/>
+    <input type="submit" name="modifier" value="Modifier" id="form_retour" class="bouton"/>
+    <a href="{{path('goadministrator_administration')}}" id="form_annuler"> Annuler </a>
+    <br/><br/>
+  </div>
+{% endblock %}

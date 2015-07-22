@@ -29,7 +29,7 @@ administrator_administration_admin_gerer_Clients:
 administrator_administration_admin_add_Utilisateur_admin:
     path:     /gererUtil
     defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:lesUtilisateursAdmins }
-    
+
 administrator_administration_admin_gerer_Utilisateur_admin:
     path:     /gererUtilisateurs
     defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:administrationDesUtilisateursAdmins }
@@ -117,3 +117,11 @@ administrator_administration_admin_actions_Utilisateur_admin:
 administrator_administration_admin_modifierUser:
     path:      /modifierUtilisateur{id}
     defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:modifierUser }
+
+administrator_mail_redaction:
+    path:      /redactionmail
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Newsletter:redaction }
+
+administrator_mail_previsualisation:
+    path:      /previsualisation
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Newsletter:previsualisation }

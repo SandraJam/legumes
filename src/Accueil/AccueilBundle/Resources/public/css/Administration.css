@@ -316,3 +316,33 @@ input.radio {
   width: 50%;
   display: inline-block;
 }
+
+/* Mail */
+.border {
+  border: 2px dashed grey;
+  margin: 1em;
+  padding: 1em;
+  height: 35em;
+}
+
+.border textarea {
+  height: 20em;
+  width: 95%;
+}
+
+.border .titreMail {
+  width: 95%;
+}
+
+.border label{
+  width: 100%;
+}
+
+.border .radio {
+  text-align: left;
+}
+
+.border .radio input {
+  width: 40%;
+  margin-left: 4em;
+}
