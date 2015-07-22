@@ -25,9 +25,11 @@ administrator_administration_admin_gerer_Recettes:
 administrator_administration_admin_gerer_Clients:
     path:     /gererClients
     defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:lesCoordsClients }
+
 administrator_administration_admin_add_Utilisateur_admin:
     path:     /gererUtil
     defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:lesUtilisateursAdmins }
+    
 administrator_administration_admin_gerer_Utilisateur_admin:
     path:     /gererUtilisateurs
     defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:administrationDesUtilisateursAdmins }
@@ -55,9 +57,10 @@ administration_admin_modifierRecette:
 administration_admin_modifierbisRecette:
     path:     /modifierbisrecette/{id}
     defaults: { _controller: AdministratorAdministrationAdminBundle:Recette:modifierbis }
+
 administrator_administration_admin_gerer_notre_histoire:
     path:     /gererHist
-    defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:gererHistoire }
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Histoire:pageAccueilGestionHistoire }
 
 administrator_ajout_categorie:
     path:     /ajoutcategorie
@@ -110,6 +113,7 @@ administration_admin_resultatChercherClient:
 administrator_administration_admin_actions_Utilisateur_admin:
     path:      /resultatsClients
     defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:gestionUtilisateurs }
+
 administrator_administration_admin_modifierUser:
     path:      /modifierUtilisateur{id}
     defaults: { _controller: AdministratorAdministrationAdminBundle:Gerer:modifierUser }
