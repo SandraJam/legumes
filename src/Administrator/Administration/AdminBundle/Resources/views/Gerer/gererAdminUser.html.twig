@@ -11,45 +11,84 @@
 
 {% block body %}
   <div class="container whiteBloc">
-    <h1>administrateur : page de gestion des clients</h1>
-    <div class="blocUn">
-      <form action="{{ path('administrator_administration_admin_actions_Utilisateur_admin') }}" method="post">
-          <table>
-                <tr>
-                    <th class="nom">Nom</th>
-                    <th class="prenom">prénom</th>
-                    <th class="adresse">Adresse</th>
-                    <th class="codePostal">Code Postal</th>
-                    <th class="ville">Ville</th>
-                    <th class="dateNaissance">Date de Naissance</th>
-                    <th class="tel">Numéro de téléphone</th>
-                    <th class="email">Email</th>
-                    <th class="actions" colspan="2">Action</th>
-                </tr>
-               {% for superUser in listClients %}
-                     <tr>
+    <div class="center">
+      <h1>Gestion des Clients</h1>
+      <div class="row recette">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+          <strong> Nom </strong>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+          <strong> Prénom </strong>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <strong> Ville </strong>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+          <strong> Numéro </strong>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+          <strong> E-mail </strong>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <strong> Fonctions </strong>
+        </div>
+      </div>
 
-                         <td id="nomtd {{loop.index}}">{{ superUser.nom }}</td>
-                         <td id="prenomtd {{loop.index}}">{{ superUser.prenom }}</td>
-                         <td id="adressetd {{loop.index}}">{{ superUser.adresse }}</td>
-                         <td id="codePostaltd {{loop.index}}">{{ superUser.codePostal }}</td>
-                         <td id="villetd {{loop.index}}">{{ superUser.ville }}</td>
-                         <td id="dateNaissancetd {{loop.index}}">{{ superUser.dateNaissance }}</td>
-                         <td id="teltd {{loop.index}}">{{ superUser.tel }}</td>
-                         <td id="emailtd {{loop.index}}">{{ superUser.email }}</td>
-                         <td id="boutonModif"><button type="submit" name="modif" value="Modif" onClick="buttonSelected(this,{{ superUser.id }})">Modifier</button></td>
-                         <td id="boutonSuppr"><button type="submit" name="suppr" value="Suppr" onClick="buttonSelected(this,{{ superUser.id }})">Supprimer</button></td>
-                    </tr>
-                {% endfor %}
-          </table>
-          <div class="blocB">            
-            <button type="submit" name="annuler" value="Retour" onclick="history.back()">Retour</button> 
-            <input type="hidden" name="userId" id="userId" value="">
-            <input type="hidden" name="buttonId" id="buttonId" value="">
+      {% for superUser in listClients %}
+        <div class="row recette">
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+            {{ superUser.nom|capitalize }}
           </div>
-      </form>
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+            {{ superUser.prenom|capitalize }}
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            {{ superUser.ville|capitalize }}
+          </div>
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+            {{ superUser.tel }}
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+            {{ superUser.email }}
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="btn-group" role="group">
+              <form action="{{ path('administrator_administration_admin_actions_Utilisateur_admin') }}" method="post">
+                <button onclick="entier('{{superUser.id}}')" type="button" class="btn btn-default btn-md btn-info">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Voir
+                </button>
+                <button  name="modif" value="Modif" onClick="buttonSelected(this,{{ superUser.id }})" class="btn btn-default btn-md btn-warning" type="submit">
+                  <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Modifier
+                </button>
+                <button  name="suppr" value="Suppr" onClick="buttonSelected(this,{{ superUser.id }})" class="btn btn-default btn-md btn-danger" type="submit">
+                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer
+                </button>
+                <input type="hidden" name="userId" id="userId" value="">
+                <input type="hidden" name="buttonId" id="buttonId" value="">
+              </form>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
     </div>
-  </div>  
+  </div>
+
+  {% for superUser in listClients %}
+    <div id="{{superUser.id}}" class="recetteEntiere row">
+      <img class="fermer" onclick="fermer('{{superUser.id}}')"
+      src="{{ asset('bundles/accueilaccueil/images/close.png')}}"
+      alt="fermer la fenetre"/>
+      <div>
+        <h1> {{superUser.nom|capitalize}} {{superUser.prenom|capitalize}}</h1>
+        <strong> Adresse:</strong> {{ superUser.adresse }} <br/>
+        <strong> Code Postal:</strong> {{ superUser.codePostal }} <br/>
+        <strong> Ville:</strong> {{ superUser.ville|capitalize }} <br/>
+        <strong> Date de Naissance:</strong> {{ superUser.dateNaissance }} <br/>
+        <strong> Téléphone:</strong> {{ superUser.tel }} <br/>
+        <strong> E-Mail:</strong> {{ superUser.email }} <br/>
+      </div>
+    </div>
+  {% endfor %}
 {% endblock %}
 
 {% block js %}
@@ -60,5 +99,12 @@
       document.getElementById("userId").value = userId;
     }
 
+    function entier(id) {
+      document.getElementById(id).style.display = "block";
+    }
+
+    function fermer(id) {
+      document.getElementById(id).style.display = "none";
+    }
   </script>
 {% endblock %}

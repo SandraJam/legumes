@@ -2,7 +2,7 @@
 {% extends '::base.html.twig' %}
 
 {% block style %}
-  
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block title %}
@@ -10,34 +10,32 @@
 {% endblock %}
 
 {% block body %}
-  <H1>administrateur : Modification des utilisateurs</h1>
-
-<form action="{{path('administrator_administration_admin_modifierUser', {'id': user.id})}}"" method="POST" enctype="multipart/form-data">
-  <div class="container login">
-          <h1> Modifier l'utilisateur "{{user.nom}} {{user.prenom}}"</h1>
-          <label> Nom: </label><input type="text" value="{{user.nom}}" name="neme"/><br/>
-          <label> Prénom: </label><input type="text" value="{{user.prenom}}" name="pren"/><br/>
-          <label> Login: </label><input type="text" value="{{user.login}}" name="log"/><br/>
-          <label> Mot de passe : </label><input type="text" value="" name="password"/><br/>
-          <label> Adresse: </label><input type="text" value="{{user.adresse}}" name="adress"/><br/>
-          <label> Code postal: </label><input type="text" value="{{user.codePostal}}" name="cp"/><br/><br/>
-        	<label> Ville: </label><input type="text" value="{{user.ville}}" name="lieu"/><br/><br/>
-            <label> Type: administrateur ou client</label><input type="text" value="{{user.type}}" name="typ"/><br/><br/>
-            <label> Date de naissance: </label>
-        	<input type="text" value="{{user.jour}}" name="jour"/><br/><br/>
-           <input type="text" value="{{user.mois}}" name="mois"/><br/><br/>
-            <input type="text" value="{{user.annee}}" name="annee"/><br/><br/>
-            <label> tel: </label><input type="text" value="{{user.tel}}" name="t"/><br/><br/>
-            <label> email: </label><input type="text" value="{{user.email}}" name="mail"/><br/><br/>
-        
-            <input type="submit" name="valider" value="Modifier" id="form_suivant" class="bouton"/>
-            <button type="submit" name="annuler" value="Retour" onclick="history.back()">Retour</button> 
+<div class="container whiteBloc">
+  <div class="center">
+    <h1>Modification du client {{user.nom|capitalize}} {{user.prenom|capitalize}}</h1>
+    <form action="{{path('administrator_administration_admin_modifierUser', {'id': user.id})}}" method="POST" enctype="multipart/form-data">
+      <label> Nom: </label><input type="text" value="{{user.nom}}" name="neme"/><br/>
+      <label> Prénom: </label><input type="text" value="{{user.prenom}}" name="pren"/><br/>
+      <label> Login: </label><input type="text" value="{{user.login}}" name="log"/><br/>
+      <label> Mot de passe : </label><input type="text" value="" name="password"/><br/>
+      <label> Adresse: </label><input type="text" value="{{user.adresse}}" name="adress"/><br/>
+      <label> Code postal: </label><input type="text" value="{{user.codePostal}}" name="cp"/><br/><br/>
+      <label> Ville: </label><input type="text" value="{{user.ville}}" name="lieu"/><br/><br/>
+      <label> Type: administrateur ou client</label><input type="text" value="{{user.type}}" name="typ"/><br/><br/>
+      <label> Date de naissance: </label>
+      <div class="date"><input type="number" value="{{user.jour}}" name="jour" class="jour"/>
+      <input type="number" value="{{user.mois}}" name="mois" class="jour"/>
+      <input type="number" value="{{user.annee}}" name="annee" class="annee"/></div><br/><br/>
+      <label> Téléphone: </label><input type="text" value="{{user.tel}}" name="t"/><br/><br/>
+      <label> E-mail: </label><input type="text" value="{{user.email}}" name="mail"/><br/><br/>
+      <input type="submit" name="valider" value="Modifier" id="form_suivant" class="bouton"/>
+      <a id="form_annuler" onclick="history.back()" href='#'>Retour</a><br/><br/>
+    </form>
   </div>
+</div>
 
-</form>
 {% endblock %}
 
 {% block js %}
 
 {% endblock %}
-

@@ -1,5 +1,8 @@
+{# src/Administrator/Administration/views/Gerer/ddeActionsClients.html.twig #}
+{% extends '::base.html.twig' %}
+
 {% block style %}
-  
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block title %}
@@ -7,28 +10,34 @@
 {% endblock %}
 
 {% block body %}
-  <H1>administrateur : Chercher des clients </h1>
-   {% for flashMessage in app.session.flashbag.get('notice') %}
+  <div class="container whiteBloc">
+    <div class="center">
+      <h1> Chercher des Clients </h1>
+      {% for flashMessage in app.session.flashbag.get('notice') %}
         <div class="flash-notice">
-            {{ flashMessage }}
+          {{ flashMessage }}
         </div>
-    {% endfor %}
-    <form action="{{ path('administration_admin_PREresultatChercherClient') }}" method="post" {{ form_enctype(form) }} class="blogger">
-        {{ form_errors(form) }}
-          {{ form_label(form.nom, 'Nom:', {'label_attr': {'class': 'foo'}}) }}
-          {{ form_widget(form.nom, {'attr': {'class': 'foo'}}) }}
-          <br/>
-          {{ form_label(form.ville, 'Ville:', {'label_attr': {'class': 'foo'}}) }}
-          {{ form_widget(form.ville, {'attr': {'class': 'foo'}}) }}
-          <br/>
-          {{ form_label(form.codePostal, 'Code Postal:', {'label_attr': {'class': 'foo'}}) }}
-          {{ form_widget(form.codePostal, {'attr': {'class': 'foo'}}) }}
-          <br/
-        {{ form_rest(form) }}
-        <button type="submit" name="annuler" value="Retour" onclick="history.back()">Retour</button> 
-    </form>
+      {% endfor %}
+      <form action="{{ path('administration_admin_PREresultatChercherClient') }}" method="post" {{ form_enctype(form) }} class="blogger">
+          {{ form_errors(form) }}
+            {{ form_label(form.nom, 'Nom:', {'label_attr': {'class': 'foo'}}) }}
+            {{ form_widget(form.nom, {'attr': {'class': 'foo'}}) }}
+            <br/>
+            {{ form_label(form.ville, 'Ville:', {'label_attr': {'class': 'foo'}}) }}
+            {{ form_widget(form.ville, {'attr': {'class': 'foo'}}) }}
+            <br/>
+            {{ form_label(form.codePostal, 'Code Postal:', {'label_attr': {'class': 'foo'}}) }}
+            {{ form_widget(form.codePostal, {'attr': {'class': 'foo'}}) }}
+            <br/>
+          {{ form_rest(form) }}
+          <a href="{{path('administration_admin_demdeActionsClient')}}" id="form_annuler"> Retour </a>
+      </form>
+
+      <br/><br/>
+    </div>
+  </div>
 {% endblock %}
 
 {% block js %}
-  
+
 {% endblock %}
