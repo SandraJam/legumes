@@ -27,6 +27,7 @@ class GalerieController extends Controller
           $a = $this->getDoctrine()
                         ->getRepository('BDDBddClientBundle:Article')
                         ->findOneByCategorie($c);
+   
           $categories[] = [$c, $a->getPhotos()];
         }
 

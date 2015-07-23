@@ -145,3 +145,19 @@ administrator_marches_modif:
 administrator_marches_modifbis:
     path:      /marchemodifbis/{id}
     defaults: { _controller: AdministratorAdministrationAdminBundle:Marches:modifbis }
+
+administrator_administration_admin_gerer_notre_histoire:
+    path:     /gererHist
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Histoire:pageAccueilGestionHistoire }
+
+administrator_administration_admin_quoiFaireHistoire:
+    path:      /ModifSupprHistoire
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Histoire:modificationActionHistoire }
+
+administrator_administration_admin_ajouterHistoire:
+    path:      /ajoutHistoire
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Histoire:ajouterHistoire }
+
+administrator_administration_admin_ajouterBisBHistoire:
+    path:      /ajoutBisHistoire
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Histoire:ajouterHistoireBis }

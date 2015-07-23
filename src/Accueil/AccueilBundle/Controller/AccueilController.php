@@ -143,8 +143,10 @@ class AccueilController extends Controller
                       $request->getSession()->getFlashBag()->add('notice', 'l\'adresse mail n\'est pas valide.');
                     }
                     $connexion = $form -> getData();
+
                             $birth = ($connexion->getJour()."-".$connexion->getMois()."-".$connexion->getAnnee());
                     $connexion->setDateNaissance(strval($birth));
+                    $connexion->setType("client");
                     $user = $this->getDoctrine()
                         ->getRepository('BDDBddClientBundle:Utilisateurs')
                         ->findOneBy(array('login' => $connexion->getLogin(), 'nom' => $connexion->getNom()));

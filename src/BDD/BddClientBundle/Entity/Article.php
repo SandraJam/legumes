@@ -329,4 +329,14 @@ class Article
     {
         return $this->bonplan;
     }
+
+    /**
+     * Get bonplan
+     *
+     * @return boolean 
+     */
+    public function getBonplan()
+    {
+        return $this->bonplan;
+    }
 }
