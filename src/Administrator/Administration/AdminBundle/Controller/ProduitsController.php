@@ -12,16 +12,16 @@ class ProduitsController extends Controller
   public function indexAction(){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
-      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+        if (strtolower($session->get('typ')) == 'administrateur') {
           $categories = $this->getDoctrine()
                         ->getRepository('BDDBddClientBundle:Categorie')
                         ->findAll();
           return $this->render(
             'AdministratorAdministrationAdminBundle:Produits:produits.html.twig',
             array('categories' => $categories));
-      /*  }else{
+        }else{
           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-        }*/
+        }
     }else{
       return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
     }
@@ -30,7 +30,7 @@ class ProduitsController extends Controller
   public function ajoutCatAction(Request $request){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
-      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+        if (strtolower($session->get('typ')) == 'administrateur') {
 
       $categorie = new Categorie();
       $form = $this->createFormBuilder($categorie)
@@ -62,9 +62,9 @@ class ProduitsController extends Controller
       return $this->render('AdministratorAdministrationAdminBundle:Produits:produitsAjout.html.twig',
             array('form' => $form->createView()) );
 
-      /*  }else{
+        }else{
           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-        }*/
+        }
     }else{
       return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
     }
@@ -73,7 +73,7 @@ class ProduitsController extends Controller
   public function supprimerCategorieAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
-      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+        if (strtolower($session->get('typ')) == 'administrateur') {
         $cat = $this->getDoctrine()
           ->getRepository('BDDBddClientBundle:Categorie')->find($id);
         $articles = $this->getDoctrine()
@@ -85,9 +85,9 @@ class ProduitsController extends Controller
         $em->remove($cat);
         $em->flush();
         return $this->redirect($this->generateUrl('administrator_administration_admin_gererProduits'));
-      /*  }else{
+        }else{
           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-        }*/
+        }
     }else{
       return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
     }
@@ -96,14 +96,14 @@ class ProduitsController extends Controller
   public function modifierCategorieAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
-      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+        if (strtolower($session->get('typ')) == 'administrateur') {
       $categorie = $this->getDoctrine()
         ->getRepository('BDDBddClientBundle:Categorie')->find($id);
       return $this->render('AdministratorAdministrationAdminBundle:Produits:produitsCatModifier.html.twig',
               array('categorie' => $categorie) );
-      /*  }else{
+        }else{
           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-        }*/
+        }
     }else{
       return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
     }
@@ -112,7 +112,7 @@ class ProduitsController extends Controller
   public function modifierbisCategorieAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
-      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+        if (strtolower($session->get('typ')) == 'administrateur') {
       $categorie = $this->getDoctrine()
         ->getRepository('BDDBddClientBundle:Categorie')->find($id);
       $nom = $_POST['nom'];
@@ -132,9 +132,9 @@ class ProduitsController extends Controller
       }
 
       return $this->redirect($this->generateUrl('administrator_administration_admin_gererProduits'));
-      /*  }else{
+        }else{
           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-        }*/
+        }
     }else{
       return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
     }
@@ -144,7 +144,7 @@ class ProduitsController extends Controller
   public function ajoutArtAction($id, Request $request){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
-      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+        if (strtolower($session->get('typ')) == 'administrateur') {
 
       $article = new Article();
       $cat = $this->getDoctrine()
@@ -215,9 +215,9 @@ class ProduitsController extends Controller
       return $this->render('AdministratorAdministrationAdminBundle:Produits:produitsProduitsAjout.html.twig',
             array('form' => $form->createView(), 'cat' => $cat) );
 
-      /*  }else{
+        }else{
           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-        }*/
+        }
     }else{
       return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
     }
@@ -226,16 +226,16 @@ class ProduitsController extends Controller
   public function modifierArtAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
-      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+        if (strtolower($session->get('typ')) == 'administrateur') {
         $article = $this->getDoctrine()
           ->getRepository('BDDBddClientBundle:Article')->find($id);
         $categories = $this->getDoctrine()
           ->getRepository('BDDBddClientBundle:Categorie')->findAll();
         return $this->render('AdministratorAdministrationAdminBundle:Produits:produitsProduitsModif.html.twig',
                 array('article' => $article, 'categories' => $categories) );
-     /* }else{
+      }else{
           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-        }*/
+        }
     }else{
       return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
     }
@@ -244,7 +244,7 @@ class ProduitsController extends Controller
   public function modifierbisArtAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
-      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+        if (strtolower($session->get('typ')) == 'administrateur') {
       $article = $this->getDoctrine()
         ->getRepository('BDDBddClientBundle:Article')->find($id);
 
@@ -318,9 +318,9 @@ class ProduitsController extends Controller
 
       return $this->redirect($this->generateUrl('administrator_base_article', array('id' => $article->getCategorie()->getId())));
 
-     /* }else{
+      }else{
           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-        }*/
+        }
     }else{
       return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
     }
@@ -329,7 +329,7 @@ class ProduitsController extends Controller
   public function supprimerArtAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
-      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+        if (strtolower($session->get('typ')) == 'administrateur') {
         $article = $this->getDoctrine()
           ->getRepository('BDDBddClientBundle:Article')->find($id);
         $em = $this->getDoctrine()->getManager();
@@ -338,9 +338,9 @@ class ProduitsController extends Controller
         $em->remove($article);
         $em->flush();
         return $this->redirect($this->generateUrl('administrator_base_article', array('id' => $article->getCategorie()->getId())));
-      /*  }else{
+        }else{
           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-        }*/
+        }
     }else{
       return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
     }
@@ -349,7 +349,7 @@ class ProduitsController extends Controller
   public function baseArtAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
-      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+        if (strtolower($session->get('typ')) == 'administrateur') {
           $categorie = $this->getDoctrine()
                         ->getRepository('BDDBddClientBundle:Categorie')
                         ->find($id);
@@ -359,9 +359,9 @@ class ProduitsController extends Controller
           return $this->render(
             'AdministratorAdministrationAdminBundle:Produits:produitsProduits.html.twig',
             array('cat' => $categorie, 'articles' => $articles));
-      /*  }else{
+        }else{
           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-        }*/
+        }
     }else{
       return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
     }

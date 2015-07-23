@@ -193,7 +193,7 @@ a, a:hover, a:focus, a:visited {
 
 
 /* Bouton */
-.bouton {
+.bouuton {
   margin-top: 1em;
   margin-bottom: 1em;
   border: none;
@@ -206,7 +206,7 @@ a, a:hover, a:focus, a:visited {
   text-decoration: none;
 }
 
-.bouton:hover {
+.bouuton:hover {
   text-decoration: none;
   color: #ffffff;
 }

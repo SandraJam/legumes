@@ -12,9 +12,9 @@ class NewsletterController extends Controller
   public function redactionAction(){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
-      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+        if (strtolower($session->get('typ')) == 'administrateur') {
         return $this->render('AdministratorAdministrationAdminBundle:Newsletter:redactionmail.html.twig');
-      // }
+       }
     }
     return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
   }
@@ -22,7 +22,7 @@ class NewsletterController extends Controller
   public function previsualisationAction(){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
-      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+        if (strtolower($session->get('typ')) == 'administrateur') {
         $nbPar = $_POST['nb'];
         $mail = "<html>";
         $subject = $_POST['sujet'];
@@ -62,7 +62,7 @@ class NewsletterController extends Controller
         }
         $mail .= '</html>';
         return $this->render('AdministratorAdministrationAdminBundle:Newsletter:previsualisation.html.twig', array('mail' => $mail));
-      // }
+       }
     }
     return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
 

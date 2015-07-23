@@ -23,7 +23,7 @@ boutique_galerie_actupanier:
     defaults: { _controller: BoutiqueGalerieBundle:Galerie:actuPanier }
 
 boutique_galerie_validepanier:
-    path:     /validepanier{panier}
+    path:     /validepanier
     defaults: { _controller: BoutiqueGalerieBundle:Galerie:marche }
 
 boutique_galerie_validemarche:

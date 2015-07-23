@@ -11,16 +11,16 @@ class MarchesController extends Controller
     public function indexAction(){
       $session = $this->getRequest()->getSession();
       if ($session->get('pren') != NULL) {
-        /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+          if (strtolower($session->get('typ')) == 'administrateur') {
             $marches = $this->getDoctrine()
                           ->getRepository('BDDBddClientBundle:Marches')
                           ->findAll();
             return $this->render('AdministratorAdministrationAdminBundle:Marches:marchesAdmin.html.twig', array(
               'marches' => $marches
             ));
-        /*  }else{
+          }else{
             return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-          }*/
+          }
       }else{
         return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
       }
@@ -29,7 +29,7 @@ class MarchesController extends Controller
     public function ajoutAction(Request $request){
       $session = $this->getRequest()->getSession();
       if ($session->get('pren') != NULL) {
-        /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+          if (strtolower($session->get('typ')) == 'administrateur') {
         $marche = new Marches();
         $form = $this->createFormBuilder($marche)
            ->add('lieu','text')
@@ -64,9 +64,9 @@ class MarchesController extends Controller
         }
         return $this->render('AdministratorAdministrationAdminBundle:Marches:marchesAjout.html.twig',
               array('form' => $form->createView()) );
-        /*  }else{
+          }else{
             return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-          }*/
+          }
       }else{
         return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
       }
@@ -75,16 +75,16 @@ class MarchesController extends Controller
     public function suppAction($id){
       $session = $this->getRequest()->getSession();
       if ($session->get('pren') != NULL) {
-        /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+          if (strtolower($session->get('typ')) == 'administrateur') {
           $marche = $this->getDoctrine()
             ->getRepository('BDDBddClientBundle:Marches')->find($id);
           $em = $this->getDoctrine()->getManager();
           $em->remove($marche);
           $em->flush();
           return $this->redirect($this->generateUrl('administrator_marches_index'));
-        /*  }else{
+          }else{
             return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-          }*/
+          }
       }else{
         return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
       }
@@ -93,14 +93,14 @@ class MarchesController extends Controller
     public function modifAction($id){
       $session = $this->getRequest()->getSession();
       if ($session->get('pren') != NULL) {
-        /* if (strtolower($session->get('typ')) == 'administrateur') {*/
+         if (strtolower($session->get('typ')) == 'administrateur') {
           $marches = $this->getDoctrine()
               ->getRepository('BDDBddClientBundle:Marches')->find($id);
           return $this->render('AdministratorAdministrationAdminBundle:Marches:marchesModif.html.twig',
                   array('marches' => $marches));
-       /* }else{
+        }else{
             return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-          }*/
+          }
       }else{
         return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
       }
@@ -109,7 +109,7 @@ class MarchesController extends Controller
     public function modifbisAction($id){
       $session = $this->getRequest()->getSession();
       if ($session->get('pren') != NULL) {
-        /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+          if (strtolower($session->get('typ')) == 'administrateur') {
         $marche = $this->getDoctrine()
           ->getRepository('BDDBddClientBundle:Marches')->find($id);
         $ingredients = $this->getDoctrine();
@@ -135,9 +135,9 @@ class MarchesController extends Controller
             $em->flush();
           }
           return $this->redirect($this->generateUrl('administrator_marches_modif', array('id' => $id)));
-       /* }else{
+        }else{
             return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-          }*/
+          }
       }else{
         return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
       }

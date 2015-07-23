@@ -43,13 +43,13 @@ class Commande
      private $dateCommande;
 
      /**
-      * @ORM\OneToOne(targetEntity="Utilisateurs")
+      * @ORM\ManyToOne(targetEntity="Utilisateurs")
       * @ORM\JoinColumn(name="utilisateurs_id", referencedColumnName="id")
       */
     private $utilisateurs;
 
     /**
-      * @ORM\OneToOne(targetEntity="Marches")
+      * @ORM\ManyToOne(targetEntity="Marches")
       * @ORM\JoinColumn(name="marches_id", referencedColumnName="id")
       */
     private $retirerMarches;
@@ -60,6 +60,13 @@ class Commande
     * @ORM\Column(name="panier", type="string", length=2000)
     */
     private $panier;
+
+    /**
+    * @var remarque
+    *
+    * @ORM\Column(name="remarque", type="string", length=1000)
+    */
+    private $remarque;
 
     /**
      * @var integer
@@ -88,6 +95,52 @@ class Commande
     public function setNumCommande($numCommande)
     {
         $this->numCommande = $numCommande;
+
+        return $this;
+    }
+
+    /**
+     * Get panier
+     *
+     * @return string
+     */
+    public function getPanier()
+    {
+        return $this->panier;
+    }
+
+    /**
+     * Set panier
+     *
+     * @param string $panier
+     * @return Commande
+     */
+    public function setPanier($panier)
+    {
+        $this->panier = $panier;
+
+        return $this;
+    }
+
+    /**
+     * Get remarque
+     *
+     * @return string
+     */
+    public function getRemarque()
+    {
+        return $this->remarque;
+    }
+
+    /**
+     * Set remarque
+     *
+     * @param string $remarque
+     * @return Commande
+     */
+    public function setRemarque($remarque)
+    {
+        $this->remarque = $remarque;
 
         return $this;
     }
@@ -146,29 +199,6 @@ class Commande
     public function getRetirerOu()
     {
         return $this->retirerOu;
-    }
-
-    /**
-     * Set listeLeg
-     *
-     * @param string $listeLeg
-     * @return Commande
-     */
-    public function setListeLeg($listeLeg)
-    {
-        $this->listeLeg = $listeLeg;
-
-        return $this;
-    }
-
-    /**
-     * Get listeLeg
-     *
-     * @return string
-     */
-    public function getListeLeg()
-    {
-        return $this->listeLeg;
     }
 
     /**

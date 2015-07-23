@@ -1,0 +1,21 @@
+{# src/Accueil/AccueilBundle/Resources/view/valid.txt.twig #}
+<html>
+<body>
+  <img src="{{image}}"><br/>
+  <strong> Les Légumes du Val de Loire vous remercie de votre commande. </strong>
+  <p> Commande N°{{commande.numCommande}} à récupérer le {{commande.retirerMarches.jourSemaine}} au marché de {{commande.retirerMarches.lieu}}
+    <br/> Récupitulatif pour un total de {{commande.total}}€: </p>
+
+  <table style="width: 90%; border: 1px solid grey; border-collapse: collapse;">
+    <tr>
+      <td>Nom</td><td>Quantité</td><td>Prix</td>
+    </tr>
+    {% for art in articles %}
+      <tr>
+        <td>{{art.0.nom}}</td><td>{{art.1}}</td><td>{{art.0.prix * art.1}}</td>
+      </tr>
+    {% endfor %}
+
+  </table>
+</body>
+</html>

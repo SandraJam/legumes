@@ -1,0 +1,25 @@
+{# src/Boutique/GalerieBundle/Resources/views/panier.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/boutiquearticle/css/Boutique.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+  Votre Marché
+{% endblock %}
+
+{% block body %}
+  <div class="container whiteBloc marche">
+    <h1> Votre commande est validée! </h1>
+    <div class="blocM">
+      Votre commande N°{{numCommande}} a été validée!<br/>
+      Vous pouvez retrouver le détail de votre commande sur votre espace personel: <br/>
+      <a href="{{path('accueil_accueil_compte')}}"role="button" class="btn btn-default btn-md btn-success">
+        Mon espace personnel
+      </a><br/>
+      Vous pourrez la retirer le {{marche.jourSemaine}} prochain au marché de {{marche.lieu}}<br/>
+      Merci et à bientôt.
+    </div>
+  </div>
+{% endblock %}

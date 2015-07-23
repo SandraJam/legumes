@@ -13,7 +13,7 @@ class RecetteController extends Controller
   public function baseAction(){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
-      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+        if (strtolower($session->get('typ')) == 'administrateur') {
           $recettes = $this->getDoctrine()
                         ->getRepository('BDDBddClientBundle:Recette')
                         ->findAll();
@@ -24,9 +24,9 @@ class RecetteController extends Controller
             'recettes' => $recettes,
             'ingredients' => $ingredients
           ));
-      /*  }else{
+       }else{
           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-        }*/
+        }
     }else{
       return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
     }
@@ -35,7 +35,7 @@ class RecetteController extends Controller
   public function ajoutAction(Request $request){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
-      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+      if (strtolower($session->get('typ')) == 'administrateur') {
       $recette = new Recette();
       $form = $this->createFormBuilder($recette)
          ->add('nom','text')
@@ -84,9 +84,9 @@ class RecetteController extends Controller
       }
       return $this->render('AdministratorAdministrationAdminBundle:Recette:recetteAjout.html.twig',
             array('form' => $form->createView()) );
-      /*  }else{
+        }else{
           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-        }*/
+        }
     }else{
       return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
     }
@@ -95,7 +95,7 @@ class RecetteController extends Controller
   public function ajoutingredientAction($id, Request $request) {
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
-      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+    if (strtolower($session->get('typ')) == 'administrateur') {
       $recette = $this->getDoctrine()
           ->getRepository('BDDBddClientBundle:Recette')->find($id);
       $ingredients = $this->getDoctrine()
@@ -135,9 +135,9 @@ class RecetteController extends Controller
       }
       return $this->render('AdministratorAdministrationAdminBundle:Recette:recetteIngredients.html.twig',
             array('form' => $form2->createView(), 'ingredients' => $ingredients) );
-      /*  }else{
+        }else{
           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-        }*/
+        }
     }else{
       return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
     }
@@ -146,7 +146,7 @@ class RecetteController extends Controller
   public function supprimerIngredientAction($id) {
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
-      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+        if (strtolower($session->get('typ')) == 'administrateur') {
         $ingredient = $this->getDoctrine()
           ->getRepository('BDDBddClientBundle:Ingredient')->find($id);
         $idRecette = $ingredient->getRecette()->getId();
@@ -154,9 +154,9 @@ class RecetteController extends Controller
         $em->remove($ingredient);
         $em->flush();
         return $this->redirect($this->generateUrl('administration_admin_ajoutIngredient', array('id' => $idRecette)));
-      /*  }else{
+        }else{
           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-        }*/
+        }
     }else{
       return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
     }
@@ -165,7 +165,7 @@ class RecetteController extends Controller
   public function modifierAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
-      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+     if (strtolower($session->get('typ')) == 'administrateur') {
         $recette = $this->getDoctrine()
           ->getRepository('BDDBddClientBundle:Recette')->find($id);
         $ingredients = $this->getDoctrine()
@@ -174,9 +174,9 @@ class RecetteController extends Controller
           ->getRepository('BDDBddClientBundle:Article')->findAll();
         return $this->render('AdministratorAdministrationAdminBundle:Recette:recetteModif.html.twig',
                 array('recette' => $recette, 'ingredients' => $ingredients, 'articles' => $articles) );
-     /* }else{
+      }else{
           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-        }*/
+        }
     }else{
       return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
     }
@@ -185,7 +185,7 @@ class RecetteController extends Controller
   public function modifierbisAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
-      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+     if (strtolower($session->get('typ')) == 'administrateur') {
       $recette = $this->getDoctrine()
         ->getRepository('BDDBddClientBundle:Recette')->find($id);
       $ingredients = $this->getDoctrine()
@@ -267,9 +267,9 @@ class RecetteController extends Controller
         }
 
       return $this->redirect($this->generateUrl('administration_admin_modifierRecette', array('id' => $id)));
-     /* }else{
+      }else{
           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-        }*/
+        }
     }else{
       return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
     }
@@ -278,7 +278,7 @@ class RecetteController extends Controller
   public function supprimerAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
-      /*  if (strtolower($session->get('typ')) == 'administrateur') {*/
+        if (strtolower($session->get('typ')) == 'administrateur') {
         $recette = $this->getDoctrine()
           ->getRepository('BDDBddClientBundle:Recette')->find($id);
         $ingredients = $this->getDoctrine()
@@ -292,9 +292,9 @@ class RecetteController extends Controller
         $em->remove($recette);
         $em->flush();
         return $this->redirect($this->generateUrl('administrator_administration_admin_gerer_Recettes'));
-      /*  }else{
+        }else{
           return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-        }*/
+        }
     }else{
       return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
     }
