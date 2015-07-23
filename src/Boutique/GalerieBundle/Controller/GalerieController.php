@@ -133,6 +133,7 @@ class GalerieController extends Controller
     }
 
     public function marcheAction($panier) {
+      // Recuperer Remarque
       $marches = $this->getDoctrine()
                     ->getRepository('BDDBddClientBundle:Marches')
                     ->findAll();
@@ -141,6 +142,11 @@ class GalerieController extends Controller
     }
 
     public function validemarcheAction() {
-      
+      $panier = $_POST['panier'];
+      $marche = $_POST['marche'];
+      // Recuperer Remarque
+      // Envoie du mail de validation
+      // Page de validation
+      // Enregistrement de la commande
     }
 }

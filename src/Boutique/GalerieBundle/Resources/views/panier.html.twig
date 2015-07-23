@@ -40,7 +40,8 @@
         <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs justify">
           <br/>
           <span class="titre"> {{art.0.nom}} </span><br/>
-          {{art.0.descr}}
+          {{art.0.descr}}<br/>
+
         </div>
         <div class="hidden-lg hidden-md hidden-sm col-xs-4 justify">
           <span class="titre"> {{art.0.nom}} </span><br/>
@@ -99,6 +100,8 @@
     <!-- Resultats -->
     <div class="row blocPanier">
       <div class="col-lg-9 col-md-9 col-sm-0 col-xs-0">
+        <label> Une remarque? Une précision? </label><br/>
+        <textarea class="textarea" name="remarque"></textarea>
       </div>
       <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
         Total:

@@ -176,3 +176,81 @@ a, a:hover, a:focus, a:visited {
     font-size: 130%;
   }
 }
+
+/* Marche */
+
+.marche h1{
+  font-family: 'Cookie', cursive;
+  text-align: center;
+}
+
+.marche .blocM{
+  border: 1px grey dashed;
+  padding: 0em 2em 2em;
+  margin: 2em;
+  min-height: 20em;
+}
+
+
+/* Bouton */
+.bouton {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border: none;
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.bouton:hover {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.green {
+  background: #2DA800;
+  background-image: -webkit-linear-gradient(top, #2DA800, #257801);
+  background-image: -moz-linear-gradient(top, #2DA800, #257801);
+  background-image: -ms-linear-gradient(top, #2DA800, #257801);
+  background-image: -o-linear-gradient(top, #2DA800, #257801);
+  background-image: linear-gradient(to bottom, #2DA800, #257801);
+}
+
+.green:hover{
+  background: #41e600;
+  background-image: -webkit-linear-gradient(top, #41e600, #2DA800);
+  background-image: -moz-linear-gradient(top, #41e600, #2DA800);
+  background-image: -ms-linear-gradient(top, #41e600, #2DA800);
+  background-image: -o-linear-gradient(top, #41e600, #2DA800);
+  background-image: linear-gradient(to bottom, #41e600, #2DA800);
+}
+
+.orange {
+  background: rgb(227, 136, 0);
+  background-image: -webkit-linear-gradient(top, rgb(227, 136, 0), rgb(212, 125, 65));
+  background-image: -moz-linear-gradient(top, rgb(227, 136, 0), rgb(212, 125, 65));
+  background-image: -ms-linear-gradient(top, rgb(227, 136, 0), rgb(212, 125, 65));
+  background-image: -o-linear-gradient(top, rgb(227, 136, 0), rgb(212, 125, 65));
+  background-image: linear-gradient(to bottom, rgb(227, 136, 0), rgb(212, 125, 65));
+}
+
+.orange:hover{
+  background: rgb(244, 182, 89);
+  background-image: -webkit-linear-gradient(top, rgb(244, 182, 89), rgb(212, 125, 65));
+  background-image: -moz-linear-gradient(top, rgb(244, 182, 89), rgb(212, 125, 65));
+  background-image: -ms-linear-gradient(top, rgb(244, 182, 89), rgb(212, 125, 65));
+  background-image: -o-linear-gradient(top, rgb(244, 182, 89), rgb(212, 125, 65));
+  background-image: linear-gradient(to bottom, rgb(244, 182, 89), rgb(212, 125, 65));
+}
+
+.grpB{
+  text-align: center;
+}
+
+.textarea {
+  width: 90%;
+}
