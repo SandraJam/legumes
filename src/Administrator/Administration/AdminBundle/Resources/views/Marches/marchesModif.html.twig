@@ -1,0 +1,23 @@
+{# src/Administration/AdminBundle/Resources/views/marchesModif.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+	Modifier Marche
+{% endblock %}
+
+{% block body %}
+<form action="{{path('administrator_marches_modifbis', {'id': marches.id})}}" method="POST" enctype="multipart/form-data">
+  <div class="login">
+    <h1> Modifier le marché de "{{marches.lieu}}"</h1>
+    <label> Lieu: </label><input type="text" value="{{marches.lieu}}" name="lieu"/><br/>
+    <label> Jour de la Semaine: </label><input name="jourS" type="text" value="{{marches.jourSemaine}}"/><br/>
+    <label> Informations supplémentaires: </label><br/><textarea name="info">{{marches.info}}</textarea><br/>
+    <input type="submit" name="valider" value="Modifier" id="form_suivant" class="bouton"/>
+    <a href="{{path('administrator_marches_index')}}" id="form_annuler"> Retour </a>
+  </div>
+</form>
+{% endblock %}

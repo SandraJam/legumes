@@ -1,0 +1,36 @@
+{# src/Administration/AdminBundle/Resources/views/marchesAjout.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+	Ajout Marché
+{% endblock %}
+
+{% block body %}
+<div class="login">
+  <h1> Ajoutez un nouveau Marché! </h1>
+  {{ form_start(form) }}
+    {{ form_label(form.lieu, 'Lieu de retrait:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_widget(form.lieu, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.lieu) }} <br/>
+    {{ form_label(form.jourSemaine, 'Jour de la Semaine:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_widget(form.jourSemaine, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.jourSemaine) }} <br/><br/>
+    {{ form_label(form.info, 'Informations:', {'label_attr': {'class': 'foo'}}) }}
+    <br/>{{ form_widget(form.info, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.info) }} <br/><br/>
+    {{ form_widget(form.valider, {'label': 'Valider'}) }}
+    {{ form_widget(form.annuler, {'label': 'Annuler'}) }}
+    <a href="{{path('administrator_marches_index')}}" id="form_retour"> Retour </a>
+  {{ form_end(form) }}
+
+  {% for flashMessage in app.session.flashbag.get('notice') %}
+      <div class="flash-notice">
+          {{ flashMessage }}
+      </div>
+  {% endfor %}
+</div>
+{% endblock %}

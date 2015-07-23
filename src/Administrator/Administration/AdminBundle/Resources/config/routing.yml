@@ -125,3 +125,23 @@ administrator_mail_redaction:
 administrator_mail_previsualisation:
     path:      /previsualisation
     defaults: { _controller: AdministratorAdministrationAdminBundle:Newsletter:previsualisation }
+
+administrator_marches_index:
+    path:      /marchesadmin
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Marches:index }
+
+administrator_marches_ajout:
+    path:      /marchesajout
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Marches:ajout }
+
+administrator_marches_supp:
+    path:      /marchessupp/{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Marches:supp }
+
+administrator_marches_modif:
+    path:      /marchemodif/{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Marches:modif }
+
+administrator_marches_modifbis:
+    path:      /marchemodifbis/{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Marches:modifbis }

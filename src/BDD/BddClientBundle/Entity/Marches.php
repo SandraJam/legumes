@@ -98,4 +98,26 @@ class Marches
     {
         return $this->jourSemaine;
     }
+
+    /**
+     * Set info
+     *
+     * @param string $info
+     * @return Marches
+     */
+     public function setInfo($info)
+     {
+        $this->info = $info;
+        return $this;
+     }
+
+      /**
+       * Get info
+       *
+       * @return string
+       */
+      public function getInfo()
+      {
+          return $this->info;
+      }
 }

@@ -1,0 +1,65 @@
+{# src/Administration/AdminBundle/Resources/views/marchesAdmin.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+	Gestion Marches
+{% endblock %}
+
+{% block body %}
+<div class="container whiteBloc">
+  <div class="row ajouter">
+    <a href="{{path('administrator_marches_ajout')}}">
+      <button type="button" class="btn btn-default btn-lg btn-success">
+        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Ajouter
+      </button>
+    </a>
+  </div>
+
+  <div class="row recette">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+      <strong> Lieu </strong>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+      <strong> Jour de la semaine </strong>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+      <strong> Informations supplémentaires </strong>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <strong> Fonctions </strong>
+    </div><br/>
+  </div>
+    {% for mar in marches %}
+    <div class="row recette">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+        {{mar.lieu|capitalize}}
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+        {{mar.jourSemaine|capitalize}}
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        {{mar.info|capitalize}}
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="btn-group" role="group">
+          <a class="btn btn-default btn-md btn-warning" role="button" href="{{path('administrator_marches_modif', {'id' : mar.id})}}">
+            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Modifier
+          </a>
+          <a class="btn btn-default btn-md btn-danger" role="button" href="{{path('administrator_marches_supp', {'id' : mar.id})}}">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer
+          </a>
+        </div>
+      </div><br/><br/><br/>
+
+    </div>
+
+    {% endfor %}<br/>
+    <div class="center" >
+      <a href="{{path('goadministrator_administration')}}" id="form_annuler"> Retour </a>
+    </div><br/><br/>
+</div>
+{% endblock %}
