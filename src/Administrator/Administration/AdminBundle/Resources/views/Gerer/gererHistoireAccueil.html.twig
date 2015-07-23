@@ -18,7 +18,7 @@
 	            {{ flashMessage }}
 	        </div>
 	    {% endfor %}
-	    <div class="row recette">
+	    <div class="row histoire">
 	    	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
         	  <strong> id </strong>
         	</div>
@@ -26,26 +26,36 @@
         	  <strong> Titre </strong>
         	</div>
         	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-          		<strong> Fonctions </strong>
+          		<strong> Contenu </strong>
         	</div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <strong> Lien Image </strong>
+            </div>
         </div>
 
         {% for article in listHistoire %}
-        	<div class="row recette">
+        	<div class="row histoire">
         		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
             		{{ article.id|capitalize }}
           		</div>
           		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
         	  		{{ article.titre|capitalize }}
         		</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+                    {{ article.contenu }}
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+                    {{ article.lienPhoto }}
+                </div>
         	</div>
         	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
             	<div class="btn-group" role="group">
-            	  	<form action="{{ path('administrator_administration_admin_actions_Utilisateur_admin') 	}}" 	method="post">
-            	  	  	<button  name="modif" value="Modif" onClick="buttonSelected(this,{{ article.id 	}})	" 	class="btn btn-default btn-md btn-warning" type="submit">
+            	  	<form action="{{ path('administrator_administration_admin_quoiFaireHistoire') 	}}" 	method="post">
+                      
+            	  	  	<button  name="modif" value="Modifier" onClick="buttonSelected(this,{{ article.id 	}})	" 	class="btn btn-default btn-md btn-warning" type="submit">
             	  	  	  	<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Modifier
             	  	  	</button>
-            	  	  	<button  name="suppr" value="Suppr" onClick="buttonSelected(this,{{ article.id 	}})	" 	class="btn btn-default btn-md btn-danger" type="submit">
+            	  	  	<button  name="suppr" value="Supprimer" onClick="buttonSelected(this,{{ article.id 	}})	" 	class="btn btn-default btn-md btn-danger" type="submit">
             	  	  	  	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer
             	  	  	</button>
             	  	  	<input type="hidden" name="articleId" id="articleId" value="">
@@ -54,8 +64,8 @@
             	</div>
           </div>
         {% endfor %}
-    	<form action="{{ path('administrator_administration_admin_actions_Utilisateur_admin') }}" method="post">
-    		<button  name="ajout" value="Ajout"	class="btn btn-default btn-md btn-warning" type="submit"> Ajouter une histoire </button>
+    	<form action="{{ path('administrator_administration_admin_ajouterHistoire') }}" method="post">
+    		<button  name="ajout" value="Ajouter"	class="btn btn-default btn-md btn-warning" type="submit"> Ajouter une histoire </button>
     	</form>
 	</div>
 </div>
