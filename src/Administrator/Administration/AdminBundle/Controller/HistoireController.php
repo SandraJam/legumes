@@ -50,7 +50,7 @@ class HistoireController extends Controller
     public function ajouterHistoireBisAction(){
 		$session = $this->getRequest()->getSession();
 		if ( ($session->get('pren') != NULL) && (strtolower($session->get('typ')) == 'administrateur') ) {
-			return $this->render('AdministratorAdministrationAdminBundle:Histoire:formAjouterHistoire.html.twig');
+			
         }
     }
 		
