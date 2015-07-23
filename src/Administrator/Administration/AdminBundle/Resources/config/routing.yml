@@ -158,6 +158,6 @@ administrator_administration_admin_ajouterHistoire:
     path:      /ajoutHistoire
     defaults: { _controller: AdministratorAdministrationAdminBundle:Histoire:ajouterHistoire }
 
-administrator_administration_admin_ajouterHistoire:
+administrator_administration_admin_ajouterBisBHistoire:
     path:      /ajoutBisHistoire
     defaults: { _controller: AdministratorAdministrationAdminBundle:Histoire:ajouterHistoireBis }
