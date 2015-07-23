@@ -1,0 +1,34 @@
+{# src/Administrator/Administration/views/Histoire/formAjouterHistoire.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+	Page de modification des utilisateurs
+{% endblock %}
+
+{% block body %}
+<div class="container whiteBloc">
+  <div class="center">
+    <h1>Ajouter une histoire</h1>
+    <form action="{{path('administrator_administration_admin_modifierUser')}}" method="POST" enctype="multipart/form-data">
+      <label> Titre: </label><input type="text" value="" name="titre"/><br/>
+      <label> Couleur du Titre: </label><input type="text" value="" name="couleurTitre"/><br/>
+      <label> Contenu du Bloc: </label><input type="text" value="" name="contenuBloc"/><br/>
+      <label> Couleur du Bloc: </label><input type="text" value="" name="couleurBloc"/><br/>
+      <label> Lien de la photo: </label><input type="text" value="" name="lienPhoto"/><br/>
+      <label> Position de la photo dans le bloc: </label><input type="text" value="" name="PosPhoto"/><br/>
+  
+      <input type="submit" name="valider" value="Modifier" id="form_suivant" class="bouton"/>
+      <a id="form_annuler" onclick="history.back()" href='#'>Retour</a><br/><br/>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
