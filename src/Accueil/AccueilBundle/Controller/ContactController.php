@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Accueil\AccueilBundle\Entity\Contact;
 use Accueil\AccueilBundle\Form\ContactType;
+use BDD\BddClientBundle\Entity\Commande;
 
 class ContactController extends Controller
 {
@@ -46,9 +47,23 @@ class ContactController extends Controller
       if ($user != NULL) {
         $commandes = $this->getDoctrine()
                       ->getRepository('BDDBddClientBundle:Commande')
-                      ->findByUtilisateurs($user);
+                      ->findByUtilisateurs($user, array('status' => 'ASC'));
+        $panier = array();
+        foreach($commandes as $p){
+          $articles = array();
+          $panier2 = explode(';', $p->getPanier());
+          for($i=0; $i < count($panier2)-1; $i++){
+            $art = explode(':', $panier2[$i]);
+            $a = $this->getDoctrine()
+                      ->getRepository('BDDBddClientBundle:Article')
+                      ->find($art[0]);
+            $articles[] = [$a, $art[1]];
+          }
+          $panier[] = [$articles, $p->getId()];
+        }
+
         return $this->render('AccueilAccueilBundle::compte.html.twig', array(
-            'user' => $user, 'commandes' => $commandes
+            'user' => $user, 'commandes' => $commandes, 'panier' => $panier
         ));
       }else{
         return $this->redirect($this->generateUrl('accueil_accueil_homepage'));

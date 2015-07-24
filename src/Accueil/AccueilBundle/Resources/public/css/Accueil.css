@@ -394,3 +394,58 @@ input {
 }
 
 /* Compte */
+.entiere {
+  z-index: 3000;
+  text-align: justify;
+  display: none;
+  position: absolute;
+  top: 17em;
+  width: 70%;
+  min-height: 25em;
+  margin-left: 15%;
+  padding: 2em;
+  padding-top: 3em;
+  background: white;
+  border: 1px solid grey;
+  border-radius: 1em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3),
+              0 3px 5px rgba(0, 0, 0, .2),
+              0 5px 10px rgba(0, 0, 0, .2),
+              0 20px 20px rgba(0, 0, 0, .15);
+}
+
+.fermer {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+}
+
+.commande {
+  padding: 0.5em;
+  text-align: center;
+  border: 1px solid grey;
+}
+
+.coordCommande{
+  font-family: 'Coustard', sans-serif;
+  background: white;
+  margin-top: 5%;
+  padding: 0.5em 2em;
+  height: 55em;
+  border-radius: 1em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3),
+              0 3px 5px rgba(0, 0, 0, .2),
+              0 5px 10px rgba(0, 0, 0, .2),
+              0 20px 20px rgba(0, 0, 0, .15);
+  overflow: auto;
+  text-align: justify;
+}
+
+.coordCommande h1, .coordCommande h2, {
+  font-family: 'Cookie', cursive;
+  line-height: 0.5em;
+}
+
+.coordCommande p {
+  padding-left: 5em;
+}

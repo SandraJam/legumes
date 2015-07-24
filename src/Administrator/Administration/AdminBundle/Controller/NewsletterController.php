@@ -24,10 +24,10 @@ class NewsletterController extends Controller
     if ($session->get('pren') != NULL) {
         if (strtolower($session->get('typ')) == 'administrateur') {
         $nbPar = $_POST['nb'];
-        $mail = "<html>";
+        $mail = array();
         $subject = $_POST['sujet'];
         for($i=1; $i < $nbPar+1; $i++){
-          $par = "";
+          $par1 = ""; $par2 = "";
           $titre = $_POST['titre'.$i];
           $contenu = $_POST['contenu'.$i];
           $image = $_FILES['image'.$i];
@@ -43,28 +43,31 @@ class NewsletterController extends Controller
           $colorT = $_POST['colortitre'.$i];
           $colorC = $_POST['colorcontenu'.$i];
 
-          $par .= "<h1 style='color: ".$colorT.";' >".$titre."</h1>";
+          $par1 .= "<h1 style='color: ".$colorT.";' >".$titre."</h1>";
           if($image['name'] != "" && $position == 'dessus'){
-            $par .="<p style='text-align: center;'><img src='".$imageN."' alt='image mail' style='width: 50%;'/></p>";
+            $par1 .="<p style='text-align: center;'><img src='";
+            $par2 .="' alt='image mail' style='width: 50%;'/></p><p style='color: ".$colorC.";' >".$contenu."</p>";
           }
           if($image['name'] != "" && $position == 'gauche'){
-            $par .="<img src='".$imageN."' alt='image mail' style='width: 50%; float: left;'/>";
+            $par1 .="<img src='";
+            $par2 .="' alt='image mail' style='width: 50%; float: left;'/><p style='color: ".$colorC.";' >".$contenu."</p>";
           }
           if($image['name'] != "" && $position == 'droite'){
-            $par .="<img src='".$imageN."' alt='image mail' style='width: 50%; float: right;'/>";
+            $par1 .="<img src='";
+            $par2 .= "' alt='image mail' style='width: 50%; float: right;'/><p style='color: ".$colorC.";' >".$contenu."</p>";
           }
-          $par .= "<p style='color: ".$colorC.";' >".$contenu."</p>";
           if($image['name'] != "" && $position == 'dessous'){
-            $par .="<p style='text-align: center;'><img src='".$imageN."' alt='image mail' style='width: 50%;'/></p>";
+            $par1 .="<p style='color: ".$colorC.";' >".$contenu."</p><p style='text-align: center;'><img src='";
+            $par2 .= "' alt='image mail' style='width: 50%;'/></p>";
           }
+          $mail[] = [$par1, $dir.$imageN, $par2];
 
-          $mail .= '<br><br>'.$par;
-        }
-        $mail .= '</html>';
-        return $this->render('AdministratorAdministrationAdminBundle:Newsletter:previsualisation.html.twig', array('mail' => $mail));
+
        }
+              return $this->render('AdministratorAdministrationAdminBundle:Newsletter:previsualisation.html.twig', array('mail' => $mail));
+
     }
     return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-
+    }
   }
 }

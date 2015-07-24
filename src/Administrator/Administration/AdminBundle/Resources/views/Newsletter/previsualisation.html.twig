@@ -11,7 +11,11 @@
 
 {% block body %}
   <div class="container whiteBloc">
-    {{ mail|raw }}<br/>
+    {% for m in mail %}
+      {{m.0|raw}}
+      {{asset(m.1)}}
+      {{m.2|raw}}<br/>
+    {% endfor %}
     <input type="submit" name="valider" value="Valider" id="form_suivant" class="bouton"/>
     <input type="submit" name="modifier" value="Modifier" id="form_retour" class="bouton"/>
     <a href="{{path('goadministrator_administration')}}" id="form_annuler"> Annuler </a>

@@ -15,6 +15,8 @@ class Contact
 
   protected $subject;
 
+  protected $tel;
+
   protected $body;
 
   public function getName()
@@ -55,6 +57,16 @@ class Contact
   public function setBody($body)
   {
       $this->body = $body;
+  }
+
+  public function getTel()
+  {
+      return $this->tel;
+  }
+
+  public function setTel($tel)
+  {
+      $this->tel = $tel;
   }
 
   public static function loadValidatorMetadata(ClassMetadata $metadata)
