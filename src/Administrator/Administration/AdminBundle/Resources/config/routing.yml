@@ -122,6 +122,10 @@ administrator_mail_redaction:
     path:      /redactionmail
     defaults: { _controller: AdministratorAdministrationAdminBundle:Newsletter:redaction }
 
+administrator_mail_validation:
+    path:      /validationmail
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Newsletter:validation }
+
 administrator_mail_previsualisation:
     path:      /previsualisation
     defaults: { _controller: AdministratorAdministrationAdminBundle:Newsletter:previsualisation }

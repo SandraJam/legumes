@@ -11,14 +11,20 @@
 
 {% block body %}
   <div class="container whiteBloc">
+    {% set maail = "" %}
     {% for m in mail %}
       {{m.0|raw}}
-      {{asset(m.1)}}
+      {% if m.1 != null %}
+        {{asset(m.1)}}
+      {% endif %}
       {{m.2|raw}}<br/>
+      {% set maail = maail ~ m.0 ~ ";" ~ m.1 ~ ";" ~ m.2 ~ ":" %}
     {% endfor %}
-    <input type="submit" name="valider" value="Valider" id="form_suivant" class="bouton"/>
-    <input type="submit" name="modifier" value="Modifier" id="form_retour" class="bouton"/>
-    <a href="{{path('goadministrator_administration')}}" id="form_annuler"> Annuler </a>
+    <form method="POST" action="{{path('administrator_mail_validation')}}">
+      <input type="hidden" name="mail" value="{{maail}}"/>
+      <input type="submit" name="valider" value="Valider" id="form_suivant" class="bouton"/>
+      <a href="{{path('goadministrator_administration')}}" id="form_annuler"> Annuler </a>
+    </form>
     <br/><br/>
   </div>
 {% endblock %}
