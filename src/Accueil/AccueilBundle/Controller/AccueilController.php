@@ -20,6 +20,7 @@ class AccueilController extends Controller
         ->getRepository('BDDBddClientBundle:Ingredient')
         ->findByRecette($recette);
         return $this->render('AccueilAccueilBundle::index.html.twig', array('ingredients' => $ingredients, 'recette' => $recette));
+            
     }
 
     public function contactAction()
