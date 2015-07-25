@@ -167,9 +167,9 @@ class AccueilController extends Controller
                             if ($request->isMethod('POST')) {
                               $request->getSession()->getFlashBag()->add('notice', 'L utilisateur à été enregistré.');
                                 if ($session->get('users') == NULL){
-                                       $session->set('typ', $user->getType());
-                                       $session->set('logi', $user->getLogin());
-                                       $session->set('pren', $user->getPrenom());
+                                       $session->set('typ', $connexion->getType());
+                                       $session->set('logi', $connexion->getLogin());
+                                       $session->set('pren', $connexion->getPrenom());
                                        $session->set('users', "present");
                                     return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
                                 }else{
