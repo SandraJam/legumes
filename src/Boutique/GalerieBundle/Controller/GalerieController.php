@@ -190,6 +190,7 @@ class GalerieController extends Controller
           <img src="'.$message->embed(\Swift_Image::fromPath('bundles/accueilaccueil/images/email.png')) .'"><br/>
           <strong> Les Légumes du Val de Loire vous remercie de votre commande. </strong>
           <p> Commande N°'.$commande->getNumCommande().' à récupérer le '.$marche->getJourSemaine().' au marché de '.$marche->getLieu().'
+            <br/>
             <br/> Récupitulatif pour un total de '.$total.'€: </p>
 
           <table style="width: 90%; border: 1px solid grey; border-collapse: collapse;">

@@ -11,20 +11,32 @@
 
 {% block body %}
   <div class="container whiteBloc">
-    {% set maail = "" %}
-    {% for m in mail %}
-      {{m.0|raw}}
-      {% if m.1 != null %}
-        {{asset(m.1)}}
-      {% endif %}
-      {{m.2|raw}}<br/>
-      {% set maail = maail ~ m.0 ~ ";" ~ m.1 ~ ";" ~ m.2 ~ ":" %}
-    {% endfor %}
-    <form method="POST" action="{{path('administrator_mail_validation')}}">
-      <input type="hidden" name="mail" value="{{maail}}"/>
-      <input type="submit" name="valider" value="Valider" id="form_suivant" class="bouton"/>
-      <a href="{{path('goadministrator_administration')}}" id="form_annuler"> Annuler </a>
-    </form>
-    <br/><br/>
+    <div id="avant">
+      {% for m in mail %}
+        {{m.0|raw}}
+        {% if m.1 != null %}
+          {{asset(m.1)}}
+        {% endif %}
+        {{m.2|raw}}<br/>
+      {% endfor %}
+      <form method="POST" action="{{path('administrator_mail_validation')}}">
+        <input type="hidden" name="mail" value="{{phrase}}"/>
+        <input onclick="attente();" type="submit" name="valider" value="Valider" id="form_suivant" class="bouton"/>
+        <a href="{{path('goadministrator_administration')}}" id="form_annuler"> Annuler </a>
+      </form>
+      <br/><br/>
+    </div>
+    <div id="apres" style="display: none;">
+      Merci de patienter pendant l'envoi... L'opération peut prendre plusieurs minutes.
+    </div>
   </div>
+{% endblock %}
+
+{% block js %}
+  <script>
+    function attente(){
+      document.getElementById("avant").style.display = "none";
+      document.getElementById("apres").style.display = "block";
+    }
+  </script>
 {% endblock %}
