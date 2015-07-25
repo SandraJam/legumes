@@ -51,6 +51,7 @@ class HistoireController extends Controller
 		$session = $this->getRequest()->getSession();
 		if ( ($session->get('pren') != NULL) && (strtolower($session->get('typ')) == 'administrateur') ) {
 			
+
         }
     }
 		
