@@ -24,7 +24,7 @@
     {{ form_label(form.recommandation, 'Recommandation:', {'label_attr': {'class': 'foo'}}) }}
     {{ form_widget(form.recommandation, {'attr': {'class': 'foo'}}) }}
     {{ form_errors(form.recommandation) }} <br/><br/>
-    {{ form_label(form.qtiteVente, 'Quantité pour une unité:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_label(form.qtiteVente, 'Quantité pour une unité (Exemple: 1kg, une botte, une unité...):', {'label_attr': {'class': 'foo'}}) }}
     {{ form_widget(form.qtiteVente, {'attr': {'class': 'foo'}}) }}
     {{ form_errors(form.qtiteVente) }} <br/><br/>
     {{ form_label(form.qtiteStock, 'Stock disponible:', {'label_attr': {'class': 'foo'}}) }}
@@ -36,9 +36,6 @@
     {{ form_label(form.prix, 'Prix:', {'label_attr': {'class': 'foo'}}) }}
     {{ form_widget(form.prix, {'attr': {'class': 'foo'}}) }}
     {{ form_errors(form.prix) }} <br/><br/>
-    {{ form_label(form.bonplan, 'Bon plan?', {'label_attr': {'class': 'foo'}}) }}
-    {{ form_widget(form.bonplan, {'attr': {'class': 'foo'}}) }}
-    {{ form_errors(form.bonplan) }} <br/><br/>
     {{ form_label(form.photos, 'Photo:', {'label_attr': {'class': 'foo'}}) }}
     {{ form_widget(form.photos, {'attr': {'class': 'foo'}}) }}
     {{ form_errors(form.photos) }} <br/>

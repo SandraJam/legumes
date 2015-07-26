@@ -11,7 +11,6 @@
 
 {% block body %}
   <!-- Ce qu'il faut renvoyer:
-    La liste des bons plans
     La liste des categories
     La liste des articles PAR categories
   -->
@@ -22,62 +21,27 @@
     <!-- Boucle sur les categorie -->
     <div class="row" >
 
-      <!-- Bons plans -->
-      <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 categories">
-        <figure class="categorie" id="bonplan">
-          <img src="{{ asset('bundles/accueilaccueil/images/profitez.png')}}" class="imgCat" alt="Bons Plans"/>
-          <figcaption style="color: red;"> Bons Plans! </figcaption>
-        </figure>
-      </div>
+      <!-- Panier  -->
+
+      {% for cat in categories %}
+        {% if cat.0.nom == "Panier" %}
+          <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 categories">
+            <figure class="categorie" id="buttonCat{{cat.0.id}}">
+                <img src="{{ asset('images/' ~ cat.1 )}}" class="imgCat" alt="{{cat.0.nom}}"/>
+                <figcaption style="color: red;"> {{cat.0.nom}} </figcaption>
+            </figure>
+          </div>
+        {% endif %}
+      {% endfor %}
 
       <!-- Catégories -->
       {% for cat in categories %}
-        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 categories">
-          <figure class="categorie" id="buttonCat{{cat.0.id}}">
-              <img src="{{ asset('images/' ~ cat.1 )}}" class="imgCat" alt="{{cat.0.nom}}"/>
-              <figcaption> {{cat.0.nom}} </figcaption>
-          </figure>
-        </div>
-      {% endfor %}
-    </div>
-
-    <!-- Bons Plans -->
-    <div id="bonsplans" class="galerie">
-      <span id="retourBP" class="retour">
-        <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span> Retour
-      </span><br/><br/>
-
-      {% for bp in bonplans %}
-        {% if bp.qtiteStock > 0 %}
-          <div class="row article">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-              <!-- Photo -->
-              <img src="{{ asset('images/' ~ bp.photos)}}" class="imgArticle" alt="{{bp.nom}}"/>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 descriptionArticle">
-              <!-- Nom-->
-              <span class="titreArticle"> {{bp.nom}} </span><br/>
-              <!-- Recommandation -->
-              <span class="recommandation"> {{bp.recommandation}} </span><br/>
-              <!-- Description -->
-              {{bp.descr}}
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 prix">
-              <!-- Prix -->
-              <span class="prixArticle"> {{bp.prix}} € </span><br/>
-              <!-- Quantité pour prix -->
-              pour {{bp.qtiteVente}}
-              <!-- Formulaire Quantité -->
-              <br/>
-              <div class="input-group centrer">
-                <input type="number" class="form-control" min="1"
-                  max="{% if bp.qtiteStock > bp.commandeMax %}{{bp.commandeMax}}
-                        {% else %} {{bp.qtiteStock}} {% endif %}" value="1" aria-label="Amount (to the nearest dollar)">
-              </div><br/>
-              <button type="button" class="btn btn-default btn-md btn-danger">
-                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Ajouter au Panier
-              </button>
-            </div>
+        {% if cat.0.nom != "Panier" %}
+          <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 categories">
+            <figure class="categorie" id="buttonCat{{cat.0.id}}">
+                <img src="{{ asset('images/' ~ cat.1 )}}" class="imgCat" alt="{{cat.0.nom}}"/>
+                <figcaption> {{cat.0.nom}} </figcaption>
+            </figure>
           </div>
         {% endif %}
       {% endfor %}
@@ -91,39 +55,41 @@
         </span><br/><br/>
         {% for art in articles %}
           {% if art.categorie.id == cat.0.id %}
-            <div class="row article">
-              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                <!-- Photo -->
-                <img src="{{ asset('images/' ~ art.photos)}}" class="imgArticle" alt="{{art.nom}}"/>
+            {% if art.qtiteStock > 0 %}
+              <div class="row article">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                  <!-- Photo -->
+                  <img src="{{ asset('images/' ~ art.photos)}}" class="imgArticle" alt="{{art.nom}}"/>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 descriptionArticle">
+                  <!-- Nom-->
+                  <span class="titreArticle"> {{ art.nom }} </span><br/>
+                  <!-- Recommandation -->
+                  <span class="recommandation"> {{art.recommandation}} </span><br/>
+                  <!-- Description -->
+                  {{art.descr}}
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 prix">
+                  <!-- Prix -->
+                  <span class="prixArticle"> {{art.prix}} € </span><br/>
+                  <!-- Quantité pour prix -->
+                  pour {{art.qtiteVente}}
+                  <!-- Formulaire Quantité -->
+                  <br/>
+                  <form action="{{path('boutique_galerie_ajoutpanier')}}" method="POST">
+                    <div class="input-group centrer">
+                      <input type="hidden" name="id" value="{{art.id}}"/>
+                      <input type="number" name="quantite" class="form-control" min="1"
+                        max="{% if art.qtiteStock > art.commandeMax %}{{art.commandeMax}}
+                              {% else %} {{art.qtiteStock}} {% endif %}" value="1" aria-label="Amount (to the nearest dollar)">
+                    </div><br/>
+                    <button type="submit" class="btn btn-default btn-md btn-danger">
+                      <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Ajouter au Panier
+                    </button>
+                  </form>
+                </div>
               </div>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 descriptionArticle">
-                <!-- Nom-->
-                <span class="titreArticle"> {{ art.nom }} </span><br/>
-                <!-- Recommandation -->
-                <span class="recommandation"> {{art.recommandation}} </span><br/>
-                <!-- Description -->
-                {{art.descr}}
-              </div>
-              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 prix">
-                <!-- Prix -->
-                <span class="prixArticle"> {{art.prix}} € </span><br/>
-                <!-- Quantité pour prix -->
-                pour {{art.qtiteVente}}
-                <!-- Formulaire Quantité -->
-                <br/>
-                <form action="{{path('boutique_galerie_ajoutpanier')}}" method="POST">
-                  <div class="input-group centrer">
-                    <input type="hidden" name="id" value="{{art.id}}"/>
-                    <input type="number" name="quantite" class="form-control" min="1"
-                      max="{% if art.qtiteStock > art.commandeMax %}{{art.commandeMax}}
-                            {% else %} {{art.qtiteStock}} {% endif %}" value="1" aria-label="Amount (to the nearest dollar)">
-                  </div><br/>
-                  <button type="submit" class="btn btn-default btn-md btn-danger">
-                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Ajouter au Panier
-                  </button>
-                </form>
-              </div>
-            </div>
+            {% endif %}
           {% endif %}
         {% endfor %}
       </div>
@@ -136,16 +102,6 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script>
     $(document).ready(function(){
-      $("#bonplan").click(function(){
-        $(".categories").fadeOut("slow");
-        $("#bonsplans").delay( 650 ).fadeIn("slow");
-      });
-
-      $("#retourBP").click(function(){
-        $("#bonsplans").fadeOut("slow");
-        $(".categories").delay( 650 ).fadeIn("slow");
-      });
-
       {% for cat in categories %}
         $("#buttonCat{{cat.0.id}}").click(function(){
           $(".categories").fadeOut("slow");
@@ -157,7 +113,6 @@
           $(".categories").delay( 650 ).fadeIn("slow");
         });
       {% endfor %}
-
 
     });
   </script>

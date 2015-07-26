@@ -158,10 +158,6 @@ class ProduitsController extends Controller
          ->add('qtiteStock','number')
          ->add('commandeMax','number')
          ->add('prix','number')
-         ->add('bonplan','choice', array(
-             'choices' => array(true => 'Oui', false => 'Non'),
-             'expanded' => true,
-             'multiple' => false))
          ->add('photos','file')
          ->add('suivant','submit')
          ->add('annuler','reset')
@@ -295,11 +291,6 @@ class ProduitsController extends Controller
         }
 
 
-        if (isset($_POST['bonplan'])){
-          $article->setBonplan(true);
-        }else{
-          $article->setBonplan(false);
-        }
         $article->setNom($nom);
         $article->setRecommandation($recommandation);
         $article->setQtiteVente($qtiteVente);

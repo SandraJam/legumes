@@ -19,7 +19,6 @@
             <label> Stock disponible: </label><input name="qtiteStock" type="text" value="{{article.qtiteStock}}"/><br/><br/>
             <label> Nombre max par commande: </label><input name="commandeMax" type="number" value="{{article.commandeMax}}"/><br/><br/>
             <label> Prix: </label><input name="prix" step="any" type="number" value="{{article.prix}}"/><br/><br/>
-            <label> Bon plan? </label><input name="bonplan" type="checkbox" {% if article.bonplan %} checked {% endif %}/><br/><br/>
             <label> Catégorie: </label>
               <select name="categorie">
                 {% for cat in categories %}

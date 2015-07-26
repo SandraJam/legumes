@@ -47,7 +47,7 @@ class ContactController extends Controller
       if ($user != NULL) {
         $commandes = $this->getDoctrine()
                       ->getRepository('BDDBddClientBundle:Commande')
-                      ->findByUtilisateurs($user, array('status' => 'ASC'));
+                      ->findByUtilisateurs($user, array('dateCommande' => 'DESC'));
         $panier = array();
         foreach($commandes as $p){
           $articles = array();

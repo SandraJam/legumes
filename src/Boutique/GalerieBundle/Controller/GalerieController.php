@@ -15,9 +15,7 @@ class GalerieController extends Controller
 {
     public function indexAction()
     {
-        $bonplans = $this->getDoctrine()
-                      ->getRepository('BDDBddClientBundle:Article')
-                      ->findByBonplan(true);
+        // VOIR PLUTOT POUR ENVOYER TOUTES LES CATEGORIES PUIS METTRE PANIER EN PREMIER
         $cat = $this->getDoctrine()
                       ->getRepository('BDDBddClientBundle:Categorie')
                       ->findAll();
@@ -25,8 +23,8 @@ class GalerieController extends Controller
         $categories = [];
         foreach($cat as $c){
           $a = $this->getDoctrine()
-                        ->getRepository('BDDBddClientBundle:Article')
-                        ->findOneByCategorie($c);
+                      ->getRepository('BDDBddClientBundle:Article')
+                      ->findOneByCategorie($c);
           if ($a != null){
             $categories[] = [$c, $a->getPhotos()];
           }
@@ -37,7 +35,7 @@ class GalerieController extends Controller
                       ->findAll();
 
         return $this->render('BoutiqueGalerieBundle::categorie.html.twig',
-          array('bonplans' => $bonplans, 'categories' => $categories, 'articles' => $articles));
+          array('categories' => $categories, 'articles' => $articles));
     }
 
     public function panierAction()
@@ -189,7 +187,7 @@ class GalerieController extends Controller
         $body = '<html><body>
           <img src="'.$message->embed(\Swift_Image::fromPath('bundles/accueilaccueil/images/email.png')) .'"><br/>
           <strong> Les Légumes du Val de Loire vous remercie de votre commande. </strong>
-          <p> Commande N°'.$commande->getNumCommande().' à récupérer le '.$marche->getJourSemaine().' au marché de '.$marche->getLieu().'
+          <p> Commande N°'.$commande->getNumCommande().' à récupérer le '.$marche->getJourSemaine().' prochain au marché de '.$marche->getLieu().'
             <br/>
             <br/> Récupitulatif pour un total de '.$total.'€: </p>
 
@@ -203,7 +201,7 @@ class GalerieController extends Controller
           }
 
           $body .= '</table></body></html>';
-
+          $body .= "Attention! Certains produits peuvent être indisponible le jour de votre retrait! Le calcul du tarif sera donc revu.";
 
 
         $dir = $this->getRequest()->server->get('DOCUMENT_ROOT') . $this->getRequest()->getBasePath() . "/images/";

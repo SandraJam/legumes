@@ -14,19 +14,19 @@
     <div class="center">
       <h1>Gestion des Clients</h1>
       <div class="row recette">
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
           <strong> Nom </strong>
         </div>
-        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-6">
           <strong> Prénom </strong>
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
           <strong> Ville </strong>
         </div>
-        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
           <strong> Numéro </strong>
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
           <strong> E-mail </strong>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -36,19 +36,19 @@
 
       {% for superUser in listClients %}
         <div class="row recette">
-          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
             {{ superUser.nom|capitalize }}
           </div>
-          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-6">
             {{ superUser.prenom|capitalize }}
           </div>
-          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
             {{ superUser.ville|capitalize }}
           </div>
-          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
             {{ superUser.tel }}
           </div>
-          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
             {{ superUser.email }}
           </div>
           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -70,6 +70,8 @@
           </div>
         </div>
       {% endfor %}
+      <a href="{{path('administration_admin_demdeActionsClient')}}" id="form_annuler"> Retour </a>
+      <br/><br/>
     </div>
   </div>
 

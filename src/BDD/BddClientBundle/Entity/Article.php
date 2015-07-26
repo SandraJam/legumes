@@ -83,13 +83,6 @@ class Article
      */
     private $prix;
 
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="bonplan", type="boolean", nullable=true)
-     */
-    private $bonplan;
-
 
     /**
      * Get id
@@ -308,35 +301,4 @@ class Article
         return $this->prix;
     }
 
-
-    /**
-     * Set bonplan
-     *
-     * @param boolean $bonplan
-     * @return Article
-     */
-    public function setBonplan($bonplan)
-    {
-        $this->bonplan = $bonplan;
-        return $this;
-    }
-    /**
-     * Get bonplan
-     *
-     * @return boolean
-     */
-    public function isBonplan()
-    {
-        return $this->bonplan;
-    }
-
-    /**
-     * Get bonplan
-     *
-     * @return boolean 
-     */
-    public function getBonplan()
-    {
-        return $this->bonplan;
-    }
 }
