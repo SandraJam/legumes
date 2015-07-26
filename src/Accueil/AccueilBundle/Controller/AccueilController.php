@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use BDD\BddClientBundle\Entity\Utilisateurs;
 use BDD\BddClientBundle\Entity\Recette;
 use BDD\BddClientBundle\Entity\Ingredient;
+use BDD\BddClientBundle\Entity\News;
 use Administrator\Administrator\AdminBundle\Ressources;
 
 class AccueilController extends Controller
@@ -19,8 +20,11 @@ class AccueilController extends Controller
         $ingredients = $this->getDoctrine()
         ->getRepository('BDDBddClientBundle:Ingredient')
         ->findByRecette($recette);
-        return $this->render('AccueilAccueilBundle::index.html.twig', array('ingredients' => $ingredients, 'recette' => $recette));
-            
+        $news = $this->getDoctrine()
+        ->getRepository('BDDBddClientBundle:News')
+        ->findByVisible(true);
+        return $this->render('AccueilAccueilBundle::index.html.twig', array('news' => $news, 'ingredients' => $ingredients, 'recette' => $recette));
+
     }
 
     public function contactAction()
@@ -81,7 +85,7 @@ class AccueilController extends Controller
             }
         }
 	    return $this->render('AccueilAccueilBundle::formLogin.html.twig',
-        array('form' => $form->createView()) );   
+        array('form' => $form->createView()) );
     }
 
     public function inscriptionAction(Request $request){

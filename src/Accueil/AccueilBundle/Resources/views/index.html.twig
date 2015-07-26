@@ -28,39 +28,32 @@
 
           <!-- Slider -->
           <ul class="rslides">
-            <li>
-              <div class="article">
-                <figure class="imgGauche">
-                  <img src="{{ asset('bundles/accueilaccueil/images/gratincourgette.jpg')}}" class="imgRecette" alt="Gratin de courgette"/>
-                </figure>
-                <span class="soustitre">Voici une News!</span><br/>
-                <div onclick="news(0)" class="troispoints">Voir la news en entier...</div>
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-              </div>
-            </li>
-            <li>
-              <div class="article">
-                <figure class="imgDroite">
-                  <img src="{{ asset('bundles/accueilaccueil/images/gratincourgette.jpg')}}" class="imgRecette" alt="Gratin de courgette"/>
-                </figure>
-                <span class="soustitre">Voici une News!</span><br/>
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-                Ceci est une news! Pas tres longue, certes, mais une news quand même!
-              </div>
-            </li>
-            <li><div class="article">5415485749654</div></li>
-            <li><div class="article">TRUC</div></li>
+            {% for n in news %}
+              {% if loop.index is odd %}
+              <li>
+                <div class="article">
+                  <figure class="imgGauche">
+                    <img src="{{ asset('images/' ~ n.photo)}}" class="imgRecette" alt="{{n.titre}}"/>
+                  </figure>
+                  <span class="soustitre">{{n.titre}}</span><br/>
+                  <div onclick="news({{n.id}})" class="troispoints">Voir la news en entier...</div>
+                  {{n.descr}}
+                </div>
+              </li>
+              {% else %}
+              <li>
+                <div class="article">
+                  <figure class="imgDroite">
+                    <img src="{{ asset('images/' ~ n.photo)}}" class="imgRecette" alt="{{n.titre}}"/>
+                  </figure>
+                  <span class="soustitre">{{n.titre}}</span><br/>
+                  <div onclick="news({{n.id}})" class="troispoints">Voir la news en entier...</div>
+                  {{n.descr}}
+                </div>
+              </li>
+              {% endif %}
+            {% endfor %}
           </ul>
-
         </div>
       </div>
 
@@ -107,12 +100,37 @@
 
 
   <!-- News en entier -->
-  <div id="0" class="newsEntier">
-    <div class="fermer" onclick="fermer(0)">
-      <img src="{{ asset('bundles/accueilaccueil/images/close.png')}}" alt="fermer la fenetre"/>
+  {% for n in news %}
+    {% if loop.index is odd %}
+    <div id="{{n.id}}" class="newsEntier">
+      <div class="article">
+        <div class="fermer" onclick="fermer({{n.id}})">
+          <img src="{{ asset('bundles/accueilaccueil/images/close.png')}}" alt="fermer la fenetre"/>
+        </div>
+        <figure class="imgGaucheD">
+          <img src="{{ asset('images/' ~ n.photo)}}" class="imgRecette" alt="{{n.titre}}"/>
+        </figure>
+        <span class="soustitre">{{n.titre}}</span><br/>
+        <div onclick="news({{n.id}})" class="troispoints">Voir la news en entier...</div>
+        {{n.descr}}
+      </div>
     </div>
-    Voici une news en entier! Oulala!
-  </div>
+    {% else %}
+    <div id="{{n.id}}" class="newsEntier">
+      <div class="article">
+        <div class="fermer" onclick="fermer({{n.id}})">
+          <img src="{{ asset('bundles/accueilaccueil/images/close.png')}}" alt="fermer la fenetre"/>
+        </div>
+        <figure class="imgDroiteD">
+          <img src="{{ asset('images/' ~ n.photo)}}" class="imgRecette" alt="{{n.titre}}"/>
+        </figure>
+        <span class="soustitre">{{n.titre}}</span><br/>
+        <div onclick="news({{n.id}})" class="troispoints">Voir la news en entier...</div>
+        {{n.descr}}
+      </div>
+    </div>
+    {% endif %}
+  {% endfor %}
 
   <!-- Recette en entier -->
   <div id="rec" class="newsEntier">
@@ -128,7 +146,7 @@
       <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
     </span>
     <p><br/>
-      <figure class="figRec">
+      <figure class="figRecD">
         <img src="{{ asset('images/' ~ recette.photo)}}" class="imgRecette" alt="{{recette.nom}}"/>
         <figcaption><a href="{{path('boutique_galerie_recette', {'idRecette' : recette.id })}}">Faites votre marché pour cette recette!</a></figcaption>
       </figure>

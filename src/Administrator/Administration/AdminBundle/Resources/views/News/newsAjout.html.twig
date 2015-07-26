@@ -1,0 +1,40 @@
+{# src/Administrator/Adminstration/AdminBundle/Resources/views/newsAjout.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+  Ajout News
+{% endblock %}
+
+{% block body %}
+<div class="login">
+  <h1> Ajoutez une News !</h1>
+  {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-notice" style="color: red;">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+  {{ form_start(form) }}
+    {{ form_label(form.titre, 'Titre:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_widget(form.titre, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.titre) }} <br/><br/>
+    {{ form_label(form.descr, 'Description:', {'label_attr': {'class': 'foo'}}) }}<br/>
+    {{ form_widget(form.descr, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.descr) }} <br/><br/>
+    {{ form_label(form.visible, 'Visible?', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_widget(form.visible, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.visible) }} <br/><br/>
+    {{ form_label(form.photo, 'Photo:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_widget(form.photo, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.photo) }} <br/>
+    {{ form_widget(form.valider, {'label': 'Ajouter'}) }}
+    {{ form_widget(form.annuler, {'label': 'Annuler'}) }}
+    <a href="{{path('administrator_news_index')}}" id="form_retour"> Retour </a>
+  {{ form_end(form) }}
+
+
+</div>
+{% endblock %}

@@ -165,3 +165,23 @@ administrator_administration_admin_ajouterHistoire:
 administrator_administration_admin_ajouterBisBHistoire:
     path:      /ajoutBisHistoire
     defaults: { _controller: AdministratorAdministrationAdminBundle:Histoire:ajouterHistoireBis }
+
+administrator_news_index:
+    path:      /newsadmin
+    defaults: { _controller: AdministratorAdministrationAdminBundle:News:index }
+
+administrator_news_ajout:
+    path:      /newsajout
+    defaults: { _controller: AdministratorAdministrationAdminBundle:News:ajout }
+
+administrator_news_supp:
+    path:      /newssupp/{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:News:supp }
+
+administrator_news_modif:
+    path:      /newsmodif/{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:News:modif }
+
+administrator_news_modifbis:
+    path:      /newsmodifbis/{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:News:modifbis }

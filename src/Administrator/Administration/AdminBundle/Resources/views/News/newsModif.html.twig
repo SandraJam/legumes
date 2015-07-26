@@ -1,0 +1,30 @@
+{# src/Administration/AdminBundle/Resources/views/newsModif.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+	Modifier News "{{ news.titre }}"
+{% endblock %}
+
+{% block body %}
+<form action="{{path('administrator_news_modifbis', {'id': news.id})}}" method="POST" enctype="multipart/form-data">
+  <div class="container login">
+          <h1> Modifier la news "{{news.titre}}"</h1>
+            <label> Titre: </label><input type="text" value="{{news.titre}}" name="titre"/><br/><br/>
+            <label> Visible? </label><input name="visible" type="checkbox" {% if news.visible %} checked {% endif %}/><br/><br/>
+            <label> Description: </label><br/>
+            <textarea name="descr">{{news.descr}}</textarea><br/>
+            <br/>
+            <label> Photo: </label>
+            <img class="imgRecetteM" src="{{asset('images/' ~ news.photo)}}" alt="{{news.titre}}"/>
+            <br/><br/>
+            <label> Modifier la photo: </label><input type="file" name="photo" id="form_photos"/>
+            <input type="submit" name="valider" value="Modifier" id="form_suivant" class="bouton"/>
+            <a href="{{path('administrator_news_index')}}" id="form_annuler"> Retour </a>
+  </div>
+
+</form>
+{% endblock %}
