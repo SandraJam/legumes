@@ -22,7 +22,10 @@ class AccueilController extends Controller
         ->findByRecette($recette);
         $news = $this->getDoctrine()
         ->getRepository('BDDBddClientBundle:News')
-        ->findByVisible(true);
+        ->findBy(
+             array('visible'=> true),
+             array('date' => 'DESC')
+           );
         return $this->render('AccueilAccueilBundle::index.html.twig', array('news' => $news, 'ingredients' => $ingredients, 'recette' => $recette));
 
     }

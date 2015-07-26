@@ -77,8 +77,8 @@
       src="{{ asset('bundles/accueilaccueil/images/close.png')}}"
       alt="fermer la fenetre"/>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <h1> {{new.titre}} </h1>
-        <strong> Description:</strong> {{ new.descr }} <br/>
+        <h1 style="color: {{new.colorT}};"> {{new.titre}} </h1>
+        <strong> Description:</strong><span style="color: {{new.colorC}};"> {{ new.descr }} </span><br/>
         <strong> Date de création:</strong> {{ new.date|date("d/m/Y") }} <br/>
         <strong> Visible? </strong> {% if new.visible %} Oui {% else %} Non {% endif %} <br/>
 

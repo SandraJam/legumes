@@ -35,9 +35,9 @@
                   <figure class="imgGauche">
                     <img src="{{ asset('images/' ~ n.photo)}}" class="imgRecette" alt="{{n.titre}}"/>
                   </figure>
-                  <span class="soustitre">{{n.titre}}</span><br/>
+                  <span class="soustitre" style="color: {{n.colorT}};">{{n.titre}}</span><br/>
                   <div onclick="news({{n.id}})" class="troispoints">Voir la news en entier...</div>
-                  {{n.descr}}
+                  <div style="padding-left: 50%; color: {{n.colorC}};">{{n.descr}}</div>
                 </div>
               </li>
               {% else %}
@@ -46,9 +46,9 @@
                   <figure class="imgDroite">
                     <img src="{{ asset('images/' ~ n.photo)}}" class="imgRecette" alt="{{n.titre}}"/>
                   </figure>
-                  <span class="soustitre">{{n.titre}}</span><br/>
+                  <span class="soustitre" style="color: {{n.colorT}};">{{n.titre}}</span><br/>
                   <div onclick="news({{n.id}})" class="troispoints">Voir la news en entier...</div>
-                  {{n.descr}}
+                  <div style="padding-right: 50%; color: {{n.colorC}};">{{n.descr}}</div>
                 </div>
               </li>
               {% endif %}
@@ -74,7 +74,7 @@
                 {{recette.nom|capitalize}}
               </span>
               <div onclick="news('rec')" class="troispoints">Voir la recette en entier...</div>
-
+              <div style="width: 50%;">
               <p> Temps de préparation : {{recette.tpsPrep}}<br/>
                   Temps de cuisson :     {{recette.tpsCuisson}}</p>
 
@@ -88,6 +88,7 @@
                 Préparation de la recette :<br/>
                 {{ recette.preparation|nl2br }}
               </p>
+            </div>
               <p class="bandeblanche">
                 V
               </p>
@@ -110,9 +111,9 @@
         <figure class="imgGaucheD">
           <img src="{{ asset('images/' ~ n.photo)}}" class="imgRecette" alt="{{n.titre}}"/>
         </figure>
-        <span class="soustitre">{{n.titre}}</span><br/>
+        <span class="soustitre" style="color: {{n.colorT}};">{{n.titre}}</span><br/>
         <div onclick="news({{n.id}})" class="troispoints">Voir la news en entier...</div>
-        {{n.descr}}
+        <span style="color: {{n.colorC}};">{{n.descr}}</span>
       </div>
     </div>
     {% else %}

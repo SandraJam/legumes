@@ -18,6 +18,26 @@
             <label> Description: </label><br/>
             <textarea name="descr">{{news.descr}}</textarea><br/>
             <br/>
+            <label> Couleur du titre: </label>
+            <select name="colorT">
+              <option value="black" {% if news.colorT == "black" %} selected {% endif %}> Noir </option>
+              <option value="red" {% if news.colorT == "red" %} selected {% endif %}> Rouge </option>
+              <option value="green" {% if news.colorT == "green" %} selected {% endif %}> Vert </option>
+              <option value="orange" {% if news.colorT == "orange" %} selected {% endif %}> Orange </option>
+              <option value="brown" {% if news.colorT == "brown" %} selected {% endif %}> Marron </option>
+              <option value="blue" {% if news.colorT == "blue" %} selected {% endif %}> Bleu </option>
+            </select>
+
+            <label> Couleur du contenu: </label>
+            <select name="colorC">
+              <option value="black" {% if news.colorT == "black" %} selected {% endif %}> Noir </option>
+              <option value="red" {% if news.colorT == "red" %} selected {% endif %}> Rouge </option>
+              <option value="green" {% if news.colorT == "green" %} selected {% endif %}> Vert </option>
+              <option value="orange" {% if news.colorT == "orange" %} selected {% endif %}> Orange </option>
+              <option value="brown" {% if news.colorT == "brown" %} selected {% endif %}> Marron </option>
+              <option value="blue" {% if news.colorT == "blue" %} selected {% endif %}> Bleu </option>
+            </select>
+
             <label> Photo: </label>
             <img class="imgRecetteM" src="{{asset('images/' ~ news.photo)}}" alt="{{news.titre}}"/>
             <br/><br/>

@@ -43,6 +43,21 @@ class News
     private $photo;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="colorT", type="string", length=255)
+     */
+    private $colorT;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="colorC", type="string", length=255)
+     */
+    private $colorC;
+
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
@@ -60,7 +75,7 @@ class News
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -83,11 +98,57 @@ class News
     /**
      * Get titre
      *
-     * @return string 
+     * @return string
      */
     public function getTitre()
     {
         return $this->titre;
+    }
+
+    /**
+     * Set colorT
+     *
+     * @param string $colorT
+     * @return News
+     */
+    public function setColorT($colorT)
+    {
+        $this->colorT = $colorT;
+
+        return $this;
+    }
+
+    /**
+     * Get colorT
+     *
+     * @return string
+     */
+    public function getColorT()
+    {
+        return $this->colorT;
+    }
+
+    /**
+     * Set colorC
+     *
+     * @param string $colorC
+     * @return News
+     */
+    public function setColorC($colorC)
+    {
+        $this->colorC = $colorC;
+
+        return $this;
+    }
+
+    /**
+     * Get colorC
+     *
+     * @return string
+     */
+    public function getColorC()
+    {
+        return $this->colorC;
     }
 
     /**
@@ -106,7 +167,7 @@ class News
     /**
      * Get descr
      *
-     * @return string 
+     * @return string
      */
     public function getDescr()
     {
@@ -129,7 +190,7 @@ class News
     /**
      * Get photo
      *
-     * @return string 
+     * @return string
      */
     public function getPhoto()
     {
@@ -152,7 +213,7 @@ class News
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -175,7 +236,7 @@ class News
     /**
      * Get visible
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getVisible()
     {

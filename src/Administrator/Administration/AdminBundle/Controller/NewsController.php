@@ -39,6 +39,22 @@ class NewsController extends Controller
                'expanded' => true,
                'multiple' => false))
            ->add('photo','file')
+           ->add('colorT', 'choice', array(
+                  'choices'   => array(
+                    'black' => 'Noir',
+                    'red' => 'Rouge',
+                    'green' => 'Vert',
+                    'orange' => 'Orange',
+                    'brown' => 'Marron',
+                    'blue' => 'Bleu')))
+           ->add('colorC', 'choice', array(
+                   'choices'   => array(
+                     'black' => 'Noir',
+                     'red' => 'Rouge',
+                     'green' => 'Vert',
+                     'orange' => 'Orange',
+                     'brown' => 'Marron',
+                     'blue' => 'Bleu')))
            ->add('valider','submit')
            ->add('annuler','reset')
            ->getForm();
@@ -65,7 +81,6 @@ class NewsController extends Controller
             $dir = $this->getRequest()->server->get('DOCUMENT_ROOT') . $this->getRequest()->getBasePath() . "/images/";
             $uploadedFile->move($dir, $fileName.time());
             $new->setPhoto($fileName.time());
-
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($new);
@@ -128,6 +143,8 @@ class NewsController extends Controller
 
             $titre = $_POST['titre'];
             $descr = $_POST['descr'];
+            $colorC = $_POST['colorC'];
+            $colorT = $_POST['colorT'];
             $photo = $_FILES['photo'];
             $message="";
 
@@ -159,6 +176,8 @@ class NewsController extends Controller
           }
           $new->setTitre($titre);
           $new->setDescr($descr);
+          $new->setColorC($colorC);
+          $new->setColorT($colorT);
 
           $em = $this->getDoctrine()->getManager();
           $em->flush();

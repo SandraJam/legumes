@@ -24,6 +24,12 @@
     {{ form_label(form.descr, 'Description:', {'label_attr': {'class': 'foo'}}) }}<br/>
     {{ form_widget(form.descr, {'attr': {'class': 'foo'}}) }}
     {{ form_errors(form.descr) }} <br/><br/>
+    {{ form_label(form.colorT, 'Couleur du titre:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_widget(form.colorT, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.colorT) }} <br/><br/>
+    {{ form_label(form.colorC, 'Couleur du contenu:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_widget(form.colorC, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.colorC) }} <br/><br/>
     {{ form_label(form.visible, 'Visible?', {'label_attr': {'class': 'foo'}}) }}
     {{ form_widget(form.visible, {'attr': {'class': 'foo'}}) }}
     {{ form_errors(form.visible) }} <br/><br/>
