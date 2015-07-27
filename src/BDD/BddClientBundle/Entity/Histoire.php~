@@ -31,16 +31,37 @@ class Histoire
     /**
      * @var string
      *
-     * @ORM\Column(name="contenu", type="string", length=2500)
+     * @ORM\Column(name="colorTitre", type="string", length=25)
      */
-    private $contenu;
+    private $colorTitre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lienPhoto", type="string", length=1000)
+     * @ORM\Column(name="contenu", type="string", length=2500)
+     */
+    private $contenu;
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="colorContenu", type="string", length=25)
+     */
+    private $colorContenu;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lienPhoto", type="string", length=3)
      */
     private $lienPhoto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="positionPhoto", type="string", length=1000)
+     */
+    private $positionPhoto;
 
 
     /**
@@ -120,5 +141,51 @@ class Histoire
     public function getLienPhoto()
     {
         return $this->lienPhoto;
+    }
+
+    /**
+     * Set colorTitre
+     *
+     * @param string $colorTitre
+     * @return Histoire
+     */
+    public function setColorTitre($colorTitre)
+    {
+        $this->colorTitre = $colorTitre;
+
+        return $this;
+    }
+
+    /**
+     * Get colorTitre
+     *
+     * @return string 
+     */
+    public function getColorTitre()
+    {
+        return $this->colorTitre;
+    }
+
+    /**
+     * Set colorContenu
+     *
+     * @param string $colorContenu
+     * @return Histoire
+     */
+    public function setColorContenu($colorContenu)
+    {
+        $this->colorContenu = $colorContenu;
+
+        return $this;
+    }
+
+    /**
+     * Get colorContenu
+     *
+     * @return string 
+     */
+    public function getColorContenu()
+    {
+        return $this->colorContenu;
     }
 }

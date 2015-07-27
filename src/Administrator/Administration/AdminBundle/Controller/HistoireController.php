@@ -40,10 +40,50 @@ class HistoireController extends Controller
 			return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
 		}		
 	}
-	public function ajouterHistoireAction(){
+	public function ajouterHistoireAction(Request $request){
 		$session = $this->getRequest()->getSession();
 		if ( ($session->get('pren') != NULL) && (strtolower($session->get('typ')) == 'administrateur') ) {
-			return $this->render('AdministratorAdministrationAdminBundle:Histoire:formAjouterHistoire.html.twig');
+			$histoire = new Histoire();
+         	$form = $this->createFormBuilder($histoire)
+         		->add('titre','text')
+         		->add('colorTitre', 'choice', array(
+         		 'choices'   => array(
+         		   'black' => 'Noir',
+         		   'red' => 'Rouge',
+         		   'green' => 'Vert',
+         		   'orange' => 'Orange',
+         		   'brown' => 'Marron',
+         		   'blue' => 'Bleu')))
+         		->add('contenu','textarea')
+         		->add('colorContenu', 'choice', array(
+         		 'choices'   => array(
+         		   'black' => 'Noir',
+         		   'red' => 'Rouge',
+         		   'green' => 'Vert',
+         		   'orange' => 'Orange',
+         		   'brown' => 'Marron',
+         		   'blue' => 'Bleu')))     
+         		->add('lienPhoto','file')
+    			->add('positionPhoto', 'choice', array(
+         		   'choices'   => array(
+         		    	'hg' => 'En haut a gauche',
+         		    	'hd' => 'En haut a droite',
+         		    	'bg' => 'En bas a gauche',
+         		    	'bd' => 'En bas a droite'))) 
+         		->add('valider','submit')
+         		->add('annuler','reset')
+         		->getForm();
+        	$form->handleRequest($request);
+        	
+        	if($form->isValid()){
+				$histoire=$form->getData();
+				
+        	}
+        	return $this->render(
+        		'AdministratorAdministrationAdminBundle:Histoire:formAjouterHistoire.html.twig', 
+        		array('form' => $form->createView()));
+        }else{
+            return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
         }
     }
 
@@ -51,7 +91,7 @@ class HistoireController extends Controller
 		$session = $this->getRequest()->getSession();
 		if ( ($session->get('pren') != NULL) && (strtolower($session->get('typ')) == 'administrateur') ) {
 			
-
+			
         }
     }
 		

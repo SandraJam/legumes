@@ -3,8 +3,6 @@
 
 {% block style %}
   <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
-  <link href="{{ asset('src/Administrator/Administration/AdminBundle/css/colpick.css') }}" rel="stylesheet">
-
 {% endblock %}
 
 {% block title %}
@@ -15,40 +13,42 @@
 <div class="container whiteBloc">
   <div class="center">
     <h1>Ajouter une histoire</h1>
-    <form action="{{path('administrator_administration_admin_ajouterBisBHistoire')}}" method="POST" enctype="multipart/form-data">
-      <label> Titre: </label><input type="text" value="" name="titre"/><br/>
-      <label> Couleur du Titre: </label>
-        <button id="picker" name="titreCoul">Voir la palette de couleur</button><br/>
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-notice" style="color: red;">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+  {{ form_start(form) }}
+    {{ form_label(form.titre, 'Titre:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_widget(form.titre, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.titre) }} <br/><br/>
 
+    {{ form_label(form.colorTitre, 'Couleur du titre:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_widget(form.colorTitre, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.colorTitre) }} <br/><br/>
 
-      <label> Contenu du Bloc: </label><input type="text" value="" name="contenuBloc"/><br/>
-      <label> Couleur du Bloc: </label><button id="picker" >Voir la palette de couleur</button><br/>
-      <label> Lien de la photo: </label><input type="text" value="" name="lienPhoto"/><br/>
-      <label> Position de la photo dans le bloc: </label> 
-     
-      <br/>
-       <label>En haut à gauche du bloc : </label><input type="radio" value="HG" name="positionPhotoOnScreen" checked> <br/>
-       <label> En haut à droite du bloc : </label><input type="radio" value="HD" name="positionPhotoOnScreen"> <br/>
-       <label> En bas à gauche du bloc : </label><input type="radio" value="BG" name="positionPhotoOnScreen"> <br/>
+    {{ form_label(form.contenu, 'Contenu:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_widget(form.contenu, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.contenu) }} <br/><br/>
 
-       <label> En bas à droite du bloc : </label><input type="radio" value="BD" name="positionPhotoOnScreen"> <br/>
-      
-       
-      <input type="submit" name="valider" value="Valider" id="form_suivant" class="bouton"/>
-      <a id="form_annuler" onclick="history.back()" href='#'>Retour</a><br/><br/>
-    </form>
+    {{ form_label(form.colorContenu, 'Couleur du contenu:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_widget(form.colorContenu, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.colorContenu) }} <br/><br/>
+
+    {{ form_label(form.lienPhoto, 'Choix de la photo:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_widget(form.lienPhoto, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.lienPhoto) }} <br/>
+
+    {{ form_label(form.positionPhoto, 'Position de photo sur l'écran:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_widget(form.positionPhoto, {'attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.positionPhoto) }} <br/>
+
+    {{ form_widget(form.valider, {'label': 'Ajouter'}) }}
+  {{ form_widget(form.annuler, {'label': 'Annuler'}) }}
+   
+  {{ form_end(form) }}
   </div>
 </div>
 
 {% endblock %}
 
-{% block js %}
-<script src="js/colpick.js" type="text/javascript"> </script>
-<script type="text/javascript">
-$('#picker').colpick({
-  flat:true,
-  layout:'hex',
-  submit:1
-});
-
-{% endblock %}
