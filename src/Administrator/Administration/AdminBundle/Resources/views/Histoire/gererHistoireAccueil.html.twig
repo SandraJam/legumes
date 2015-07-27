@@ -19,9 +19,7 @@
 	        </div>
 	    {% endfor %}
 	    <div class="row histoire">
-	    	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
-        	  <strong> id </strong>
-        	</div>
+	    
         	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
         	  <strong> Titre </strong>
         	</div>
@@ -35,9 +33,7 @@
 
         {% for article in listHistoire %}
         	<div class="row histoire">
-        		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
-            		{{ article.id|capitalize }}
-          		</div>
+        	
           		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
         	  		{{ article.titre|capitalize }}
         		</div>
