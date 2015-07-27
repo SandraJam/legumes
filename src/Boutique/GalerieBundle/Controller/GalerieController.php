@@ -15,7 +15,6 @@ class GalerieController extends Controller
 {
     public function indexAction()
     {
-        // VOIR PLUTOT POUR ENVOYER TOUTES LES CATEGORIES PUIS METTRE PANIER EN PREMIER
         $cat = $this->getDoctrine()
                       ->getRepository('BDDBddClientBundle:Categorie')
                       ->findAll();
@@ -162,6 +161,7 @@ class GalerieController extends Controller
                       ->find($session->get('id'));
 
         $commande = new Commande();
+        $commande->setJourCommande($_POST['jour'.$marche->getId()]);
         $commande->setNumCommande(time().$commande->getId());
         $commande->setStatus("En cours");
         $commande->setDateCommande(new \DateTime());
@@ -197,7 +197,7 @@ class GalerieController extends Controller
             </tr>';
 
           foreach($articles as $art){
-            $body .= '<tr><td>'.$art[0]->getNom().'</td><td>'.$art[1].'</td><td>'.($art[1]*$art[0]->getPrix()).'</td></tr>';
+            $body .= '<tr><td>'.$art[0]->getNom().'</td><td>'.$art[1].'</td><td>'.($art[1]*$art[0]->getPrix()).'€</td></tr>';
           }
 
           $body .= '</table></body></html>';

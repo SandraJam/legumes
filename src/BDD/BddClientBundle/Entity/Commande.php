@@ -36,6 +36,13 @@ class Commande
      private $status;
 
      /**
+      * @var string
+      *
+      * @ORM\Column(name="jourCommande", type="string", length=15)
+      */
+      private $jourCommande;
+
+     /**
      * @var date
      *
      * @ORM\Column(name="dateCommande", type="date")
@@ -246,6 +253,29 @@ class Commande
     {
         return $this->retirerMarches;
     }
+
+        /**
+         * Set jourCommande
+         *
+         * @param string $jourCommande
+         * @return Commande
+         */
+        public function setJourCommande($jourCommande)
+        {
+            $this->jourCommande = $jourCommande;
+
+            return $this;
+        }
+
+        /**
+         * Get jourCommande
+         *
+         * @return string
+         */
+        public function getJourCommande()
+        {
+            return $this->jourCommande;
+        }
 
     /**
      * Set status

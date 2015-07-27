@@ -14,7 +14,14 @@
   <div class="login">
     <h1> Modifier le marché de "{{marches.lieu}}"</h1>
     <label> Lieu: </label><input type="text" value="{{marches.lieu}}" name="lieu"/><br/>
-    <label> Jour de la Semaine: </label><input name="jourS" type="text" value="{{marches.jourSemaine}}"/><br/>
+    <label> Jour de la Semaine: </label><br/>
+    <input type="checkbox" name="lundi" value="lundi" class="jour" {% for j in jour %}{% if j=="lundi" %} checked {% endif %}{% endfor %}/> Lundi
+    <input type="checkbox" name="mardi" value="mardi" class="jour" {% for j in jour %}{% if j=="mardi" %} checked {% endif %}{% endfor %}/> Mardi
+    <input type="checkbox" name="mercredi" value="mercredi" class="jour" {% for j in jour %}{% if j=="mercredi" %} checked {% endif %}{% endfor %}/> Mercredi <br/>
+    <input type="checkbox" name="jeudi" value="jeudi" class="jour" {% for j in jour %}{% if j=="jeudi" %} checked {% endif %}{% endfor %}/> Jeudi
+    <input type="checkbox" name="vendredi" value="vendredi" class="jour" {% for j in jour %}{% if j=="vendredi" %} checked {% endif %}{% endfor %}/> Vendredi
+    <input type="checkbox" name="samedi" value="samedi" class="jour" {% for j in jour %}{% if j=="samedi" %} checked {% endif %}{% endfor %}/> Samedi
+    <input type="checkbox" name="dimanche" value="dimanche" class="jour" {% for j in jour %}{% if j=="dimanche" %} checked {% endif %}{% endfor %}/> Dimanche <br/><br/>
     <label> Informations supplémentaires: </label><br/><textarea name="info">{{marches.info}}</textarea><br/>
     <input type="submit" name="valider" value="Modifier" id="form_suivant" class="bouton"/>
     <a href="{{path('administrator_marches_index')}}" id="form_annuler"> Retour </a>

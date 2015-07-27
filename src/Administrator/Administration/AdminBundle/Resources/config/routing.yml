@@ -185,3 +185,19 @@ administrator_news_modif:
 administrator_news_modifbis:
     path:      /newsmodifbis/{id}
     defaults: { _controller: AdministratorAdministrationAdminBundle:News:modifbis }
+
+administrator_commande_cherche:
+    path:      /commandecherche
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Commande:index }
+
+administrator_commande_resultat:
+    path:      /commanderesultat
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Commande:resultat }
+
+administrator_commande_option:
+    path:      /commandeoption
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Commande:option }
+
+administrator_commande_supprimer:
+    path:      /commandesupprimer{id}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Commande:supprimer }

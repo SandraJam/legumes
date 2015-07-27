@@ -1,0 +1,129 @@
+{# src/Administration/AdminBundle/Resources/views/resultat.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+	Gestion Commandes
+{% endblock %}
+
+{% block body %}
+  <div class="container whiteBloc recherche">
+    <h1> Résultats Commandes </h1>
+    {% if commandes|length == 0 %}
+      Aucune commande ne correspond à votre recherche. <br/>
+    {% else %}
+      <div class="row commande">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+          <strong>Numéro</strong>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
+          <strong>Date</strong>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
+          <strong>Total</strong>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+          <strong>Status</strong>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+          <strong>Fonctions</strong>
+        </div>
+      </div>
+        <!-- Panier, jour et remarque dans Voir -->
+        {% for commande in commandes %}
+          <div class="row commande">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+              {{commande.numCommande}}
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
+              {{commande.dateCommande|date("d/m/Y")}}
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
+              {{commande.total}}€
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+              {{commande.status}}
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+              <button onclick="entier('{{commande.id}}')" type="button" class="btn btn-default btn-md btn-info">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Voir
+              </button>
+              <a class="btn btn-default btn-md btn-danger" role="button" href="{{path('administrator_commande_supprimer', {'id' : commande.id})}}">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  {% for c in commandes %}
+    <div id="{{c.id}}" class="entiere row">
+      <img class="fermer" onclick="fermer('{{c.id}}')"
+      src="{{ asset('bundles/accueilaccueil/images/close.png')}}"
+      alt="fermer la fenetre"/>
+      <div>
+        <h1> {{c.numCommande}} </h1><br/>
+        <strong> Date:</strong> {{ c.dateCommande|date("d/m/Y") }} <br/><br/>
+        <strong> Total:</strong> {{ c.total }}  <br/><br/>
+        <strong> Status:</strong> {{ c.status }}  <br/><br/>
+        <strong> Jour de reception:</strong> {{ c.jourCommande }}  <br/><br/>
+        <strong> Remarque:</strong> {{ c.remarque }}  <br/><br/>
+        <strong> Panier: </strong> <br/><br/>
+        {% for p in panier %}
+          {% if p.1 == c.id %}
+            <div class="row commande">
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <strong>Nom</strong>
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <strong>Quantité</strong>
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <strong>Prix par unité</strong>
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <strong>Total</strong>
+              </div>
+            </div>
+            {% for art in p.0 %}
+              <div class="row commande">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                  {{art.0.nom}}
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                  {{art.1}}
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                  {{art.0.prix}}€ pour {{art.0.qtiteVente}}
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                  {{art.0.prix * art.1}}€
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+
+
+{% endblock %}
+
+
+{% block js %}
+<script>
+function entier(id) {
+  document.getElementById(id).style.display = "block";
+}
+
+function fermer(id) {
+  document.getElementById(id).style.display = "none";
+}
+</script>
+{% endblock %}

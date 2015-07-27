@@ -18,7 +18,7 @@
           <div class="blocM">
             <h1> Choisir mon marché: </h1>
             {% for m in marches %}
-              <input onclick="voir('{{m.id}}');" {% if loop.first %} checked {% endif %}type="radio" name="marche" value="{{m.id}}"/> Marché de {{m.lieu}}, le {{m.jourSemaine}} <br/>
+              <input onclick="voir('{{m.id}}');" {% if loop.first %} checked {% endif %}type="radio" name="marche" value="{{m.id}}"/> Marché de {{m.lieu}}<br/>
             {% endfor %}
           </div>
         </div>
@@ -27,7 +27,15 @@
             {% for m in marches %}
               <div id="{{m.id}}" {% if not loop.first %}style="display: none;" {% endif %}>
                 <h1> Le marché de {{m.lieu}} </h1>
-                Le marché de {{m.lieu}} a lieu tous les {{m.jourSemaine}}. <br/>
+                Choisir votre jour de récupération de commande:
+                {% set jour = m.jourSemaine|split(' ') %}
+                <select name="jour{{m.id}}">
+                  {% for j in jour %}
+                    {% if not loop.last %}
+                      <option value="{{j}}" {% if loop.first %} selected {% endif %}>{{j|capitalize}} prochain</option>
+                    {% endif %}
+                  {% endfor %}
+                </select><br/><br/>
                 {{m.info}}
               </div>
             {% endfor %}

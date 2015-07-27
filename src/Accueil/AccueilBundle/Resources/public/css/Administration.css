@@ -346,3 +346,58 @@ input.radio {
   width: 40%;
   margin-left: 4em;
 }
+
+.jour{
+  width: 5em;
+}
+
+/* Recherche Commande */
+
+.recherche {
+  text-align: center;
+}
+
+.recherche h1{
+  font-family: "Cookie", cursive;
+}
+
+.recherche select {
+  width: 200px;
+}
+
+.recherche .text {
+  width: 100px;
+}
+
+.entiere {
+  z-index: 3000;
+  text-align: justify;
+  display: none;
+  position: absolute;
+  top: 17em;
+  width: 70%;
+  min-height: 25em;
+  margin-left: 15%;
+  padding: 2em;
+  padding-top: 3em;
+  background: white;
+  border: 1px solid grey;
+  border-radius: 1em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3),
+              0 3px 5px rgba(0, 0, 0, .2),
+              0 5px 10px rgba(0, 0, 0, .2),
+              0 20px 20px rgba(0, 0, 0, .15);
+}
+
+.fermer {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+}
+
+.commande {
+  padding: 0.5em;
+  text-align: center;
+  border: 1px solid grey;
+  margin-top: 1em;
+}

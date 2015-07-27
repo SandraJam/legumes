@@ -59,7 +59,7 @@
                 <strong>Voir</strong>
               </div>
             </div>
-              <!-- Panier et remarque dans Voir -->
+              <!-- Panier, jour et remarque dans Voir -->
               {% for commande in commandes %}
                 <div class="row commande">
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -98,6 +98,7 @@
       <strong> Date:</strong> {{ c.dateCommande|date("d/m/Y") }} <br/><br/>
       <strong> Total:</strong> {{ c.total }}  <br/><br/>
       <strong> Status:</strong> {{ c.status }}  <br/><br/>
+      <strong> Jour de reception:</strong> {{ c.jourCommande }}  <br/><br/>
       <strong> Remarque:</strong> {{ c.remarque }}  <br/><br/>
       <strong> Panier: </strong> <br/><br/>
       {% for p in panier %}

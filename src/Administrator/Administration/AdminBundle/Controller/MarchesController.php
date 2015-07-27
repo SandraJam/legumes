@@ -33,7 +33,17 @@ class MarchesController extends Controller
         $marche = new Marches();
         $form = $this->createFormBuilder($marche)
            ->add('lieu','text')
-           ->add('jourSemaine','text')
+           ->add('jourSemaine', 'choice', array(
+                  'choices'   => array(
+                    'lundi' => 'Lundi',
+                    'mardi' => 'Mardi',
+                    'mercredi' => 'Mercredi',
+                    'jeudi' => 'Jeudi',
+                    'vendredi' => 'Vendredi',
+                    'samedi' => 'Samedi',
+                    'dimanche' => 'Dimanche'),
+                    'multiple'  => true,
+                    'expanded'  => true))
            ->add('info','textarea')
            ->add('valider','submit')
            ->add('annuler','reset')
@@ -46,7 +56,7 @@ class MarchesController extends Controller
           if ($marche->getLieu() == "" || strpos(htmlentities($marche->getLieu(), ENT_QUOTES), '&gt;') || strpos(htmlentities($marche->getLieu(), ENT_QUOTES), '&lt;')){
             $message .= "Lieu incorrect. ";
           }
-          if ($marche->getJourSemaine() == "" || strpos(htmlentities($marche->getJourSemaine(), ENT_QUOTES), '&gt;') || strpos(htmlentities($marche->getJourSemaine(), ENT_QUOTES), '&lt;')){
+          if ($marche->getJourSemaine() == null || $marche->getJourSemaine() == "" ){
             $message .= "Jour de Semaine incorrect. ";
           }
           if ($marche->getInfo() == "" || strpos(htmlentities($marche->getInfo(), ENT_QUOTES), '&gt;') || strpos(htmlentities($marche->getInfo(), ENT_QUOTES), '&lt;')){
@@ -54,6 +64,12 @@ class MarchesController extends Controller
           }
 
           if ($message == ""){
+            $jour = $marche->getJourSemaine();
+            $j = "";
+            foreach($jour as $a){
+              $j .= $a." ";
+            }
+            $marche->setJourSemaine($j);
             $em = $this->getDoctrine()->getManager();
             $em->persist($marche);
             $em->flush();
@@ -96,8 +112,9 @@ class MarchesController extends Controller
          if (strtolower($session->get('typ')) == 'administrateur') {
           $marches = $this->getDoctrine()
               ->getRepository('BDDBddClientBundle:Marches')->find($id);
+          $jour = explode(' ', $marches->getJourSemaine());
           return $this->render('AdministratorAdministrationAdminBundle:Marches:marchesModif.html.twig',
-                  array('marches' => $marches));
+                  array('marches' => $marches, 'jour' => $jour));
         }else{
             return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
           }
@@ -114,23 +131,48 @@ class MarchesController extends Controller
           ->getRepository('BDDBddClientBundle:Marches')->find($id);
         $ingredients = $this->getDoctrine();
 
-          $lieu = $_POST['lieu']; $jourS = $_POST['jourS'];
+          $lieu = $_POST['lieu'];
           $info = $_POST['info'];
+
+          $jour = "";
+          if (isset($_POST['lundi'])){
+            $jour .= "lundi ";
+          }
+          if (isset($_POST['mardi'])){
+            $jour .= "mardi ";
+          }
+          if (isset($_POST['mercredi'])){
+            $jour .= "mercredi ";
+          }
+          if (isset($_POST['jeudi'])){
+            $jour .= "jeudi ";
+          }
+          if (isset($_POST['vendredi'])){
+            $jour .= "vendredi ";
+          }
+          if (isset($_POST['samedi'])){
+            $jour .= "samedi ";
+          }
+          if (isset($_POST['dimanche'])){
+            $jour .= "dimanche ";
+          }
+
           $message = "";
-          if ($marche->getLieu() == "" || strpos(htmlentities($marche->getLieu(), ENT_QUOTES), '&gt;') || strpos(htmlentities($marche->getLieu(), ENT_QUOTES), '&lt;')){
+          if ($lieu == "" || strpos(htmlentities($lieu, ENT_QUOTES), '&gt;') || strpos(htmlentities($lieu, ENT_QUOTES), '&lt;')){
             $message .= "Lieu incorrect. ";
           }
-          if ($marche->getJourSemaine() == "" || strpos(htmlentities($marche->getJourSemaine(), ENT_QUOTES), '&gt;') || strpos(htmlentities($marche->getJourSemaine(), ENT_QUOTES), '&lt;')){
+          if ($jour == ""){
             $message .= "Jour de Semaine incorrect. ";
           }
-          if ($marche->getInfo() == "" || strpos(htmlentities($marche->getInfo(), ENT_QUOTES), '&gt;') || strpos(htmlentities($marche->getInfo(), ENT_QUOTES), '&lt;')){
+          if ($info == "" || strpos(htmlentities($info, ENT_QUOTES), '&gt;') || strpos(htmlentities($info, ENT_QUOTES), '&lt;')){
             $message .= "Informations incorrect. ";
           }
 
           if ($message == ""){
             $marche->setLieu($lieu);
-            $marche->setJourSemaine($jourS);
             $marche->setInfo($info);
+            $marche->setJourSemaine($jour);
+
             $em = $this->getDoctrine()->getManager();
             $em->flush();
           }

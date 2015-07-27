@@ -56,8 +56,7 @@
           <div class="input-group centrer">
             <input type="hidden" name="id" value="{{art.0.id}}"/>
             <input type="number" name="quantite" class="form-control" min="1"
-              max="{% if art.0.qtiteStock > art.0.commandeMax %}{{art.0.commandeMax}}
-                    {% else %} {{art.0.qtiteStock}} {% endif %}" value="{{art.1}}" aria-label="Amount (to the nearest dollar)">          </div><br/>
+              max="{% if art.0.qtiteStock > art.0.commandeMax %}{{art.0.commandeMax}}{% else %}{{art.0.qtiteStock}}{% endif %}" value="{{art.1}}" aria-label="Amount (to the nearest dollar)">          </div><br/>
           <button type="submit" class="btn btn-default btn-sm btn-warning">
             <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Actualiser
           </button>
@@ -69,8 +68,7 @@
             <div class="input-group centrer">
               <input type="hidden" name="id" value="{{art.0.id}}"/>
               <input type="number" name="quantite" class="form-control" min="1"
-                max="{% if art.0.qtiteStock > art.0.commandeMax %}{{art.0.commandeMax}}
-                      {% else %} {{art.0.qtiteStock}} {% endif %}" value="{{art.1}}" aria-label="Amount (to the nearest dollar)">          </div><br/>
+                max="{% if art.0.qtiteStock > art.0.commandeMax %}{{art.0.commandeMax}}{% else %}{{art.0.qtiteStock}}{% endif %}" value="{{art.1}}" aria-label="Amount (to the nearest dollar)">          </div><br/>
             <button type="submit" class="btn btn-default btn-sm btn-warning">
               <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
             </button>

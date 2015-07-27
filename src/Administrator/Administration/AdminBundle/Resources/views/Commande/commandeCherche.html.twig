@@ -1,0 +1,41 @@
+{# src/Administration/AdminBundle/Resources/views/commandeCherche.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+	Gestion Commandes
+{% endblock %}
+
+{% block body %}
+  <div class="container whiteBloc recherche">
+    <h1> Recherche de commandes </h1>
+    <form action="{{path('administrator_commande_resultat')}}" method="POST">
+      Vous pouvez laisser les champs vide pour une recherche sans contrainte.<br/>
+      <label> Statut: </label>
+      <select name="statut">
+        {% for s in statut %}
+          <option value="{{s}}"> {{s}} </option>
+        {% endfor %}
+      </select><br/><br/>
+      <label> Marché: </label>
+      <select name="marche">
+        <option value="all"> Tous les marchés </option>
+        {% for m in marche %}
+          <option value="{{m.id}}"> {{m.lieu}} </option>
+        {% endfor %}
+      </select><br/><br/>
+      <label> Date (format jj/mm/aaaa): </label>
+      <input type="text" name="date1" class="text"/> à
+      <input type="text" name="date2" class="text"/><br/><br/>
+      <label> Montant: </label>
+      <input type="number" name="montant1" class="text"/> à
+      <input type="number" name="montant2" class="text"/><br/><br/>
+      <input type="submit" name="valider" value="Afficher" id="form_suivant" class="bouton"/>
+      <a href="{{path('goadministrator_administration')}}" id="form_annuler">Retour</a>
+      <br/><br/>
+    </form>
+  </div>
+{% endblock %}
