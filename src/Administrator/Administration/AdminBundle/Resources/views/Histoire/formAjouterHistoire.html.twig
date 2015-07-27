@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block title %}
-	Page de modification des utilisateurs
+	Ajout d'une histoire
 {% endblock %}
 
 {% block body %}
@@ -22,30 +22,23 @@
     {{ form_label(form.titre, 'Titre:', {'label_attr': {'class': 'foo'}}) }}
     {{ form_widget(form.titre, {'attr': {'class': 'foo'}}) }}
     {{ form_errors(form.titre) }} <br/><br/>
-
     {{ form_label(form.colorTitre, 'Couleur du titre:', {'label_attr': {'class': 'foo'}}) }}
     {{ form_widget(form.colorTitre, {'attr': {'class': 'foo'}}) }}
     {{ form_errors(form.colorTitre) }} <br/><br/>
-
     {{ form_label(form.contenu, 'Contenu:', {'label_attr': {'class': 'foo'}}) }}
     {{ form_widget(form.contenu, {'attr': {'class': 'foo'}}) }}
     {{ form_errors(form.contenu) }} <br/><br/>
-
     {{ form_label(form.colorContenu, 'Couleur du contenu:', {'label_attr': {'class': 'foo'}}) }}
     {{ form_widget(form.colorContenu, {'attr': {'class': 'foo'}}) }}
     {{ form_errors(form.colorContenu) }} <br/><br/>
-
     {{ form_label(form.lienPhoto, 'Choix de la photo:', {'label_attr': {'class': 'foo'}}) }}
     {{ form_widget(form.lienPhoto, {'attr': {'class': 'foo'}}) }}
-    {{ form_errors(form.lienPhoto) }} <br/>
-
-    {{ form_label(form.positionPhoto, 'Position de photo sur l'écran:', {'label_attr': {'class': 'foo'}}) }}
+    {{ form_errors(form.lienPhoto) }} <br/><br/>
+    {{ form_label(form.positionPhoto, 'Position de photo sur l\'écran:', {'label_attr': {'class': 'foo'}}) }}
     {{ form_widget(form.positionPhoto, {'attr': {'class': 'foo'}}) }}
     {{ form_errors(form.positionPhoto) }} <br/>
-
     {{ form_widget(form.valider, {'label': 'Ajouter'}) }}
-  {{ form_widget(form.annuler, {'label': 'Annuler'}) }}
-   
+    {{ form_widget(form.annuler, {'label': 'Annuler'}) }}
   {{ form_end(form) }}
   </div>
 </div>
