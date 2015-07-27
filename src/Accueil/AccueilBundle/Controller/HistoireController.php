@@ -9,6 +9,8 @@ class HistoireController extends Controller
 {
   public function histoireAction()
   {
-    return $this->render('AccueilAccueilBundle::histoire.html.twig');
+  	$listeHistoire=$this->getDoctrine()
+  					->getRepository('BDDBddClientBundle:Histoire')->findAll();
+    return $this->render('AccueilAccueilBundle::histoire.html.twig',array('listeHistoire'=>$listeHistoire));
   }
 }
