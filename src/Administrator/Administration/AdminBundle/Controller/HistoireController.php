@@ -66,18 +66,27 @@ class HistoireController extends Controller
          		->add('lienPhoto','file')
     			->add('positionPhoto', 'choice', array(
          		   'choices'   => array(
-         		    	'hg' => 'En haut a gauche',
-         		    	'hd' => 'En haut a droite',
-         		    	'bg' => 'En bas a gauche',
-         		    	'bd' => 'En bas a droite'))) 
-         		->add('valider','submit')
-         		->add('annuler','reset')
+         		    	'hg' => 'HautGauche',
+         		    	'hd' => 'HautDroite',
+         		    	'bg' => 'BasGauche',
+         		    	'bd' => 'BasDroite'))) 
+           ->add('valider','submit')
+           ->add('annuler','reset')
          		->getForm();
         	$form->handleRequest($request);
         	
         	if($form->isValid()){
 				$histoire=$form->getData();
-				
+				$tableauCarIndesirable = array(" ", "-", "#", "~", "\t", "\n", "\r", "\0", "\x0B", "\xA0");
+            $uploadedFile = $histoire -> getLienPhoto();
+            $fileName = str_replace($tableauCarIndesirable, "", $uploadedFile -> getClientOriginalName());
+            $dir = $this->getRequest()->server->get('DOCUMENT_ROOT') . $this->getRequest()->getBasePath() . "/images/";
+            $uploadedFile->move($dir, $fileName.time());
+            $histoire->setLienPhoto($fileName.time());
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($histoire);
+            $em->flush();
         	}
         	return $this->render(
         		'AdministratorAdministrationAdminBundle:Histoire:formAjouterHistoire.html.twig', 
@@ -87,12 +96,6 @@ class HistoireController extends Controller
         }
     }
 
-    public function ajouterHistoireBisAction(){
-		$session = $this->getRequest()->getSession();
-		if ( ($session->get('pren') != NULL) && (strtolower($session->get('typ')) == 'administrateur') ) {
-			
-			
-        }
-    }
+
 		
 }
