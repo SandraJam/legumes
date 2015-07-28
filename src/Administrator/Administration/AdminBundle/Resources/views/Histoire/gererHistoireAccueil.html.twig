@@ -18,33 +18,39 @@
 	            {{ flashMessage }}
 	        </div>
 	    {% endfor %}
-	    <div class="row histoire">
-	    
-        	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
-        	  <strong> Titre </strong>
-        	</div>
-        	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-          		<strong> Contenu </strong>
-        	</div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <strong> Lien Image </strong>
-            </div>
+      <div class="row ajouter">
+        <form action="{{ path('administrator_administration_admin_ajouterHistoire') }}" method="post">
+          <button  name="ajout" value="Ajout"	class="btn btn-default btn-md btn-warning" type="submit"> Ajouter une histoire </button>
+        </form>
+      </div>
+	    <div class="row recette">
+        <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+          <strong> Photo </strong>
         </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        	<strong> Titre </strong>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <strong> Contenu </strong>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <strong> Fonction </strong>
+        </div>
+      </div>
 
         {% for article in listHistoire %}
-        	<div class="row histoire">
-        	
-          		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
-        	  		{{ article.titre|capitalize }}
-        		</div>
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
-                    {{ article.contenu }}
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
-                    {{ article.lienPhoto }}
-                </div>
+        	<div class="row recette">
+            <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+              <img src="{{asset('images/' ~ article.lienPhoto)}}" alt="{{art.nom}}" class="imgRecette"/>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="color: {{article.colorTitre}};">
+              {{ article.titre|capitalize }}
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="color: {{article.colorContenu}};">
+              {{ article.contenu }}
+            </div>
         	</div>
-        	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
             	<div class="btn-group" role="group">
             	  	<form action="{{ path('administrator_administration_admin_quoiFaireHistoire') 	}}" 	method="post">
             	  	  	<button  name="modif" value="Modif" onClick="buttonSelected(this,{{ article.id 	}})	" 	class="btn btn-default btn-md btn-warning" type="submit">
@@ -60,9 +66,7 @@
           </div>
         {% endfor %}
         <br/><br/>
-    	<form action="{{ path('administrator_administration_admin_ajouterHistoire') }}" method="post">
-    		<button  name="ajout" value="Ajout"	class="btn btn-default btn-md btn-warning" type="submit"> Ajouter une histoire </button>
-    	</form>
+
 	</div>
 </div>
 {% endblock %}

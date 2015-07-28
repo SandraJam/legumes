@@ -104,7 +104,7 @@ textarea, .textarea {
   height: 8em;
 }
 
-#form_photo, #form_photos{
+#form_photo, #form_photos, #form_lienPhoto{
   margin-left: 25%;
 }
 
@@ -125,7 +125,7 @@ textarea, .textarea {
   textarea {
     width: 95%;
   }
-  #form_photo, #form_photos{
+  #form_photo, #form_photos, #form_lienPhoto{
     margin-left: 2%;
   }
   #form_retour {
@@ -411,3 +411,5 @@ input.radio {
 .blabla th, .blabla td {
     padding: 1em;
 }
+
+/* Histoire */
