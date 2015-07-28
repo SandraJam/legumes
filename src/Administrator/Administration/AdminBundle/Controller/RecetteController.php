@@ -10,6 +10,7 @@ use BDD\BddClientBundle\Entity\Article;
 
 class RecetteController extends Controller
 {
+  /* Afficher Recette */
   public function baseAction(){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
@@ -32,6 +33,7 @@ class RecetteController extends Controller
     }
   }
 
+  /* Ajouter une recette */
   public function ajoutAction(Request $request){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
@@ -92,6 +94,7 @@ class RecetteController extends Controller
     }
   }
 
+  /* Ajouter une ingrédient */
   public function ajoutingredientAction($id, Request $request) {
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
@@ -143,6 +146,7 @@ class RecetteController extends Controller
     }
   }
 
+  /* Supprimer un ingrédient */
   public function supprimerIngredientAction($id) {
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
@@ -162,6 +166,7 @@ class RecetteController extends Controller
     }
   }
 
+  /* Modifier un article */
   public function modifierAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
@@ -182,6 +187,7 @@ class RecetteController extends Controller
     }
   }
 
+  /* Valider modification article */
   public function modifierbisAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
@@ -275,6 +281,7 @@ class RecetteController extends Controller
     }
   }
 
+  /* Supprimer Article */
   public function supprimerAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {

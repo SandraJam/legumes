@@ -9,6 +9,8 @@ use BDD\BddClientBundle\Entity\Article;
 
 class ProduitsController extends Controller
 {
+
+  /* Page admin Categorie */
   public function indexAction(){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
@@ -27,6 +29,7 @@ class ProduitsController extends Controller
     }
   }
 
+  /* Ajout Categorie */
   public function ajoutCatAction(Request $request){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
@@ -70,6 +73,7 @@ class ProduitsController extends Controller
     }
   }
 
+  /* Supprimr Categorie */
   public function supprimerCategorieAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
@@ -93,6 +97,7 @@ class ProduitsController extends Controller
     }
   }
 
+  /* Modifie Categorie */
   public function modifierCategorieAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
@@ -109,6 +114,7 @@ class ProduitsController extends Controller
     }
   }
 
+  /* Validation modification categorie */
   public function modifierbisCategorieAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
@@ -140,7 +146,7 @@ class ProduitsController extends Controller
     }
   }
 
-
+  /* Ajout articles*/
   public function ajoutArtAction($id, Request $request){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
@@ -219,6 +225,7 @@ class ProduitsController extends Controller
     }
   }
 
+  /* Modifie article */
   public function modifierArtAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
@@ -237,6 +244,7 @@ class ProduitsController extends Controller
     }
   }
 
+  /* Validation modification article */
   public function modifierbisArtAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
@@ -317,6 +325,7 @@ class ProduitsController extends Controller
     }
   }
 
+  /* Supprimer article */
   public function supprimerArtAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
@@ -337,6 +346,7 @@ class ProduitsController extends Controller
     }
   }
 
+  /* Voir les articles d'une categorie */
   public function baseArtAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {

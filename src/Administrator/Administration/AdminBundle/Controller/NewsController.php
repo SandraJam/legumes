@@ -8,6 +8,7 @@ use BDD\BddClientBundle\Entity\News;
 
 class NewsController extends Controller
 {
+    /* Page administration des News */
     public function indexAction(){
       $session = $this->getRequest()->getSession();
       if ($session->get('pren') != NULL) {
@@ -26,6 +27,7 @@ class NewsController extends Controller
       }
     }
 
+    /* Ajout d'une News */
     public function ajoutAction(Request $request){
       $session = $this->getRequest()->getSession();
       if ($session->get('pren') != NULL) {
@@ -100,6 +102,7 @@ class NewsController extends Controller
       }
     }
 
+    /* Supprimer une News */
     public function suppAction($id){
       $session = $this->getRequest()->getSession();
       if ($session->get('pren') != NULL) {
@@ -118,6 +121,7 @@ class NewsController extends Controller
       }
     }
 
+    /* Modifier une News */
     public function modifAction($id){
       $session = $this->getRequest()->getSession();
       if ($session->get('pren') != NULL) {
@@ -134,6 +138,7 @@ class NewsController extends Controller
       }
     }
 
+    /* Valider modification News */
     public function modifbisAction($id){
       $session = $this->getRequest()->getSession();
       if ($session->get('pren') != NULL) {

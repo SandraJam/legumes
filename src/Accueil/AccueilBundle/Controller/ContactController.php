@@ -10,6 +10,8 @@ use BDD\BddClientBundle\Entity\Commande;
 
 class ContactController extends Controller
 {
+
+    // Affiche la page de contact
     public function contactAction()
     {
       $contact = new Contact();
@@ -38,6 +40,7 @@ class ContactController extends Controller
     ));
   }
 
+  // Affiche le compte client
   public function compteAction(){
     $session = $this->getRequest()->getSession();
     if ($session->get('users') != NULL){
@@ -73,6 +76,7 @@ class ContactController extends Controller
     }
   }
 
+  // Modifie le compte client
   public function modifCompteAction() {
     $session = $this->getRequest()->getSession();
     if ($session->get('users') != NULL){

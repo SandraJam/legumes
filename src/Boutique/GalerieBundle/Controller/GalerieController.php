@@ -13,6 +13,7 @@ use BDD\BddClientBundle\Entity\Commande;
 
 class GalerieController extends Controller
 {
+    // Affiche la boutique
     public function indexAction()
     {
         $cat = $this->getDoctrine()
@@ -37,6 +38,7 @@ class GalerieController extends Controller
           array('categories' => $categories, 'articles' => $articles));
     }
 
+    // Affiche le panier
     public function panierAction()
     {
         $session = $this->getRequest()->getSession();
@@ -51,6 +53,7 @@ class GalerieController extends Controller
         return $this->render('BoutiqueGalerieBundle::panier.html.twig', array('articles' => $articles));
     }
 
+    // Affiche la boutique relative a une recette
     public function panierRecetteAction($idRecette) {
       $recette = $this->getDoctrine()
                     ->getRepository('BDDBddClientBundle:Recette')
@@ -62,6 +65,7 @@ class GalerieController extends Controller
         array('ingredients' => $ingredients));
     }
 
+    // Ajouter un article au panier
     public function ajoutPanierAction(){
       $id = $_POST['id'];
       $quantite = $_POST['quantite'];
@@ -87,6 +91,7 @@ class GalerieController extends Controller
       return $this->redirect($this->generateUrl('boutique_galerie_homepage'));
     }
 
+    // Supprimer un article du panier
     public function supPanierAction($id){
       $session = $this->getRequest()->getSession();
       if ($session->get('panier') != NULL){
@@ -106,6 +111,7 @@ class GalerieController extends Controller
       return $this->redirect($this->generateUrl('boutique_galerie_panier'));
     }
 
+    // Modifier un article du panier
     public function actuPanierAction(){
       $id = $_POST['id'];
       $quantite = $_POST['quantite'];
@@ -133,6 +139,7 @@ class GalerieController extends Controller
 
     }
 
+    // Choisir son marché de récupération
     public function marcheAction() {
       $session = $this->getRequest()->getSession();
       if ($session->get('users') != NULL) {
@@ -147,6 +154,7 @@ class GalerieController extends Controller
       return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
     }
 
+    // Enregistre la commande + envoie le mail de validation
     public function validemarcheAction() {
       $session = $this->getRequest()->getSession();
       if ($session->get('users') != NULL) {

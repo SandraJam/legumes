@@ -10,13 +10,17 @@ use BDD\BddClientBundle\Entity\Marches;
 
 class CommandeController extends Controller
 {
+  /* Page de vue des commandes */
   public function indexAction(){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
       if (strtolower($session->get('typ')) == 'administrateur') {
+        // Récupère toutes les commandes
         $commandes = $this->getDoctrine()
                       ->getRepository('BDDBddClientBundle:Commande')
                       ->findAll();
+
+        // Récupère tous les status
         $statut = array();
         foreach($commandes as $c){
           if (!in_array($c->getStatus(), $statut)){
@@ -24,6 +28,8 @@ class CommandeController extends Controller
           }
         }
         sort($statut);
+
+        // Récupère tous les marchés
         $marches = $this->getDoctrine()
                       ->getRepository('BDDBddClientBundle:Marches')
                       ->findAll();
@@ -35,6 +41,7 @@ class CommandeController extends Controller
     return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
   }
 
+  /* Résultat de la recherche de commande */
   public function resultatAction(){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
@@ -42,6 +49,8 @@ class CommandeController extends Controller
         $allCommandes = array();
         $statut = false;
         $enPrep = false;
+
+        // Récupère les commandes relative à un statut + note le statut
         if (isset($_POST['statut']) && $_POST['statut'] != null){
           $allCommandes =  $this->getDoctrine()
                         ->getRepository('BDDBddClientBundle:Commande')
@@ -57,6 +66,7 @@ class CommandeController extends Controller
         $date1 = $_POST['date1']; $date2 = $_POST['date2'];
         $montant1 = $_POST['montant1']; $montant2 = $_POST['montant2'];
 
+        // Trie par marché
         $commandesM = array();
         if ($marche != "all"){
           foreach($allCommandes as $c){
@@ -69,6 +79,7 @@ class CommandeController extends Controller
         }
         $commandesD = array();
 
+        // Trie entre date1 et date2
         if(($date1 == "" && $date2 == "")||($date1 == null && $date2 == null)){
           $commandesD = $commandesM;
         }else{
@@ -93,6 +104,7 @@ class CommandeController extends Controller
           }
         }
 
+        // Trie entre montant1 et montant2
         $commandesMo = array();
 
         if(($montant1 == "" && $montant2 == "")||($montant1 == null && $montant2 == null)){
@@ -113,6 +125,7 @@ class CommandeController extends Controller
           }
         }
 
+        // Récupère le panier de chaque commande
         $panier = array();
         foreach($commandesMo as $p){
           $articles = array();
@@ -133,12 +146,14 @@ class CommandeController extends Controller
     return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
   }
 
+  /* affiche les résultats, propose l'impression, la validation, la mise en préparation ... */
   public function optionAction(){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
       if (strtolower($session->get('typ')) == 'administrateur') {
-
+        // Si on veut préparer des commandes
         if (isset($_POST['preparer'])){
+          // récupère les commandes selectionnée
           $allCommandes =  $this->getDoctrine()
                         ->getRepository('BDDBddClientBundle:Commande')
                         ->findByStatus("En cours");
@@ -150,6 +165,8 @@ class CommandeController extends Controller
               $ligne .= $c->getId().";";
             }
           }
+
+          // Récupère les paniers
           $comFinal = array();
           foreach($commandes as $c){
             $panier = array();
@@ -187,6 +204,7 @@ class CommandeController extends Controller
           return $this->render('AdministratorAdministrationAdminBundle:Commande:option.html.twig', array('commandes' => $comFinal, 'ligne' => $ligne));
 
         }else if(isset($_POST['valider'])){
+          // Si on valide des commandes qu'on a fini de préparer
           $allCommandes =  $this->getDoctrine()
                         ->getRepository('BDDBddClientBundle:Commande')
                         ->findByStatus("En preparation");
@@ -210,6 +228,7 @@ class CommandeController extends Controller
     return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
   }
 
+  /* On supprime une commande */
   public function supprimerAction($id){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
@@ -225,6 +244,7 @@ class CommandeController extends Controller
     return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
   }
 
+  /* On passe une commande en "En préparation" */
   public function imprimerAction($commandes){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {

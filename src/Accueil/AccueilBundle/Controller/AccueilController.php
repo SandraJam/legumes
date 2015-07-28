@@ -12,6 +12,7 @@ use Administrator\Administrator\AdminBundle\Ressources;
 
 class AccueilController extends Controller
 {
+    /* Page principale */
     public function indexAction()
     {
         $recette = $this->getDoctrine()
@@ -30,11 +31,13 @@ class AccueilController extends Controller
 
     }
 
+    /* Page de contact */
     public function contactAction()
     {
         return $this->render('AccueilAccueilBundle::contact.html.twig');
     }
 
+    /* Formulaire de connexion */
     public function formulaireConnexionAction(Request $request){
 		$session = $this->getRequest()->getSession();
         if ($session->get('users') != NULL){
@@ -91,6 +94,7 @@ class AccueilController extends Controller
         array('form' => $form->createView()) );
     }
 
+    /* Inscription */
     public function inscriptionAction(Request $request){
         $session = $this->getRequest()->getSession();
         if ($session->get('users')!= NULL){
@@ -193,7 +197,9 @@ class AccueilController extends Controller
             return $this->render('AccueilAccueilBundle::inscriptionClient.html.twig', array('form' => $form->createView()) );
         }
     }
-      public function pagePrincipaleAdmineAction(Request $request){
+
+    /* Acces a la partie d'administration */
+    public function pagePrincipaleAdmineAction(Request $request){
         $session = $this->getRequest()->getSession();
         if ($session->get('typ')==strtolower("ADMINISTRATEUR")){
                $session->set('typ', $user->getType());

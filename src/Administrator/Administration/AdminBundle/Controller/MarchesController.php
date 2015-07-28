@@ -8,6 +8,7 @@ use BDD\BddClientBundle\Entity\Marches;
 
 class MarchesController extends Controller
 {
+    /* Page administration marché */
     public function indexAction(){
       $session = $this->getRequest()->getSession();
       if ($session->get('pren') != NULL) {
@@ -26,6 +27,7 @@ class MarchesController extends Controller
       }
     }
 
+    /* Ajout d'un nouveau marché */
     public function ajoutAction(Request $request){
       $session = $this->getRequest()->getSession();
       if ($session->get('pren') != NULL) {
@@ -88,6 +90,7 @@ class MarchesController extends Controller
       }
     }
 
+    /* Supprimer un marché */
     public function suppAction($id){
       $session = $this->getRequest()->getSession();
       if ($session->get('pren') != NULL) {
@@ -106,6 +109,7 @@ class MarchesController extends Controller
       }
     }
 
+    /* Modifie un marché */
     public function modifAction($id){
       $session = $this->getRequest()->getSession();
       if ($session->get('pren') != NULL) {
@@ -123,6 +127,7 @@ class MarchesController extends Controller
       }
     }
 
+    /* Valide la modification d'un marché */
     public function modifbisAction($id){
       $session = $this->getRequest()->getSession();
       if ($session->get('pren') != NULL) {
