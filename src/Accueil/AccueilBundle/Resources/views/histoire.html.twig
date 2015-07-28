@@ -12,6 +12,16 @@
 {% block body %}
   <div class="container">
     {% for hist in listeHistoire %}
-      
+
+        <div class="carte {% if loop.index is odd %}gauche{% else %}droite{% endif %} {% if loop.first %}one{% endif %}">
+          <img src="{{ asset('images/' ~ hist.lienPhoto)}}"
+            class="imgHistoire" alt="{{hist.titre}}"/>
+          <h4 style="color: {{hist.colorTitre}};"> {{hist.titre}} </h4>
+          <p style="color: {{hist.colorContenu}};">
+            {{hist.contenu}}
+          </p>
+        </div>
     {% endfor %}
+
+  </div>
 {% endblock %}
