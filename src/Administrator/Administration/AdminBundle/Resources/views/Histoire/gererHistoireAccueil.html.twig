@@ -41,7 +41,7 @@
         {% for article in listHistoire %}
         	<div class="row recette">
             <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
-              <img src="{{asset('images/' ~ article.lienPhoto)}}" alt="{{art.nom}}" class="imgRecette"/>
+              <img src="{{asset('images/' ~ article.lienPhoto)}}" alt="{{article.titre}}" class="imgRecette"/>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="color: {{article.colorTitre}};">
               {{ article.titre|capitalize }}

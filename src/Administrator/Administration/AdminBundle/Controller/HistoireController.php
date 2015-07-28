@@ -21,7 +21,7 @@ class HistoireController extends Controller
 			return $this->render('AdministratorAdministrationAdminBundle:Histoire:gererHistoireAccueil.html.twig',array('listHistoire' => $listeHistoire));
 		}else{
 			return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-		}		
+		}
 	}
 
 	public function modificationActionHistoireAction(){
@@ -31,14 +31,14 @@ class HistoireController extends Controller
            	$button = $_POST['buttonId'];
 
 			if($button == "Modifier"){
-				
+
 			}
 		   	if($button == "Supprimer"){
-				
+
 			}
 		}else{
 			return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
-		}		
+		}
 	}
 	public function ajouterHistoireAction(Request $request){
 		$session = $this->getRequest()->getSession();
@@ -62,22 +62,22 @@ class HistoireController extends Controller
          		   'green' => 'Vert',
          		   'orange' => 'Orange',
          		   'brown' => 'Marron',
-         		   'blue' => 'Bleu')))     
+         		   'blue' => 'Bleu')))
          		->add('lienPhoto','file')
     			->add('positionPhoto', 'choice', array(
          		   'choices'   => array(
          		    	'hg' => 'HautGauche',
          		    	'hd' => 'HautDroite',
          		    	'bg' => 'BasGauche',
-         		    	'bd' => 'BasDroite'))) 
+         		    	'bd' => 'BasDroite')))
            ->add('valider','submit')
            ->add('annuler','reset')
          		->getForm();
         	$form->handleRequest($request);
-        	
+
         	if($form->isValid()){
 				$histoire=$form->getData();
-					if(!$new->getLienPhoto()->getSize()){
+					if(!$histoire->getLienPhoto()->getSize()){
         				$request->getSession()->getFlashBag()->add('notice', 'La photo est trop volumineuse.');
             		}else{
 						$tableauCarIndesirable = array(" ", "-", "#", "~", "\t", "\n", "\r", "\0", "\x0B", "\xA0");
@@ -86,7 +86,7 @@ class HistoireController extends Controller
             			$dir = $this->getRequest()->server->get('DOCUMENT_ROOT') . $this->getRequest()->getBasePath() . "/images/";
             			$uploadedFile->move($dir, $fileName.time());
             			$histoire->setLienPhoto($fileName.time());
-						
+
             			$em = $this->getDoctrine()->getManager();
             			$em->persist($histoire);
             			$em->flush();
@@ -94,7 +94,7 @@ class HistoireController extends Controller
         			}
         	}
         	return $this->render(
-        		'AdministratorAdministrationAdminBundle:Histoire:formAjouterHistoire.html.twig', 
+        		'AdministratorAdministrationAdminBundle:Histoire:formAjouterHistoire.html.twig',
         		array('form' => $form->createView()));
         }else{
             return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
@@ -102,5 +102,5 @@ class HistoireController extends Controller
     }
 
 
-		
+
 }
