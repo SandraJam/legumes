@@ -15,54 +15,75 @@
     {% if commandes|length == 0 %}
       Aucune commande ne correspond à votre recherche. <br/>
     {% else %}
-      <div class="row commande">
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
-          <strong>Numéro</strong>
+      <form action="{{path('administrator_commande_option')}}" method="post">
+        <div class="row" style="text-align: left;">
+          <button onClick="allSelect()" class="btn btn-default btn-sm btn-info" type="button">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Tout selectionner
+          </button>
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
-          <strong>Date</strong>
-        </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
-          <strong>Total</strong>
-        </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-          <strong>Status</strong>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-          <strong>Fonctions</strong>
-        </div>
-      </div>
-        <!-- Panier, jour et remarque dans Voir -->
-        {% for commande in commandes %}
-          <div class="row commande">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
-              {{commande.numCommande}}
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
-              {{commande.dateCommande|date("d/m/Y")}}
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
-              {{commande.total}}€
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-              {{commande.status}}
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-              <button onclick="entier('{{commande.id}}')" type="button" class="btn btn-default btn-md btn-info">
-                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Voir
-              </button>
-              <a class="btn btn-default btn-md btn-danger" role="button" href="{{path('administrator_commande_supprimer', {'id' : commande.id})}}">
-                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer
-              </a>
-            </div>
+        <div class="row commande">
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+            <strong> Selection </strong>
           </div>
-        {% endfor %}
-      </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+            <strong>Numéro</strong>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+            <strong>Date</strong>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+            <strong>Total</strong>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+            <strong>Status</strong>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <strong>Fonctions</strong>
+          </div>
+        </div>
+          <!-- Panier, jour et remarque dans Voir -->
+          {% for commande in commandes %}
+            <div class="row commande">
+              <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+                <input type="checkbox" value="{{commande.id}}" name="{{commande.id}}" id="{{commande.id}}"/>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                {{commande.numCommande}}
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                {{commande.dateCommande|date("d/m/Y")}}
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                {{commande.total}}€
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                {{commande.status}}
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <button onclick="entier('{{commande.id}}')" type="button" class="btn btn-default btn-md btn-info">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Voir
+                </button>
+                <a class="btn btn-default btn-md btn-danger" role="button" href="{{path('administrator_commande_supprimer', {'id' : commande.id})}}">
+                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer
+                </a>
+              </div>
+            </div>
+          {% endfor %}
+          <br/><br/>
+          {% if encours %}
+            <input type="submit" name="preparer" value="Préparer ces commandes" id="form_suivant" class="bouton"/>
+          {% endif %}
+          {% if enPrep %}
+            <input type="submit" name="valider" value="Valider ces commandes" id="form_suivant" class="bouton"/>
+          {% endif %}
+          <a href="{{path('administrator_commande_cherche')}}" id="form_annuler">Retour</a>
+        </form>
+    </div>
     {% endif %}
   </div>
 
   {% for c in commandes %}
-    <div id="{{c.id}}" class="entiere row">
+    <div id="entier{{c.id}}" class="entiere row">
       <img class="fermer" onclick="fermer('{{c.id}}')"
       src="{{ asset('bundles/accueilaccueil/images/close.png')}}"
       alt="fermer la fenetre"/>
@@ -119,11 +140,17 @@
 {% block js %}
 <script>
 function entier(id) {
-  document.getElementById(id).style.display = "block";
+  document.getElementById('entier'+id).style.display = "block";
 }
 
 function fermer(id) {
-  document.getElementById(id).style.display = "none";
+  document.getElementById('entier'+id).style.display = "none";
+}
+
+function allSelect(){
+  {% for commande in commandes %}
+    document.getElementById({{commande.id}}).checked = true;
+  {% endfor %}
 }
 </script>
 {% endblock %}

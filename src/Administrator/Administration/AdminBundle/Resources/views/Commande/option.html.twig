@@ -1,0 +1,94 @@
+{# src/Administration/AdminBundle/Resources/views/resultat.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet"  media="screen" >
+  <link href="{{ asset('bundles/accueilaccueil/css/pdf.css') }}" rel="stylesheet"  media="print" >
+{% endblock %}
+
+{% block title %}
+	Gestion Commandes
+{% endblock %}
+
+{% block body %}
+<div class="container blocContainer blabla">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="interne">
+        <h1> Commandes en préparation </h1>
+        <br/>
+        {% for commande in commandes %}
+          <h3> {{commande.0.numCommande}} </h3>
+          <table>
+           <tr>
+             <td> Client </td>
+             <td> Numéro </td>
+             <td> Date de la Commande </td>
+             <td> Marché </td>
+             <td> Jour de Retrait </td>
+             <td> Total </td>
+           </tr>
+           <tr>
+             <td> {{commande.0.utilisateurs.nom}} {{commande.0.utilisateurs.prenom}}</td>
+             <td> {{commande.0.numCommande}} </td>
+             <td> {{commande.0.dateCommande|date('d/m/Y')}} </td>
+             <td> {{commande.0.retirerMarches.lieu}} </td>
+             <td> {{commande.0.jourCommande}}</td>
+             <td> {{commande.0.total}}€ </td>
+           </tr>
+         </table>
+         <br/>
+         <table>
+           <tr>
+             <td> Remarque: </td><td> {{commande.0.remarque}} </td>
+           </tr>
+         </table>
+         <br/>
+         <table>
+           <tr>
+             <td> Nom </td>
+             <td> Catégorie </td>
+             <td> Nombre unité </td>
+             <td> Quantité par unité </td>
+             <td> Prix total </td>
+           </tr>
+           {% for article in commande.1 %}
+             <tr>
+               <td> {{article.0.nom|capitalize}} </td>
+               <td> {{article.0.categorie.nom|capitalize}} </td>
+               <td> {{article.1}} </td>
+               <td> {{article.0.qtiteVente}} </td>
+               <td> {{article.0.prix * article.1}}€ </td>
+             </tr>
+           {% endfor %}
+         </table></br><br/>
+       {% endfor %}
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 printS">
+      <div class="interne">
+        <h1> Imprimer et mettre en préparation </h1><br/>
+        {% if ligne != "" %}
+        <a onclick="imprimer();" class="btn btn-default btn-lg btn-warning" role="button">
+          <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Imprimer
+        </a><br/><br/>
+        <a href="{{path('administrator_commande_imprimer', {'commandes' : ligne})}}" class="btn btn-default btn-lg btn-primary" role="button">
+          <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span> Mettre en Préparation
+        </a><br/><br/>
+        {% endif %}
+        <a class="btn btn-default btn-lg btn-danger" role="button" href="{{path('administrator_commande_cherche')}}">
+          <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Retour
+        </a><br/><br/>
+      </div>
+    </div>
+  </div>
+ </div>
+{% endblock %}
+
+{% block js %}
+<script>
+  function imprimer(){
+    window.print();
+  }
+</script>
+{% endblock %}

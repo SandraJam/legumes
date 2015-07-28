@@ -23,6 +23,7 @@ class CommandeController extends Controller
             $statut[] = $c->getStatus();
           }
         }
+        sort($statut);
         $marches = $this->getDoctrine()
                       ->getRepository('BDDBddClientBundle:Marches')
                       ->findAll();
@@ -39,10 +40,18 @@ class CommandeController extends Controller
     if ($session->get('pren') != NULL) {
       if (strtolower($session->get('typ')) == 'administrateur') {
         $allCommandes = array();
+        $statut = false;
+        $enPrep = false;
         if (isset($_POST['statut']) && $_POST['statut'] != null){
           $allCommandes =  $this->getDoctrine()
                         ->getRepository('BDDBddClientBundle:Commande')
                         ->findByStatus($_POST['statut']);
+          if (strstr($_POST['statut'], "cours")){
+            $statut = true;
+          }
+          if (strstr($_POST['statut'], "preparation")){
+            $enPrep = true;
+          }
         }
         $marche = $_POST['marche'];
         $date1 = $_POST['date1']; $date2 = $_POST['date2'];
@@ -118,7 +127,7 @@ class CommandeController extends Controller
           $panier[] = [$articles, $p->getId()];
         }
 
-        return $this->render('AdministratorAdministrationAdminBundle:Commande:resultat.html.twig', array('panier' => $panier, 'commandes' =>$commandesMo));
+        return $this->render('AdministratorAdministrationAdminBundle:Commande:resultat.html.twig', array('panier' => $panier, 'commandes' =>$commandesMo, 'encours' => $statut, 'enPrep' => $enPrep));
       }
     }
     return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
@@ -128,7 +137,74 @@ class CommandeController extends Controller
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
       if (strtolower($session->get('typ')) == 'administrateur') {
-        return $this->render('AdministratorAdministrationAdminBundle:Commande:option.html.twig');
+
+        if (isset($_POST['preparer'])){
+          $allCommandes =  $this->getDoctrine()
+                        ->getRepository('BDDBddClientBundle:Commande')
+                        ->findByStatus("En cours");
+          $commandes = array();
+          $ligne = "";
+          foreach($allCommandes as $c){
+            if(isset($_POST[$c->getId()]) && $_POST[$c->getId()] != null){
+              $commandes[] = $c;
+              $ligne .= $c->getId().";";
+            }
+          }
+          $comFinal = array();
+          foreach($commandes as $c){
+            $panier = array();
+            $pan = explode(';', $c->getPanier());
+            $categorie= array();
+            for($a=0; $a < count($pan) -1; $a++){
+              $article = explode(':', $pan[$a]);
+              $art =  $this->getDoctrine()
+                            ->getRepository('BDDBddClientBundle:Article')
+                            ->find($article[0]);
+              if (!in_array($art->getCategorie()->getId(), $categorie)){
+                $categorie[] = $art->getCategorie()->getId();
+              }
+              $panier[] = [$art, $article[1]];
+            }
+            // On trie le panier par catégorie
+
+            $panierbis = array();
+
+            foreach($categorie as $cat){
+              foreach($panier as $p){
+                if ($cat ==  $p[0]->getCategorie()->getId()){
+                  $panierbis[] = $p;
+                }
+              }
+            }
+
+            $comFinal[] = [$c, $panierbis];
+          }
+
+          // commandes => [commande, panier]
+          // panier => [article, quantite]
+          // On visualise, on imprime et on passe en "En preparation"
+
+          return $this->render('AdministratorAdministrationAdminBundle:Commande:option.html.twig', array('commandes' => $comFinal, 'ligne' => $ligne));
+
+        }else if(isset($_POST['valider'])){
+          $allCommandes =  $this->getDoctrine()
+                        ->getRepository('BDDBddClientBundle:Commande')
+                        ->findByStatus("En preparation");
+          $commandes = array();
+          $ligne = "";
+          foreach($allCommandes as $c){
+            if(isset($_POST[$c->getId()]) && $_POST[$c->getId()] != null){
+              $commandes[] = $c;
+              $ligne .= $c->getId().";";
+            }
+          }
+          foreach($commandes as $c){
+            $c->setStatus("Terminé");
+          }
+          $em = $this->getDoctrine()->getManager();
+          $em->flush();
+        }
+        return $this->redirect($this->generateUrl('administrator_commande_cherche'));
       }
     }
     return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
@@ -142,6 +218,24 @@ class CommandeController extends Controller
           ->getRepository('BDDBddClientBundle:Commande')->find($id);
         $em = $this->getDoctrine()->getManager();
         $em->remove($commande);
+        $em->flush();
+        return $this->redirect($this->generateUrl('administrator_commande_cherche'));
+      }
+    }
+    return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
+  }
+
+  public function imprimerAction($commandes){
+    $session = $this->getRequest()->getSession();
+    if ($session->get('pren') != NULL) {
+      if (strtolower($session->get('typ')) == 'administrateur') {
+        $com = explode(';', $commandes);
+        for($i=0; $i < count($com) -1; $i++){
+          $co = $this->getDoctrine()
+            ->getRepository('BDDBddClientBundle:Commande')->find($com[$i]);
+          $co->setStatus("En preparation");
+        }
+        $em = $this->getDoctrine()->getManager();
         $em->flush();
         return $this->redirect($this->generateUrl('administrator_commande_cherche'));
       }

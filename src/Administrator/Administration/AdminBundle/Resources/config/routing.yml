@@ -199,5 +199,9 @@ administrator_commande_option:
     defaults: { _controller: AdministratorAdministrationAdminBundle:Commande:option }
 
 administrator_commande_supprimer:
-    path:      /commandesupprimer{id}
+    path:      /commandesupprimer/{id}
     defaults: { _controller: AdministratorAdministrationAdminBundle:Commande:supprimer }
+
+administrator_commande_imprimer:
+    path:      /commandeimprimer/{commandes}
+    defaults: { _controller: AdministratorAdministrationAdminBundle:Commande:imprimer }

@@ -355,6 +355,7 @@ input.radio {
 
 .recherche {
   text-align: center;
+  padding: 2em;
 }
 
 .recherche h1{
@@ -400,4 +401,13 @@ input.radio {
   text-align: center;
   border: 1px solid grey;
   margin-top: 1em;
+}
+
+.blabla table, .blabla th, .blabla td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.blabla th, .blabla td {
+    padding: 1em;
 }
