@@ -14,12 +14,34 @@
     {% for hist in listeHistoire %}
 
         <div class="carte {% if loop.index is odd %}gauche{% else %}droite{% endif %} {% if loop.first %}one{% endif %}">
-          <img src="{{ asset('images/' ~ hist.lienPhoto)}}"
-            class="imgHistoire" alt="{{hist.titre}}"/>
+          {% if hist.positionPhoto != "bas" %}
+            {% if hist.positionPhoto == "haut" %}
+              <p style="text-align: center;">
+                <img src="{{ asset('images/' ~ hist.lienPhoto)}}"
+                  class="imgHistoire" alt="{{hist.titre}}"
+                  />
+              </p>
+            {% else %}
+              <img src="{{ asset('images/' ~ hist.lienPhoto)}}"
+                    class="imgHistoire" alt="{{hist.titre}}"
+                    {% if hist.positionPhoto == "droite" %}
+                      style="float: right;"
+                    {% else %}
+                      style="float: left;"
+                    {% endif %}
+                    />
+            {% endif %}
+          {% endif %}
           <h4 style="color: {{hist.colorTitre}};"> {{hist.titre}} </h4>
           <p style="color: {{hist.colorContenu}};">
             {{hist.contenu}}
           </p>
+          {% if hist.positionPhoto == "bas" %}
+            <p style="text-align: center;">
+            <img src="{{ asset('images/' ~ hist.lienPhoto)}}"
+                    class="imgHistoire" alt="{{hist.titre}}"/>
+            </p>
+          {% endif %}
         </div>
     {% endfor %}
 

@@ -66,10 +66,10 @@ class HistoireController extends Controller
          		->add('lienPhoto','file')
     			->add('positionPhoto', 'choice', array(
          		   'choices'   => array(
-         		    	'hg' => 'HautGauche',
-         		    	'hd' => 'HautDroite',
-         		    	'bg' => 'BasGauche',
-         		    	'bd' => 'BasDroite')))
+         		    	'haut' => 'Au dessus',
+       		    		'bas' => 'Au dessous',
+         		    	'gauche' => 'A gauche',
+         		    	'droite' => 'A droite')))
            ->add('valider','submit')
            ->add('annuler','reset')
          		->getForm();
