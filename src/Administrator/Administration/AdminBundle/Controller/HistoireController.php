@@ -29,12 +29,24 @@ class HistoireController extends Controller
 		if ( ($session->get('pren') != NULL) && (strtolower($session->get('typ')) == 'administrateur') ) {
 			$articleId = $_POST['articleId'];
            	$button = $_POST['buttonId'];
-
 			if($button == "Modifier"){
-
+				$histoire=$this->getDoctrine()->getRepository('BDDBddClientBundle:Histoire')->find($articleId);
+				if($histoire!=NULL){
+					return $this->render('AdministratorAdministrationAdminBundle:Histoire:modificationHistoire.html.twig');
+				}else{
+					return $this->redirect($this->generateUrl('administrator_administration_admin_gerer_notre_histoire'));
+				}
 			}
 		   	if($button == "Supprimer"){
-
+				$histoire=$this->getDoctrine()->getRepository('BDDBddClientBundle:Histoire')->find($articleId);
+		   		if($histoire !=NULL){
+		   			$em = $this->getDoctrine()->getManager();
+            		$em->remove($histoire);
+            		$em->flush();
+            		return $this->redirect($this->generateUrl('administrator_administration_admin_gerer_notre_histoire'));
+				}else{
+					return $this->redirect($this->generateUrl('administrator_administration_admin_gerer_notre_histoire'));
+				}
 			}
 		}else{
 			return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
@@ -100,7 +112,5 @@ class HistoireController extends Controller
             return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
         }
     }
-
-
 
 }

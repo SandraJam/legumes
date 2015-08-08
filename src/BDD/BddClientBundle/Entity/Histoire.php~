@@ -48,11 +48,11 @@ class Histoire
      * @ORM\Column(name="colorContenu", type="string", length=25)
      */
     private $colorContenu;
-    
+
     /**
      * @var string
      *
-     * @ORM\Column(name="lienPhoto", type="string", length=3)
+     * @ORM\Column(name="lienPhoto", type="string", length=250)
      */
     private $lienPhoto;
 
@@ -67,7 +67,7 @@ class Histoire
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -90,7 +90,7 @@ class Histoire
     /**
      * Get titre
      *
-     * @return string 
+     * @return string
      */
     public function getTitre()
     {
@@ -113,7 +113,7 @@ class Histoire
     /**
      * Get contenu
      *
-     * @return string 
+     * @return string
      */
     public function getContenu()
     {
@@ -136,7 +136,7 @@ class Histoire
     /**
      * Get lienPhoto
      *
-     * @return string 
+     * @return string
      */
     public function getLienPhoto()
     {
@@ -159,7 +159,7 @@ class Histoire
     /**
      * Get colorTitre
      *
-     * @return string 
+     * @return string
      */
     public function getColorTitre()
     {
@@ -182,10 +182,33 @@ class Histoire
     /**
      * Get colorContenu
      *
-     * @return string 
+     * @return string
      */
     public function getColorContenu()
     {
         return $this->colorContenu;
+    }
+
+    /**
+     * Set positionPhoto
+     *
+     * @param string $positionPhoto
+     * @return Histoire
+     */
+    public function setPositionPhoto($positionPhoto)
+    {
+        $this->positionPhoto = $positionPhoto;
+
+        return $this;
+    }
+
+    /**
+     * Get positionPhoto
+     *
+     * @return string
+     */
+    public function getPositionPhoto()
+    {
+        return $this->positionPhoto;
     }
 }
