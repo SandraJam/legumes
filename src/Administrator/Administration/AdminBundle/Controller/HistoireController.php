@@ -24,19 +24,14 @@ class HistoireController extends Controller
 		}
 	}
 
-	public function modificationActionHistoireAction(){
+	public function modificationActionHistoireAction(Request $request){
 		$session = $this->getRequest()->getSession();
 		if ( ($session->get('pren') != NULL) && (strtolower($session->get('typ')) == 'administrateur') ) {
 			$articleId = $_POST['articleId'];
            	$button = $_POST['buttonId'];
 			if($button == "Modifier"){
-				$histoire=$this->getDoctrine()->getRepository('BDDBddClientBundle:Histoire')->find($articleId);
-				if($histoire!=NULL){
-					
-					return $this->render('AdministratorAdministrationAdminBundle:Histoire:modificationHistoire.html.twig');
-				}else{
-					return $this->redirect($this->generateUrl('administrator_administration_admin_gerer_notre_histoire'));
-				}
+				return $this->redirect($this->generateUrl('administrator_administration_admin_modifierHistoire',
+					array('articleId' => $articleId)));
 			}
 		   	if($button == "Supprimer"){
 				$histoire=$this->getDoctrine()->getRepository('BDDBddClientBundle:Histoire')->find($articleId);
@@ -113,5 +108,57 @@ class HistoireController extends Controller
             return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
         }
     }
+
+    public function modifierHistoireAction(Request $request, $articleId){
+    	$session = $this->getRequest()->getSession();
+		if (($session->get('pren') != NULL) && (strtolower($session->get('typ')) == 'administrateur')) {
+    		$histoire=$this->getDoctrine()->getRepository('BDDBddClientBundle:Histoire')->find($articleId);
+			if($histoire!=NULL){
+        		$form = $this->createFormBuilder($histoire)
+        			->add('titre','text')
+        			->add('colorTitre', 'choice', array(
+        			 'choices'   => array(
+        			   'black' => 'Noir',
+        			   'red' => 'Rouge',
+        			   'green' => 'Vert',
+        			   'orange' => 'Orange',
+        			   'brown' => 'Marron',
+        			   'blue' => 'Bleu')))
+        			->add('contenu','textarea')
+        			->add('colorContenu', 'choice', array(
+        			 'choices'   => array(
+        			   'black' => 'Noir',
+        			   'red' => 'Rouge',
+        			   'green' => 'Vert',
+        			   'orange' => 'Orange',
+        			   'brown' => 'Marron',
+        			   'blue' => 'Bleu')))
+        			->add('lienPhoto','file', array(
+        				'data_class' => null
+        				))
+    				->add('positionPhoto', 'choice', array(
+        			   'choices'   => array(
+        			    	'haut' => 'Au dessus',
+       						'bas' => 'Au dessous',
+        			    	'gauche' => 'A gauche',
+        				    'droite' => 'A droite')))
+        			->add('valider','submit')
+        			->add('annuler','reset')
+        			->getForm();
+        		$form->handleRequest($request);
+			
+        		if($form->isValid()){
+					$histoire=$form->getData();
+					//TODO a finir
+				}
+				return $this->render('AdministratorAdministrationAdminBundle:Histoire:modificationHistoire.html.twig',array('form' => $form->createView()));
+        	}else{
+					return $this->redirect($this->generateUrl('administrator_administration_admin_gerer_notre_histoire'));
+			}
+
+    	}else{
+            return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
+        }
+	}
 
 }
