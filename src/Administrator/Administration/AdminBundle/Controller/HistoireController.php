@@ -32,6 +32,7 @@ class HistoireController extends Controller
 			if($button == "Modifier"){
 				$histoire=$this->getDoctrine()->getRepository('BDDBddClientBundle:Histoire')->find($articleId);
 				if($histoire!=NULL){
+					
 					return $this->render('AdministratorAdministrationAdminBundle:Histoire:modificationHistoire.html.twig');
 				}else{
 					return $this->redirect($this->generateUrl('administrator_administration_admin_gerer_notre_histoire'));
