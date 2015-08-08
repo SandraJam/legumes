@@ -42,6 +42,8 @@ class AccueilController extends Controller
 		$session = $this->getRequest()->getSession();
         if ($session->get('users') != NULL){
         	$session->set('users', NULL);
+            //permet de vider la session regle le pb que ça gardait les articles
+            session_destroy();
 			return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
             //si la session est vide
         }else{
