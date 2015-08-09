@@ -25,7 +25,11 @@ class GalerieController extends Controller
           $a = $this->getDoctrine()
                       ->getRepository('BDDBddClientBundle:Article')
                       ->findOneByCategorie($c);
-          if ($a != null){
+          $val = 0;
+          foreach($a as $aa){
+            $val = $val + $aa->getQtiteStock();
+          }
+          if ($a != null && $val != 0){
             $categories[] = [$c, $a->getPhotos()];
           }
         }
@@ -180,7 +184,6 @@ class GalerieController extends Controller
         $commande->setTotal($total);
         $em = $this->getDoctrine()->getManager();
         $em->persist($commande);
-        $em->flush();
 
         $articles = array();
         $panier2 = explode(';', $panier);
@@ -189,14 +192,18 @@ class GalerieController extends Controller
           $a = $this->getDoctrine()
                         ->getRepository('BDDBddClientBundle:Article')
                         ->find($art[0]);
+          $val = $a->getQtiteStock();
+          $a->setQtiteStock($val - $art[1]);
+          $em->flush();
           $articles[] = [$a, $art[1]];
         }
-        //TODO PB le getjoursemaine affiche samedi dimanche alors que j'ai coché samedi
+        $em->flush();
+
         $message = \Swift_Message::newInstance();
         $body = '<html><body>
           <img src="'.$message->embed(\Swift_Image::fromPath('bundles/accueilaccueil/images/email.png')) .'"><br/>
           <strong> Les Légumes du Val de Loire vous remercie de votre commande. </strong>
-          <p> Commande N° '.$commande->getNumCommande().' à récupérer le '.$marche->getJourSemaine().' prochain au marché de '.$marche->getLieu().'
+          <p> Commande N° '.$commande->getNumCommande().' à récupérer le '.$commande->getJourCommande().' prochain au marché de '.$marche->getLieu().'
             <br/>
             <br/> Récupitulatif pour un total de '.$total.'€: </p>
 
