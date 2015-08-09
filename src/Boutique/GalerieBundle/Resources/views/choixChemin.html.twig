@@ -1,0 +1,19 @@
+{# src/Boutique/GalerieBundle/Resources/views/choixChemin.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block style %}
+  <link href="{{ asset('bundles/accueilaccueil/css/Administration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+  Bienvenue dans notre Boutique!
+{% endblock %}
+
+{% block body %}
+
+  <div class="login">
+    <h1> Votre article a été ajouté au panier! </h1>
+    <a class="btn btn-default btn-lg btn-warning" role="button" href="{{ path('boutique_galerie_panier') }}">Voir mon panier<a/>
+    <a class="btn btn-default btn-lg btn-info" role="button" href="{{ path('boutique_galerie_homepage') }}">Continuer mes achats<a/>
+  </div>
+{% endblock %}

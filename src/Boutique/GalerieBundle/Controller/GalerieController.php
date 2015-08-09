@@ -88,7 +88,7 @@ class GalerieController extends Controller
       $session->set('panier', $panier);
       $nb = $session->get('nbPanier');
       $session->set('nbPanier', $nb+$quantite);
-      return $this->redirect($this->generateUrl('boutique_galerie_homepage'));
+      return $this->render('BoutiqueGalerieBundle::choixChemin.html.twig');
     }
 
     // Supprimer un article du panier
