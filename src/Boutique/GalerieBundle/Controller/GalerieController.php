@@ -191,11 +191,12 @@ class GalerieController extends Controller
                         ->find($art[0]);
           $articles[] = [$a, $art[1]];
         }
+        //TODO PB le getjoursemaine affiche samedi dimanche alors que j'ai coché samedi
         $message = \Swift_Message::newInstance();
         $body = '<html><body>
           <img src="'.$message->embed(\Swift_Image::fromPath('bundles/accueilaccueil/images/email.png')) .'"><br/>
           <strong> Les Légumes du Val de Loire vous remercie de votre commande. </strong>
-          <p> Commande N°'.$commande->getNumCommande().' à récupérer le '.$marche->getJourSemaine().' prochain au marché de '.$marche->getLieu().'
+          <p> Commande N° '.$commande->getNumCommande().' à récupérer le '.$marche->getJourSemaine().' prochain au marché de '.$marche->getLieu().'
             <br/>
             <br/> Récupitulatif pour un total de '.$total.'€: </p>
 
