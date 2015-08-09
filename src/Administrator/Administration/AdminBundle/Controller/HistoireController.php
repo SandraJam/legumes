@@ -149,7 +149,10 @@ class HistoireController extends Controller
 			
         		if($form->isValid()){
 					$histoire=$form->getData();
-					//TODO a finir
+					$em = $this->getDoctrine()->getManager();
+        			$em->persist($histoire);
+        			$em->flush();
+        			return $this->redirect($this->generateUrl('administrator_administration_admin_gerer_notre_histoire'));
 				}
 				return $this->render('AdministratorAdministrationAdminBundle:Histoire:modificationHistoire.html.twig',array('form' => $form->createView()));
         	}else{
