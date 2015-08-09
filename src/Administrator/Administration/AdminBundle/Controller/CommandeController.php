@@ -48,7 +48,6 @@ class CommandeController extends Controller
       if (strtolower($session->get('typ')) == 'administrateur') {
         $allCommandes = array();
         $statut = false;
-        $enPrep = false;
 
         // Récupère les commandes relative à un statut + note le statut
         if (isset($_POST['statut']) && $_POST['statut'] != null){
@@ -57,9 +56,6 @@ class CommandeController extends Controller
                         ->findByStatus($_POST['statut']);
           if (strstr($_POST['statut'], "cours")){
             $statut = true;
-          }
-          if (strstr($_POST['statut'], "preparation")){
-            $enPrep = true;
           }
         }
         $marche = $_POST['marche'];
@@ -140,7 +136,7 @@ class CommandeController extends Controller
           $panier[] = [$articles, $p->getId()];
         }
 
-        return $this->render('AdministratorAdministrationAdminBundle:Commande:resultat.html.twig', array('panier' => $panier, 'commandes' =>$commandesMo, 'encours' => $statut, 'enPrep' => $enPrep));
+        return $this->render('AdministratorAdministrationAdminBundle:Commande:resultat.html.twig', array('panier' => $panier, 'commandes' =>$commandesMo, 'encours' => $statut));
       }
     }
     return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
@@ -199,28 +195,10 @@ class CommandeController extends Controller
 
           // commandes => [commande, panier]
           // panier => [article, quantite]
-          // On visualise, on imprime et on passe en "En preparation"
+          // On visualise, on imprime et on passe en "Termine"
 
           return $this->render('AdministratorAdministrationAdminBundle:Commande:option.html.twig', array('commandes' => $comFinal, 'ligne' => $ligne));
 
-        }else if(isset($_POST['valider'])){
-          // Si on valide des commandes qu'on a fini de préparer
-          $allCommandes =  $this->getDoctrine()
-                        ->getRepository('BDDBddClientBundle:Commande')
-                        ->findByStatus("En preparation");
-          $commandes = array();
-          $ligne = "";
-          foreach($allCommandes as $c){
-            if(isset($_POST[$c->getId()]) && $_POST[$c->getId()] != null){
-              $commandes[] = $c;
-              $ligne .= $c->getId().";";
-            }
-          }
-          foreach($commandes as $c){
-            $c->setStatus("Terminé");
-          }
-          $em = $this->getDoctrine()->getManager();
-          $em->flush();
         }
         return $this->redirect($this->generateUrl('administrator_commande_cherche'));
       }
@@ -244,7 +222,7 @@ class CommandeController extends Controller
     return $this->redirect($this->generateUrl('accueil_accueil_homepage'));
   }
 
-  /* On passe une commande en "En préparation" */
+  /* On passe une commande en "Termine" */
   public function imprimerAction($commandes){
     $session = $this->getRequest()->getSession();
     if ($session->get('pren') != NULL) {
@@ -253,7 +231,7 @@ class CommandeController extends Controller
         for($i=0; $i < count($com) -1; $i++){
           $co = $this->getDoctrine()
             ->getRepository('BDDBddClientBundle:Commande')->find($com[$i]);
-          $co->setStatus("En preparation");
+          $co->setStatus("Termine");
         }
         $em = $this->getDoctrine()->getManager();
         $em->flush();
