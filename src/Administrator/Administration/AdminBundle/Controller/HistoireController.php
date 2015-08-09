@@ -149,6 +149,12 @@ class HistoireController extends Controller
 			
         		if($form->isValid()){
 					$histoire=$form->getData();
+					$tableauCarIndesirable = array(" ", "-", "#", "~", "\t", "\n", "\r", "\0", "\x0B", "\xA0");
+            			$uploadedFile = $histoire -> getLienPhoto();
+            			$fileName = str_replace($tableauCarIndesirable, "", $uploadedFile -> getClientOriginalName());
+            			$dir = $this->getRequest()->server->get('DOCUMENT_ROOT') . $this->getRequest()->getBasePath() . "/images/";
+            			$uploadedFile->move($dir, $fileName.time());
+            			$histoire->setLienPhoto($fileName.time());
 					$em = $this->getDoctrine()->getManager();
         			$em->persist($histoire);
         			$em->flush();
