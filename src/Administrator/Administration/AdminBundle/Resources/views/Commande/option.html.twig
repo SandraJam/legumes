@@ -18,68 +18,70 @@
         <h1> Commandes en préparation </h1>
         <br/>
         {% for commande in commandes %}
-          <h3> {{commande.0.numCommande}} </h3>
-          <table>
-           <tr>
-             <td> <strong>Numéro</strong> </td>
-             <td> <strong>Date de la Commande</strong> </td>
-             <td> <strong>Marché</strong> </td>
-             <td> <strong>Jour de Retrait</strong> </td>
-             <td> <strong>Total</strong> </td>
-           </tr>
-           <tr>
-             <td> {{commande.0.numCommande}} </td>
-             <td> {{commande.0.dateCommande|date('d/m/Y')}} </td>
-             <td> {{commande.0.retirerMarches.lieu}} </td>
-             <td> {{commande.0.jourCommande}}</td>
-             <td> {{commande.0.total}}€ </td>
-           </tr>
-         </table>
-         <br/>
-         <table>
-           <tr>
-             <td> <strong>Nom</strong> </td>
-             <td> <strong>Telephone</strong> </td>
-           </tr>
-           <tr>
-             <td> {{commande.0.utilisateurs.nom}} {{commande.0.utilisateurs.prenom}}</td>
-             <td> {{commande.0.utilisateurs.tel}}</td>
-           </tr>
-           <tr>
-             <td> <strong>Adresse</strong> </td>
-             <td> <strong>E-mail</strong> </td>
-           </tr>
-           <tr>
-             <td> {{commande.0.utilisateurs.adresse}} <br/> {{commande.0.utilisateurs.codePostal}} {{commande.0.utilisateurs.ville}}</td>
-             <td> {{commande.0.utilisateurs.email}}</td>
-           </tr>
-         </table>
-
-         <br/>
-         <table>
-           <tr>
-             <td> <strong>Remarque:</strong> </td><td> {{commande.0.remarque}} </td>
-           </tr>
-         </table>
-         <br/>
-         <table>
-           <tr>
-             <td> <strong>Nom</strong> </td>
-             <td> <strong>Catégorie</strong> </td>
-             <td> <strong>Nombre unité</strong> </td>
-             <td> <strong>Quantité par unité</strong> </td>
-             <td> <strong>Prix total</strong> </td>
-           </tr>
-           {% for article in commande.1 %}
+          <div class="onePage">
+            <h3> {{commande.0.numCommande}} </h3>
+            <table>
              <tr>
-               <td> {{article.0.nom|capitalize}} </td>
-               <td> {{article.0.categorie.nom|capitalize}} </td>
-               <td> {{article.1}} </td>
-               <td> {{article.0.qtiteVente}} </td>
-               <td> {{article.0.prix * article.1}}€ </td>
+               <td> <strong>Numéro</strong> </td>
+               <td> <strong>Date de la Commande</strong> </td>
+               <td> <strong>Marché</strong> </td>
+               <td> <strong>Jour de Retrait</strong> </td>
+               <td> <strong>Total</strong> </td>
              </tr>
-           {% endfor %}
-         </table></br><br/>
+             <tr>
+               <td> {{commande.0.numCommande}} </td>
+               <td> {{commande.0.dateCommande|date('d/m/Y')}} </td>
+               <td> {{commande.0.retirerMarches.lieu}} </td>
+               <td> {{commande.0.jourCommande}}</td>
+               <td> {{commande.0.total}}€ </td>
+             </tr>
+           </table>
+           <br/>
+           <table>
+             <tr>
+               <td> <strong>Nom</strong> </td>
+               <td> <strong>Telephone</strong> </td>
+             </tr>
+             <tr>
+               <td> {{commande.0.utilisateurs.nom}} {{commande.0.utilisateurs.prenom}}</td>
+               <td> {{commande.0.utilisateurs.tel}}</td>
+             </tr>
+             <tr>
+               <td> <strong>Adresse</strong> </td>
+               <td> <strong>E-mail</strong> </td>
+             </tr>
+             <tr>
+               <td> {{commande.0.utilisateurs.adresse}} <br/> {{commande.0.utilisateurs.codePostal}} {{commande.0.utilisateurs.ville}}</td>
+               <td> {{commande.0.utilisateurs.email}}</td>
+             </tr>
+           </table>
+
+           <br/>
+           <table>
+             <tr>
+               <td> <strong>Remarque:</strong> </td><td> {{commande.0.remarque}} </td>
+             </tr>
+           </table>
+           <br/>
+           <table>
+             <tr>
+               <td> <strong>Nom</strong> </td>
+               <td> <strong>Catégorie</strong> </td>
+               <td> <strong>Nombre unité</strong> </td>
+               <td> <strong>Quantité par unité</strong> </td>
+               <td> <strong>Prix total</strong> </td>
+             </tr>
+             {% for article in commande.1 %}
+               <tr>
+                 <td> {{article.0.nom|capitalize}} </td>
+                 <td> {{article.0.categorie.nom|capitalize}} </td>
+                 <td> {{article.1}} </td>
+                 <td> {{article.0.qtiteVente}} </td>
+                 <td> {{article.0.prix * article.1}}€ </td>
+               </tr>
+             {% endfor %}
+           </table></br><br/>
+         </div>
        {% endfor %}
       </div>
     </div>

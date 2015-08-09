@@ -14,3 +14,7 @@ th, td {
 .printS {
   display: none;
 }
+
+.onePage{
+  page-break-before: always;
+}
