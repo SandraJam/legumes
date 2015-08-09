@@ -24,13 +24,13 @@ class GalerieController extends Controller
         foreach($cat as $c){
           $a = $this->getDoctrine()
                       ->getRepository('BDDBddClientBundle:Article')
-                      ->findOneByCategorie($c);
+                      ->findByCategorie($c);
           $val = 0;
           foreach($a as $aa){
             $val = $val + $aa->getQtiteStock();
           }
           if ($a != null && $val != 0){
-            $categories[] = [$c, $a->getPhotos()];
+            $categories[] = [$c, $a[0]->getPhotos()];
           }
         }
 
