@@ -13,7 +13,8 @@
   <div class="container whiteBloc recherche">
     <h1> Résultats Commandes </h1>
     {% if commandes|length == 0 %}
-      Aucune commande ne correspond à votre recherche. <br/>
+      Aucune commande ne correspond à votre recherche. <br/><br/><br/>
+      <a href="{{path('administrator_commande_cherche')}}" id="form_annuler">Retour</a>
     {% else %}
       <form action="{{path('administrator_commande_option')}}" method="post">
         <div class="row" style="text-align: left;">
