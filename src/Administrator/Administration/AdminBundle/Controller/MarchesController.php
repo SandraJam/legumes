@@ -98,6 +98,13 @@ class MarchesController extends Controller
           $marche = $this->getDoctrine()
             ->getRepository('BDDBddClientBundle:Marches')->find($id);
           $em = $this->getDoctrine()->getManager();
+
+          $commandes = $this->getDoctrine()
+            ->getRepository('BDDBddClientBundle:Commande')->findByRetirerMarches($marche);
+          foreach($commandes as $com){
+            $em->remove($com);
+          }
+
           $em->remove($marche);
           $em->flush();
           return $this->redirect($this->generateUrl('administrator_marches_index'));
